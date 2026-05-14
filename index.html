@@ -179,14 +179,14 @@ function Logo({ dark, size = "md" }) {
   const big = size === "lg";
   return (
     <div style={{display:"flex",alignItems:"center",gap:8}}>
-      <svg width={big?44:34} height={big?44:34} viewBox="0 0 44 44" fill="none">
+      <svg width={big?40:32} height={big?40:32} viewBox="0 0 44 44" fill="none">
         <rect width="44" height="44" rx="10" fill="#3333CC"/>
         <path d="M22 6 A16 16 0 1 0 38 22" fill="none" stroke="white" strokeWidth="4.5" strokeLinecap="round"/>
         <polyline points="33,17 38,22 33,27" fill="none" stroke="white" strokeWidth="4.5" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
       <div>
-        <div style={{fontFamily:"Syne,sans-serif",fontWeight:900,fontSize:big?"22px":"17px",color:dark?"#fff":"#0f172a",lineHeight:1}}>SURAKSHA24</div>
-        <div style={{fontSize:"11px",color:dark?"#94a3b8":"#64748b"}}>Repo Cars by LOANS24</div>
+        <div style={{fontFamily:"Syne,sans-serif",fontWeight:900,fontSize:big?"20px":"15px",color:dark?"#fff":"#0f172a",lineHeight:1,letterSpacing:"-0.03em"}}>SURAKSHA24</div>
+        <div style={{fontSize:"10px",color:dark?"#94a3b8":"#64748b",marginTop:2}}>Repo Cars by LOANS24</div>
       </div>
     </div>
   );
@@ -299,9 +299,14 @@ function Header({ dark, toggleDark, view, setView, carsCount }) {
 
           {/* Mobile */}
           <div className="flex md:hidden items-center gap-1.5">
-            <button onClick={toggleDark} className={`p-2 rounded-xl transition-colors ${dark ? "text-slate-400 hover:bg-slate-800" : "text-slate-500 hover:bg-slate-100"}`}>
-              {dark ? <Sun size={16}/> : <Moon size={16}/>}
-            </button>
+            <a href={`https://wa.me/${CONFIG.WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer"
+               className="flex items-center gap-1 px-2.5 py-1.5 bg-green-500 text-white rounded-lg text-xs font-semibold">
+              <MessageCircle size={12}/> WA
+            </a>
+            <a href={`tel:${CONFIG.CALL_NUMBER}`}
+               className="flex items-center gap-1 px-2.5 py-1.5 bg-blue-600 text-white rounded-lg text-xs font-semibold">
+              <Phone size={12}/> Call
+            </a>
             <button onClick={() => setMobileOpen(o => !o)} className={`p-2 rounded-xl transition-colors ${dark ? "text-white hover:bg-slate-800" : "text-slate-900 hover:bg-slate-100"}`}>
               {mobileOpen ? <X size={20}/> : <Menu size={20}/>}
             </button>
