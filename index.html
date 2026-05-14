@@ -3,26 +3,28 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Suraksha24 — Repo Cars</title>
+  <title>Suraksha24</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>tailwind.config = { darkMode: 'class' }</script>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Syne:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-  <style>body { margin:0; font-family:'Plus Jakarta Sans',sans-serif; }</style>
+  <style>body{margin:0;font-family:'Plus Jakarta Sans',sans-serif;}</style>
 </head>
 <body>
-  <div id="root"></div>
+  <div id="root"><p style="padding:20px;font-size:20px">Loading...</p></div>
   <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/lucide-react@0.383.0/dist/umd/lucide-react.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <script type="text/babel" data-type="module">
+  <script type="text/babel">
 const { useState, useEffect, useCallback, useMemo, useRef } = React;
-const { Search, Filter, Moon, Sun, Phone, MessageSquare, FileText, Share2,
+const {
+  Search, Filter, Moon, Sun, Phone, MessageSquare, FileText, Share2,
   ChevronDown, ChevronUp, ChevronLeft, ChevronRight, X, Check, Car,
   MapPin, Calendar, Fuel, Building2, Star, Bell, User, Menu, RefreshCw,
   Heart, Eye, ExternalLink, MessageCircle, Wrench, BarChart2, Bookmark,
   TrendingUp, Clock, AlertCircle, CheckCircle, Shield, Loader2, Tag,
-  ArrowRight, Award, Zap } = lucideReact;
+  ArrowRight, Award, Zap
+} = lucideReact;
 // ============================================================
 // SURAKSHA REPO CARS — Main App
 // React + Tailwind CSS | Google Sheets Integration
@@ -1303,8 +1305,7 @@ function App() {
   );
 }
 
-ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(App));
-
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
   </script>
 </body>
 </html>
