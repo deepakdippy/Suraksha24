@@ -3,20 +3,38 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Suraksha24</title>
+  <title>Suraksha24 — Repo Cars</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>tailwind.config = { darkMode: 'class' }</script>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Syne:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-  <style>body{margin:0;font-family:'Plus Jakarta Sans',sans-serif;}</style>
+  <style>
+    body{margin:0;font-family:'Plus Jakarta Sans',sans-serif;}
+    #loader{display:flex;align-items:center;justify-content:center;height:100vh;flex-direction:column;gap:16px;position:fixed;inset:0;background:#fff;z-index:9999;}
+    .spinner{width:48px;height:48px;border:4px solid #e2e8f0;border-top-color:#2563eb;border-radius:50%;animation:spin 0.8s linear infinite;}
+    @keyframes spin{to{transform:rotate(360deg)}}
+  </style>
 </head>
 <body>
-  <div id="root"><p style="padding:20px;font-size:20px">Loading...</p></div>
+  <div id="loader">
+    <div class="spinner"></div>
+    <p style="color:#64748b">Loading Suraksha24...</p>
+  </div>
+  <div id="root"></div>
   <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <!-- Load lucide icons - correct UMD global is LucideReact -->
   <script src="https://unpkg.com/lucide-react@0.383.0/dist/umd/lucide-react.js"></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <script type="text/babel">
-const { useState, useEffect, useCallback, useMemo, useRef } = React;
+  <script>
+    // Check what global name lucide-react uses
+    const lucideGlobal = window.LucideReact || window.lucideReact || window.lucide;
+    window._lucide = lucideGlobal;
+    console.log('Lucide loaded as:', Object.keys(window).filter(k => k.toLowerCase().includes('lucide')));
+  </script>
+  <script src="https://unpkg.com/@babel/standalone@7.23.10/babel.min.js"></script>
+  <script type="text/babel" data-presets="react,env">
+const { useState, useEffect, useCallback, useMemo, useRef, forwardRef } = React;
+// Fix: use the correct global name for lucide-react UMD build
+const _L = window.LucideReact || window.lucideReact || window.lucide || window._lucide || {};
 const {
   Search, Filter, Moon, Sun, Phone, MessageSquare, FileText, Share2,
   ChevronDown, ChevronUp, ChevronLeft, ChevronRight, X, Check, Car,
@@ -24,7 +42,7 @@ const {
   Heart, Eye, ExternalLink, MessageCircle, Wrench, BarChart2, Bookmark,
   TrendingUp, Clock, AlertCircle, CheckCircle, Shield, Loader2, Tag,
   ArrowRight, Award, Zap
-} = lucideReact;
+} = _L;
 // ============================================================
 // SURAKSHA REPO CARS — Main App
 // React + Tailwind CSS | Google Sheets Integration
@@ -1305,6 +1323,7 @@ function App() {
   );
 }
 
+document.getElementById('loader').style.display='none';
 ReactDOM.createRoot(document.getElementById('root')).render(<App />);
   </script>
 </body>
