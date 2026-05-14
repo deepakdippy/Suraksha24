@@ -15,34 +15,61 @@
   </style>
 </head>
 <body>
-  <div id="loader">
-    <div class="spinner"></div>
-    <p style="color:#64748b">Loading Suraksha24...</p>
-  </div>
+  <div id="loader"><div class="spinner"></div><p style="color:#64748b">Loading Suraksha24...</p></div>
   <div id="root"></div>
-  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-  <!-- Load lucide icons - correct UMD global is LucideReact -->
-  <script src="https://unpkg.com/lucide-react@0.383.0/dist/umd/lucide-react.js"></script>
-  <script>
-    // Check what global name lucide-react uses
-    const lucideGlobal = window.LucideReact || window.lucideReact || window.lucide;
-    window._lucide = lucideGlobal;
-    console.log('Lucide loaded as:', Object.keys(window).filter(k => k.toLowerCase().includes('lucide')));
-  </script>
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/lucide-react@0.263.1/dist/umd/lucide-react.js"></script>
   <script src="https://unpkg.com/@babel/standalone@7.23.10/babel.min.js"></script>
   <script type="text/babel" data-presets="react,env">
-const { useState, useEffect, useCallback, useMemo, useRef, forwardRef } = React;
-// Fix: use the correct global name for lucide-react UMD build
-const _L = window.LucideReact || window.lucideReact || window.lucide || window._lucide || {};
-const {
-  Search, Filter, Moon, Sun, Phone, MessageSquare, FileText, Share2,
-  ChevronDown, ChevronUp, ChevronLeft, ChevronRight, X, Check, Car,
-  MapPin, Calendar, Fuel, Building2, Star, Bell, User, Menu, RefreshCw,
-  Heart, Eye, ExternalLink, MessageCircle, Wrench, BarChart2, Bookmark,
-  TrendingUp, Clock, AlertCircle, CheckCircle, Shield, Loader2, Tag,
-  ArrowRight, Award, Zap
-} = _L;
+const { useState, useEffect, useCallback, useMemo, useRef } = React;
+
+// Safe icon wrapper - returns a simple SVG circle if icon not found
+const _L = window.LucideReact || {};
+const makeIcon = (name) => _L[name] || (({size=16,className=''}) => 
+  React.createElement('span', {className, style:{display:'inline-block',width:size,height:size,background:'currentColor',borderRadius:'50%',opacity:0.3}}));
+
+const Search = makeIcon('Search');
+const Filter = makeIcon('Filter');
+const Moon = makeIcon('Moon');
+const Sun = makeIcon('Sun');
+const Phone = makeIcon('Phone');
+const MessageSquare = makeIcon('MessageSquare');
+const FileText = makeIcon('FileText');
+const Share2 = makeIcon('Share2');
+const ChevronDown = makeIcon('ChevronDown');
+const ChevronUp = makeIcon('ChevronUp');
+const ChevronLeft = makeIcon('ChevronLeft');
+const ChevronRight = makeIcon('ChevronRight');
+const X = makeIcon('X');
+const Check = makeIcon('Check');
+const Car = makeIcon('Car');
+const MapPin = makeIcon('MapPin');
+const Calendar = makeIcon('Calendar');
+const Fuel = makeIcon('Fuel');
+const Building2 = makeIcon('Building2');
+const Star = makeIcon('Star');
+const Bell = makeIcon('Bell');
+const User = makeIcon('User');
+const Menu = makeIcon('Menu');
+const RefreshCw = makeIcon('RefreshCw');
+const Heart = makeIcon('Heart');
+const Eye = makeIcon('Eye');
+const ExternalLink = makeIcon('ExternalLink');
+const MessageCircle = makeIcon('MessageCircle');
+const Wrench = makeIcon('Wrench');
+const BarChart2 = makeIcon('BarChart2');
+const Bookmark = makeIcon('Bookmark');
+const TrendingUp = makeIcon('TrendingUp');
+const Clock = makeIcon('Clock');
+const AlertCircle = makeIcon('AlertCircle');
+const CheckCircle = makeIcon('CheckCircle');
+const Shield = makeIcon('Shield');
+const Loader2 = makeIcon('Loader2');
+const Tag = makeIcon('Tag');
+const ArrowRight = makeIcon('ArrowRight');
+const Award = makeIcon('Award');
+const Zap = makeIcon('Zap');
 // ============================================================
 // SURAKSHA REPO CARS — Main App
 // React + Tailwind CSS | Google Sheets Integration
