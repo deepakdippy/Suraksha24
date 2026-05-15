@@ -3,32 +3,35 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Suraksha24 — Repo Cars</title>
+  <title>Suraksha24 — Repo Cars by LOANS24</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>tailwind.config = { darkMode: 'class' }</script>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Syne:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <script>tailwind.config={darkMode:'class'}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400;1,500;1,600;1,700&family=DM+Sans:wght@300;400;500;600;700&family=Syne:wght@700;800;900&display=swap" rel="stylesheet"/>
   <style>
-    body{margin:0;font-family:'Plus Jakarta Sans',sans-serif;}
-    #loader{display:flex;align-items:center;justify-content:center;height:100vh;flex-direction:column;gap:16px;position:fixed;inset:0;background:#fff;z-index:9999;}
-    .spinner{width:48px;height:48px;border:4px solid #e2e8f0;border-top-color:#2563eb;border-radius:50%;animation:spin 0.8s linear infinite;}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased;background:#F8FAFF}
+    input,button,a{font-family:'DM Sans',sans-serif}
+    input::placeholder{color:#94a3b8}
+    #loader{display:flex;align-items:center;justify-content:center;height:100vh;flex-direction:column;gap:14px;position:fixed;inset:0;background:#F8FAFF;z-index:9999}
+    .sp{width:40px;height:40px;border:3px solid #DBEAFE;border-top-color:#1E3A8A;border-radius:50%;animation:spin 0.7s linear infinite}
     @keyframes spin{to{transform:rotate(360deg)}}
   </style>
 </head>
 <body>
-  <div id="loader"><div class="spinner"></div><p style="color:#64748b">Loading Suraksha24...</p></div>
+  <div id="loader"><div class="sp"></div>
+    <p style="color:#94a3b8;font-size:0.82rem;letter-spacing:0.06em;font-family:'DM Sans',sans-serif">Loading Suraksha24...</p>
+  </div>
   <div id="root"></div>
-  <!-- Logo stored outside Babel to avoid processing overhead -->
-  <script>
-    window.__LOGO_SRC__ = "data:image/webp;base64,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";
-  </script>
+  <script>window.__LOGO_SRC__="data:image/webp;base64,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";</script>
   <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/lucide-react@0.263.1/dist/umd/lucide-react.js"></script>
   <script src="https://unpkg.com/@babel/standalone@7.23.10/babel.min.js"></script>
   <script type="text/babel" data-presets="react,env">
-const { useState, useEffect, useCallback, useMemo, useRef } = React;
-const _L = window.LucideReact || {};
-const mkI = n => _L[n] || (({size=16,className=''})=>React.createElement('span',{className,style:{display:'inline-flex',width:size,height:size}}));
+const {useState,useEffect,useCallback,useMemo,useRef}=React;
+const _L=window.LucideReact||{};
+const mkI=n=>_L[n]||(({size=16,className='',style:s={}})=>React.createElement('span',{className,style:{display:'inline-flex',width:size,height:size,...s}}));
 const Search=mkI('Search'),Filter=mkI('Filter'),Moon=mkI('Moon'),Sun=mkI('Sun'),Phone=mkI('Phone'),
 MessageSquare=mkI('MessageSquare'),FileText=mkI('FileText'),Share2=mkI('Share2'),
 ChevronDown=mkI('ChevronDown'),ChevronUp=mkI('ChevronUp'),ChevronLeft=mkI('ChevronLeft'),
@@ -181,10 +184,12 @@ const LOGO_SRC = window.__LOGO_SRC__;
 
 function Logo({ dark, size = "md" }) {
   const big = size === "lg";
-  const h = big ? 48 : 36;
   return (
-    <div style={{background: dark ? "rgba(255,255,255,0.9)" : "transparent", borderRadius: dark ? 8 : 0, padding: dark ? "3px 8px" : 0, display:"inline-block", lineHeight:0}}>
-      <img src={window.__LOGO_SRC__} alt="Suraksha24" style={{height:h, width:"auto", display:"block"}} />
+    <div style={{background:dark?"rgba(255,255,255,0.92)":"transparent",
+                 borderRadius:dark?8:0,padding:dark?"3px 8px":0,
+                 display:"inline-block",lineHeight:0}}>
+      <img src={window.__LOGO_SRC__} alt="Suraksha24"
+           style={{height:big?46:34,width:"auto",display:"block",maxWidth:big?210:160}}/>
     </div>
   );
 }
@@ -345,71 +350,116 @@ function Header({ dark, toggleDark, view, setView, carsCount }) {
 // ============================================================
 function Hero({ dark, searchTerm, setSearchTerm, carsCount }) {
   return (
-    <section className={`relative overflow-hidden pt-20 pb-10 ${dark ? "bg-slate-900" : "bg-white"}`}>
+    <section style={{
+      background: dark
+        ? "linear-gradient(180deg,#0A1628 0%,#0D1F3C 100%)"
+        : "linear-gradient(180deg,#EEF2FF 0%,#F8FAFF 60%,#FFFFFF 100%)",
+      paddingTop:80, paddingBottom:56, position:"relative", overflow:"hidden"
+    }}>
+      {/* Decorative circle */}
+      <div style={{position:"absolute",top:-80,right:-80,width:320,height:320,
+                   borderRadius:"50%",opacity:0.06,
+                   background:"#1E3A8A",pointerEvents:"none"}}/>
+      <div style={{position:"absolute",bottom:-60,left:-60,width:220,height:220,
+                   borderRadius:"50%",opacity:0.04,
+                   background:"#1E3A8A",pointerEvents:"none"}}/>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 text-center pt-6">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-600/10 border border-blue-600/20 text-blue-600 text-xs font-bold mb-5">
-          <Shield size={11}/> Our Recoveries, Your Opportunities
+      <div style={{maxWidth:860,margin:"0 auto",padding:"0 20px",textAlign:"center",position:"relative"}}>
+
+        {/* Badge */}
+        <div style={{display:"inline-flex",alignItems:"center",gap:6,
+                     background:dark?"rgba(37,99,235,0.12)":"rgba(30,58,138,0.07)",
+                     border:dark?"1px solid rgba(37,99,235,0.25)":"1px solid rgba(30,58,138,0.15)",
+                     borderRadius:30,padding:"5px 16px",marginBottom:20}}>
+          <Shield size={11} style={{color:dark?"#93c5fd":"#1E3A8A"}}/>
+          <span style={{fontSize:"0.72rem",fontWeight:700,letterSpacing:"0.1em",
+                        textTransform:"uppercase",
+                        color:dark?"#93c5fd":"#1E3A8A",
+                        fontFamily:"'DM Sans',sans-serif"}}>
+            Our Recoveries · Your Opportunities
+          </span>
         </div>
 
-        <h1 className={`text-4xl sm:text-5xl lg:text-6xl font-black leading-tight mb-4 ${dark ? "text-white" : "text-slate-900"}`}
-            style={{ fontFamily:"Syne,sans-serif" }}>
-          <span style={{ fontFamily:"'Montserrat', sans-serif", fontWeight: 900 }}>Bank Repossessed Cars</span><br />
-          <span style={{ background:"linear-gradient(135deg,#1d4ed8,#3b82f6)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>
-            at Best Prices
-          </span>
+        {/* Heading */}
+        <h1 style={{fontFamily:"'Syne',sans-serif",fontWeight:900,
+                    fontSize:"clamp(2.2rem,6vw,4rem)",lineHeight:1.05,
+                    letterSpacing:"-0.03em",
+                    color:dark?"#F0F6FF":"#0A1628",
+                    margin:"0 0 6px"}}>
+          Bank Repossessed Cars
         </h1>
+        <h2 style={{fontFamily:"'Cormorant Garamond',serif",fontWeight:500,fontStyle:"italic",
+                    fontSize:"clamp(1.6rem,4.5vw,3rem)",lineHeight:1.1,
+                    color:dark?"#60a5fa":"#1E3A8A",
+                    margin:"0 0 18px",letterSpacing:"-0.01em"}}>
+          at the Best Prices
+        </h2>
 
-        <p className={`text-base sm:text-lg mb-8 max-w-xl mx-auto ${dark ? "text-slate-400" : "text-slate-500"}`}>
-          Browse verified repo vehicles from top banks. Transparent pricing. 
-          Direct dealer contact. No hidden charges.
+        <p style={{fontFamily:"'DM Sans',sans-serif",fontSize:"1rem",
+                   fontWeight:400,lineHeight:1.75,
+                   color:dark?"#94a3b8":"#64748b",
+                   maxWidth:480,margin:"0 auto 32px"}}>
+          Verified repo vehicles from top banks across India.
+          Transparent pricing · Direct dealer access · Zero hidden charges.
         </p>
 
         {/* Stats */}
-        <div className="flex justify-center gap-8 sm:gap-12 mb-8">
-          {[[`${carsCount}+`, "Cars Listed"], ["15+", "Partner Banks"], ["50+", "Cities"]].map(([v, l]) => (
-            <div key={l}>
-              <div className={`text-2xl sm:text-3xl font-black ${dark ? "text-white" : "text-slate-900"}`}
-                   style={{ fontFamily:"Syne,sans-serif" }}>{v}</div>
-              <div className={`text-xs ${dark ? "text-slate-500" : "text-slate-400"}`}>{l}</div>
+        <div style={{display:"inline-flex",background:dark?"rgba(255,255,255,0.04)":"#fff",
+                     border:dark?"1px solid rgba(255,255,255,0.08)":"1px solid #E2E8F0",
+                     borderRadius:14,padding:"14px 0",marginBottom:28,
+                     boxShadow:dark?"none":"0 2px 16px rgba(30,58,138,0.07)"}}>
+          {[`${carsCount}+`,"Cars Listed","15+","Partner Banks","50+","Cities"].reduce((acc,v,i)=>{
+            if(i%2===0) acc.push([v]);
+            else acc[acc.length-1].push(v);
+            return acc;
+          },[]).map(([v,l],i,arr)=>(
+            <div key={l} style={{display:"flex",alignItems:"center"}}>
+              <div style={{textAlign:"center",padding:"0 24px"}}>
+                <div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,
+                             fontSize:"1.5rem",color:dark?"#fff":"#0A1628",lineHeight:1}}>{v}</div>
+                <div style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.7rem",
+                             fontWeight:500,letterSpacing:"0.08em",textTransform:"uppercase",
+                             color:dark?"#475569":"#94a3b8",marginTop:4}}>{l}</div>
+              </div>
+              {i<arr.length-1 && <div style={{width:1,height:36,background:dark?"rgba(255,255,255,0.08)":"#E2E8F0"}}/>}
             </div>
           ))}
         </div>
 
         {/* Search */}
-        <div className={`relative max-w-2xl mx-auto rounded-2xl shadow-2xl overflow-hidden
-          ${dark ? "bg-slate-800 ring-1 ring-slate-700" : "bg-white ring-1 ring-slate-200"}`}>
-          <div className="flex items-center">
-            <span className="pl-4"><Search size={19} className="text-blue-500" /></span>
-            <input
-              type="text"
-              placeholder="Search make, model, reg. no., city, bank..."
-              value={searchTerm}
-              onChange={e => setSearchTerm(e.target.value)}
-              className={`flex-1 py-4 px-3 bg-transparent text-sm outline-none
-                ${dark ? "text-white placeholder-slate-500" : "text-slate-900 placeholder-slate-400"}`}
-            />
-            {searchTerm && (
-              <button onClick={() => setSearchTerm("")} className="pr-2">
-                <X size={15} className={dark ? "text-slate-500" : "text-slate-400"}/>
-              </button>
-            )}
-            <button className="m-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-sm font-bold transition-colors flex-shrink-0">
+        <div style={{maxWidth:580,margin:"0 auto",
+                     background:dark?"#0F1E38":"#fff",
+                     border:dark?"1px solid rgba(255,255,255,0.08)":"1px solid #DBEAFE",
+                     borderRadius:14,overflow:"hidden",
+                     boxShadow:dark?"0 8px 32px rgba(0,0,0,0.4)":"0 8px 32px rgba(30,58,138,0.1)"}}>
+          <div style={{display:"flex",alignItems:"center"}}>
+            <span style={{paddingLeft:16}}><Search size={17} style={{color:"#3b82f6"}}/></span>
+            <input type="text" placeholder="Search make, model, reg. no., city, bank..."
+              value={searchTerm} onChange={e=>setSearchTerm(e.target.value)}
+              style={{flex:1,padding:"14px 10px",background:"transparent",outline:"none",
+                      fontSize:"0.88rem",fontFamily:"'DM Sans',sans-serif",
+                      color:dark?"#f1f5f9":"#0f172a",border:"none"}}/>
+            {searchTerm && <button onClick={()=>setSearchTerm("")} style={{padding:"0 8px",background:"none",border:"none",cursor:"pointer"}}>
+              <X size={14} style={{color:dark?"#475569":"#94a3b8"}}/></button>}
+            <button style={{margin:8,padding:"10px 20px",
+                            background:"linear-gradient(135deg,#1E3A8A,#2563EB)",
+                            color:"#fff",borderRadius:10,fontSize:"0.82rem",fontWeight:700,
+                            fontFamily:"'DM Sans',sans-serif",
+                            border:"none",cursor:"pointer",flexShrink:0,
+                            letterSpacing:"0.02em"}}>
               Search
             </button>
           </div>
         </div>
 
         {/* Trust badges */}
-        <div className="flex flex-wrap justify-center gap-4 mt-7">
-          {[
-            [Shield, "Bank Verified"],
-            [CheckCircle, "Clear RC Title"],
-            [Award, "Best Price Guarantee"],
-            [Zap, "Instant Contact"],
-          ].map(([Icon, label]) => (
-            <div key={label} className={`flex items-center gap-1.5 text-xs font-medium ${dark ? "text-slate-400" : "text-slate-500"}`}>
-              <Icon size={13} className="text-blue-500" /> {label}
+        <div style={{display:"flex",flexWrap:"wrap",justifyContent:"center",gap:20,marginTop:22}}>
+          {[[Shield,"Bank Verified"],[CheckCircle,"Clear RC Title"],[Award,"Best Price Guarantee"],[Zap,"Instant Contact"]].map(([Icon,label])=>(
+            <div key={label} style={{display:"flex",alignItems:"center",gap:5,
+                                     fontFamily:"'DM Sans',sans-serif",
+                                     fontSize:"0.76rem",fontWeight:500,
+                                     color:dark?"#64748b":"#94a3b8"}}>
+              <Icon size={12} style={{color:"#2563eb"}}/>{label}
             </div>
           ))}
         </div>
@@ -510,115 +560,149 @@ function CarCard({ car, dark, onContact, onDealer, saved, toggleSave }) {
 
   const sold = car.status?.toLowerCase() === "sold";
 
+  const cardBorder = car.featured
+    ? (dark ? "1px solid rgba(217,119,6,0.4)" : "2px solid #1E3A8A")
+    : (dark ? "1px solid rgba(255,255,255,0.07)" : "1px solid #E2E8F0");
+
   return (
-    <div className={`group relative rounded-2xl overflow-hidden border transition-all duration-300
-      ${sold ? "opacity-75" : "hover:-translate-y-1 hover:shadow-xl"}
-      ${dark ? "bg-slate-800 border-slate-700 hover:border-slate-600 shadow-slate-900/60" : "bg-white border-slate-200 hover:border-blue-200 shadow-sm hover:shadow-blue-100/60"}`}>
+    <div style={{
+      borderRadius:16, overflow:"hidden", transition:"all 0.2s ease",
+      border: cardBorder,
+      background: dark ? "#0D1B38" : "#ffffff",
+      boxShadow: dark ? "0 2px 16px rgba(0,0,0,0.3)" : "0 2px 16px rgba(30,58,138,0.06)",
+      opacity: sold ? 0.72 : 1,
+    }}
+    onMouseEnter={e => { if(!sold){ e.currentTarget.style.transform="translateY(-4px)"; e.currentTarget.style.boxShadow=dark?"0 16px 40px rgba(0,0,0,0.45)":"0 16px 40px rgba(30,58,138,0.15)"; }}}
+    onMouseLeave={e => { e.currentTarget.style.transform="translateY(0)"; e.currentTarget.style.boxShadow=dark?"0 2px 16px rgba(0,0,0,0.3)":"0 2px 16px rgba(30,58,138,0.06)"; }}>
 
-      {/* Visual header (no image — replaced by styled card) */}
-      <div className={`relative h-44 flex items-center justify-center overflow-hidden
-        ${dark ? "bg-gradient-to-br from-slate-700 via-slate-800 to-slate-900" : "bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100"}`}>
-        <div className="absolute inset-0 flex items-center justify-center opacity-[0.06]">
-          <Car size={160} className="text-blue-500" />
+      {/* Card visual header */}
+      <div style={{position:"relative", height:158, display:"flex", alignItems:"center",
+                   justifyContent:"center", overflow:"hidden",
+                   background: dark
+                     ? "linear-gradient(135deg,#0A1628 0%,#0F2552 100%)"
+                     : "linear-gradient(135deg,#EEF2FF 0%,#DBEAFE 100%)"}}>
+        <div style={{position:"absolute",right:-6,bottom:-6,opacity:0.08}}>
+          <Car size={105} style={{color: dark?"#60a5fa":"#1E3A8A"}}/>
         </div>
-        <div className="relative z-10 text-center select-none">
-          <div className={`text-3xl font-black leading-none tracking-tight ${dark ? "text-white" : "text-slate-800"}`}
-               style={{ fontFamily:"Syne,sans-serif" }}>
-            {car.make}
-          </div>
-          <div className="text-4xl font-black leading-none tracking-tight"
-               style={{ fontFamily:"Syne,sans-serif", background:"linear-gradient(135deg,#1d4ed8,#60a5fa)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>
-            {car.model}
-          </div>
-          <div className={`mt-1.5 text-xs font-semibold ${dark ? "text-slate-500" : "text-slate-400"}`}>
-            {car.regYear} · {car.color || "N/A"} · {fmtNum(car.km)} km
+        <div style={{position:"relative",zIndex:1,textAlign:"center",padding:"0 14px"}}>
+          <div style={{fontFamily:"'DM Sans',sans-serif",fontWeight:500,fontSize:"0.62rem",
+                       letterSpacing:"0.16em",textTransform:"uppercase",
+                       color:dark?"#334155":"#93c5fd",marginBottom:4}}>{car.bank}</div>
+          <div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:"1.45rem",
+                       letterSpacing:"-0.03em",lineHeight:1,
+                       color:dark?"#E2E8F0":"#0A1628"}}>{car.make}</div>
+          <div style={{fontFamily:"'Cormorant Garamond',serif",fontWeight:500,fontStyle:"italic",
+                       fontSize:"1.6rem",lineHeight:1.1,letterSpacing:"-0.01em",
+                       color:dark?"#60a5fa":"#1E3A8A"}}>{car.model}</div>
+          <div style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.66rem",
+                       color:dark?"#334155":"#94a3b8",marginTop:5}}>
+            {car.regYear} · {car.color||"—"} · {fmtNum(car.km)} km
           </div>
         </div>
-
-        {/* Badges */}
-        <div className="absolute top-3 left-3 flex flex-col gap-1.5">
-          <Badge status={car.status} />
+        <div style={{position:"absolute",top:8,left:8,display:"flex",flexDirection:"column",gap:3}}>
+          <Badge status={car.status}/>
           {car.featured && (
-            <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-amber-500 text-white text-xs font-bold rounded-lg">
-              <Star size={9} fill="white" /> Featured
+            <span style={{display:"inline-flex",alignItems:"center",gap:3,padding:"2px 7px",
+                          background:"linear-gradient(135deg,#d97706,#f59e0b)",
+                          color:"#fff",fontSize:"0.58rem",fontWeight:800,borderRadius:5,
+                          fontFamily:"'DM Sans',sans-serif",letterSpacing:"0.06em"}}>
+              <Star size={7} fill="white"/> FEATURED
             </span>
           )}
         </div>
-        <button onClick={e => { e.stopPropagation(); toggleSave(car.id); }}
-          className={`absolute top-3 right-3 w-7 h-7 rounded-lg flex items-center justify-center transition-colors
-            ${saved ? "bg-red-500 text-white" : dark ? "bg-slate-700/80 text-slate-400 hover:text-red-400" : "bg-white/80 text-slate-400 hover:text-red-500"}`}>
-          <Heart size={13} fill={saved ? "white" : "none"} />
+        <button onClick={e=>{e.stopPropagation();toggleSave(car.id);}}
+          style={{position:"absolute",top:8,right:8,width:28,height:28,borderRadius:8,
+                  border:"none",cursor:"pointer",display:"flex",alignItems:"center",
+                  justifyContent:"center",transition:"all 0.15s",
+                  background:saved?"#ef4444":dark?"rgba(15,30,56,0.75)":"rgba(255,255,255,0.85)",
+                  color:saved?"#fff":"#94a3b8"}}>
+          <Heart size={12} fill={saved?"white":"none"}/>
         </button>
       </div>
 
-      {/* Body */}
-      <div className="p-4">
-        {/* Reg + Bank */}
-        <div className="flex items-center justify-between mb-3">
+      {/* Card body */}
+      <div style={{padding:"12px 14px"}}>
+        {/* Reg + Bank row */}
+        <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:10}}>
           <div>
-            <p className={`text-xs mb-0.5 ${dark ? "text-slate-500" : "text-slate-400"}`}>Reg. No.</p>
-            <p className={`font-mono font-bold text-sm tracking-wider ${dark ? "text-white" : "text-slate-900"}`}>{car.regNo}</p>
+            <div style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.62rem",fontWeight:500,
+                         color:dark?"#475569":"#94a3b8",marginBottom:2,letterSpacing:"0.04em"}}>Reg. No.</div>
+            <div style={{fontFamily:"monospace",fontWeight:700,fontSize:"0.82rem",letterSpacing:"0.08em",
+                         color:dark?"#e2e8f0":"#0A1628"}}>{car.regNo}</div>
           </div>
-          <div className="text-right">
-            <p className={`text-xs mb-0.5 ${dark ? "text-slate-500" : "text-slate-400"}`}>Bank</p>
-            <p className={`text-xs font-bold ${dark ? "text-blue-400" : "text-blue-600"}`}>{car.bank}</p>
+          <div style={{textAlign:"right"}}>
+            <div style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.62rem",fontWeight:500,
+                         color:dark?"#475569":"#94a3b8",marginBottom:2}}>Zone</div>
+            <div style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.75rem",fontWeight:700,
+                         color:dark?"#60a5fa":"#1E3A8A"}}>{car.zone}</div>
           </div>
         </div>
 
         {/* Details grid */}
-        <div className="grid grid-cols-2 gap-y-1.5 gap-x-3 mb-3">
-          {[
-            [Calendar, car.regYear],
-            [Fuel, car.fuelType],
-            [MapPin, `${car.city}, ${car.state?.slice(0, 8)}`],
-            [Eye, `${car.contactCount} enquiries`],
-          ].map(([Icon, val]) => (
-            <div key={val} className={`flex items-center gap-1.5 text-xs ${dark ? "text-slate-400" : "text-slate-500"}`}>
-              <Icon size={11} className="flex-shrink-0 text-blue-500/70" />
-              <span className="truncate">{val}</span>
+        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:"5px 10px",marginBottom:10}}>
+          {[[Calendar,car.regYear],[Fuel,car.fuelType],
+            [MapPin,`${car.city}`],[Eye,`${car.contactCount} enquiries`]].map(([Icon,val])=>(
+            <div key={val} style={{display:"flex",alignItems:"center",gap:5,
+                                   fontFamily:"'DM Sans',sans-serif",fontSize:"0.72rem",
+                                   color:dark?"#475569":"#64748b"}}>
+              <Icon size={10} style={{color:"#2563eb",flexShrink:0}}/><span style={{overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{val}</span>
             </div>
           ))}
         </div>
 
         {/* Price block */}
-        <div className={`rounded-xl p-3 mb-3 ${dark ? "bg-slate-700/50" : "bg-blue-50/80"}`}>
-          <div className="flex items-end justify-between">
+        <div style={{borderRadius:10,padding:"10px 12px",marginBottom:10,
+                     background:dark?"rgba(30,58,138,0.12)":"#EEF2FF",
+                     border:dark?"1px solid rgba(30,58,138,0.2)":"1px solid #BFDBFE"}}>
+          <div style={{display:"flex",alignItems:"flex-end",justifyContent:"space-between"}}>
             <div>
-              <p className={`text-xs font-medium mb-0.5 ${dark ? "text-slate-400" : "text-slate-500"}`}>Highest Bid</p>
-              <p className={`text-xl font-black ${dark ? "text-white" : "text-slate-900"}`}
-                 style={{ fontFamily:"Syne,sans-serif" }}>
+              <div style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.62rem",fontWeight:600,
+                           color:dark?"#475569":"#6b7280",letterSpacing:"0.07em",
+                           textTransform:"uppercase",marginBottom:2}}>Highest Bid</div>
+              <div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:"1.4rem",
+                           color:dark?"#fff":"#0A1628",lineHeight:1,letterSpacing:"-0.02em"}}>
                 {formatCurrency(car.highestBid)}
-              </p>
+              </div>
             </div>
-            <div className="text-right">
-              <p className={`text-xs ${dark ? "text-slate-500" : "text-slate-400"}`}>{car.dealerCount} dealer offers</p>
-              <p className={`text-xs font-semibold ${dark ? "text-slate-300" : "text-slate-600"}`}>{fmtNum(car.km)} km</p>
+            <div style={{textAlign:"right"}}>
+              <div style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.68rem",
+                           color:dark?"#334155":"#94a3b8"}}>{car.dealerCount} dealer bids</div>
+              <div style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.68rem",fontWeight:600,
+                           color:dark?"#60a5fa":"#1E3A8A"}}>{car.contactCount} enquiries</div>
             </div>
           </div>
         </div>
 
         {/* Actions */}
-        <div className="flex gap-1.5">
-          <a href={car.pdfLink !== "#" ? car.pdfLink : undefined} target="_blank" rel="noopener noreferrer"
-             onClick={e => car.pdfLink === "#" && e.preventDefault()}
-             className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-xs font-semibold transition-colors border
-               ${dark ? "bg-slate-700 border-slate-600 text-slate-300 hover:bg-slate-600" : "bg-slate-100 border-slate-200 text-slate-700 hover:bg-slate-200"}`}>
-            <FileText size={12}/> View PDF
+        <div style={{display:"flex",gap:6}}>
+          <a href={car.pdfLink!=="#"?car.pdfLink:undefined} target="_blank" rel="noopener noreferrer"
+             onClick={e=>car.pdfLink==="#"&&e.preventDefault()}
+             style={{flex:1,display:"flex",alignItems:"center",justifyContent:"center",gap:4,
+                     padding:"9px 0",borderRadius:9,fontSize:"0.73rem",fontWeight:600,
+                     fontFamily:"'DM Sans',sans-serif",cursor:"pointer",
+                     background:dark?"rgba(255,255,255,0.05)":"#F1F5F9",
+                     border:dark?"1px solid rgba(255,255,255,0.08)":"1px solid #E2E8F0",
+                     color:dark?"#94a3b8":"#475569",textDecoration:"none"}}>
+            <FileText size={11}/> PDF
           </a>
-          <button onClick={() => onContact(car)} disabled={sold}
-            className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-xs font-semibold bg-blue-600 hover:bg-blue-700 text-white transition-colors disabled:opacity-50">
-            <MessageSquare size={12}/> Contact
+          <button onClick={()=>onContact(car)} disabled={sold}
+            style={{flex:2,display:"flex",alignItems:"center",justifyContent:"center",gap:4,
+                    padding:"9px 0",borderRadius:9,fontSize:"0.73rem",fontWeight:700,
+                    fontFamily:"'DM Sans',sans-serif",cursor:"pointer",border:"none",
+                    background:"linear-gradient(135deg,#1E3A8A,#2563EB)",color:"#fff",
+                    opacity:sold?0.5:1,letterSpacing:"0.02em"}}>
+            <MessageSquare size={11}/> Enquire Now
           </button>
-          <button onClick={() => onDealer(car)} disabled={sold}
-            title="Dealer Offer"
-            className={`px-3 py-2.5 rounded-xl text-xs font-semibold transition-colors border disabled:opacity-50
-              ${dark ? "bg-amber-500/10 border-amber-600/20 text-amber-400 hover:bg-amber-500/20" : "bg-amber-50 border-amber-200 text-amber-700 hover:bg-amber-100"}`}>
-            <Wrench size={12}/>
+          <button onClick={()=>onDealer(car)} disabled={sold} title="Dealer Offer"
+            style={{padding:"9px 11px",borderRadius:9,cursor:"pointer",border:"1px solid #FDE68A",
+                    background:"#FFFBEB",color:"#d97706",opacity:sold?0.5:1}}>
+            <Wrench size={11}/>
           </button>
           <button onClick={share} title="Share"
-            className={`px-3 py-2.5 rounded-xl text-xs font-semibold transition-colors border
-              ${dark ? "bg-slate-700 border-slate-600 text-slate-400 hover:bg-slate-600" : "bg-slate-100 border-slate-200 text-slate-600 hover:bg-slate-200"}`}>
-            {shared ? <Check size={12} className="text-emerald-500"/> : <Share2 size={12}/>}
+            style={{padding:"9px 11px",borderRadius:9,cursor:"pointer",
+                    border:dark?"1px solid rgba(255,255,255,0.08)":"1px solid #E2E8F0",
+                    background:dark?"rgba(255,255,255,0.04)":"#F8FAFC",color:"#94a3b8"}}>
+            {shared?<Check size={11} style={{color:"#10b981"}}/>:<Share2 size={11}/>}
           </button>
         </div>
       </div>
@@ -986,7 +1070,7 @@ function DealerDashboard({ dark, savedCars, cars }) {
           </div>
           <div>
             <h1 className={`text-2xl font-black ${dark ? "text-white" : "text-slate-900"}`}
-                style={{ fontFamily:"Syne,sans-serif" }}>Dealer Dashboard</h1>
+                style={{ fontFamily:"'Syne',sans-serif" }} style={{fontFamily:"'Syne',sans-serif",fontWeight:900}}>Dealer Dashboard</h1>
             <p className={`text-sm ${dark ? "text-slate-400" : "text-slate-500"}`}>
               Manage saved cars, offers & inspection requests
             </p>
@@ -1002,7 +1086,7 @@ function DealerDashboard({ dark, savedCars, cars }) {
               <Icon size={16} className={`text-${color}-600`}/>
             </div>
             <p className={`text-2xl font-black ${dark ? "text-white" : "text-slate-900"}`}
-               style={{ fontFamily:"Syne,sans-serif" }}>{val}</p>
+               style={{ fontFamily:"'Syne',sans-serif" }}>{val}</p>
             <p className={`text-xs mt-0.5 ${dark ? "text-slate-500" : "text-slate-400"}`}>{label}</p>
           </div>
         ))}
@@ -1036,7 +1120,7 @@ function DealerDashboard({ dark, savedCars, cars }) {
                     <Badge status={car.status}/>
                   </div>
                   <p className={`text-xl font-black mb-3 ${dark ? "text-white" : "text-slate-900"}`}
-                     style={{ fontFamily:"Syne,sans-serif" }}>{formatCurrency(car.highestBid)}</p>
+                     style={{ fontFamily:"'Syne',sans-serif",fontWeight:900 }}>{formatCurrency(car.highestBid)}</p>
                   <div className="flex gap-2">
                     <a href={car.pdfLink !== "#" ? car.pdfLink : undefined} target="_blank" rel="noopener noreferrer"
                        onClick={e => car.pdfLink === "#" && e.preventDefault()}
@@ -1112,7 +1196,7 @@ function Footer({ dark }) {
           <span className="flex items-center gap-1.5 flex-wrap justify-center">
             © 2025 Suraksha24 — Repo Cars by LOANS24. All rights reserved.
           </span>
-          <span>Built with Google Sheets · React · Tailwind CSS</span>
+          <span>Powered by Google Sheets · React · Tailwind CSS</span>
         </div>
       </div>
     </footer>
@@ -1143,11 +1227,11 @@ function App() {
     if (!document.getElementById("gfonts-suraksha")) {
       const link = document.createElement("link");
       link.id = "gfonts-suraksha";
-      link.href = "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Syne:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap";
+      link.href = "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400;1,500;1,600;1,700&family=DM+Sans:wght@300;400;500;600;700&family=Syne:wght@700;800;900&display=swap";
       link.rel = "stylesheet";
       document.head.appendChild(link);
     }
-    document.body.style.fontFamily = "'Plus Jakarta Sans', system-ui, sans-serif";
+    document.body.style.fontFamily = "'DM Sans', system-ui, sans-serif";
   }, []);
 
   // Fetch data
@@ -1314,7 +1398,7 @@ function App() {
 }
 
 document.getElementById('loader').style.display='none';
-ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
   </script>
 </body>
 </html>
