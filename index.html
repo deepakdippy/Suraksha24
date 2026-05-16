@@ -57,7 +57,6 @@ const CONFIG = {
   DEMO_MODE: false,
   WHATSAPP_NUMBER: "919315271911",
   CALL_NUMBER: "+919315271911",
-  TAWKTO_ID: "6a05ebdaa078b01c35e271c2",
 };
 
 const AGENT_NAMES = ["Rahul Gupta","Ayush Gupta","Abhinav Pandey","Rakesh","Escalation Matrix - Deepak Sharma"];
@@ -993,12 +992,7 @@ function App() {
     document.body.style.cssText="margin:0;padding:0;background:#F8FAFF;font-family:'DM Sans',sans-serif;";
   },[]);
 
-  useEffect(()=>{
-    if(!CONFIG.TAWKTO_ID||document.getElementById("tawk-script"))return;
-    const s=document.createElement("script");s.id="tawk-script";s.async=true;
-    s.src=`https://embed.tawk.to/${CONFIG.TAWKTO_ID}/default`;s.charset="UTF-8";s.setAttribute("crossorigin","*");
-    document.body.appendChild(s);
-  },[]);
+
 
   useEffect(()=>{
     if(CONFIG.DEMO_MODE||!CONFIG.APPS_SCRIPT_URL||CONFIG.APPS_SCRIPT_URL.includes("YOUR_")){
