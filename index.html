@@ -412,6 +412,7 @@ function Header({ searchTerm, setSearchTerm, lang, setLang, tl }) {
           <Search size={15} style={{color:"#fff"}}/>
           <span style={{color:"rgba(255,255,255,0.65)",fontSize:"0.75rem"}}>Search...</span>
         </button>
+        <LangSwitcher lang={lang} setLang={setLang}/>
       </div>
       {searchOpen && (
         <div style={{padding:"0 14px 10px",display:"flex",gap:8,alignItems:"center"}}>
