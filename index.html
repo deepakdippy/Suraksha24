@@ -638,14 +638,28 @@ function CarCard({ car, onContact, onBid, saved, toggleSave, tl }) {
       onMouseEnter={e=>{if(!disabled){e.currentTarget.style.boxShadow="0 8px 24px rgba(30,58,138,0.13)";e.currentTarget.style.transform="translateY(-2px)";}}}
       onMouseLeave={e=>{e.currentTarget.style.boxShadow="0 2px 12px rgba(30,58,138,0.05)";e.currentTarget.style.transform="translateY(0)";}}>
 
-      {(car.status?.toLowerCase()==="upcoming"||car.status?.toLowerCase()==="bulk deals"||car.status?.toLowerCase()==="disputed"||car.status?.toLowerCase()==="blacklisted")&&(
-        <div style={{background:car.featured?N:"#d97706",padding:"3px 12px",display:"flex",alignItems:"center",justifyContent:"space-between"}}>
-          <span style={{fontSize:"0.65rem",fontWeight:700,color:"#fff",letterSpacing:"0.08em"}}>
-            {car.featured?"★ FEATURED":"⏳ PENDING"}
-          </span>
-          <span style={{fontSize:"0.65rem",color:"rgba(255,255,255,0.7)"}}>{car.bank}</span>
-        </div>
-      )}
+      {(()=>{
+        const s = (car.status||"").toLowerCase();
+        if(s==="bulk deals") return (
+          <div style={{background:"linear-gradient(135deg,#5b21b6,#7c3aed)",padding:"3px 12px",display:"flex",alignItems:"center",justifyContent:"space-between"}}>
+            <span style={{fontSize:"0.65rem",fontWeight:700,color:"#fff",letterSpacing:"0.08em"}}>📦 BULK DEAL</span>
+            <span style={{fontSize:"0.65rem",color:"rgba(255,255,255,0.75)"}}>{car.bank}</span>
+          </div>
+        );
+        if(s==="blacklisted") return (
+          <div style={{background:"#1f2937",padding:"3px 12px",display:"flex",alignItems:"center",justifyContent:"space-between"}}>
+            <span style={{fontSize:"0.65rem",fontWeight:700,color:"#f87171",letterSpacing:"0.08em"}}>⛔ BLACKLISTED</span>
+            <span style={{fontSize:"0.65rem",color:"#6b7280"}}>{car.bank}</span>
+          </div>
+        );
+        if(s==="disputed") return (
+          <div style={{background:"#fff7ed",borderBottom:"1px solid #fed7aa",padding:"3px 12px",display:"flex",alignItems:"center",justifyContent:"space-between"}}>
+            <span style={{fontSize:"0.65rem",fontWeight:700,color:"#c2410c",letterSpacing:"0.08em"}}>⚠️ DISPUTED</span>
+            <span style={{fontSize:"0.65rem",color:"#9a3412"}}>{car.bank}</span>
+          </div>
+        );
+        return null;
+      })()}
 
       <div style={{display:"flex"}}>
         <div style={{width:100,flexShrink:0,background:`linear-gradient(135deg,${TI},#DBEAFE)`,
