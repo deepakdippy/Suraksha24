@@ -34,9 +34,9 @@
   <script src="https://unpkg.com/@babel/standalone@7.23.10/babel.min.js"></script>
   <script type="text/babel" data-presets="react,env">
 const {useState,useEffect,useCallback,useMemo,useRef}=React;
-const _L=window.LucideReact||{};
+const _L=window.LucideReact||window.lucideReact||window.lucide||{};
 const mkI=n=>_L[n]||(({size=16,className='',style:s={}})=>React.createElement('span',{className,style:{display:'inline-flex',width:size,height:size,...s}}));
-const Search=mkI('Search'),X=mkI('X'),Check=mkI('Check'),Car=mkI('Car'),
+const Search=mkI('Search'),X=mkI('X'),Check=mkI('Check'),Car=mkI('Car'),Mail=mkI('Mail'),
 MapPin=mkI('MapPin'),Calendar=mkI('Calendar'),Fuel=mkI('Fuel'),Building2=mkI('Building2'),
 Star=mkI('Star'),Bell=mkI('Bell'),User=mkI('User'),Heart=mkI('Heart'),Eye=mkI('Eye'),
 FileText=mkI('FileText'),Share2=mkI('Share2'),MessageSquare=mkI('MessageSquare'),
@@ -56,10 +56,17 @@ const CONFIG = {
   APPS_SCRIPT_URL: "https://script.google.com/a/macros/cars24.com/s/AKfycbxe6LLbWjUEJ87GG7sA8_ewWhfSaV4sCu8qKQ-LmVXZIGbxmdAOCrTc_8AYq1CJvJFvgw/exec",
   DEMO_MODE: false,
   WHATSAPP_NUMBER: "919315271911",
-  CALL_NUMBER: "+919315271911",
+  EMAIL: "suraksha@cars24.com",
 };
 
-const AGENT_NAMES = ["Rahul Gupta","Ayush Gupta","Abhinav Pandey","Rakesh","Escalation Matrix - Deepak Sharma"];
+const AGENTS = [
+  { name:"Rahul Gupta",            whatsapp:"917223899770" },
+  { name:"Ayush Gupta",            whatsapp:"917828303506" },
+  { name:"Abhinav Pandey",         whatsapp:"919870124354" },
+  { name:"Rakesh",                 whatsapp:"918448692346" },
+  { name:"Deepak Sharma (Escalation)", whatsapp:"919315271911" },
+];
+const AGENT_NAMES = AGENTS.map(a => a.name);
 
 const SAMPLE_CARS = [
   { id:"1",  regNo:"DL01AB1234", make:"Maruti",     model:"Swift",   variant:"VXi",   regYear:2019, fuelType:"Petrol",  rcStatus:"Clear",         ownerCount:1, pdfLink:"#", highestBid:425000,  enquiryTotal:8,  enquiryUnique:6, bidTotal:3,  bidUnique:2, status:"For Sale",   bank:"ICICI Bank",      state:"Delhi",          parkingYard:"Okhla Yard - Delhi",            kmDriven:45000, comment:"Good condition",  dealId:"",      timestamp:"2025-01-15" },
@@ -124,7 +131,7 @@ const TRANSLATIONS = {
     clearFilters:"Clear filters", carsFound:"cars found",
     loading:"Loading Suraksha24...", noCarFound:"No cars found",
     adjustFilters:"Try adjusting your filters",
-    submitBid:"Submit Your Bid", customerEnquiry:"Customer Enquiry",
+    submitBid:"Submit Your Bid", dealerEnquiry:"Dealer Enquiry",
     dealerName:"Dealer / Company Name *", mobile:"Mobile Number *",
     bidPrice:"Bid Price (₹) *", agent:"Assigned Agent", remarks:"Remarks (optional)",
     submitBidBtn:"Submit Bid", sendEnquiry:"Send Enquiry",
@@ -155,7 +162,7 @@ const TRANSLATIONS = {
     clearFilters:"फ़िल्टर हटाएं", carsFound:"गाड़ियां मिलीं",
     loading:"लोड हो रहा है...", noCarFound:"कोई गाड़ी नहीं मिली",
     adjustFilters:"फ़िल्टर बदलकर देखें",
-    submitBid:"अपनी बोली जमा करें", customerEnquiry:"ग्राहक पूछताछ",
+    submitBid:"अपनी बोली जमा करें", dealerEnquiry:"ग्राहक पूछताछ",
     dealerName:"डीलर / कंपनी का नाम *", mobile:"मोबाइल नंबर *",
     bidPrice:"बोली मूल्य (₹) *", agent:"नियुक्त एजेंट", remarks:"टिप्पणी (वैकल्पिक)",
     submitBidBtn:"बोली जमा करें", sendEnquiry:"पूछताछ भेजें",
@@ -186,7 +193,7 @@ const TRANSLATIONS = {
     clearFilters:"फिल्टर साफ करा", carsFound:"गाड्या सापडल्या",
     loading:"लोड होत आहे...", noCarFound:"कोणतीही गाडी सापडली नाही",
     adjustFilters:"फिल्टर बदलून पाहा",
-    submitBid:"तुमची बोली सादर करा", customerEnquiry:"ग्राहक चौकशी",
+    submitBid:"तुमची बोली सादर करा", dealerEnquiry:"ग्राहक चौकशी",
     dealerName:"डीलर / कंपनीचे नाव *", mobile:"मोबाइल नंबर *",
     bidPrice:"बोली किंमत (₹) *", agent:"नियुक्त एजंट", remarks:"शेरा (ऐच्छिक)",
     submitBidBtn:"बोली सादर करा", sendEnquiry:"चौकशी पाठवा",
@@ -217,7 +224,7 @@ const TRANSLATIONS = {
     clearFilters:"ಫಿಲ್ಟರ್ ತೆರವು", carsFound:"ವಾಹನಗಳು ಸಿಕ್ಕಿವೆ",
     loading:"ಲೋಡ್ ಆಗುತ್ತಿದೆ...", noCarFound:"ಯಾವ ವಾಹನವೂ ಸಿಗಲಿಲ್ಲ",
     adjustFilters:"ಫಿಲ್ಟರ್ ಬದಲಿಸಿ ನೋಡಿ",
-    submitBid:"ನಿಮ್ಮ ಬಿಡ್ ಸಲ್ಲಿಸಿ", customerEnquiry:"ಗ್ರಾಹಕ ವಿಚಾರಣೆ",
+    submitBid:"ನಿಮ್ಮ ಬಿಡ್ ಸಲ್ಲಿಸಿ", dealerEnquiry:"ಗ್ರಾಹಕ ವಿಚಾರಣೆ",
     dealerName:"ಡೀಲರ್ / ಕಂಪನಿ ಹೆಸರು *", mobile:"ಮೊಬೈಲ್ ಸಂಖ್ಯೆ *",
     bidPrice:"ಬಿಡ್ ಬೆಲೆ (₹) *", agent:"ನಿಯೋಜಿತ ಏಜೆಂಟ್", remarks:"ಟಿಪ್ಪಣಿ (ಐಚ್ಛಿಕ)",
     submitBidBtn:"ಬಿಡ್ ಸಲ್ಲಿಸಿ", sendEnquiry:"ವಿಚಾರಣೆ ಕಳುಹಿಸಿ",
@@ -248,7 +255,7 @@ const TRANSLATIONS = {
     clearFilters:"வடிகட்டிகளை அழி", carsFound:"வாகனங்கள் கண்டறியப்பட்டன",
     loading:"ஏற்றுகிறது...", noCarFound:"வாகனங்கள் எதுவும் இல்லை",
     adjustFilters:"வடிகட்டிகளை மாற்றி பாருங்கள்",
-    submitBid:"உங்கள் ஏலத்தை சமர்ப்பிக்கவும்", customerEnquiry:"வாடிக்கையாளர் விசாரணை",
+    submitBid:"உங்கள் ஏலத்தை சமர்ப்பிக்கவும்", dealerEnquiry:"வாடிக்கையாளர் விசாரணை",
     dealerName:"டீலர் / நிறுவன பெயர் *", mobile:"மொபைல் எண் *",
     bidPrice:"ஏல விலை (₹) *", agent:"நியமிக்கப்பட்ட முகவர்", remarks:"கருத்துக்கள் (விரும்பினால்)",
     submitBidBtn:"ஏலம் சமர்ப்பி", sendEnquiry:"விசாரணை அனுப்பு",
@@ -279,7 +286,7 @@ const TRANSLATIONS = {
     clearFilters:"ఫిల్టర్లు తొలగించు", carsFound:"వాహనాలు కనుగొనబడ్డాయి",
     loading:"లోడ్ అవుతోంది...", noCarFound:"వాహనాలు ఏవీ కనుగొనబడలేదు",
     adjustFilters:"ఫిల్టర్లు మార్చి చూడండి",
-    submitBid:"మీ బిడ్ సమర్పించండి", customerEnquiry:"కస్టమర్ విచారణ",
+    submitBid:"మీ బిడ్ సమర్పించండి", dealerEnquiry:"కస్టమర్ విచారణ",
     dealerName:"డీలర్ / కంపెనీ పేరు *", mobile:"మొబైల్ నంబర్ *",
     bidPrice:"బిడ్ ధర (₹) *", agent:"నియమించిన ఏజెంట్", remarks:"వ్యాఖ్యలు (ఐచ్ఛికం)",
     submitBidBtn:"బిడ్ సమర్పించు", sendEnquiry:"విచారణ పంపండి",
@@ -405,14 +412,6 @@ function Header({ searchTerm, setSearchTerm, lang, setLang, tl }) {
           <Search size={15} style={{color:"#fff"}}/>
           <span style={{color:"rgba(255,255,255,0.65)",fontSize:"0.75rem"}}>Search...</span>
         </button>
-        <a href={`https://wa.me/${CONFIG.WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer"
-           style={{background:"#22c55e",borderRadius:8,padding:"7px 10px",display:"flex",alignItems:"center",gap:5,textDecoration:"none",color:"#fff",fontSize:"0.75rem",fontWeight:600}}>
-          <MessageCircle size={13}/>WA
-        </a>
-        <a href={`tel:${CONFIG.CALL_NUMBER}`}
-           style={{background:"rgba(255,255,255,0.12)",borderRadius:8,padding:"7px 10px",display:"flex",alignItems:"center",textDecoration:"none",color:"#fff"}}>
-          <Phone size={13}/>
-        </a>
       </div>
       {searchOpen && (
         <div style={{padding:"0 14px 10px",display:"flex",gap:8,alignItems:"center"}}>
@@ -741,7 +740,7 @@ function BidModal({ car, onClose, onSubmit, tl }) {
   const submit=async()=>{
     if(!validate())return;
     setLoading(true);
-    await onSubmit({...form,carId:car.id,regNo:car._bundleDealId?`Bundle:${car._bundleDealId}`:car.regNo,carName:car._bundleDealId?`Bundle Deal ${car._bundleDealId}`:`${car.make} ${car.model}`,dealId:car._bundleDealId||""});
+    await onSubmit({...form,carId:car.id,regNo:car._bundleDealId?`Bundle:${car._bundleDealId}`:car.regNo,carName:car._bundleDealId?`Bundle Deal ${car._bundleDealId}`:`${car.make} ${car.model}`,dealId:car._bundleDealId||"",dealerName:form.dealerName||form.name||""});
     setLoading(false);onClose();
   };
   const inp=(label,key,ph,type="text")=>(
@@ -814,12 +813,12 @@ function BidModal({ car, onClose, onSubmit, tl }) {
 }
 
 function ContactModal({ car, onClose, onSubmit, tl }) {
-  const [form,setForm]=useState({name:"",mobile:"",message:"",agent:AGENT_NAMES[0]});
+  const [form,setForm]=useState({dealerName:"",mobile:"",message:"",agent:AGENT_NAMES[0]});
   const [loading,setLoading]=useState(false);
   const submit=async()=>{
     if(!form.name.trim()||!form.mobile.trim())return;
     setLoading(true);
-    await onSubmit({...form,carId:car.id,regNo:car._bundleDealId?`Bundle:${car._bundleDealId}`:car.regNo,carName:car._bundleDealId?`Bundle Deal ${car._bundleDealId}`:`${car.make} ${car.model}`,dealId:car._bundleDealId||""});
+    await onSubmit({...form,carId:car.id,regNo:car._bundleDealId?`Bundle:${car._bundleDealId}`:car.regNo,carName:car._bundleDealId?`Bundle Deal ${car._bundleDealId}`:`${car.make} ${car.model}`,dealId:car._bundleDealId||"",dealerName:form.dealerName||form.name||""});
     setLoading(false);onClose();
   };
   return (
@@ -831,8 +830,8 @@ function ContactModal({ car, onClose, onSubmit, tl }) {
           <div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:"0.9rem",color:TX}}>{car.make} {car.model} {car.regYear}</div>
           <div style={{fontFamily:"'DM Mono',monospace",fontSize:"0.7rem",color:N,marginTop:2}}>{car.regNo}</div>
         </div>
-        <div style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:"0.95rem",color:TX,marginBottom:14}}>{tl("customerEnquiry")}</div>
-        {[[tl("name"),"name",tl("namePlaceholder")],[tl("mobile"),"mobile",tl("mobilePlaceholder")]].map(([l,k,p])=>(
+        <div style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:"0.95rem",color:TX,marginBottom:14}}>{tl("dealerEnquiry")}</div>
+        {[[tl("dealerName"),"dealerName",tl("dealerPlaceholder")],[tl("mobile"),"mobile",tl("mobilePlaceholder")]].map(([l,k,p])=>(
           <div key={k} style={{marginBottom:12}}>
             <label style={{display:"block",fontSize:"0.75rem",fontWeight:600,color:TX,marginBottom:4}}>{l}</label>
             <input type={k==="mobile"?"tel":"text"} placeholder={p} value={form[k]}
@@ -888,34 +887,85 @@ function SavedCars({ cars, savedIds, onContact, onBid, toggleSave, tl }) {
 
 function ContactPage({ tl }) {
   return (
-    <div style={{padding:"16px 14px"}}>
+    <div style={{padding:"16px 14px",paddingBottom:24}}>
       <div style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:"1rem",color:TX,marginBottom:16}}>{tl("contactUs")}</div>
       <div style={{display:"flex",flexDirection:"column",gap:10}}>
-        {[
-          {icon:MessageCircle,label:"WhatsApp",val:tl("chatNow"),href:`https://wa.me/${CONFIG.WHATSAPP_NUMBER}`,bg:"#22c55e"},
-          {icon:Phone,label:tl("callNow"),val:CONFIG.CALL_NUMBER,href:`tel:${CONFIG.CALL_NUMBER}`,bg:N},
-        ].map(c=>(
-          <a key={c.label} href={c.href} target="_blank" rel="noopener noreferrer"
-             style={{display:"flex",alignItems:"center",gap:14,padding:"16px",borderRadius:14,
-                     border:`1px solid ${BR}`,background:"#fff",textDecoration:"none",boxShadow:"0 2px 8px rgba(30,58,138,0.05)"}}>
-            <div style={{width:44,height:44,borderRadius:12,background:c.bg,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
-              <c.icon size={20} style={{color:"#fff"}}/>
-            </div>
-            <div>
-              <div style={{fontWeight:700,fontSize:"0.9rem",color:TX}}>{c.label}</div>
-              <div style={{fontSize:"0.78rem",color:MT,marginTop:2}}>{c.val}</div>
-            </div>
-            <ChevronRight size={16} style={{color:HI,marginLeft:"auto"}}/>
-          </a>
-        ))}
-        <div style={{background:"#fff",border:`1px solid ${BR}`,borderRadius:14,padding:"14px",marginTop:4}}>
-          <div style={{fontWeight:700,fontSize:"0.82rem",color:TX,marginBottom:10}}>{tl("ourAgents")}</div>
-          {AGENT_NAMES.map(a=>(
-            <div key={a} style={{display:"flex",alignItems:"center",gap:10,padding:"7px 0",borderBottom:`1px solid ${BG}`}}>
-              <div style={{width:30,height:30,borderRadius:"50%",background:TI,display:"flex",alignItems:"center",justifyContent:"center"}}>
-                <User size={13} style={{color:N}}/>
+
+        {/* WhatsApp general */}
+        <a href={`https://wa.me/${CONFIG.WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer"
+           style={{display:"flex",alignItems:"center",gap:14,padding:"14px 16px",borderRadius:14,
+                   border:`1px solid ${BR}`,background:"#fff",textDecoration:"none",
+                   boxShadow:"0 2px 8px rgba(30,58,138,0.05)"}}>
+          <div style={{width:44,height:44,borderRadius:12,background:"#22c55e",
+                        display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+              <path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.554 4.118 1.52 5.851L.057 23.886a.5.5 0 00.611.61l6.218-1.635A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.65-.52-5.163-1.428l-.37-.22-3.839 1.01 1.035-3.73-.243-.386A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+            </svg>
+          </div>
+          <div style={{flex:1}}>
+            <div style={{fontWeight:700,fontSize:"0.9rem",color:TX}}>WhatsApp</div>
+            <div style={{fontSize:"0.75rem",color:MT,marginTop:1}}>{tl("chatNow")}</div>
+          </div>
+          <ChevronRight size={16} style={{color:HI}}/>
+        </a>
+
+        {/* Email */}
+        <a href={`mailto:${CONFIG.EMAIL}`}
+           style={{display:"flex",alignItems:"center",gap:14,padding:"14px 16px",borderRadius:14,
+                   border:`1px solid ${BR}`,background:"#fff",textDecoration:"none",
+                   boxShadow:"0 2px 8px rgba(30,58,138,0.05)"}}>
+          <div style={{width:44,height:44,borderRadius:12,background:N,
+                        display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <polyline points="2,4 12,13 22,4"/>
+            </svg>
+          </div>
+          <div style={{flex:1}}>
+            <div style={{fontWeight:700,fontSize:"0.9rem",color:TX}}>Email Us</div>
+            <div style={{fontSize:"0.75rem",color:MT,marginTop:1}}>{CONFIG.EMAIL}</div>
+          </div>
+          <ChevronRight size={16} style={{color:HI}}/>
+        </a>
+
+        {/* Our Agents */}
+        <div style={{background:"#fff",border:`1px solid ${BR}`,borderRadius:14,
+                     padding:"14px",marginTop:4}}>
+          <div style={{fontFamily:"'Syne',sans-serif",fontWeight:700,fontSize:"0.88rem",
+                       color:TX,marginBottom:12}}>{tl("ourAgents")}</div>
+          {AGENTS.map((agent,i) => (
+            <div key={agent.name} style={{
+              display:"flex",alignItems:"center",gap:12,padding:"10px 0",
+              borderBottom:i<AGENTS.length-1?`1px solid ${BG}`:"none"
+            }}>
+              {/* Avatar */}
+              <div style={{width:38,height:38,borderRadius:"50%",background:TI,flexShrink:0,
+                            display:"flex",alignItems:"center",justifyContent:"center",
+                            border:`1.5px solid ${BO}`}}>
+                <span style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:"0.85rem",
+                              color:N}}>{agent.name.charAt(0)}</span>
               </div>
-              <span style={{fontSize:"0.82rem",color:TX}}>{a}</span>
+              {/* Name */}
+              <div style={{flex:1,minWidth:0}}>
+                <div style={{fontWeight:600,fontSize:"0.82rem",color:TX,
+                             overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>
+                  {agent.name}
+                </div>
+                <div style={{fontSize:"0.68rem",color:MT,marginTop:1}}>Tap to chat on WhatsApp</div>
+              </div>
+              {/* WA button */}
+              <a href={`https://wa.me/${agent.whatsapp}?text=Hi ${agent.name.split(" ")[0]}! I need help with a repo car.`}
+                 target="_blank" rel="noopener noreferrer"
+                 style={{display:"flex",alignItems:"center",gap:5,padding:"7px 12px",
+                         borderRadius:8,background:"#dcfce7",border:"1px solid #bbf7d0",
+                         textDecoration:"none",flexShrink:0}}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#16a34a">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                  <path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.554 4.118 1.52 5.851L.057 23.886a.5.5 0 00.611.61l6.218-1.635A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.65-.52-5.163-1.428l-.37-.22-3.839 1.01 1.035-3.73-.243-.386A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+                </svg>
+                <span style={{fontSize:"0.72rem",fontWeight:700,color:"#16a34a"}}>Chat</span>
+              </a>
             </div>
           ))}
         </div>
@@ -947,7 +997,7 @@ function HeroBanner({ carsCount, tl }) {
 }
 
 function BottomNav({ view, setView, savedCount, tl }) {
-  const tabs=[{key:"home",icon:Home,label:tl("home")},{key:"saved",icon:Heart,label:tl("saved"),badge:savedCount},{key:"contact",icon:MessageSquare,label:tl("contact")}];
+  const tabs=[{key:"home",icon:Home,label:tl("home")},{key:"saved",icon:Heart,label:tl("saved"),badge:savedCount},{key:"contact",icon:MessageSquare,label:tl("contactUs")}];
   return (
     <div style={{position:"fixed",bottom:0,left:0,right:0,zIndex:100,background:"#fff",borderTop:`1px solid ${BR}`,display:"flex",padding:"6px 0 8px",boxShadow:"0 -4px 20px rgba(30,58,138,0.08)"}}>
       {tabs.map(t=>{
@@ -1123,13 +1173,6 @@ function App() {
       {bidCar&&<BidModal car={bidCar} onClose={()=>setBidCar(null)} onSubmit={handleBid} tl={tl}/>}
 
       <Toast toasts={toasts} remove={removeToast}/>
-
-      <a href={`https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=Hi! I'm interested in a repo car from Suraksha24`}
-         target="_blank" rel="noopener noreferrer"
-         style={{position:"fixed",bottom:76,right:16,zIndex:99,width:46,height:46,background:"#22c55e",borderRadius:"50%",
-                 display:"flex",alignItems:"center",justifyContent:"center",boxShadow:"0 4px 16px rgba(34,197,94,0.4)",textDecoration:"none"}}>
-        <MessageCircle size={21} style={{color:"#fff"}}/>
-      </a>
 
       <style>{`@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.5}}@keyframes spin{to{transform:rotate(360deg)}}*{box-sizing:border-box}::-webkit-scrollbar{height:3px;width:4px}::-webkit-scrollbar-thumb{background:#BFDBFE;border-radius:4px}input::placeholder,textarea::placeholder{color:#94a3b8}`}</style>
     </div>
