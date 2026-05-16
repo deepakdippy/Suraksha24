@@ -386,7 +386,7 @@ function Toast({ toasts, remove }) {
 
 
 function Logo({ size="md" }) {
-  const h = size==="lg" ? 44 : 32;
+  const h = size==="lg" ? 64 : 46;
   const w = Math.round(h * 3.4); // SVG aspect ratio 680:200
   return (
     <img src={LOGO_SRC} alt="Suraksha24"
@@ -398,7 +398,7 @@ function Header({ searchTerm, setSearchTerm, lang, setLang, tl }) {
   const [searchOpen, setSearchOpen] = useState(false);
   return (
     <div style={{position:"fixed",top:0,left:0,right:0,zIndex:100,background:N,boxShadow:"0 2px 12px rgba(30,58,138,0.3)"}}>
-      <div style={{display:"flex",alignItems:"center",gap:8,padding:"10px 14px"}}>
+      <div style={{display:"flex",alignItems:"center",gap:8,padding:"8px 14px"}}>
         <Logo/>
         <div style={{flex:1}}/>
         <button onClick={()=>setSearchOpen(o=>!o)}
@@ -987,7 +987,7 @@ function App() {
   useEffect(()=>{
     if(!document.getElementById("s24-fonts")){
       const l=document.createElement("link");l.id="s24-fonts";l.rel="stylesheet";
-      l.href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400;1,500;1,600;1,700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=DM+Mono:wght@400;500&family=Syne:wght@700;800;900&display=swap";
+      l.href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400;1,500;1,600;1,700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=DM+Mono:wght@400;500&family=Syne:wght@700;800;900&display=swap";
       document.head.appendChild(l);
     }
     document.body.style.cssText="margin:0;padding:0;background:#F8FAFF;font-family:'DM Sans',sans-serif;";
@@ -1091,7 +1091,7 @@ function App() {
     return (
     <div style={{minHeight:"100vh",background:BG,paddingBottom:72}}>
       <Header searchTerm={searchTerm} setSearchTerm={setSearchTerm} lang={lang} setLang={setLang} tl={tl}/>
-      <div style={{paddingTop:54}}>
+      <div style={{paddingTop:62}}>
         {view==="home"&&(
           <>
             <HeroBanner carsCount={cars.length} tl={tl}/>
