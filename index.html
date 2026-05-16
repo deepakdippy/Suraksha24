@@ -4,7 +4,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
   <title>Suraksha24 — Repo Cars by LOANS24</title>
-  <meta name="description" content="India's trusted bank repossessed car marketplace. Verified inventory, transparent pricing, direct dealer access."/>
+  <meta name="description" content="India's trusted bank repossessed car marketplace."/>
   <meta name="theme-color" content="#1E3A8A"/>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>tailwind.config={darkMode:'class'}</script>
@@ -43,10 +43,9 @@ MapPin=mkI('MapPin'),Calendar=mkI('Calendar'),Fuel=mkI('Fuel'),Building2=mkI('Bu
 Star=mkI('Star'),Bell=mkI('Bell'),User=mkI('User'),Heart=mkI('Heart'),Eye=mkI('Eye'),
 FileText=mkI('FileText'),Share2=mkI('Share2'),MessageSquare=mkI('MessageSquare'),
 Phone=mkI('Phone'),MessageCircle=mkI('MessageCircle'),ChevronDown=mkI('ChevronDown'),
-ChevronRight=mkI('ChevronRight'),Home=mkI('Home'),Bookmark=mkI('Bookmark'),
-RefreshCw=mkI('RefreshCw'),Shield=mkI('Shield'),CheckCircle=mkI('CheckCircle'),
-AlertCircle=mkI('AlertCircle'),Loader2=mkI('Loader2'),Filter=mkI('Filter'),
-Menu=mkI('Menu'),ArrowLeft=mkI('ArrowLeft'),Wrench=mkI('Wrench'),
+ChevronRight=mkI('ChevronRight'),Home=mkI('Home'),Shield=mkI('Shield'),
+CheckCircle=mkI('CheckCircle'),AlertCircle=mkI('AlertCircle'),Loader2=mkI('Loader2'),
+Filter=mkI('Filter'),Menu=mkI('Menu'),ArrowLeft=mkI('ArrowLeft'),Wrench=mkI('Wrench'),
 BarChart2=mkI('BarChart2'),Clock=mkI('Clock'),Award=mkI('Award'),Zap=mkI('Zap');
 const LOGO_SRC=window.__LOGO_SRC__;
 // ============================================================
@@ -97,6 +96,255 @@ const formatCurrency = (n) => {
 };
 const fmtNum = (n) => (n||0).toLocaleString("en-IN");
 
+
+// ============================================================
+// 🌐  TRANSLATIONS
+// ============================================================
+const LANGS = [
+  { code:"en", label:"English",  native:"EN"  },
+  { code:"hi", label:"Hindi",    native:"हि"   },
+  { code:"mr", label:"Marathi",  native:"मर"   },
+  { code:"kn", label:"Kannada",  native:"ಕ"    },
+  { code:"ta", label:"Tamil",    native:"த"    },
+  { code:"te", label:"Telugu",   native:"తె"   },
+];
+
+const TRANSLATIONS = {
+  en: {
+    tagline:"Bank Verified · Zero Hidden Charges",
+    hero1:"Bank Repossessed Cars",
+    hero2:"at the Best Prices",
+    carsListed:"Cars Listed", partnerBanks:"Partner Banks", cities:"Cities",
+    all:"All", available:"Available", pending:"Pending", sold:"Sold",
+    bank:"Bank", make:"Make", state:"State", parkingYard:"Parking Yard", fuel:"Fuel",
+    bidNow:"Bid Now", enquire:"Enquire", pdf:"PDF",
+    basePrice:"Base Price", bids:"bids", enquiries:"enquiries",
+    home:"Home", saved:"Saved", contact:"Contact",
+    search:"Search make, model, reg. no., city, bank...",
+    searchBtn:"Search", cancel:"Cancel", clear:"Clear",
+    clearFilters:"Clear filters", carsFound:"cars found",
+    loading:"Loading Suraksha24...", noCarFound:"No cars found",
+    adjustFilters:"Try adjusting your filters",
+    submitBid:"Submit Your Bid", customerEnquiry:"Customer Enquiry",
+    dealerName:"Dealer / Company Name *", mobile:"Mobile Number *",
+    bidPrice:"Bid Price (₹) *", agent:"Assigned Agent", remarks:"Remarks (optional)",
+    submitBidBtn:"Submit Bid", sendEnquiry:"Send Enquiry",
+    bidPrivate:"Your bid is recorded privately — other dealers cannot see it.",
+    name:"Name *", message:"Message", msgPlaceholder:"Your enquiry...",
+    mobilePlaceholder:"10-digit mobile", namePlaceholder:"Your full name",
+    dealerPlaceholder:"e.g. Sharma Auto Pvt Ltd",
+    contactUs:"Contact Us", chatNow:"Chat with us now", callNow:"Call Now",
+    ourAgents:"Our Agents", savedCars:"Saved Cars",
+    noSaved:"No saved cars yet", tapToSave:"Tap ♡ on any car to save it here",
+    required:"Required", validMobile:"Enter valid 10-digit mobile",
+    validAmount:"Enter valid amount", minBid:"Min.",
+    submitting:"Submitting...", sending:"Sending...",
+    dealerBids:"dealer bids",
+  },
+  hi: {
+    tagline:"बैंक सत्यापित · शून्य छुपे शुल्क",
+    hero1:"बैंक रिपोज़ेस्ड गाड़ियां",
+    hero2:"सर्वोत्तम कीमतों पर",
+    carsListed:"गाड़ियां सूचीबद्ध", partnerBanks:"पार्टनर बैंक", cities:"शहर",
+    all:"सभी", available:"उपलब्ध", pending:"लंबित", sold:"बिका",
+    bank:"बैंक", make:"निर्माता", state:"राज्य", parkingYard:"पार्किंग यार्ड", fuel:"ईंधन",
+    bidNow:"बोली लगाएं", enquire:"पूछताछ करें", pdf:"PDF",
+    basePrice:"आधार मूल्य", bids:"बोलियां", enquiries:"पूछताछ",
+    home:"होम", saved:"सहेजे", contact:"संपर्क",
+    search:"मेक, मॉडल, रेग. नं., शहर खोजें...",
+    searchBtn:"खोजें", cancel:"रद्द करें", clear:"हटाएं",
+    clearFilters:"फ़िल्टर हटाएं", carsFound:"गाड़ियां मिलीं",
+    loading:"लोड हो रहा है...", noCarFound:"कोई गाड़ी नहीं मिली",
+    adjustFilters:"फ़िल्टर बदलकर देखें",
+    submitBid:"अपनी बोली जमा करें", customerEnquiry:"ग्राहक पूछताछ",
+    dealerName:"डीलर / कंपनी का नाम *", mobile:"मोबाइल नंबर *",
+    bidPrice:"बोली मूल्य (₹) *", agent:"नियुक्त एजेंट", remarks:"टिप्पणी (वैकल्पिक)",
+    submitBidBtn:"बोली जमा करें", sendEnquiry:"पूछताछ भेजें",
+    bidPrivate:"आपकी बोली गोपनीय रूप से दर्ज की गई है।",
+    name:"नाम *", message:"संदेश", msgPlaceholder:"आपकी पूछताछ...",
+    mobilePlaceholder:"10 अंकों का मोबाइल", namePlaceholder:"आपका पूरा नाम",
+    dealerPlaceholder:"जैसे. शर्मा ऑटो प्रा. लि.",
+    contactUs:"हमसे संपर्क करें", chatNow:"अभी चैट करें", callNow:"अभी कॉल करें",
+    ourAgents:"हमारे एजेंट", savedCars:"सहेजी गाड़ियां",
+    noSaved:"अभी तक कोई सहेजी गाड़ी नहीं", tapToSave:"किसी भी गाड़ी पर ♡ दबाएं",
+    required:"आवश्यक है", validMobile:"सही 10 अंकों का मोबाइल दर्ज करें",
+    validAmount:"सही राशि दर्ज करें", minBid:"न्यूनतम",
+    submitting:"जमा हो रहा है...", sending:"भेजा जा रहा है...",
+    dealerBids:"डीलर बोलियां",
+  },
+  mr: {
+    tagline:"बँक सत्यापित · शून्य छुपे शुल्क",
+    hero1:"बँक जप्त केलेल्या गाड्या",
+    hero2:"सर्वोत्तम किमतींवर",
+    carsListed:"गाड्या सूचीबद्ध", partnerBanks:"भागीदार बँका", cities:"शहरे",
+    all:"सर्व", available:"उपलब्ध", pending:"प्रलंबित", sold:"विकले",
+    bank:"बँक", make:"निर्माता", state:"राज्य", parkingYard:"पार्किंग यार्ड", fuel:"इंधन",
+    bidNow:"बोली द्या", enquire:"चौकशी करा", pdf:"PDF",
+    basePrice:"आधार किंमत", bids:"बोल्या", enquiries:"चौकश्या",
+    home:"मुख्यपृष्ठ", saved:"जतन केलेल्या", contact:"संपर्क",
+    search:"मेक, मॉडल, नोंदणी क्र., शहर शोधा...",
+    searchBtn:"शोधा", cancel:"रद्द करा", clear:"साफ करा",
+    clearFilters:"फिल्टर साफ करा", carsFound:"गाड्या सापडल्या",
+    loading:"लोड होत आहे...", noCarFound:"कोणतीही गाडी सापडली नाही",
+    adjustFilters:"फिल्टर बदलून पाहा",
+    submitBid:"तुमची बोली सादर करा", customerEnquiry:"ग्राहक चौकशी",
+    dealerName:"डीलर / कंपनीचे नाव *", mobile:"मोबाइल नंबर *",
+    bidPrice:"बोली किंमत (₹) *", agent:"नियुक्त एजंट", remarks:"शेरा (ऐच्छिक)",
+    submitBidBtn:"बोली सादर करा", sendEnquiry:"चौकशी पाठवा",
+    bidPrivate:"तुमची बोली खाजगीरित्या नोंदवली गेली आहे।",
+    name:"नाव *", message:"संदेश", msgPlaceholder:"तुमची चौकशी...",
+    mobilePlaceholder:"10 अंकी मोबाइल", namePlaceholder:"तुमचे पूर्ण नाव",
+    dealerPlaceholder:"उदा. शर्मा ऑटो प्रा. लि.",
+    contactUs:"आमच्याशी संपर्क साधा", chatNow:"आत्ता चॅट करा", callNow:"आत्ता कॉल करा",
+    ourAgents:"आमचे एजंट", savedCars:"जतन केलेल्या गाड्या",
+    noSaved:"अद्याप कोणतीही जतन केलेली गाडी नाही", tapToSave:"कोणत्याही गाडीवर ♡ दाबा",
+    required:"आवश्यक", validMobile:"वैध 10 अंकी मोबाइल प्रविष्ट करा",
+    validAmount:"वैध रक्कम प्रविष्ट करा", minBid:"किमान",
+    submitting:"सादर होत आहे...", sending:"पाठवत आहे...",
+    dealerBids:"डीलर बोल्या",
+  },
+  kn: {
+    tagline:"ಬ್ಯಾಂಕ್ ಪರಿಶೀಲಿಸಿದೆ · ಮರೆಮಾಡಿದ ಶುಲ್ಕ ಇಲ್ಲ",
+    hero1:"ಬ್ಯಾಂಕ್ ವಶಪಡಿಸಿದ ವಾಹನಗಳು",
+    hero2:"ಅತ್ಯುತ್ತಮ ಬೆಲೆಯಲ್ಲಿ",
+    carsListed:"ವಾಹನಗಳ ಪಟ್ಟಿ", partnerBanks:"ಪಾಲು ಬ್ಯಾಂಕ್‌ಗಳು", cities:"ನಗರಗಳು",
+    all:"ಎಲ್ಲಾ", available:"ಲಭ್ಯ", pending:"ಬಾಕಿ", sold:"ಮಾರಾಟ",
+    bank:"ಬ್ಯಾಂಕ್", make:"ತಯಾರಕ", state:"ರಾಜ್ಯ", parkingYard:"ಪಾರ್ಕಿಂಗ್ ಯಾರ್ಡ್", fuel:"ಇಂಧನ",
+    bidNow:"ಈಗ ಬಿಡ್ ಮಾಡಿ", enquire:"ವಿಚಾರಿಸಿ", pdf:"PDF",
+    basePrice:"ಮೂಲ ಬೆಲೆ", bids:"ಬಿಡ್‌ಗಳು", enquiries:"ವಿಚಾರಣೆಗಳು",
+    home:"ಮುಖಪುಟ", saved:"ಉಳಿಸಿದ", contact:"ಸಂಪರ್ಕ",
+    search:"ಮೇಕ್, ಮಾಡೆಲ್, ನಂ., ನಗರ ಹುಡುಕಿ...",
+    searchBtn:"ಹುಡುಕಿ", cancel:"ರದ್ದು ಮಾಡಿ", clear:"ತೆರವುಗೊಳಿಸಿ",
+    clearFilters:"ಫಿಲ್ಟರ್ ತೆರವು", carsFound:"ವಾಹನಗಳು ಸಿಕ್ಕಿವೆ",
+    loading:"ಲೋಡ್ ಆಗುತ್ತಿದೆ...", noCarFound:"ಯಾವ ವಾಹನವೂ ಸಿಗಲಿಲ್ಲ",
+    adjustFilters:"ಫಿಲ್ಟರ್ ಬದಲಿಸಿ ನೋಡಿ",
+    submitBid:"ನಿಮ್ಮ ಬಿಡ್ ಸಲ್ಲಿಸಿ", customerEnquiry:"ಗ್ರಾಹಕ ವಿಚಾರಣೆ",
+    dealerName:"ಡೀಲರ್ / ಕಂಪನಿ ಹೆಸರು *", mobile:"ಮೊಬೈಲ್ ಸಂಖ್ಯೆ *",
+    bidPrice:"ಬಿಡ್ ಬೆಲೆ (₹) *", agent:"ನಿಯೋಜಿತ ಏಜೆಂಟ್", remarks:"ಟಿಪ್ಪಣಿ (ಐಚ್ಛಿಕ)",
+    submitBidBtn:"ಬಿಡ್ ಸಲ್ಲಿಸಿ", sendEnquiry:"ವಿಚಾರಣೆ ಕಳುಹಿಸಿ",
+    bidPrivate:"ನಿಮ್ಮ ಬಿಡ್ ಖಾಸಗಿಯಾಗಿ ದಾಖಲಾಗಿದೆ।",
+    name:"ಹೆಸರು *", message:"ಸಂದೇಶ", msgPlaceholder:"ನಿಮ್ಮ ವಿಚಾರಣೆ...",
+    mobilePlaceholder:"10 ಅಂಕಿ ಮೊಬೈಲ್", namePlaceholder:"ನಿಮ್ಮ ಪೂರ್ಣ ಹೆಸರು",
+    dealerPlaceholder:"ಉದಾ. ಶರ್ಮಾ ಆಟೋ ಪ್ರೈ. ಲಿ.",
+    contactUs:"ನಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಿ", chatNow:"ಈಗ ಚಾಟ್ ಮಾಡಿ", callNow:"ಈಗ ಕರೆ ಮಾಡಿ",
+    ourAgents:"ನಮ್ಮ ಏಜೆಂಟ್‌ಗಳು", savedCars:"ಉಳಿಸಿದ ವಾಹನಗಳು",
+    noSaved:"ಇನ್ನೂ ಯಾವ ವಾಹನವೂ ಉಳಿಸಿಲ್ಲ", tapToSave:"ಯಾವುದೇ ವಾಹನದ ♡ ಒತ್ತಿ",
+    required:"ಅಗತ್ಯವಿದೆ", validMobile:"ಸರಿಯಾದ 10 ಅಂಕಿ ಮೊಬೈಲ್ ನಮೂದಿಸಿ",
+    validAmount:"ಸರಿಯಾದ ಮೊತ್ತ ನಮೂದಿಸಿ", minBid:"ಕನಿಷ್ಠ",
+    submitting:"ಸಲ್ಲಿಸಲಾಗುತ್ತಿದೆ...", sending:"ಕಳುಹಿಸಲಾಗುತ್ತಿದೆ...",
+    dealerBids:"ಡೀಲರ್ ಬಿಡ್‌ಗಳು",
+  },
+  ta: {
+    tagline:"வங்கி சரிபார்க்கப்பட்டது · மறைக்கப்பட்ட கட்டணம் இல்லை",
+    hero1:"வங்கி திரும்பப் பெற்ற வாகனங்கள்",
+    hero2:"சிறந்த விலைகளில்",
+    carsListed:"வாகனங்கள் பட்டியல்", partnerBanks:"கூட்டு வங்கிகள்", cities:"நகரங்கள்",
+    all:"அனைத்தும்", available:"கிடைக்கும்", pending:"நிலுவையில்", sold:"விற்கப்பட்டது",
+    bank:"வங்கி", make:"தயாரிப்பாளர்", state:"மாநிலம்", parkingYard:"நிறுத்துமிடம்", fuel:"எரிபொருள்",
+    bidNow:"இப்போது ஏலம்", enquire:"விசாரி", pdf:"PDF",
+    basePrice:"அடிப்படை விலை", bids:"ஏலங்கள்", enquiries:"விசாரணைகள்",
+    home:"முகப்பு", saved:"சேமித்தவை", contact:"தொடர்பு",
+    search:"மேக், மாடல், எண், நகரம் தேடுங்கள்...",
+    searchBtn:"தேடு", cancel:"ரத்து செய்", clear:"அழி",
+    clearFilters:"வடிகட்டிகளை அழி", carsFound:"வாகனங்கள் கண்டறியப்பட்டன",
+    loading:"ஏற்றுகிறது...", noCarFound:"வாகனங்கள் எதுவும் இல்லை",
+    adjustFilters:"வடிகட்டிகளை மாற்றி பாருங்கள்",
+    submitBid:"உங்கள் ஏலத்தை சமர்ப்பிக்கவும்", customerEnquiry:"வாடிக்கையாளர் விசாரணை",
+    dealerName:"டீலர் / நிறுவன பெயர் *", mobile:"மொபைல் எண் *",
+    bidPrice:"ஏல விலை (₹) *", agent:"நியமிக்கப்பட்ட முகவர்", remarks:"கருத்துக்கள் (விரும்பினால்)",
+    submitBidBtn:"ஏலம் சமர்ப்பி", sendEnquiry:"விசாரணை அனுப்பு",
+    bidPrivate:"உங்கள் ஏலம் தனிப்பட்ட முறையில் பதிவு செய்யப்பட்டது।",
+    name:"பெயர் *", message:"செய்தி", msgPlaceholder:"உங்கள் விசாரணை...",
+    mobilePlaceholder:"10 இலக்க மொபைல்", namePlaceholder:"உங்கள் முழு பெயர்",
+    dealerPlaceholder:"எ.கா. சர்மா ஆட்டோ பிரை. லி.",
+    contactUs:"எங்களை தொடர்பு கொள்ளுங்கள்", chatNow:"இப்போது அரட்டை", callNow:"இப்போது அழை",
+    ourAgents:"எங்கள் முகவர்கள்", savedCars:"சேமித்த வாகனங்கள்",
+    noSaved:"இன்னும் சேமித்த வாகனங்கள் இல்லை", tapToSave:"எந்த வாகனத்திலும் ♡ தட்டுங்கள்",
+    required:"தேவை", validMobile:"சரியான 10 இலக்க மொபைல் உள்ளிடவும்",
+    validAmount:"சரியான தொகை உள்ளிடவும்", minBid:"குறைந்தது",
+    submitting:"சமர்ப்பிக்கிறது...", sending:"அனுப்புகிறது...",
+    dealerBids:"டீலர் ஏலங்கள்",
+  },
+  te: {
+    tagline:"బ్యాంక్ ధృవీకరించింది · దాచిన చార్జీలు లేవు",
+    hero1:"బ్యాంక్ స్వాధీనం చేసుకున్న వాహనాలు",
+    hero2:"అత్యుత్తమ ధరలకు",
+    carsListed:"వాహనాల జాబితా", partnerBanks:"భాగస్వామ్య బ్యాంకులు", cities:"నగరాలు",
+    all:"అన్నీ", available:"అందుబాటులో", pending:"పెండింగ్", sold:"అమ్మబడింది",
+    bank:"బ్యాంక్", make:"తయారీదారు", state:"రాష్ట్రం", parkingYard:"పార్కింగ్ యార్డ్", fuel:"ఇంధనం",
+    bidNow:"ఇప్పుడు బిడ్ చేయండి", enquire:"విచారించండి", pdf:"PDF",
+    basePrice:"ప్రాథమిక ధర", bids:"బిడ్లు", enquiries:"విచారణలు",
+    home:"హోమ్", saved:"సేవ్ చేసినవి", contact:"సంప్రదింపు",
+    search:"మేక్, మోడల్, నెం., నగరం వెతకండి...",
+    searchBtn:"వెతకండి", cancel:"రద్దు చేయండి", clear:"తొలగించు",
+    clearFilters:"ఫిల్టర్లు తొలగించు", carsFound:"వాహనాలు కనుగొనబడ్డాయి",
+    loading:"లోడ్ అవుతోంది...", noCarFound:"వాహనాలు ఏవీ కనుగొనబడలేదు",
+    adjustFilters:"ఫిల్టర్లు మార్చి చూడండి",
+    submitBid:"మీ బిడ్ సమర్పించండి", customerEnquiry:"కస్టమర్ విచారణ",
+    dealerName:"డీలర్ / కంపెనీ పేరు *", mobile:"మొబైల్ నంబర్ *",
+    bidPrice:"బిడ్ ధర (₹) *", agent:"నియమించిన ఏజెంట్", remarks:"వ్యాఖ్యలు (ఐచ్ఛికం)",
+    submitBidBtn:"బిడ్ సమర్పించు", sendEnquiry:"విచారణ పంపండి",
+    bidPrivate:"మీ బిడ్ ప్రైవేట్‌గా నమోదు చేయబడింది।",
+    name:"పేరు *", message:"సందేశం", msgPlaceholder:"మీ విచారణ...",
+    mobilePlaceholder:"10 అంకెల మొబైల్", namePlaceholder:"మీ పూర్తి పేరు",
+    dealerPlaceholder:"ఉదా. శర్మా ఆటో ప్రై. లి.",
+    contactUs:"మమ్మల్ని సంప్రదించండి", chatNow:"ఇప్పుడు చాట్ చేయండి", callNow:"ఇప్పుడు కాల్ చేయండి",
+    ourAgents:"మా ఏజెంట్లు", savedCars:"సేవ్ చేసిన వాహనాలు",
+    noSaved:"ఇంకా సేవ్ చేసిన వాహనాలు లేవు", tapToSave:"ఏదైనా వాహనంపై ♡ నొక్కండి",
+    required:"అవసరం", validMobile:"చెల్లుబాటు అయ్యే 10 అంకెల మొబైల్ నమోదు చేయండి",
+    validAmount:"చెల్లుబాటు అయ్యే మొత్తం నమోదు చేయండి", minBid:"కనీసం",
+    submitting:"సమర్పిస్తోంది...", sending:"పంపుతోంది...",
+    dealerBids:"డీలర్ బిడ్లు",
+  },
+};
+
+const t = (lang, key) => (TRANSLATIONS[lang] || TRANSLATIONS.en)[key] || TRANSLATIONS.en[key] || key;
+
+
+// ============================================================
+// 🌐  LANGUAGE SWITCHER
+// ============================================================
+function LangSwitcher({ lang, setLang }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef();
+  useEffect(() => {
+    const fn = e => { if(ref.current && !ref.current.contains(e.target)) setOpen(false); };
+    document.addEventListener("mousedown", fn);
+    return () => document.removeEventListener("mousedown", fn);
+  }, []);
+  const cur = LANGS.find(l => l.code === lang) || LANGS[0];
+  return (
+    <div ref={ref} style={{position:"relative"}}>
+      <button onClick={() => setOpen(o => !o)}
+        style={{background:"rgba(255,255,255,0.12)",border:"none",borderRadius:8,
+                padding:"6px 10px",cursor:"pointer",color:"#fff",display:"flex",
+                alignItems:"center",gap:4,fontSize:"0.78rem",fontWeight:700}}>
+        {cur.native}
+        <ChevronDown size={10} style={{opacity:0.7,transform:open?"rotate(180deg)":"none",transition:"transform 0.15s"}}/>
+      </button>
+      {open && (
+        <div style={{position:"absolute",top:"calc(100% + 6px)",right:0,zIndex:300,
+                     background:"#fff",borderRadius:10,border:"1px solid #E2E8F0",
+                     boxShadow:"0 8px 24px rgba(30,58,138,0.15)",minWidth:130,padding:"4px 0"}}>
+          {LANGS.map(l => (
+            <button key={l.code} onClick={() => { setLang(l.code); setOpen(false); }}
+              style={{width:"100%",display:"flex",alignItems:"center",gap:8,padding:"8px 14px",
+                      border:"none",cursor:"pointer",background:lang===l.code?"#EEF2FF":"transparent",
+                      fontSize:"0.82rem",fontWeight:lang===l.code?700:400,
+                      color:lang===l.code?"#1E3A8A":"#0A1628",textAlign:"left"}}>
+              <span style={{fontSize:"1rem",minWidth:20}}>{l.native}</span>
+              <span>{l.label}</span>
+              {lang===l.code && <Check size={12} style={{color:"#1E3A8A",marginLeft:"auto"}}/>}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+
+
 const STATUS_STYLE = {
   available: { bg:"#dcfce7", color:"#166534", dot:"#22c55e", border:"#bbf7d0" },
   sold:      { bg:"#fee2e2", color:"#991b1b", dot:"#ef4444", border:"#fecaca" },
@@ -139,7 +387,7 @@ function Logo({ size="md" }) {
   return <img src={LOGO_SRC} alt="Suraksha24" style={{height:h,width:"auto",display:"block",maxWidth:size==="lg"?200:150}}/>;
 }
 
-function Header({ searchTerm, setSearchTerm }) {
+function Header({ searchTerm, setSearchTerm, lang, setLang, tl }) {
   const [searchOpen, setSearchOpen] = useState(false);
   return (
     <div style={{position:"fixed",top:0,left:0,right:0,zIndex:100,background:N,boxShadow:"0 2px 12px rgba(30,58,138,0.3)"}}>
@@ -164,7 +412,7 @@ function Header({ searchTerm, setSearchTerm }) {
         <div style={{padding:"0 14px 10px",display:"flex",gap:8,alignItems:"center"}}>
           <div style={{flex:1,background:"rgba(255,255,255,0.96)",borderRadius:10,display:"flex",alignItems:"center",gap:8,padding:"8px 12px"}}>
             <Search size={15} style={{color:N,flexShrink:0}}/>
-            <input autoFocus type="text" placeholder="Search make, model, reg. no., city, bank..."
+            <input autoFocus type="text" placeholder={tl ? tl("search") : "Search make, model, reg. no., city, bank..."}
               value={searchTerm} onChange={e=>setSearchTerm(e.target.value)}
               style={{flex:1,border:"none",outline:"none",fontSize:"0.88rem",background:"transparent",color:TX}}/>
             {searchTerm&&<button onClick={()=>setSearchTerm("")} style={{background:"none",border:"none",cursor:"pointer",padding:0}}><X size={14} style={{color:MT}}/></button>}
@@ -179,8 +427,8 @@ function Header({ searchTerm, setSearchTerm }) {
   );
 }
 
-function StatusTabs({ active, onChange, counts }) {
-  const tabs=[{key:"all",label:"All"},{key:"available",label:"Available"},{key:"pending",label:"Pending"},{key:"sold",label:"Sold"}];
+function StatusTabs({ active, onChange, counts, tl }) {
+  const tabs=[{key:"all",label:tl("all")},{key:"available",label:tl("available")},{key:"pending",label:tl("pending")},{key:"sold",label:tl("sold")}];
   return (
     <div style={{display:"flex",background:"#fff",borderBottom:`1px solid ${BR}`,overflowX:"auto"}}>
       {tabs.map(t=>{
@@ -204,13 +452,13 @@ function StatusTabs({ active, onChange, counts }) {
   );
 }
 
-function FilterChips({ master, filters, setFilters }) {
+function FilterChips({ master, filters, setFilters, tl }) {
   const groups=[
-    {key:"bank",        label:"Bank",         options:master.banks||[]},
-    {key:"make",        label:"Make",         options:master.makes||[]},
-    {key:"state",       label:"State",        options:master.states||[]},
-    {key:"parkingYard", label:"Parking Yard", options:master.parkingYards||[]},
-    {key:"fuelType",    label:"Fuel",         options:master.fuelTypes||["Petrol","Diesel","CNG","Electric"]},
+    {key:"bank",        label:tl("bank"),         options:master.banks||[]},
+    {key:"make",        label:tl("make"),         options:master.makes||[]},
+    {key:"state",       label:tl("state"),        options:master.states||[]},
+    {key:"parkingYard", label:tl("parkingYard"), options:master.parkingYards||[]},
+    {key:"fuelType",    label:tl("fuel"),         options:master.fuelTypes||["Petrol","Diesel","CNG","Electric"]},
   ];
   const [open,setOpen]=useState(null);
   const ref=useRef();
@@ -228,7 +476,7 @@ function FilterChips({ master, filters, setFilters }) {
           <button onClick={()=>setFilters({})}
             style={{flexShrink:0,display:"flex",alignItems:"center",gap:4,padding:"5px 10px",borderRadius:20,
                     border:"1px solid #fca5a5",background:"#fee2e2",color:"#dc2626",fontSize:"0.75rem",fontWeight:600,cursor:"pointer",whiteSpace:"nowrap"}}>
-            <X size={11}/> Clear ({activeCount})
+            <X size={11}/> {tl("clear")} ({activeCount})
           </button>
         )}
         {groups.map(g=>{
@@ -273,7 +521,7 @@ function FilterChips({ master, filters, setFilters }) {
   );
 }
 
-function CarCard({ car, onContact, onBid, saved, toggleSave }) {
+function CarCard({ car, onContact, onBid, saved, toggleSave, tl }) {
   const [shared,setShared]=useState(false);
   const st=getStatus(car.status);
   const sold=car.status?.toLowerCase()==="sold";
@@ -338,7 +586,7 @@ function CarCard({ car, onContact, onBid, saved, toggleSave }) {
 
           <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:6}}>
             <div>
-              <div style={{fontSize:"0.58rem",fontWeight:500,color:HI,textTransform:"uppercase",letterSpacing:"0.06em"}}>Base Price</div>
+              <div style={{fontSize:"0.58rem",fontWeight:500,color:HI,textTransform:"uppercase",letterSpacing:"0.06em"}}>{tl("basePrice")}</div>
               <div style={{fontWeight:800,fontSize:"1.05rem",color:TX,lineHeight:1,letterSpacing:"-0.02em"}}>{formatCurrency(car.highestBid)}</div>
             </div>
             <div style={{display:"flex",gap:5}}>
@@ -346,18 +594,18 @@ function CarCard({ car, onContact, onBid, saved, toggleSave }) {
                 <a href={car.pdfLink} target="_blank" rel="noopener noreferrer"
                    style={{display:"flex",alignItems:"center",gap:3,padding:"6px 9px",borderRadius:8,fontSize:"0.7rem",fontWeight:600,
                            textDecoration:"none",background:TI,border:`1px solid ${BO}`,color:N}}>
-                  <FileText size={10}/> PDF
+                  <FileText size={10}/> {tl("pdf")}
                 </a>
               )}
               <button onClick={()=>onContact(car)} disabled={sold}
                 style={{display:"flex",alignItems:"center",gap:3,padding:"6px 9px",borderRadius:8,fontSize:"0.7rem",fontWeight:600,
                         border:`1px solid ${BO}`,cursor:"pointer",background:TI,color:N,opacity:sold?0.5:1}}>
-                <MessageSquare size={10}/> Enquire
+                <MessageSquare size={10}/> {tl("enquire")}
               </button>
               <button onClick={()=>onBid(car)} disabled={sold}
                 style={{display:"flex",alignItems:"center",gap:3,padding:"6px 12px",borderRadius:8,fontSize:"0.72rem",fontWeight:700,
                         border:"none",cursor:"pointer",background:`linear-gradient(135deg,${N},${B})`,color:"#fff",opacity:sold?0.5:1}}>
-                Bid Now
+                {tl("bidNow")}
               </button>
             </div>
           </div>
@@ -377,15 +625,15 @@ function CarCard({ car, onContact, onBid, saved, toggleSave }) {
   );
 }
 
-function BidModal({ car, onClose, onSubmit }) {
+function BidModal({ car, onClose, onSubmit, tl }) {
   const [form,setForm]=useState({dealerName:"",mobile:"",bidPrice:"",remarks:"",agent:AGENT_NAMES[0]});
   const [loading,setLoading]=useState(false);
   const [errors,setErrors]=useState({});
   const validate=()=>{
     const e={};
-    if(!form.dealerName.trim())e.dealerName="Required";
-    if(!/^\d{10}$/.test(form.mobile))e.mobile="Enter valid 10-digit mobile";
-    if(!form.bidPrice||isNaN(form.bidPrice)||Number(form.bidPrice)<=0)e.bidPrice="Enter valid amount";
+    if(!form.dealerName.trim())e.dealerName=tl("required");
+    if(!/^\d{10}$/.test(form.mobile))e.mobile=tl("validMobile");
+    if(!form.bidPrice||isNaN(form.bidPrice)||Number(form.bidPrice)<=0)e.bidPrice=tl("validAmount");
     setErrors(e);return Object.keys(e).length===0;
   };
   const submit=async()=>{
@@ -415,11 +663,11 @@ function BidModal({ car, onClose, onSubmit }) {
             <div style={{fontFamily:"'DM Mono',monospace",fontSize:"0.7rem",color:N,marginTop:2}}>{car.regNo} · Base: {formatCurrency(car.highestBid)}</div>
           </div>
         </div>
-        <div style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:"0.95rem",color:TX,marginBottom:14}}>Submit Your Bid</div>
+        <div style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:"0.95rem",color:TX,marginBottom:14}}>{tl("submitBid")}</div>
         {inp("Dealer / Company Name *","dealerName","e.g. Sharma Auto Pvt Ltd")}
         {inp("Mobile Number *","mobile","10-digit mobile","tel")}
         <div style={{marginBottom:12}}>
-          <label style={{display:"block",fontSize:"0.75rem",fontWeight:600,color:TX,marginBottom:4}}>Bid Price (₹) *</label>
+          <label style={{display:"block",fontSize:"0.75rem",fontWeight:600,color:TX,marginBottom:4}}>{tl("bidPrice")}</label>
           <div style={{position:"relative"}}>
             <span style={{position:"absolute",left:12,top:"50%",transform:"translateY(-50%)",fontWeight:700,color:N,fontSize:"1rem"}}>₹</span>
             <input type="number" placeholder={`Min. ${(car.highestBid||0).toLocaleString("en-IN")}`}
@@ -433,14 +681,14 @@ function BidModal({ car, onClose, onSubmit }) {
           )}
         </div>
         <div style={{marginBottom:12}}>
-          <label style={{display:"block",fontSize:"0.75rem",fontWeight:600,color:TX,marginBottom:4}}>Assigned Agent</label>
+          <label style={{display:"block",fontSize:"0.75rem",fontWeight:600,color:TX,marginBottom:4}}>{tl("agent")}</label>
           <select value={form.agent} onChange={e=>setForm(p=>({...p,agent:e.target.value}))}
             style={{width:"100%",padding:"10px 12px",borderRadius:9,outline:"none",fontSize:"0.82rem",color:TX,border:`1px solid ${BR}`,background:"#fff",boxSizing:"border-box"}}>
             {AGENT_NAMES.map(a=><option key={a}>{a}</option>)}
           </select>
         </div>
         <div style={{marginBottom:18}}>
-          <label style={{display:"block",fontSize:"0.75rem",fontWeight:600,color:TX,marginBottom:4}}>Remarks (optional)</label>
+          <label style={{display:"block",fontSize:"0.75rem",fontWeight:600,color:TX,marginBottom:4}}>{tl("remarks")}</label>
           <textarea placeholder="Inspection notes, payment terms..." value={form.remarks}
             onChange={e=>setForm(p=>({...p,remarks:e.target.value}))} rows={2}
             style={{width:"100%",padding:"10px 12px",borderRadius:9,outline:"none",resize:"vertical",fontSize:"0.82rem",color:TX,border:`1px solid ${BR}`,background:"#fff",boxSizing:"border-box"}}/>
@@ -454,18 +702,16 @@ function BidModal({ car, onClose, onSubmit }) {
             style={{flex:2,padding:"12px",borderRadius:10,fontWeight:700,fontSize:"0.88rem",border:"none",cursor:"pointer",
                     background:`linear-gradient(135deg,${N},${B})`,color:"#fff",opacity:loading?0.7:1,
                     display:"flex",alignItems:"center",justifyContent:"center",gap:8}}>
-            {loading?<><Loader2 size={14}/> Submitting...</>:"Submit Bid"}
+            {loading?<><Loader2 size={14}/> {tl("submitting")}</>:tl("submitBidBtn")}
           </button>
         </div>
-        <p style={{textAlign:"center",fontSize:"0.68rem",color:HI,marginTop:10}}>
-          Your bid is recorded privately — other dealers cannot see it.
-        </p>
+        <p style={{textAlign:"center",fontSize:"0.68rem",color:HI,marginTop:10}}>{tl("bidPrivate")}</p>
       </div>
     </div>
   );
 }
 
-function ContactModal({ car, onClose, onSubmit }) {
+function ContactModal({ car, onClose, onSubmit, tl }) {
   const [form,setForm]=useState({name:"",mobile:"",message:"",agent:AGENT_NAMES[0]});
   const [loading,setLoading]=useState(false);
   const submit=async()=>{
@@ -483,8 +729,8 @@ function ContactModal({ car, onClose, onSubmit }) {
           <div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:"0.9rem",color:TX}}>{car.make} {car.model} {car.regYear}</div>
           <div style={{fontFamily:"'DM Mono',monospace",fontSize:"0.7rem",color:N,marginTop:2}}>{car.regNo}</div>
         </div>
-        <div style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:"0.95rem",color:TX,marginBottom:14}}>Customer Enquiry</div>
-        {[["Name *","name","Your full name"],["Mobile *","mobile","10-digit mobile"]].map(([l,k,p])=>(
+        <div style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:"0.95rem",color:TX,marginBottom:14}}>{tl("customerEnquiry")}</div>
+        {[[tl("name"),"name",tl("namePlaceholder")],[tl("mobile"),"mobile",tl("mobilePlaceholder")]].map(([l,k,p])=>(
           <div key={k} style={{marginBottom:12}}>
             <label style={{display:"block",fontSize:"0.75rem",fontWeight:600,color:TX,marginBottom:4}}>{l}</label>
             <input type={k==="mobile"?"tel":"text"} placeholder={p} value={form[k]}
@@ -493,12 +739,12 @@ function ContactModal({ car, onClose, onSubmit }) {
           </div>
         ))}
         <div style={{marginBottom:12}}>
-          <label style={{display:"block",fontSize:"0.75rem",fontWeight:600,color:TX,marginBottom:4}}>Message</label>
+          <label style={{display:"block",fontSize:"0.75rem",fontWeight:600,color:TX,marginBottom:4}}>{tl("message")}</label>
           <textarea placeholder="Your enquiry..." value={form.message} onChange={e=>setForm(p=>({...p,message:e.target.value}))} rows={2}
             style={{width:"100%",padding:"10px 12px",borderRadius:9,outline:"none",resize:"vertical",fontSize:"0.82rem",color:TX,border:`1px solid ${BR}`,background:"#fff",boxSizing:"border-box"}}/>
         </div>
         <div style={{marginBottom:18}}>
-          <label style={{display:"block",fontSize:"0.75rem",fontWeight:600,color:TX,marginBottom:4}}>Agent</label>
+          <label style={{display:"block",fontSize:"0.75rem",fontWeight:600,color:TX,marginBottom:4}}>{tl("agent")}</label>
           <select value={form.agent} onChange={e=>setForm(p=>({...p,agent:e.target.value}))}
             style={{width:"100%",padding:"10px 12px",borderRadius:9,outline:"none",fontSize:"0.82rem",color:TX,border:`1px solid ${BR}`,background:"#fff",boxSizing:"border-box"}}>
             {AGENT_NAMES.map(a=><option key={a}>{a}</option>)}
@@ -510,7 +756,7 @@ function ContactModal({ car, onClose, onSubmit }) {
             style={{flex:2,padding:"12px",borderRadius:10,fontWeight:700,fontSize:"0.88rem",border:"none",cursor:"pointer",
                     background:`linear-gradient(135deg,${N},${B})`,color:"#fff",
                     display:"flex",alignItems:"center",justifyContent:"center",gap:8}}>
-            {loading?<><Loader2 size={14}/> Sending...</>:"Send Enquiry"}
+            {loading?<><Loader2 size={14}/> {tl("sending")}</>:tl("sendEnquiry")}
           </button>
         </div>
       </div>
@@ -518,34 +764,34 @@ function ContactModal({ car, onClose, onSubmit }) {
   );
 }
 
-function SavedCars({ cars, savedIds, onContact, onBid, toggleSave }) {
+function SavedCars({ cars, savedIds, onContact, onBid, toggleSave, tl }) {
   const saved=cars.filter(c=>savedIds.includes(c.id));
   return (
     <div style={{padding:"16px 14px"}}>
-      <div style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:"1rem",color:TX,marginBottom:12}}>Saved Cars ({saved.length})</div>
+      <div style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:"1rem",color:TX,marginBottom:12}}>{tl("savedCars")} ({saved.length})</div>
       {saved.length===0?(
         <div style={{textAlign:"center",padding:"48px 20px"}}>
           <Heart size={44} style={{color:BR,margin:"0 auto 12px"}}/>
-          <div style={{color:MT,fontSize:"0.88rem",fontWeight:600}}>No saved cars yet</div>
-          <div style={{color:HI,fontSize:"0.78rem",marginTop:6}}>Tap ♡ on any car to save it here</div>
+          <div style={{color:MT,fontSize:"0.88rem",fontWeight:600}}>{tl("noSaved")}</div>
+          <div style={{color:HI,fontSize:"0.78rem",marginTop:6}}>{tl("tapToSave")}</div>
         </div>
       ):(
         <div style={{display:"flex",flexDirection:"column",gap:10}}>
-          {saved.map(c=><CarCard key={c.id} car={c} onContact={onContact} onBid={onBid} saved={true} toggleSave={toggleSave}/>)}
+          {saved.map(c=><CarCard key={c.id} car={c} onContact={onContact} onBid={onBid} saved={true} toggleSave={toggleSave} tl={tl}/>)}
         </div>
       )}
     </div>
   );
 }
 
-function ContactPage() {
+function ContactPage({ tl }) {
   return (
     <div style={{padding:"16px 14px"}}>
-      <div style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:"1rem",color:TX,marginBottom:16}}>Contact Us</div>
+      <div style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:"1rem",color:TX,marginBottom:16}}>{tl("contactUs")}</div>
       <div style={{display:"flex",flexDirection:"column",gap:10}}>
         {[
-          {icon:MessageCircle,label:"WhatsApp",val:"Chat with us now",href:`https://wa.me/${CONFIG.WHATSAPP_NUMBER}`,bg:"#22c55e"},
-          {icon:Phone,label:"Call Now",val:CONFIG.CALL_NUMBER,href:`tel:${CONFIG.CALL_NUMBER}`,bg:N},
+          {icon:MessageCircle,label:"WhatsApp",val:tl("chatNow"),href:`https://wa.me/${CONFIG.WHATSAPP_NUMBER}`,bg:"#22c55e"},
+          {icon:Phone,label:tl("callNow"),val:CONFIG.CALL_NUMBER,href:`tel:${CONFIG.CALL_NUMBER}`,bg:N},
         ].map(c=>(
           <a key={c.label} href={c.href} target="_blank" rel="noopener noreferrer"
              style={{display:"flex",alignItems:"center",gap:14,padding:"16px",borderRadius:14,
@@ -561,7 +807,7 @@ function ContactPage() {
           </a>
         ))}
         <div style={{background:"#fff",border:`1px solid ${BR}`,borderRadius:14,padding:"14px",marginTop:4}}>
-          <div style={{fontWeight:700,fontSize:"0.82rem",color:TX,marginBottom:10}}>Our Agents</div>
+          <div style={{fontWeight:700,fontSize:"0.82rem",color:TX,marginBottom:10}}>{tl("ourAgents")}</div>
           {AGENT_NAMES.map(a=>(
             <div key={a} style={{display:"flex",alignItems:"center",gap:10,padding:"7px 0",borderBottom:`1px solid ${BG}`}}>
               <div style={{width:30,height:30,borderRadius:"50%",background:TI,display:"flex",alignItems:"center",justifyContent:"center"}}>
@@ -576,18 +822,18 @@ function ContactPage() {
   );
 }
 
-function HeroBanner({ carsCount }) {
+function HeroBanner({ carsCount, tl }) {
   return (
     <div style={{background:`linear-gradient(135deg,${N} 0%,${B} 100%)`,padding:"18px 16px 14px",color:"#fff"}}>
       <div style={{display:"inline-flex",alignItems:"center",gap:6,background:"rgba(255,255,255,0.12)",
                    borderRadius:20,padding:"3px 12px",marginBottom:10}}>
         <Shield size={10} style={{color:"#93c5fd"}}/>
-        <span style={{fontSize:"0.68rem",fontWeight:600,color:"#93c5fd",letterSpacing:"0.1em",textTransform:"uppercase"}}>Bank Verified · Zero Hidden Charges</span>
+        <span style={{fontSize:"0.68rem",fontWeight:600,color:"#93c5fd",letterSpacing:"0.1em",textTransform:"uppercase"}}>{tl("tagline")}</span>
       </div>
-      <h1 style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:"1.35rem",lineHeight:1.1,margin:"0 0 2px",letterSpacing:"-0.02em"}}>Bank Repossessed Cars</h1>
-      <h2 style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontWeight:500,fontSize:"1.05rem",margin:"0 0 14px",color:"#93c5fd"}}>at the Best Prices</h2>
+      <h1 style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:"1.35rem",lineHeight:1.1,margin:"0 0 2px",letterSpacing:"-0.02em"}}>{tl("hero1")}</h1>
+      <h2 style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontWeight:500,fontSize:"1.05rem",margin:"0 0 14px",color:"#93c5fd"}}>{tl("hero2")}</h2>
       <div style={{display:"flex",gap:20}}>
-        {[[`${carsCount}+`,"Cars Listed"],["15+","Partner Banks"],["50+","Cities"]].map(([v,l])=>(
+        {[[`${carsCount}+`,tl("carsListed")],["15+",tl("partnerBanks")],["50+",tl("cities")]].map(([v,l])=>(
           <div key={l}>
             <div style={{fontWeight:800,fontSize:"1.05rem",lineHeight:1}}>{v}</div>
             <div style={{fontSize:"0.62rem",color:"rgba(255,255,255,0.6)",textTransform:"uppercase",letterSpacing:"0.08em",marginTop:2}}>{l}</div>
@@ -598,8 +844,8 @@ function HeroBanner({ carsCount }) {
   );
 }
 
-function BottomNav({ view, setView, savedCount }) {
-  const tabs=[{key:"home",icon:Home,label:"Home"},{key:"saved",icon:Heart,label:"Saved",badge:savedCount},{key:"contact",icon:MessageSquare,label:"Contact"}];
+function BottomNav({ view, setView, savedCount, tl }) {
+  const tabs=[{key:"home",icon:Home,label:tl("home")},{key:"saved",icon:Heart,label:tl("saved"),badge:savedCount},{key:"contact",icon:MessageSquare,label:tl("contact")}];
   return (
     <div style={{position:"fixed",bottom:0,left:0,right:0,zIndex:100,background:"#fff",borderTop:`1px solid ${BR}`,display:"flex",padding:"6px 0 8px",boxShadow:"0 -4px 20px rgba(30,58,138,0.08)"}}>
       {tabs.map(t=>{
@@ -622,6 +868,8 @@ function BottomNav({ view, setView, savedCount }) {
 
 function App() {
   const [cars,setCars]=useState([]);
+  const [lang,setLang]=useState('en');
+  const tl=(key)=>t(lang,key);
   const [master,setMaster]=useState(SAMPLE_MASTER);
   const [loading,setLoading]=useState(true);
   const [searchTerm,setSearchTerm]=useState("");
@@ -705,19 +953,19 @@ function App() {
 
   return (
     <div style={{minHeight:"100vh",background:BG,paddingBottom:72}}>
-      <Header searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
+      <Header searchTerm={searchTerm} setSearchTerm={setSearchTerm} lang={lang} setLang={setLang} tl={tl}/>
       <div style={{paddingTop:54}}>
         {view==="home"&&(
           <>
-            <HeroBanner carsCount={cars.length}/>
-            <StatusTabs active={statusTab} onChange={setStatusTab} counts={counts}/>
-            <FilterChips master={master} filters={filters} setFilters={setFilters}/>
+            <HeroBanner carsCount={cars.length} tl={tl}/>
+            <StatusTabs active={statusTab} onChange={setStatusTab} counts={counts} tl={tl}/>
+            <FilterChips master={master} filters={filters} setFilters={setFilters} tl={tl}/>
             <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"10px 14px 6px"}}>
               <span style={{fontSize:"0.78rem",fontWeight:600,color:MT}}>
-                {loading?"Loading...":`${sorted.length} car${sorted.length!==1?"s":""} found`}
+                {loading?tl("loading"):`${sorted.length} ${tl("carsFound")}`}
               </span>
               {Object.values(filters).flat().length>0&&(
-                <button onClick={()=>setFilters({})} style={{fontSize:"0.72rem",color:N,fontWeight:600,background:"none",border:"none",cursor:"pointer"}}>Clear filters</button>
+                <button onClick={()=>setFilters({})} style={{fontSize:"0.72rem",color:N,fontWeight:600,background:"none",border:"none",cursor:"pointer"}}>{tl("clearFilters")}</button>
               )}
             </div>
             <div style={{padding:"0 14px",display:"flex",flexDirection:"column",gap:10}}>
@@ -726,24 +974,24 @@ function App() {
               )):sorted.length===0?(
                 <div style={{textAlign:"center",padding:"48px 20px"}}>
                   <Car size={48} style={{color:BR,margin:"0 auto 12px"}}/>
-                  <div style={{color:MT,fontSize:"0.9rem",fontWeight:600}}>No cars found</div>
-                  <div style={{color:HI,fontSize:"0.78rem",marginTop:6}}>Try adjusting your filters</div>
+                  <div style={{color:MT,fontSize:"0.9rem",fontWeight:600}}>{tl("noCarFound")}</div>
+                  <div style={{color:HI,fontSize:"0.78rem",marginTop:6}}>{tl("adjustFilters")}</div>
                 </div>
               ):sorted.map(c=>(
                 <CarCard key={c.id} car={c} onContact={setContactCar} onBid={setBidCar}
-                  saved={saved.includes(c.id)} toggleSave={toggleSave}/>
+                  saved={saved.includes(c.id)} toggleSave={toggleSave} tl={tl}/>
               ))}
             </div>
           </>
         )}
-        {view==="saved"&&<SavedCars cars={cars} savedIds={saved} onContact={setContactCar} onBid={setBidCar} toggleSave={toggleSave}/>}
-        {view==="contact"&&<ContactPage/>}
+        {view==="saved"&&<SavedCars cars={cars} savedIds={saved} onContact={setContactCar} onBid={setBidCar} toggleSave={toggleSave} tl={tl}/>}
+        {view==="contact"&&<ContactPage tl={tl}/>}
       </div>
 
-      <BottomNav view={view} setView={setView} savedCount={saved.length}/>
+      <BottomNav view={view} setView={setView} savedCount={saved.length} tl={tl}/>
 
-      {contactCar&&<ContactModal car={contactCar} onClose={()=>setContactCar(null)} onSubmit={handleContact}/>}
-      {bidCar&&<BidModal car={bidCar} onClose={()=>setBidCar(null)} onSubmit={handleBid}/>}
+      {contactCar&&<ContactModal car={contactCar} onClose={()=>setContactCar(null)} onSubmit={handleContact} tl={tl}/>}
+      {bidCar&&<BidModal car={bidCar} onClose={()=>setBidCar(null)} onSubmit={handleBid} tl={tl}/>}
 
       <Toast toasts={toasts} remove={removeToast}/>
 
