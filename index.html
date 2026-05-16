@@ -2,25 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
   <title>Suraksha24 — Repo Cars by LOANS24</title>
+  <meta name="description" content="India's trusted bank repossessed car marketplace. Verified inventory, transparent pricing, direct dealer access."/>
+  <meta name="theme-color" content="#1E3A8A"/>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>tailwind.config={darkMode:'class'}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400;1,500;1,600;1,700&family=DM+Sans:wght@300;400;500;600;700&family=Syne:wght@700;800;900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400;1,500;1,600;1,700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=DM+Mono:wght@400;500&family=Syne:wght@700;800;900&display=swap" rel="stylesheet"/>
   <style>
     *{box-sizing:border-box}
-    body{margin:0;font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased;background:#F8FAFF}
-    input,button,a{font-family:'DM Sans',sans-serif}
-    input::placeholder{color:#94a3b8}
+    body{margin:0;padding:0;font-family:'DM Sans',sans-serif;background:#F8FAFF;-webkit-font-smoothing:antialiased}
+    input,button,a,select,textarea{font-family:'DM Sans',sans-serif}
+    input::placeholder,textarea::placeholder{color:#94a3b8}
     #loader{display:flex;align-items:center;justify-content:center;height:100vh;flex-direction:column;gap:14px;position:fixed;inset:0;background:#F8FAFF;z-index:9999}
     .sp{width:40px;height:40px;border:3px solid #DBEAFE;border-top-color:#1E3A8A;border-radius:50%;animation:spin 0.7s linear infinite}
     @keyframes spin{to{transform:rotate(360deg)}}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.5}}
+    ::-webkit-scrollbar{height:3px;width:4px}
+    ::-webkit-scrollbar-thumb{background:#BFDBFE;border-radius:4px}
   </style>
 </head>
 <body>
-  <div id="loader"><div class="sp"></div>
-    <p style="color:#94a3b8;font-size:0.82rem;letter-spacing:0.06em;font-family:'DM Sans',sans-serif">Loading Suraksha24...</p>
+  <div id="loader">
+    <div class="sp"></div>
+    <p style="color:#94a3b8;font-size:0.8rem;letter-spacing:0.06em;font-family:'DM Sans',sans-serif">Loading Suraksha24...</p>
   </div>
   <div id="root"></div>
   <script>window.__LOGO_SRC__="data:image/webp;base64,UklGRhgLAABXRUJQVlA4IAwLAADQLwCdASrIADQAPp0+mUgloyKhMBibYLATiWxEdyACwz18zvXnDWR+9ch8VbtAz2f4D1K+YB+oHnM+pjzAfrB+wvuofjd7ifQA/oH+96xP0APLW/c74N/7b/y/3O9o7//5yP/T+0b/F+Gfhr91ye+4vUp+R/gf9l5G94/vp/xPUC9X/67z6XlOh/oBexn1vvgtRTv17AHBa0Bf0V6s/9b43/q32CP2A9Nb2QliVffs53axTQc6VkdgOWX3C4ovCfSMIh3My0gQzvvxWAgOmkQr1nDZGAxcUghvVVEh+a0K3SMCaOTY+f5qfOWLlIAQHhXEaZCpgqACfipupzmrxgBMA0G1Chop65llgdVuweF7QSBYTg9NbxVCSa33smKEvsSVt5hJ0cNuhWwvDym6CJ4bkqF8rpFKREEYjKft5Fmk+q/b6tgC5n4VwFJ3A8Ne+5MrB5dFGmriG798O3wUi68VjtXOHm8LUbr+puZJsz5c7FVTH4j5KMv+JKfafHzScoUnlEgitS4AAP6cKKmr8XLZA4hQVnaMbifDk6xB0fxVVuVpNPUm4ga6ITkmodob7YWo5wkncCIY8V2CoA62tUCQS4v+WzX4J8Os7I8GIP4RelV7mpYuRnTTzVs8TBKwUz5EzFxkjsCWUS5CzYVQnz88yvwPPXF30SqBJxs/fUNhDh5tMiG9cH1XM+vNwZcgMQ3ChcdE79bg/+NxAU+hF3KVINeZKvhj97Nj0gFFl7VXr6cfSn3gMFUGl6v91WyayXZFTNEBV2Jd/iNbfzQMHSA/SMqKW4I44BrTg7JPFGesrHvFGcEJ3FOun5O9mbtbBmzdhj/4ZodOxpe0N4y7yJ4RBY8Kk9Fsyk+KMlnXzfhLUK96W1JofR9UYYWRinLKdeUohJO/vW3kn568g8C9iGg2waswGUm3gtboUvm0FQl/7LYlNKkRDpkskwKngBOeyQbF15kHfz4tAucBJrEqpTkJh102C7ITfnSymDrL3KP+wKgp07bPmhEgiwTR7NLfpu6V4Wt62MiJavjH0b2fdSvA2rLVhRJ5EEpD6/jez19IUSXPuaLCDq8yMo0gnCHz6VkngKnKH4TRr9BEE/ZEcLI9wvy/7oybSIjEGYt/EzzncIr+1cg1F4QEK1I9lgxX0cKeKScZohN1u+gfUB4y+OyXbBTFCzi6/ZpO43XW3b3RhPs4LsKfZ3HAhkuj16PlRiWBc8PXxJgzBU+3/eCa1U3hkeegm3jad+E//nYmdkO0y4D259If43sIHb/0nxQd1Cj0tUywWLZKT1/mS7lW0Xhf9cV3Y+mv6nCNR81ntfMTf1kSJqzMMKojJnIWvQ2C8JbHEHkdFYk+dWKh8H0KeWMbPP/yFtOB32ZEE9FpPHG2OIMxLJ232BFKzJ6USLv/IoPD826fk18Gz1sAIeVLw0iOMR4HioaJA3Ue2XFu2t+SiLXjohttp0ZAi7keO7TmQqHF2LvTWtmzoCu3/X5zaECQHhMsLRB7A1pDnLnAyDT7jda93xbxZZPB7eyk1XBZYlZQ/KOvFYa5sc36glTf6naYaiLeyNl2v/vX4bka0BDlG8eEmvI1rVGuOVsGo8i3OeLgzXeu5N1hOerlkEgoqoZIZbQGNbWgFsvOnx7v2/1iQfP5hpZt/71VNfC6EHgePxVsJ2A64wRLRIb9qQheIJcO8a3pwcaUdqXZN617GgWjkt7rwi/KK4HaPssd/8HkJXYt71/r7sfKdCFld6XH+Pgach6h/03K9rhUDQGe1GRLs95RjXGNPte589Pb/HVNKiLE6CgpBVRLMoMec2Pw4Nkl82HroRVGhXbOLFdBk/hdtaYqN+93T8d9uwFj+k7lMMHH4i8Pg/K1o7eq3JknCJqXB12UjnTsWv6dv415VTVn2S5uWK82iu5KDDNKYmFhcoDOoQs61UzofJISI76oLrsIMuLtMd3rJZY7ihXkcfWU0Wi2CM4JYXTjx7EAt/fosTXqtD5IT4XOv0WvD5ammi4dUUjg0FETzU/XdnL3Z+0RR4vhpjdMj2wVlkG7watufjSE6X3HpY/+e48DaXPY7Os/IRUg0GwgIMcCyyJgUiNIJpRh+iCXY4GSccOGjdfWF9Vd1VcLML26ejsaOf6DdTd5/Vjfn6YVFZ8/nx3wq1KiZcipP8sPHcSSmd85GVHI+p0DRjDD26x6rdvQFRrZklLpUyMVxr31kIEfwrRsnQq5xi+ubSzkwNKVe3s0w3y1Sw9pHqvFfYGrkp/xhc/U/jOEZ2VKzDdXMkhdYqclHgu8UREfmgv1IIBv8PJ/y/I/AvFF3qaDS7YO2fn3QHF53YjNEoYFu+bAUnZ6YlqWSipvNzqA8hNbrn/PFrzqrZWiTZN4+5iHYICJEq/x/Z9mKGitH+yVw1CPp2bklc//Ksurb84OkMAWkJzfZbi0HzWWer3j1UamYKDubjAmr5X/eSYkYFcYJF67hi7pTaoVzo3YyH9pivffSwLSt1a2ZY0yXdrA2DmBEtkLdXbU/l+SOlr+P9q6F4+BuCH27ZJREErrfRDO1fFsJA82H8FzZ7PZme3NZVz8L3V4NnaBerrkXJ3VgwojxGFKAaYaPtDG7XVbypPewwyC0+1B37LCcT49YGgs9KLSa9C8tu98PxqnUVsA8QdfsTfEmQYD5M7D0IuYt8iBNTzR+1DmHOpNV2tL2LRwBYXNLjOGe78cmAzB8s07ljx3ef47yyk/dszOt/zP5D0r0tJ8IRJEEzGgIR5iJb4QDPFTw4J/aSVJ36orgfyy7PHobSiImdHk8D3EO2Z8t/IEAxiKuD/CNbaV+ESpsuCJjuTOV7woXeV6VaTKIIqI1aB4AromKhwLQ51yOcQeL0fv9O2x28UXt3lVEJlqhIJITdnLGyzZ3gG5iwJtjT3PcMXjy2tyMjiXgVYmQdCJKwR1T7lcFULb4IJASEHTBmGfr2xgi0Lde9fca1N33/wpd5hRdtVs/87ipz4GzT3pnbikVIfX0qK5O703KUWI3+/J1/St35cV+RjbYaAht3GpcBZk+BDLeldqeavvluv9X1UVtb7DEiFAw1Sj1N8NA5kPHrjMxM9Ymu5G68WkmvvZZyZkR3HQf/QG2wIskAZXsfBbxh7mQYrDWQu5KQ5iIi1gvVMsgB1z914X8mG/R5K7ahQOjiGUjKtpI0iDk6anraYssgRONnZ9l95hFW5kefYH3ZXv+Z8ewijRp5oWZHVU2L4nlObFhnBJBBHbM3IttHdSTjbaH61Smgbg5abBfG6LBGnYrHCo8K3Iu9zC5y/hIPlWby1qMXmKPG06WS7wgRxqvETBE9dNzil7O6qxfPvtWjrKPuZtLJ/i3p+YWCPzus41WhKaWifeiL1zavMJ8eldERNMMNHNPnufyp9Bgr5Ds36c+WF7SkSS+k2x5RCZAzVKNdRvrmG7RSk9gjySFVVqh7V+e50GHaMNxFXfVZGmVrYIJ2/G1tlNnk/YZzUYT+FMlZ70bdo1mxNm9t82x5cqdJCVQgHhVWHredB2vFB1rBB4Ve2M06DbH8FBTcfAihfM0oQ3IFXirAHw5g7zI+vCuaxmgYmROcrXjxt4crMfd4MBXkfE4fG18OZxb89Yw5Pvi1Cc0Z1v6pUsL+dOpOb2+BIb2ertLtaY93i1FCzbyxh0M4b66nDTn1Ol9ejaXkA3BiCzKN7apSR4E9bKXr6AXEkPORW2QAv7IL68FmWYZNBh1dYGu30FwLAxu/pRA1Qy8gxIncDBfVtkXy+QkajXRL8oABwaaQAAAA==";</script>
@@ -32,25 +38,23 @@
 const {useState,useEffect,useCallback,useMemo,useRef}=React;
 const _L=window.LucideReact||{};
 const mkI=n=>_L[n]||(({size=16,className='',style:s={}})=>React.createElement('span',{className,style:{display:'inline-flex',width:size,height:size,...s}}));
-const Search=mkI('Search'),Filter=mkI('Filter'),Moon=mkI('Moon'),Sun=mkI('Sun'),Phone=mkI('Phone'),
-MessageSquare=mkI('MessageSquare'),FileText=mkI('FileText'),Share2=mkI('Share2'),
-ChevronDown=mkI('ChevronDown'),ChevronUp=mkI('ChevronUp'),ChevronLeft=mkI('ChevronLeft'),
-ChevronRight=mkI('ChevronRight'),X=mkI('X'),Check=mkI('Check'),Car=mkI('Car'),
+const Search=mkI('Search'),X=mkI('X'),Check=mkI('Check'),Car=mkI('Car'),
 MapPin=mkI('MapPin'),Calendar=mkI('Calendar'),Fuel=mkI('Fuel'),Building2=mkI('Building2'),
-Star=mkI('Star'),Bell=mkI('Bell'),User=mkI('User'),Menu=mkI('Menu'),RefreshCw=mkI('RefreshCw'),
-Heart=mkI('Heart'),Eye=mkI('Eye'),ExternalLink=mkI('ExternalLink'),MessageCircle=mkI('MessageCircle'),
-Wrench=mkI('Wrench'),BarChart2=mkI('BarChart2'),Bookmark=mkI('Bookmark'),TrendingUp=mkI('TrendingUp'),
-Clock=mkI('Clock'),AlertCircle=mkI('AlertCircle'),CheckCircle=mkI('CheckCircle'),Shield=mkI('Shield'),
-Loader2=mkI('Loader2'),Tag=mkI('Tag'),ArrowRight=mkI('ArrowRight'),Award=mkI('Award'),Zap=mkI('Zap');
+Star=mkI('Star'),Bell=mkI('Bell'),User=mkI('User'),Heart=mkI('Heart'),Eye=mkI('Eye'),
+FileText=mkI('FileText'),Share2=mkI('Share2'),MessageSquare=mkI('MessageSquare'),
+Phone=mkI('Phone'),MessageCircle=mkI('MessageCircle'),ChevronDown=mkI('ChevronDown'),
+ChevronRight=mkI('ChevronRight'),Home=mkI('Home'),Bookmark=mkI('Bookmark'),
+RefreshCw=mkI('RefreshCw'),Shield=mkI('Shield'),CheckCircle=mkI('CheckCircle'),
+AlertCircle=mkI('AlertCircle'),Loader2=mkI('Loader2'),Filter=mkI('Filter'),
+Menu=mkI('Menu'),ArrowLeft=mkI('ArrowLeft'),Wrench=mkI('Wrench'),
+BarChart2=mkI('BarChart2'),Clock=mkI('Clock'),Award=mkI('Award'),Zap=mkI('Zap');
+const LOGO_SRC=window.__LOGO_SRC__;
 // ============================================================
-// SURAKSHA REPO CARS — Main App
-// React + Tailwind CSS | Google Sheets Integration
+// SURAKSHA24 — Repo Cars Marketplace
+// CarDekho-style UI | React + Tailwind | Google Sheets Backend
 // ============================================================
 
 
-// ============================================================
-// ⚙️  CONFIGURATION — Edit these values in your deployment
-// ============================================================
 const CONFIG = {
   APPS_SCRIPT_URL: "https://script.google.com/a/macros/cars24.com/s/AKfycbxe6LLbWjUEJ87GG7sA8_ewWhfSaV4sCu8qKQ-LmVXZIGbxmdAOCrTc_8AYq1CJvJFvgw/exec",
   DEMO_MODE: false,
@@ -59,1340 +63,698 @@ const CONFIG = {
   TAWKTO_ID: "6a05ebdaa078b01c35e271c2",
 };
 
-const AGENT_NAMES = [
-  "Rahul Gupta", "Ayush Gupta", "Abhinav Pandey",
-  "Rakesh",  "Escalation Matrix - Deepak Sharma",
-];
+const AGENT_NAMES = ["Rahul Gupta","Ayush Gupta","Abhinav Pandey","Rakesh","Escalation Matrix - Deepak Sharma"];
 
-// ============================================================
-// 📊  SAMPLE DATA (shown in DEMO_MODE)
-// ============================================================
 const SAMPLE_CARS = [
-  { id:"1",  regNo:"DL01AB1234", make:"Maruti",     model:"Swift",   regYear:2019, fuelType:"Petrol",  pdfLink:"#", highestBid:425000,  contactCount:8,  dealerCount:3,  status:"Available",    bank:"ICICI Bank",       zone:"North",   state:"Delhi",          city:"Delhi",     featured:true,  color:"White",  km:45000 },
-  { id:"2",  regNo:"MH02CD5678", make:"Hyundai",    model:"Creta",   regYear:2020, fuelType:"Diesel",  pdfLink:"#", highestBid:850000,  contactCount:15, dealerCount:7,  status:"Available",    bank:"HDFC Bank",        zone:"West",    state:"Maharashtra",    city:"Mumbai",    featured:true,  color:"Silver", km:62000 },
-  { id:"3",  regNo:"HR26EF9012", make:"Honda",      model:"City",    regYear:2018, fuelType:"Petrol",  pdfLink:"#", highestBid:520000,  contactCount:6,  dealerCount:2,  status:"Auction Live", bank:"Bajaj Finance",    zone:"North",   state:"Haryana",        city:"Gurgaon",   featured:false, color:"Blue",   km:78000 },
-  { id:"4",  regNo:"KA03GH3456", make:"Tata",       model:"Nexon",   regYear:2021, fuelType:"Diesel",  pdfLink:"#", highestBid:720000,  contactCount:20, dealerCount:10, status:"Available",    bank:"Piramal Finance",  zone:"South",   state:"Karnataka",      city:"Bengaluru", featured:true,  color:"Red",    km:38000 },
-  { id:"5",  regNo:"TN09IJ7890", make:"Maruti",     model:"Baleno",  regYear:2020, fuelType:"Petrol",  pdfLink:"#", highestBid:580000,  contactCount:11, dealerCount:4,  status:"Sold",         bank:"Axis Bank",        zone:"South",   state:"Tamil Nadu",     city:"Chennai",   featured:false, color:"Grey",   km:55000 },
-  { id:"6",  regNo:"UP32KL2345", make:"Hyundai",    model:"i20",     regYear:2019, fuelType:"Petrol",  pdfLink:"#", highestBid:490000,  contactCount:9,  dealerCount:4,  status:"Available",    bank:"Kotak Mahindra",   zone:"North",   state:"Uttar Pradesh",  city:"Noida",     featured:false, color:"Orange", km:62000 },
-  { id:"7",  regNo:"GJ05MN6789", make:"Kia",        model:"Seltos",  regYear:2021, fuelType:"Diesel",  pdfLink:"#", highestBid:980000,  contactCount:25, dealerCount:12, status:"Auction Live", bank:"ICICI Bank",       zone:"West",    state:"Gujarat",        city:"Ahmedabad", featured:true,  color:"Black",  km:42000 },
-  { id:"8",  regNo:"RJ14OP3456", make:"Mahindra",   model:"Scorpio", regYear:2018, fuelType:"Diesel",  pdfLink:"#", highestBid:680000,  contactCount:14, dealerCount:6,  status:"Available",    bank:"HDFC Bank",        zone:"North",   state:"Rajasthan",      city:"Jaipur",    featured:false, color:"White",  km:95000 },
-  { id:"9",  regNo:"WB20QR7890", make:"Toyota",     model:"Innova",  regYear:2019, fuelType:"Diesel",  pdfLink:"#", highestBid:1150000, contactCount:18, dealerCount:8,  status:"Available",    bank:"Bajaj Finance",    zone:"East",    state:"West Bengal",    city:"Kolkata",   featured:true,  color:"Silver", km:82000 },
-  { id:"10", regNo:"PB10ST1234", make:"Volkswagen", model:"Polo",    regYear:2018, fuelType:"Petrol",  pdfLink:"#", highestBid:380000,  contactCount:7,  dealerCount:2,  status:"Available",    bank:"Piramal Finance",  zone:"North",   state:"Punjab",         city:"Chandigarh",featured:false, color:"Blue",   km:71000 },
-  { id:"11", regNo:"AP09UV5678", make:"Renault",    model:"Duster",  regYear:2019, fuelType:"Diesel",  pdfLink:"#", highestBid:620000,  contactCount:13, dealerCount:5,  status:"Auction Live", bank:"ICICI Bank",       zone:"South",   state:"Andhra Pradesh", city:"Hyderabad", featured:false, color:"Brown",  km:68000 },
-  { id:"12", regNo:"MP04WX9012", make:"Tata",       model:"Tiago",   regYear:2020, fuelType:"Petrol",  pdfLink:"#", highestBid:340000,  contactCount:5,  dealerCount:2,  status:"Available",    bank:"Kotak Mahindra",   zone:"Central", state:"Madhya Pradesh", city:"Bhopal",    featured:false, color:"Red",    km:35000 },
+  { id:"1",  regNo:"DL01AB1234", make:"Maruti",     model:"Swift",   regYear:2019, fuelType:"Petrol", pdfLink:"#", highestBid:425000,  contactCount:8,  dealerCount:3,  status:"Available", bank:"ICICI Bank",      zone:"North",  state:"Delhi",         city:"Delhi",      parkingYard:"Okhla Yard",      featured:true,  color:"White",  km:45000 },
+  { id:"2",  regNo:"MH02CD5678", make:"Hyundai",    model:"Creta",   regYear:2020, fuelType:"Diesel", pdfLink:"#", highestBid:850000,  contactCount:15, dealerCount:7,  status:"Available", bank:"HDFC Bank",       zone:"West",   state:"Maharashtra",   city:"Mumbai",     parkingYard:"Andheri Yard",    featured:true,  color:"Silver", km:62000 },
+  { id:"3",  regNo:"HR26EF9012", make:"Honda",      model:"City",    regYear:2018, fuelType:"Petrol", pdfLink:"#", highestBid:520000,  contactCount:6,  dealerCount:2,  status:"Pending",   bank:"Bajaj Finance",   zone:"North",  state:"Haryana",       city:"Gurgaon",    parkingYard:"Gurgaon Yard",    featured:false, color:"Blue",   km:78000 },
+  { id:"4",  regNo:"KA03GH3456", make:"Tata",       model:"Nexon",   regYear:2021, fuelType:"Diesel", pdfLink:"#", highestBid:720000,  contactCount:20, dealerCount:10, status:"Available", bank:"Piramal Finance", zone:"South",  state:"Karnataka",     city:"Bengaluru",  parkingYard:"Whitefield Yard", featured:true,  color:"Red",    km:38000 },
+  { id:"5",  regNo:"TN09IJ7890", make:"Maruti",     model:"Baleno",  regYear:2020, fuelType:"Petrol", pdfLink:"#", highestBid:580000,  contactCount:11, dealerCount:4,  status:"Sold",      bank:"Axis Bank",       zone:"South",  state:"Tamil Nadu",    city:"Chennai",    parkingYard:"Ambattur Yard",   featured:false, color:"Grey",   km:55000 },
+  { id:"6",  regNo:"UP32KL2345", make:"Hyundai",    model:"i20",     regYear:2019, fuelType:"Petrol", pdfLink:"#", highestBid:490000,  contactCount:9,  dealerCount:4,  status:"Available", bank:"Kotak Mahindra",  zone:"North",  state:"Uttar Pradesh", city:"Noida",      parkingYard:"Noida Yard",      featured:false, color:"Orange", km:62000 },
+  { id:"7",  regNo:"GJ05MN6789", make:"Kia",        model:"Seltos",  regYear:2021, fuelType:"Diesel", pdfLink:"#", highestBid:980000,  contactCount:25, dealerCount:12, status:"Available", bank:"ICICI Bank",      zone:"West",   state:"Gujarat",       city:"Ahmedabad",  parkingYard:"Naroda Yard",     featured:true,  color:"Black",  km:42000 },
+  { id:"8",  regNo:"RJ14OP3456", make:"Mahindra",   model:"Scorpio", regYear:2018, fuelType:"Diesel", pdfLink:"#", highestBid:680000,  contactCount:14, dealerCount:6,  status:"Available", bank:"HDFC Bank",       zone:"North",  state:"Rajasthan",     city:"Jaipur",     parkingYard:"Jaipur Yard",     featured:false, color:"White",  km:95000 },
+  { id:"9",  regNo:"WB20QR7890", make:"Toyota",     model:"Innova",  regYear:2019, fuelType:"Diesel", pdfLink:"#", highestBid:1150000, contactCount:18, dealerCount:8,  status:"Available", bank:"Bajaj Finance",   zone:"East",   state:"West Bengal",   city:"Kolkata",    parkingYard:"Kolkata Yard",    featured:true,  color:"Silver", km:82000 },
+  { id:"10", regNo:"PB10ST1234", make:"Volkswagen", model:"Polo",    regYear:2018, fuelType:"Petrol", pdfLink:"#", highestBid:380000,  contactCount:7,  dealerCount:2,  status:"Available", bank:"Piramal Finance", zone:"North",  state:"Punjab",        city:"Chandigarh", parkingYard:"Chandigarh Yard", featured:false, color:"Blue",   km:71000 },
+  { id:"11", regNo:"AP09UV5678", make:"Renault",    model:"Duster",  regYear:2019, fuelType:"Diesel", pdfLink:"#", highestBid:620000,  contactCount:13, dealerCount:5,  status:"Pending",   bank:"ICICI Bank",      zone:"South",  state:"Andhra Pradesh",city:"Hyderabad",  parkingYard:"Hyderabad Yard",  featured:false, color:"Brown",  km:68000 },
+  { id:"12", regNo:"MP04WX9012", make:"Tata",       model:"Tiago",   regYear:2020, fuelType:"Petrol", pdfLink:"#", highestBid:340000,  contactCount:5,  dealerCount:2,  status:"Available", bank:"Kotak Mahindra",  zone:"Central",state:"Madhya Pradesh",city:"Bhopal",     parkingYard:"Bhopal Yard",     featured:false, color:"Red",    km:35000 },
 ];
 
 const SAMPLE_MASTER = {
-  banks:  ["ICICI Bank","HDFC Bank","Bajaj Finance","Piramal Finance","Axis Bank","Kotak Mahindra","CARS24"],
-  zones:  ["North","South","East","West","Central"],
-  states: ["Delhi","Maharashtra","Haryana","Karnataka","Tamil Nadu","Uttar Pradesh","Gujarat","Rajasthan","West Bengal","Punjab","Andhra Pradesh","Madhya Pradesh"],
-  cities: ["Delhi","Mumbai","Gurgaon","Bengaluru","Chennai","Noida","Ahmedabad","Jaipur","Kolkata","Chandigarh","Hyderabad","Bhopal"],
-  makes:  ["Maruti","Hyundai","Honda","Tata","Kia","Mahindra","Toyota","Volkswagen","Renault"],
-  models: ["Swift","Creta","City","Nexon","Baleno","i20","Seltos","Scorpio","Innova","Polo","Duster","Tiago"],
+  banks:        ["ICICI Bank","HDFC Bank","Bajaj Finance","Piramal Finance","Axis Bank","Kotak Mahindra","CARS24"],
+  states:       ["Delhi","Maharashtra","Haryana","Karnataka","Tamil Nadu","Uttar Pradesh","Gujarat","Rajasthan","West Bengal","Punjab","Andhra Pradesh","Madhya Pradesh"],
+  makes:        ["Maruti","Hyundai","Honda","Tata","Kia","Mahindra","Toyota","Volkswagen","Renault"],
+  parkingYards: ["Okhla Yard","Andheri Yard","Gurgaon Yard","Whitefield Yard","Ambattur Yard","Noida Yard","Naroda Yard","Jaipur Yard","Kolkata Yard","Chandigarh Yard","Hyderabad Yard","Bhopal Yard"],
+  fuelTypes:    ["Petrol","Diesel","CNG","Electric"],
 };
 
-// ============================================================
-// 🛠️  UTILITIES
-// ============================================================
 const formatCurrency = (n) => {
   if (!n) return "₹0";
-  if (n >= 10000000) return `₹${(n / 10000000).toFixed(2)} Cr`;
-  if (n >= 100000)   return `₹${(n / 100000).toFixed(2)} L`;
-  if (n >= 1000)     return `₹${(n / 1000).toFixed(0)}K`;
+  if (n >= 10000000) return `₹${(n/10000000).toFixed(2)} Cr`;
+  if (n >= 100000)   return `₹${(n/100000).toFixed(2)}L`;
+  if (n >= 1000)     return `₹${(n/1000).toFixed(0)}K`;
   return `₹${n.toLocaleString("en-IN")}`;
 };
+const fmtNum = (n) => (n||0).toLocaleString("en-IN");
 
-const fmtNum = (n) => (n || 0).toLocaleString("en-IN");
-
-const statusCfg = {
-  available:    { pill: "bg-emerald-100 text-emerald-700 border-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-400 dark:border-emerald-800", dot: "bg-emerald-500" },
-  "auction live": { pill: "bg-amber-100 text-amber-700 border-amber-200 dark:bg-amber-900/30 dark:text-amber-400 dark:border-amber-800",   dot: "bg-amber-500 animate-pulse" },
-  sold:         { pill: "bg-red-100 text-red-700 border-red-200 dark:bg-red-900/30 dark:text-red-400 dark:border-red-800",           dot: "bg-red-500" },
+const STATUS_STYLE = {
+  available: { bg:"#dcfce7", color:"#166534", dot:"#22c55e", border:"#bbf7d0" },
+  sold:      { bg:"#fee2e2", color:"#991b1b", dot:"#ef4444", border:"#fecaca" },
+  pending:   { bg:"#fef9c3", color:"#92400e", dot:"#f59e0b", border:"#fde68a" },
 };
+const getStatus = (s) => STATUS_STYLE[(s||"").toLowerCase()] || STATUS_STYLE.sold;
 
-const getStatusCfg = (s) => statusCfg[(s || "").toLowerCase()] || statusCfg["sold"];
-
-// custom hook
-function useScrolled() {
-  const [scrolled, setScrolled] = useState(false);
-  useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 10);
-    window.addEventListener("scroll", fn, { passive: true });
-    return () => window.removeEventListener("scroll", fn);
-  }, []);
-  return scrolled;
-}
-
-// ============================================================
-// 🎨  TINY REUSABLE COMPONENTS
-// ============================================================
-
-function Badge({ status }) {
-  const cfg = getStatusCfg(status);
-  return (
-    <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold border ${cfg.pill}`}>
-      <span className={`w-1.5 h-1.5 rounded-full ${cfg.dot}`} />
-      {status}
-    </span>
-  );
-}
+const N = "#1E3A8A";  // navy
+const B = "#2563EB";  // blue
+const TI = "#EEF2FF"; // tint
+const BO = "#BFDBFE"; // blue outline
+const TX = "#0A1628"; // text dark
+const MT = "#64748b"; // muted
+const HI = "#94a3b8"; // hint
+const BR = "#E2E8F0"; // border
+const BG = "#F8FAFF"; // bg
 
 function Toast({ toasts, remove }) {
   return (
-    <div className="fixed top-4 right-4 z-[9999] flex flex-col gap-2 pointer-events-none">
+    <div style={{position:"fixed",top:16,right:16,zIndex:9999,display:"flex",flexDirection:"column",gap:8,pointerEvents:"none"}}>
       {toasts.map(t => (
-        <div key={t.id}
-          className={`pointer-events-auto flex items-center gap-3 px-4 py-3 rounded-2xl shadow-2xl text-white text-sm font-medium min-w-72 transition-all
-            ${t.type === "success" ? "bg-emerald-600" : t.type === "error" ? "bg-red-600" : "bg-blue-600"}`}>
-          {t.type === "success" ? <CheckCircle size={15}/> : t.type === "error" ? <AlertCircle size={15}/> : <Bell size={15}/>}
-          <span className="flex-1">{t.message}</span>
-          <button className="opacity-70 hover:opacity-100" onClick={() => remove(t.id)}><X size={13}/></button>
+        <div key={t.id} style={{
+          pointerEvents:"auto",display:"flex",alignItems:"center",gap:10,padding:"12px 16px",
+          borderRadius:12,color:"#fff",fontSize:"0.82rem",fontWeight:500,minWidth:260,
+          background:t.type==="success"?"#059669":t.type==="error"?"#dc2626":N,
+          boxShadow:"0 8px 24px rgba(0,0,0,0.15)"
+        }}>
+          {t.type==="success"?<CheckCircle size={14}/>:t.type==="error"?<AlertCircle size={14}/>:<Bell size={14}/>}
+          <span style={{flex:1}}>{t.message}</span>
+          <button onClick={()=>remove(t.id)} style={{background:"none",border:"none",color:"#fff",cursor:"pointer",opacity:0.7,padding:0}}><X size={12}/></button>
         </div>
       ))}
     </div>
   );
 }
 
-function Skeleton({ dark }) {
-  const bg = dark ? "bg-slate-700" : "bg-slate-200";
-  const card = dark ? "bg-slate-800" : "bg-white";
+
+function Logo({ size="md" }) {
+  const h = size==="lg"?44:32;
+  return <img src={LOGO_SRC} alt="Suraksha24" style={{height:h,width:"auto",display:"block",maxWidth:size==="lg"?200:150}}/>;
+}
+
+function Header({ searchTerm, setSearchTerm }) {
+  const [searchOpen, setSearchOpen] = useState(false);
   return (
-    <div className={`${card} rounded-2xl overflow-hidden shadow-sm animate-pulse`}>
-      <div className={`${bg} h-40`} />
-      <div className="p-4 space-y-3">
-        <div className={`${bg} h-4 rounded-xl w-3/4`} />
-        <div className={`${bg} h-3 rounded-xl w-1/2`} />
-        <div className="flex gap-2">
-          <div className={`${bg} h-6 rounded-full w-20`} />
-          <div className={`${bg} h-6 rounded-full w-16`} />
-        </div>
-        <div className={`${bg} h-10 rounded-xl`} />
-        <div className="flex gap-2">
-          <div className={`${bg} h-9 rounded-xl flex-1`} />
-          <div className={`${bg} h-9 rounded-xl flex-1`} />
-        </div>
+    <div style={{position:"fixed",top:0,left:0,right:0,zIndex:100,background:N,boxShadow:"0 2px 12px rgba(30,58,138,0.3)"}}>
+      <div style={{display:"flex",alignItems:"center",gap:8,padding:"10px 14px"}}>
+        <Logo/>
+        <div style={{flex:1}}/>
+        <button onClick={()=>setSearchOpen(o=>!o)}
+          style={{background:"rgba(255,255,255,0.12)",border:"none",borderRadius:8,padding:"7px 10px",cursor:"pointer",display:"flex",alignItems:"center",gap:6}}>
+          <Search size={15} style={{color:"#fff"}}/>
+          <span style={{color:"rgba(255,255,255,0.65)",fontSize:"0.75rem"}}>Search...</span>
+        </button>
+        <a href={`https://wa.me/${CONFIG.WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer"
+           style={{background:"#22c55e",borderRadius:8,padding:"7px 10px",display:"flex",alignItems:"center",gap:5,textDecoration:"none",color:"#fff",fontSize:"0.75rem",fontWeight:600}}>
+          <MessageCircle size={13}/>WA
+        </a>
+        <a href={`tel:${CONFIG.CALL_NUMBER}`}
+           style={{background:"rgba(255,255,255,0.12)",borderRadius:8,padding:"7px 10px",display:"flex",alignItems:"center",textDecoration:"none",color:"#fff"}}>
+          <Phone size={13}/>
+        </a>
       </div>
-    </div>
-  );
-}
-
-// ============================================================
-// 🏷️  LOGO
-// ============================================================
-/* ── Suraksha24 brand logo — embedded as base64 WebP ── */
-const LOGO_SRC = window.__LOGO_SRC__;
-
-function Logo({ dark, size = "md" }) {
-  const big = size === "lg";
-  return (
-    <div style={{background:dark?"rgba(255,255,255,0.92)":"transparent",
-                 borderRadius:dark?8:0,padding:dark?"3px 8px":0,
-                 display:"inline-block",lineHeight:0}}>
-      <img src={window.__LOGO_SRC__} alt="Suraksha24"
-           style={{height:big?46:34,width:"auto",display:"block",maxWidth:big?210:160}}/>
-    </div>
-  );
-}
-
-// ============================================================
-// 🔽  MULTI-SELECT DROPDOWN
-// ============================================================
-function MultiSelect({ label, options, selected, onChange, dark, Icon }) {
-  const [open, setOpen] = useState(false);
-  const ref = useRef(null);
-
-  useEffect(() => {
-    const fn = (e) => { if (ref.current && !ref.current.contains(e.target)) setOpen(false); };
-    document.addEventListener("mousedown", fn);
-    return () => document.removeEventListener("mousedown", fn);
-  }, []);
-
-  const toggle = (o) => onChange(selected.includes(o) ? selected.filter(s => s !== o) : [...selected, o]);
-  const active = selected.length > 0;
-
-  return (
-    <div className="relative" ref={ref}>
-      <button onClick={() => setOpen(!open)}
-        className={`w-full flex items-center justify-between gap-2 px-3 py-2.5 rounded-xl border text-sm font-medium transition-all
-          ${dark ? "bg-slate-700/80 border-slate-600 text-slate-200 hover:border-blue-500" : "bg-white border-slate-200 text-slate-700 hover:border-blue-400"}
-          ${active ? "border-blue-500 ring-2 ring-blue-500/15" : ""}`}>
-        <div className="flex items-center gap-2 min-w-0">
-          {Icon && <Icon size={13} className="text-blue-500 flex-shrink-0" />}
-          <span className="truncate text-xs">{active ? `${label} (${selected.length})` : label}</span>
-        </div>
-        <ChevronDown size={13} className={`flex-shrink-0 transition-transform duration-200 ${open ? "rotate-180" : ""}`} />
-      </button>
-
-      {open && (
-        <div className={`absolute top-full mt-1.5 left-0 right-0 z-30 rounded-2xl shadow-2xl border overflow-hidden
-          ${dark ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}
-          style={{ minWidth: "160px" }}>
-          <div className="max-h-52 overflow-y-auto p-1.5">
-            {options.length === 0
-              ? <p className={`px-3 py-2 text-xs ${dark ? "text-slate-500" : "text-slate-400"}`}>No options available</p>
-              : options.map(o => (
-                <button key={o} onClick={() => toggle(o)}
-                  className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs text-left transition-colors
-                    ${selected.includes(o)
-                      ? dark ? "bg-blue-600/20 text-blue-300" : "bg-blue-50 text-blue-700"
-                      : dark ? "hover:bg-slate-700 text-slate-300" : "hover:bg-slate-50 text-slate-600"}`}>
-                  <span className={`w-4 h-4 rounded-md border flex items-center justify-center flex-shrink-0
-                    ${selected.includes(o) ? "bg-blue-600 border-blue-600" : dark ? "border-slate-600" : "border-slate-300"}`}>
-                    {selected.includes(o) && <Check size={9} className="text-white" />}
-                  </span>
-                  {o}
-                </button>
-              ))}
-          </div>
-          {active && (
-            <div className={`border-t px-3 py-1.5 ${dark ? "border-slate-700" : "border-slate-100"}`}>
-              <button onClick={() => onChange([])} className="text-xs text-red-500 hover:text-red-600 font-semibold">Clear</button>
-            </div>
-          )}
-        </div>
-      )}
-    </div>
-  );
-}
-
-// ============================================================
-// 🔝  HEADER
-// ============================================================
-function Header({ dark, toggleDark, view, setView, carsCount }) {
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const scrolled = useScrolled();
-
-  return (
-    <header className={`fixed inset-x-0 top-0 z-40 transition-all duration-300
-      ${CONFIG.DEMO_MODE ? "top-8" : "top-0"}
-      ${scrolled
-        ? dark ? "bg-slate-900/95 backdrop-blur-xl shadow-xl shadow-black/30" : "bg-white/95 backdrop-blur-xl shadow-lg shadow-slate-200/80"
-        : dark ? "bg-slate-900" : "bg-white"}`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="flex items-center justify-between h-16">
-          <button onClick={() => setView("home")} className="focus:outline-none">
-            <Logo dark={dark} />
-          </button>
-
-          {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-1">
-            {[["home","Inventory"],["dashboard","Dashboard"]].map(([v, label]) => (
-              <button key={v} onClick={() => setView(v)}
-                className={`px-4 py-2 rounded-xl text-sm font-medium transition-colors
-                  ${view === v
-                    ? dark ? "bg-blue-600/20 text-blue-400" : "bg-blue-50 text-blue-600"
-                    : dark ? "text-slate-400 hover:text-white hover:bg-slate-800" : "text-slate-600 hover:text-slate-900 hover:bg-slate-100"}`}>
-                {label}{v === "home" && !CONFIG.DEMO_MODE && <span className="ml-1.5 text-xs opacity-60">({carsCount})</span>}
-              </button>
-            ))}
-            <a href={`https://wa.me/${CONFIG.WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer"
-               className="ml-2 flex items-center gap-1.5 px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-xl text-sm font-semibold transition-colors">
-              <MessageCircle size={14}/> WhatsApp
-            </a>
-            <a href={`tel:${CONFIG.CALL_NUMBER}`}
-               className="flex items-center gap-1.5 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-sm font-semibold transition-colors">
-              <Phone size={14}/> Call Now
-            </a>
-            <button onClick={toggleDark}
-              className={`ml-1 p-2 rounded-xl transition-colors ${dark ? "text-slate-400 hover:text-white hover:bg-slate-800" : "text-slate-500 hover:text-slate-900 hover:bg-slate-100"}`}>
-              {dark ? <Sun size={17}/> : <Moon size={17}/>}
-            </button>
-          </nav>
-
-          {/* Mobile */}
-          <div className="flex md:hidden items-center gap-1.5">
-            <a href={`https://wa.me/${CONFIG.WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer"
-               className="flex items-center gap-1 px-2.5 py-1.5 bg-green-500 text-white rounded-lg text-xs font-semibold">
-              <MessageCircle size={12}/> WA
-            </a>
-            <a href={`tel:${CONFIG.CALL_NUMBER}`}
-               className="flex items-center gap-1 px-2.5 py-1.5 bg-blue-600 text-white rounded-lg text-xs font-semibold">
-              <Phone size={12}/> Call
-            </a>
-            <button onClick={() => setMobileOpen(o => !o)} className={`p-2 rounded-xl transition-colors ${dark ? "text-white hover:bg-slate-800" : "text-slate-900 hover:bg-slate-100"}`}>
-              {mobileOpen ? <X size={20}/> : <Menu size={20}/>}
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile drawer */}
-        {mobileOpen && (
-          <div className={`md:hidden pb-4 border-t ${dark ? "border-slate-800" : "border-slate-100"}`}>
-            <div className="pt-3 space-y-1">
-              {[["home","Inventory"],["dashboard","My Dashboard"]].map(([v, label]) => (
-                <button key={v} onClick={() => { setView(v); setMobileOpen(false); }}
-                  className={`w-full text-left px-3 py-2.5 rounded-xl text-sm font-medium transition-colors
-                    ${view === v ? dark ? "bg-blue-600/20 text-blue-400" : "bg-blue-50 text-blue-600"
-                                : dark ? "text-slate-300 hover:bg-slate-800" : "text-slate-700 hover:bg-slate-100"}`}>
-                  {label}
-                </button>
-              ))}
-              <div className="flex gap-2 pt-1">
-                <a href={`https://wa.me/${CONFIG.WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer"
-                   className="flex-1 flex items-center justify-center gap-2 py-2.5 bg-green-500 text-white rounded-xl text-sm font-semibold">
-                  <MessageCircle size={14}/> WhatsApp
-                </a>
-                <a href={`tel:${CONFIG.CALL_NUMBER}`}
-                   className="flex-1 flex items-center justify-center gap-2 py-2.5 bg-blue-600 text-white rounded-xl text-sm font-semibold">
-                  <Phone size={14}/> Call
-                </a>
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
-    </header>
-  );
-}
-
-// ============================================================
-// 🦸  HERO
-// ============================================================
-function Hero({ dark, searchTerm, setSearchTerm, carsCount }) {
-  return (
-    <section style={{
-      background: dark
-        ? "linear-gradient(180deg,#0A1628 0%,#0D1F3C 100%)"
-        : "linear-gradient(180deg,#EEF2FF 0%,#F8FAFF 60%,#FFFFFF 100%)",
-      paddingTop:80, paddingBottom:56, position:"relative", overflow:"hidden"
-    }}>
-      {/* Decorative circle */}
-      <div style={{position:"absolute",top:-80,right:-80,width:320,height:320,
-                   borderRadius:"50%",opacity:0.06,
-                   background:"#1E3A8A",pointerEvents:"none"}}/>
-      <div style={{position:"absolute",bottom:-60,left:-60,width:220,height:220,
-                   borderRadius:"50%",opacity:0.04,
-                   background:"#1E3A8A",pointerEvents:"none"}}/>
-
-      <div style={{maxWidth:860,margin:"0 auto",padding:"0 20px",textAlign:"center",position:"relative"}}>
-
-        {/* Badge */}
-        <div style={{display:"inline-flex",alignItems:"center",gap:6,
-                     background:dark?"rgba(37,99,235,0.12)":"rgba(30,58,138,0.07)",
-                     border:dark?"1px solid rgba(37,99,235,0.25)":"1px solid rgba(30,58,138,0.15)",
-                     borderRadius:30,padding:"5px 16px",marginBottom:20}}>
-          <Shield size={11} style={{color:dark?"#93c5fd":"#1E3A8A"}}/>
-          <span style={{fontSize:"0.72rem",fontWeight:700,letterSpacing:"0.1em",
-                        textTransform:"uppercase",
-                        color:dark?"#93c5fd":"#1E3A8A",
-                        fontFamily:"'DM Sans',sans-serif"}}>
-            Our Recoveries · Your Opportunities
-          </span>
-        </div>
-
-        {/* Heading */}
-        <h1 style={{fontFamily:"'Syne',sans-serif",fontWeight:900,
-                    fontSize:"clamp(2.2rem,6vw,4rem)",lineHeight:1.05,
-                    letterSpacing:"-0.03em",
-                    color:dark?"#F0F6FF":"#0A1628",
-                    margin:"0 0 6px"}}>
-          Bank Repossessed Cars
-        </h1>
-        <h2 style={{fontFamily:"'Cormorant Garamond',serif",fontWeight:500,fontStyle:"italic",
-                    fontSize:"clamp(1.6rem,4.5vw,3rem)",lineHeight:1.1,
-                    color:dark?"#60a5fa":"#1E3A8A",
-                    margin:"0 0 18px",letterSpacing:"-0.01em"}}>
-          at the Best Prices
-        </h2>
-
-        <p style={{fontFamily:"'DM Sans',sans-serif",fontSize:"1rem",
-                   fontWeight:400,lineHeight:1.75,
-                   color:dark?"#94a3b8":"#64748b",
-                   maxWidth:480,margin:"0 auto 32px"}}>
-          Verified repo vehicles from top banks across India.
-          Transparent pricing · Direct dealer access · Zero hidden charges.
-        </p>
-
-        {/* Stats */}
-        <div style={{display:"inline-flex",background:dark?"rgba(255,255,255,0.04)":"#fff",
-                     border:dark?"1px solid rgba(255,255,255,0.08)":"1px solid #E2E8F0",
-                     borderRadius:14,padding:"14px 0",marginBottom:28,
-                     boxShadow:dark?"none":"0 2px 16px rgba(30,58,138,0.07)"}}>
-          {[`${carsCount}+`,"Cars Listed","15+","Partner Banks","50+","Cities"].reduce((acc,v,i)=>{
-            if(i%2===0) acc.push([v]);
-            else acc[acc.length-1].push(v);
-            return acc;
-          },[]).map(([v,l],i,arr)=>(
-            <div key={l} style={{display:"flex",alignItems:"center"}}>
-              <div style={{textAlign:"center",padding:"0 24px"}}>
-                <div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,
-                             fontSize:"1.5rem",color:dark?"#fff":"#0A1628",lineHeight:1}}>{v}</div>
-                <div style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.7rem",
-                             fontWeight:500,letterSpacing:"0.08em",textTransform:"uppercase",
-                             color:dark?"#475569":"#94a3b8",marginTop:4}}>{l}</div>
-              </div>
-              {i<arr.length-1 && <div style={{width:1,height:36,background:dark?"rgba(255,255,255,0.08)":"#E2E8F0"}}/>}
-            </div>
-          ))}
-        </div>
-
-        {/* Search */}
-        <div style={{maxWidth:580,margin:"0 auto",
-                     background:dark?"#0F1E38":"#fff",
-                     border:dark?"1px solid rgba(255,255,255,0.08)":"1px solid #DBEAFE",
-                     borderRadius:14,overflow:"hidden",
-                     boxShadow:dark?"0 8px 32px rgba(0,0,0,0.4)":"0 8px 32px rgba(30,58,138,0.1)"}}>
-          <div style={{display:"flex",alignItems:"center"}}>
-            <span style={{paddingLeft:16}}><Search size={17} style={{color:"#3b82f6"}}/></span>
-            <input type="text" placeholder="Search make, model, reg. no., city, bank..."
+      {searchOpen && (
+        <div style={{padding:"0 14px 10px",display:"flex",gap:8,alignItems:"center"}}>
+          <div style={{flex:1,background:"rgba(255,255,255,0.96)",borderRadius:10,display:"flex",alignItems:"center",gap:8,padding:"8px 12px"}}>
+            <Search size={15} style={{color:N,flexShrink:0}}/>
+            <input autoFocus type="text" placeholder="Search make, model, reg. no., city, bank..."
               value={searchTerm} onChange={e=>setSearchTerm(e.target.value)}
-              style={{flex:1,padding:"14px 10px",background:"transparent",outline:"none",
-                      fontSize:"0.88rem",fontFamily:"'DM Sans',sans-serif",
-                      color:dark?"#f1f5f9":"#0f172a",border:"none"}}/>
-            {searchTerm && <button onClick={()=>setSearchTerm("")} style={{padding:"0 8px",background:"none",border:"none",cursor:"pointer"}}>
-              <X size={14} style={{color:dark?"#475569":"#94a3b8"}}/></button>}
-            <button style={{margin:8,padding:"10px 20px",
-                            background:"linear-gradient(135deg,#1E3A8A,#2563EB)",
-                            color:"#fff",borderRadius:10,fontSize:"0.82rem",fontWeight:700,
-                            fontFamily:"'DM Sans',sans-serif",
-                            border:"none",cursor:"pointer",flexShrink:0,
-                            letterSpacing:"0.02em"}}>
-              Search
-            </button>
+              style={{flex:1,border:"none",outline:"none",fontSize:"0.88rem",background:"transparent",color:TX}}/>
+            {searchTerm&&<button onClick={()=>setSearchTerm("")} style={{background:"none",border:"none",cursor:"pointer",padding:0}}><X size={14} style={{color:MT}}/></button>}
           </div>
-        </div>
-
-        {/* Trust badges */}
-        <div style={{display:"flex",flexWrap:"wrap",justifyContent:"center",gap:20,marginTop:22}}>
-          {[[Shield,"Bank Verified"],[CheckCircle,"Clear RC Title"],[Award,"Best Price Guarantee"],[Zap,"Instant Contact"]].map(([Icon,label])=>(
-            <div key={label} style={{display:"flex",alignItems:"center",gap:5,
-                                     fontFamily:"'DM Sans',sans-serif",
-                                     fontSize:"0.76rem",fontWeight:500,
-                                     color:dark?"#64748b":"#94a3b8"}}>
-              <Icon size={12} style={{color:"#2563eb"}}/>{label}
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ============================================================
-// 🔎  FILTER PANEL
-// ============================================================
-const FUEL_OPTIONS   = ["Petrol","Diesel","CNG","Electric","Hybrid"];
-const STATUS_OPTIONS = ["Available","Auction Live","Sold"];
-const BUDGET_OPTIONS = [
-  { label:"Under ₹3L",    value:"0-300000"         },
-  { label:"₹3L – ₹5L",   value:"300000-500000"     },
-  { label:"₹5L – ₹8L",   value:"500000-800000"     },
-  { label:"₹8L – ₹12L",  value:"800000-1200000"    },
-  { label:"Above ₹12L",  value:"1200000-99999999"  },
-];
-
-function FilterPanel({ dark, master, filters, setFilters }) {
-  const [expanded, setExpanded] = useState(true);
-
-  const set = (k, v) => setFilters(f => ({ ...f, [k]: v }));
-  const activeCount = Object.values(filters).filter(v => Array.isArray(v) ? v.length > 0 : !!v).length;
-  const clearAll = () => setFilters({ banks:[], zones:[], states:[], cities:[], makes:[], models:[], fuelTypes:[], statuses:[], budget:"" });
-
-  return (
-    <div className={`rounded-2xl border mb-6 overflow-hidden shadow-sm
-      ${dark ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
-      <button onClick={() => setExpanded(e => !e)}
-        className={`w-full flex items-center justify-between px-5 py-4 transition-colors
-          ${dark ? "hover:bg-slate-700/50" : "hover:bg-slate-50"}`}>
-        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-            <Filter size={14} className="text-white" />
-          </div>
-          <span className={`font-bold text-sm ${dark ? "text-white" : "text-slate-900"}`}>Advanced Filters</span>
-          {activeCount > 0 && (
-            <span className="px-2 py-0.5 bg-blue-600 text-white rounded-full text-xs font-bold">{activeCount} active</span>
-          )}
-        </div>
-        <div className="flex items-center gap-3">
-          {activeCount > 0 && (
-            <button onClick={e => { e.stopPropagation(); clearAll(); }}
-              className="text-xs text-red-500 hover:text-red-600 font-semibold px-2 py-1 rounded-lg hover:bg-red-50 transition-colors">
-              Clear all
-            </button>
-          )}
-          {expanded ? <ChevronUp size={15} className={dark ? "text-slate-400" : "text-slate-500"}/> : <ChevronDown size={15} className={dark ? "text-slate-400" : "text-slate-500"}/>}
-        </div>
-      </button>
-
-      {expanded && (
-        <div className={`px-5 pb-5 border-t ${dark ? "border-slate-700" : "border-slate-100"}`}>
-          <div className="pt-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3">
-            <MultiSelect label="Bank"      options={master.banks}  selected={filters.banks}     onChange={v => set("banks", v)}     dark={dark} Icon={Building2}/>
-            <MultiSelect label="Zone"      options={master.zones}  selected={filters.zones}     onChange={v => set("zones", v)}     dark={dark} Icon={MapPin}/>
-            <MultiSelect label="State"     options={master.states} selected={filters.states}    onChange={v => set("states", v)}    dark={dark} Icon={MapPin}/>
-            <MultiSelect label="City"      options={master.cities} selected={filters.cities}    onChange={v => set("cities", v)}    dark={dark} Icon={MapPin}/>
-            <MultiSelect label="Make"      options={master.makes}  selected={filters.makes}     onChange={v => set("makes", v)}     dark={dark} Icon={Car}/>
-            <MultiSelect label="Model"     options={master.models} selected={filters.models}    onChange={v => set("models", v)}    dark={dark} Icon={Car}/>
-          </div>
-          <div className="mt-3 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-            <MultiSelect label="Fuel Type" options={FUEL_OPTIONS}   selected={filters.fuelTypes} onChange={v => set("fuelTypes", v)} dark={dark} Icon={Fuel}/>
-            <MultiSelect label="Status"    options={STATUS_OPTIONS} selected={filters.statuses}  onChange={v => set("statuses", v)}  dark={dark}/>
-            <div>
-              <select value={filters.budget} onChange={e => set("budget", e.target.value)}
-                className={`w-full px-3 py-2.5 rounded-xl border text-xs font-medium outline-none transition-all
-                  ${dark ? "bg-slate-700/80 border-slate-600 text-slate-200" : "bg-white border-slate-200 text-slate-700"}
-                  ${filters.budget ? "border-blue-500 ring-2 ring-blue-500/15" : ""}`}>
-                <option value="">Budget Range</option>
-                {BUDGET_OPTIONS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
-              </select>
-            </div>
-          </div>
+          <button onClick={()=>{setSearchOpen(false);setSearchTerm("");}}
+            style={{background:"rgba(255,255,255,0.12)",border:"none",borderRadius:8,padding:"8px 10px",cursor:"pointer",color:"#fff",fontSize:"0.78rem"}}>
+            Cancel
+          </button>
         </div>
       )}
     </div>
   );
 }
 
-// ============================================================
-// 🚗  CAR CARD
-// ============================================================
-function CarCard({ car, dark, onContact, onDealer, saved, toggleSave }) {
-  const [shared, setShared] = useState(false);
-
-  const share = async (e) => {
-    e.stopPropagation();
-    const text = `${car.regYear} ${car.make} ${car.model} (${car.regNo}) — ${formatCurrency(car.highestBid)} | Suraksha Repo Cars`;
-    try { await (navigator.share ? navigator.share({ title:"Suraksha Repo Cars", text }) : navigator.clipboard.writeText(text)); }
-    catch (_) {}
-    setShared(true);
-    setTimeout(() => setShared(false), 1800);
-  };
-
-  const sold = car.status?.toLowerCase() === "sold";
-
-  const cardBorder = car.featured
-    ? (dark ? "1px solid rgba(217,119,6,0.4)" : "2px solid #1E3A8A")
-    : (dark ? "1px solid rgba(255,255,255,0.07)" : "1px solid #E2E8F0");
-
+function StatusTabs({ active, onChange, counts }) {
+  const tabs=[{key:"all",label:"All"},{key:"available",label:"Available"},{key:"pending",label:"Pending"},{key:"sold",label:"Sold"}];
   return (
-    <div style={{
-      borderRadius:16, overflow:"hidden", transition:"all 0.2s ease",
-      border: cardBorder,
-      background: dark ? "#0D1B38" : "#ffffff",
-      boxShadow: dark ? "0 2px 16px rgba(0,0,0,0.3)" : "0 2px 16px rgba(30,58,138,0.06)",
-      opacity: sold ? 0.72 : 1,
-    }}
-    onMouseEnter={e => { if(!sold){ e.currentTarget.style.transform="translateY(-4px)"; e.currentTarget.style.boxShadow=dark?"0 16px 40px rgba(0,0,0,0.45)":"0 16px 40px rgba(30,58,138,0.15)"; }}}
-    onMouseLeave={e => { e.currentTarget.style.transform="translateY(0)"; e.currentTarget.style.boxShadow=dark?"0 2px 16px rgba(0,0,0,0.3)":"0 2px 16px rgba(30,58,138,0.06)"; }}>
-
-      {/* Card visual header */}
-      <div style={{position:"relative", height:158, display:"flex", alignItems:"center",
-                   justifyContent:"center", overflow:"hidden",
-                   background: dark
-                     ? "linear-gradient(135deg,#0A1628 0%,#0F2552 100%)"
-                     : "linear-gradient(135deg,#EEF2FF 0%,#DBEAFE 100%)"}}>
-        <div style={{position:"absolute",right:-6,bottom:-6,opacity:0.08}}>
-          <Car size={105} style={{color: dark?"#60a5fa":"#1E3A8A"}}/>
-        </div>
-        <div style={{position:"relative",zIndex:1,textAlign:"center",padding:"0 14px"}}>
-          <div style={{fontFamily:"'DM Sans',sans-serif",fontWeight:500,fontSize:"0.62rem",
-                       letterSpacing:"0.16em",textTransform:"uppercase",
-                       color:dark?"#334155":"#93c5fd",marginBottom:4}}>{car.bank}</div>
-          <div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:"1.45rem",
-                       letterSpacing:"-0.03em",lineHeight:1,
-                       color:dark?"#E2E8F0":"#0A1628"}}>{car.make}</div>
-          <div style={{fontFamily:"'Cormorant Garamond',serif",fontWeight:500,fontStyle:"italic",
-                       fontSize:"1.6rem",lineHeight:1.1,letterSpacing:"-0.01em",
-                       color:dark?"#60a5fa":"#1E3A8A"}}>{car.model}</div>
-          <div style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.66rem",
-                       color:dark?"#334155":"#94a3b8",marginTop:5}}>
-            {car.regYear} · {car.color||"—"} · {fmtNum(car.km)} km
-          </div>
-        </div>
-        <div style={{position:"absolute",top:8,left:8,display:"flex",flexDirection:"column",gap:3}}>
-          <Badge status={car.status}/>
-          {car.featured && (
-            <span style={{display:"inline-flex",alignItems:"center",gap:3,padding:"2px 7px",
-                          background:"linear-gradient(135deg,#d97706,#f59e0b)",
-                          color:"#fff",fontSize:"0.58rem",fontWeight:800,borderRadius:5,
-                          fontFamily:"'DM Sans',sans-serif",letterSpacing:"0.06em"}}>
-              <Star size={7} fill="white"/> FEATURED
-            </span>
-          )}
-        </div>
-        <button onClick={e=>{e.stopPropagation();toggleSave(car.id);}}
-          style={{position:"absolute",top:8,right:8,width:28,height:28,borderRadius:8,
-                  border:"none",cursor:"pointer",display:"flex",alignItems:"center",
-                  justifyContent:"center",transition:"all 0.15s",
-                  background:saved?"#ef4444":dark?"rgba(15,30,56,0.75)":"rgba(255,255,255,0.85)",
-                  color:saved?"#fff":"#94a3b8"}}>
-          <Heart size={12} fill={saved?"white":"none"}/>
-        </button>
-      </div>
-
-      {/* Card body */}
-      <div style={{padding:"12px 14px"}}>
-        {/* Reg + Bank row */}
-        <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:10}}>
-          <div>
-            <div style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.62rem",fontWeight:500,
-                         color:dark?"#475569":"#94a3b8",marginBottom:2,letterSpacing:"0.04em"}}>Reg. No.</div>
-            <div style={{fontFamily:"monospace",fontWeight:700,fontSize:"0.82rem",letterSpacing:"0.08em",
-                         color:dark?"#e2e8f0":"#0A1628"}}>{car.regNo}</div>
-          </div>
-          <div style={{textAlign:"right"}}>
-            <div style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.62rem",fontWeight:500,
-                         color:dark?"#475569":"#94a3b8",marginBottom:2}}>Zone</div>
-            <div style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.75rem",fontWeight:700,
-                         color:dark?"#60a5fa":"#1E3A8A"}}>{car.zone}</div>
-          </div>
-        </div>
-
-        {/* Details grid */}
-        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:"5px 10px",marginBottom:10}}>
-          {[[Calendar,car.regYear],[Fuel,car.fuelType],
-            [MapPin,`${car.city}`],[Eye,`${car.contactCount} enquiries`]].map(([Icon,val])=>(
-            <div key={val} style={{display:"flex",alignItems:"center",gap:5,
-                                   fontFamily:"'DM Sans',sans-serif",fontSize:"0.72rem",
-                                   color:dark?"#475569":"#64748b"}}>
-              <Icon size={10} style={{color:"#2563eb",flexShrink:0}}/><span style={{overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{val}</span>
-            </div>
-          ))}
-        </div>
-
-        {/* Price block */}
-        <div style={{borderRadius:10,padding:"10px 12px",marginBottom:10,
-                     background:dark?"rgba(30,58,138,0.12)":"#EEF2FF",
-                     border:dark?"1px solid rgba(30,58,138,0.2)":"1px solid #BFDBFE"}}>
-          <div style={{display:"flex",alignItems:"flex-end",justifyContent:"space-between"}}>
-            <div>
-              <div style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.62rem",fontWeight:600,
-                           color:dark?"#475569":"#6b7280",letterSpacing:"0.07em",
-                           textTransform:"uppercase",marginBottom:2}}>Highest Bid</div>
-              <div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:"1.4rem",
-                           color:dark?"#fff":"#0A1628",lineHeight:1,letterSpacing:"-0.02em"}}>
-                {formatCurrency(car.highestBid)}
-              </div>
-            </div>
-            <div style={{textAlign:"right"}}>
-              <div style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.68rem",
-                           color:dark?"#334155":"#94a3b8"}}>{car.dealerCount} dealer bids</div>
-              <div style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.68rem",fontWeight:600,
-                           color:dark?"#60a5fa":"#1E3A8A"}}>{car.contactCount} enquiries</div>
-            </div>
-          </div>
-        </div>
-
-        {/* Actions */}
-        <div style={{display:"flex",gap:6}}>
-          <a href={car.pdfLink!=="#"?car.pdfLink:undefined} target="_blank" rel="noopener noreferrer"
-             onClick={e=>car.pdfLink==="#"&&e.preventDefault()}
-             style={{flex:1,display:"flex",alignItems:"center",justifyContent:"center",gap:4,
-                     padding:"9px 0",borderRadius:9,fontSize:"0.73rem",fontWeight:600,
-                     fontFamily:"'DM Sans',sans-serif",cursor:"pointer",
-                     background:dark?"rgba(255,255,255,0.05)":"#F1F5F9",
-                     border:dark?"1px solid rgba(255,255,255,0.08)":"1px solid #E2E8F0",
-                     color:dark?"#94a3b8":"#475569",textDecoration:"none"}}>
-            <FileText size={11}/> PDF
-          </a>
-          <button onClick={()=>onContact(car)} disabled={sold}
-            style={{flex:2,display:"flex",alignItems:"center",justifyContent:"center",gap:4,
-                    padding:"9px 0",borderRadius:9,fontSize:"0.73rem",fontWeight:700,
-                    fontFamily:"'DM Sans',sans-serif",cursor:"pointer",border:"none",
-                    background:"linear-gradient(135deg,#1E3A8A,#2563EB)",color:"#fff",
-                    opacity:sold?0.5:1,letterSpacing:"0.02em"}}>
-            <MessageSquare size={11}/> Enquire Now
-          </button>
-          <button onClick={()=>onDealer(car)} disabled={sold} title="Dealer Offer"
-            style={{padding:"9px 11px",borderRadius:9,cursor:"pointer",border:"1px solid #FDE68A",
-                    background:"#FFFBEB",color:"#d97706",opacity:sold?0.5:1}}>
-            <Wrench size={11}/>
-          </button>
-          <button onClick={share} title="Share"
-            style={{padding:"9px 11px",borderRadius:9,cursor:"pointer",
-                    border:dark?"1px solid rgba(255,255,255,0.08)":"1px solid #E2E8F0",
-                    background:dark?"rgba(255,255,255,0.04)":"#F8FAFC",color:"#94a3b8"}}>
-            {shared?<Check size={11} style={{color:"#10b981"}}/>:<Share2 size={11}/>}
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// ============================================================
-// 🗂️  CAR GRID + PAGINATION
-// ============================================================
-function CarGrid({ cars, dark, loading, onContact, onDealer, savedCars, toggleSave }) {
-  const PER_PAGE = 9;
-  const [page, setPage] = useState(1);
-  const total = Math.ceil(cars.length / PER_PAGE);
-  const visible = cars.slice((page - 1) * PER_PAGE, page * PER_PAGE);
-
-  useEffect(() => setPage(1), [cars.length]);
-
-  if (loading) return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-      {Array(6).fill(0).map((_, i) => <Skeleton key={i} dark={dark}/>)}
-    </div>
-  );
-
-  if (!cars.length) return (
-    <div className={`text-center py-20 rounded-2xl border ${dark ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
-      <Car size={48} className={`mx-auto mb-4 ${dark ? "text-slate-700" : "text-slate-200"}`}/>
-      <h3 className={`text-lg font-bold mb-1 ${dark ? "text-white" : "text-slate-900"}`}>No Cars Found</h3>
-      <p className={`text-sm ${dark ? "text-slate-500" : "text-slate-400"}`}>Try adjusting your filters or search term</p>
-    </div>
-  );
-
-  return (
-    <>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {visible.map(car => (
-          <CarCard key={car.id} car={car} dark={dark} onContact={onContact} onDealer={onDealer}
-                   saved={savedCars.includes(car.id)} toggleSave={toggleSave}/>
-        ))}
-      </div>
-
-      {total > 1 && (
-        <div className="flex items-center justify-center gap-2 mt-8">
-          <PgBtn onClick={() => setPage(p => Math.max(1, p-1))} disabled={page === 1} dark={dark}><ChevronLeft size={15}/></PgBtn>
-          {Array.from({ length: total }, (_, i) => i + 1)
-            .filter(p => p === 1 || p === total || Math.abs(p - page) <= 1)
-            .reduce((acc, p, i, arr) => {
-              if (i > 0 && arr[i-1] !== p - 1) acc.push("…");
-              acc.push(p);
-              return acc;
-            }, [])
-            .map((p, i) =>
-              p === "…"
-                ? <span key={`e${i}`} className={`text-sm ${dark ? "text-slate-500" : "text-slate-400"}`}>…</span>
-                : <PgBtn key={p} onClick={() => setPage(p)} active={page === p} dark={dark}>{p}</PgBtn>
+    <div style={{display:"flex",background:"#fff",borderBottom:`1px solid ${BR}`,overflowX:"auto"}}>
+      {tabs.map(t=>{
+        const on=active===t.key;
+        return (
+          <button key={t.key} onClick={()=>onChange(t.key)}
+            style={{flex:"0 0 auto",padding:"10px 16px",border:"none",cursor:"pointer",background:"transparent",
+                    fontSize:"0.82rem",fontWeight:on?700:500,color:on?N:MT,
+                    borderBottom:on?`2.5px solid ${N}`:"2.5px solid transparent",
+                    display:"flex",alignItems:"center",gap:5,whiteSpace:"nowrap"}}>
+            {t.label}
+            {counts[t.key]!==undefined&&(
+              <span style={{background:on?TI:"#f1f5f9",color:on?N:MT,fontSize:"0.68rem",fontWeight:700,padding:"1px 6px",borderRadius:10}}>
+                {counts[t.key]}
+              </span>
             )}
-          <PgBtn onClick={() => setPage(p => Math.min(total, p+1))} disabled={page === total} dark={dark}><ChevronRight size={15}/></PgBtn>
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+function FilterChips({ master, filters, setFilters }) {
+  const groups=[
+    {key:"bank",        label:"Bank",         options:master.banks||[]},
+    {key:"make",        label:"Make",         options:master.makes||[]},
+    {key:"state",       label:"State",        options:master.states||[]},
+    {key:"parkingYard", label:"Parking Yard", options:master.parkingYards||[]},
+    {key:"fuelType",    label:"Fuel",         options:master.fuelTypes||["Petrol","Diesel","CNG","Electric"]},
+  ];
+  const [open,setOpen]=useState(null);
+  const ref=useRef();
+  useEffect(()=>{
+    const fn=(e)=>{if(ref.current&&!ref.current.contains(e.target))setOpen(null);};
+    document.addEventListener("mousedown",fn);
+    return()=>document.removeEventListener("mousedown",fn);
+  },[]);
+  const toggle=(key,val)=>setFilters(prev=>{const c=prev[key]||[];return{...prev,[key]:c.includes(val)?c.filter(x=>x!==val):[...c,val]};});
+  const activeCount=Object.values(filters).flat().length;
+  return (
+    <div ref={ref} style={{background:"#fff",borderBottom:`1px solid ${BR}`,padding:"8px 14px",position:"relative"}}>
+      <div style={{display:"flex",gap:7,overflowX:"auto",paddingBottom:2}}>
+        {activeCount>0&&(
+          <button onClick={()=>setFilters({})}
+            style={{flexShrink:0,display:"flex",alignItems:"center",gap:4,padding:"5px 10px",borderRadius:20,
+                    border:"1px solid #fca5a5",background:"#fee2e2",color:"#dc2626",fontSize:"0.75rem",fontWeight:600,cursor:"pointer",whiteSpace:"nowrap"}}>
+            <X size={11}/> Clear ({activeCount})
+          </button>
+        )}
+        {groups.map(g=>{
+          const active=(filters[g.key]||[]).length>0;
+          const isOpen=open===g.key;
+          return (
+            <div key={g.key} style={{position:"relative",flexShrink:0}}>
+              <button onClick={()=>setOpen(isOpen?null:g.key)}
+                style={{display:"flex",alignItems:"center",gap:5,padding:"5px 12px",borderRadius:20,cursor:"pointer",whiteSpace:"nowrap",
+                        fontSize:"0.78rem",fontWeight:active?700:500,
+                        border:active?`1.5px solid ${N}`:`1px solid ${BR}`,
+                        background:active?TI:"#f8fafc",color:active?N:MT}}>
+                {g.label}
+                {active&&<span style={{background:N,color:"#fff",fontSize:"0.62rem",fontWeight:700,padding:"1px 5px",borderRadius:8}}>{(filters[g.key]||[]).length}</span>}
+                <ChevronDown size={11} style={{transition:"transform 0.15s",transform:isOpen?"rotate(180deg)":"none"}}/>
+              </button>
+              {isOpen&&(
+                <div style={{position:"absolute",top:"calc(100% + 6px)",left:0,zIndex:200,background:"#fff",
+                             border:`1px solid ${BR}`,borderRadius:12,boxShadow:"0 8px 24px rgba(30,58,138,0.12)",
+                             minWidth:180,maxHeight:260,overflowY:"auto",padding:"6px 0"}}>
+                  {g.options.map(opt=>{
+                    const sel=(filters[g.key]||[]).includes(opt);
+                    return (
+                      <button key={opt} onClick={()=>toggle(g.key,opt)}
+                        style={{width:"100%",display:"flex",alignItems:"center",gap:10,padding:"8px 14px",border:"none",
+                                cursor:"pointer",background:sel?TI:"transparent",fontSize:"0.82rem",color:sel?N:TX,fontWeight:sel?600:400,textAlign:"left"}}>
+                        <div style={{width:16,height:16,borderRadius:4,flexShrink:0,border:`1.5px solid ${sel?N:BR}`,
+                                     background:sel?N:"transparent",display:"flex",alignItems:"center",justifyContent:"center"}}>
+                          {sel&&<Check size={10} style={{color:"#fff"}}/>}
+                        </div>
+                        {opt}
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function CarCard({ car, onContact, onBid, saved, toggleSave }) {
+  const [shared,setShared]=useState(false);
+  const st=getStatus(car.status);
+  const sold=car.status?.toLowerCase()==="sold";
+  const share=async()=>{
+    const text=`${car.regYear} ${car.make} ${car.model} (${car.regNo}) — ${formatCurrency(car.highestBid)} | Suraksha24`;
+    try{await(navigator.share?navigator.share({title:"Suraksha24",text}):navigator.clipboard.writeText(text));}catch{}
+    setShared(true);setTimeout(()=>setShared(false),2000);
+  };
+  return (
+    <div style={{background:"#fff",borderRadius:14,overflow:"hidden",
+                 border:car.featured?`1.5px solid ${N}`:`1px solid ${BR}`,
+                 boxShadow:"0 2px 12px rgba(30,58,138,0.05)",transition:"all 0.2s",opacity:sold?0.75:1}}
+      onMouseEnter={e=>{if(!sold){e.currentTarget.style.boxShadow="0 8px 24px rgba(30,58,138,0.13)";e.currentTarget.style.transform="translateY(-2px)";}}}
+      onMouseLeave={e=>{e.currentTarget.style.boxShadow="0 2px 12px rgba(30,58,138,0.05)";e.currentTarget.style.transform="translateY(0)";}}>
+
+      {(car.featured||car.status?.toLowerCase()==="pending")&&(
+        <div style={{background:car.featured?N:"#d97706",padding:"3px 12px",display:"flex",alignItems:"center",justifyContent:"space-between"}}>
+          <span style={{fontSize:"0.65rem",fontWeight:700,color:"#fff",letterSpacing:"0.08em"}}>
+            {car.featured?"★ FEATURED":"⏳ PENDING"}
+          </span>
+          <span style={{fontSize:"0.65rem",color:"rgba(255,255,255,0.7)"}}>{car.bank}</span>
         </div>
       )}
-    </>
-  );
-}
 
-function PgBtn({ children, onClick, disabled, active, dark }) {
-  return (
-    <button onClick={onClick} disabled={disabled}
-      className={`min-w-9 h-9 px-2.5 rounded-xl text-sm font-semibold transition-colors border disabled:opacity-40 disabled:cursor-not-allowed
-        ${active ? "bg-blue-600 border-blue-600 text-white" : dark ? "border-slate-700 text-slate-300 hover:bg-slate-800" : "border-slate-200 text-slate-700 hover:bg-slate-50"}`}>
-      {children}
-    </button>
-  );
-}
+      <div style={{display:"flex"}}>
+        <div style={{width:100,flexShrink:0,background:`linear-gradient(135deg,${TI},#DBEAFE)`,
+                     display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",
+                     padding:"10px 6px",position:"relative"}}>
+          <Car size={36} style={{color:N,opacity:0.65}}/>
+          <div style={{marginTop:5,textAlign:"center"}}>
+            <div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:"0.75rem",color:TX,lineHeight:1}}>{car.make}</div>
+            <div style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontWeight:600,fontSize:"0.85rem",color:N,lineHeight:1.1}}>{car.model}</div>
+          </div>
+          <div style={{position:"absolute",top:5,left:5,display:"flex",alignItems:"center",gap:3,
+                       padding:"2px 5px",borderRadius:20,background:st.bg,border:`1px solid ${st.border}`}}>
+            <span style={{width:4,height:4,borderRadius:"50%",background:st.dot,flexShrink:0}}/>
+            <span style={{fontSize:"0.55rem",fontWeight:700,color:st.color}}>{car.status}</span>
+          </div>
+        </div>
 
-// ============================================================
-// 📋  MODAL BASE
-// ============================================================
-function Modal({ dark, onClose, title, children }) {
-  useEffect(() => {
-    const fn = e => e.key === "Escape" && onClose();
-    document.addEventListener("keydown", fn);
-    document.body.style.overflow = "hidden";
-    return () => { document.removeEventListener("keydown", fn); document.body.style.overflow = ""; };
-  }, [onClose]);
-
-  return (
-    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-4">
-      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose}/>
-      <div className={`relative w-full max-w-md max-h-[92dvh] overflow-y-auto rounded-2xl shadow-2xl
-        ${dark ? "bg-slate-900 ring-1 ring-slate-800" : "bg-white ring-1 ring-slate-100"}`}>
-        {title && (
-          <div className={`sticky top-0 flex items-center justify-between px-5 py-4 border-b
-            ${dark ? "bg-slate-900 border-slate-800" : "bg-white border-slate-100"}`}>
-            <h2 className={`text-lg font-bold ${dark ? "text-white" : "text-slate-900"}`}>{title}</h2>
-            <button onClick={onClose}
-              className={`p-1.5 rounded-lg transition-colors ${dark ? "text-slate-500 hover:text-white hover:bg-slate-800" : "text-slate-400 hover:text-slate-700 hover:bg-slate-100"}`}>
-              <X size={17}/>
+        <div style={{flex:1,padding:"10px 12px",minWidth:0}}>
+          <div style={{display:"flex",alignItems:"flex-start",justifyContent:"space-between",marginBottom:5}}>
+            <div>
+              <div style={{fontWeight:700,fontSize:"0.88rem",color:TX,lineHeight:1.2}}>
+                {car.make} {car.model} <span style={{fontWeight:400,color:MT}}>{car.regYear}</span>
+              </div>
+              <div style={{fontFamily:"'DM Mono',monospace",fontSize:"0.7rem",color:N,fontWeight:500,marginTop:2,letterSpacing:"0.04em"}}>{car.regNo}</div>
+            </div>
+            <button onClick={()=>toggleSave(car.id)}
+              style={{background:"none",border:"none",cursor:"pointer",padding:4,flexShrink:0,color:saved?"#ef4444":HI}}>
+              <Heart size={15} fill={saved?"#ef4444":"none"}/>
             </button>
           </div>
-        )}
-        <div className="p-5">{children}</div>
-      </div>
-    </div>
-  );
-}
 
-// Form helpers
-function Field({ label, error, children }) {
-  return (
-    <div>
-      <label className={`block text-xs font-bold mb-1.5 ${error ? "text-red-500" : "text-slate-400"}`}>{label}</label>
-      {children}
-      {error && <p className="text-xs text-red-500 mt-1">{error}</p>}
-    </div>
-  );
-}
-
-const inp = (dark, err) =>
-  `w-full px-3 py-2.5 rounded-xl border text-sm outline-none transition-all
-   ${dark ? "bg-slate-800 border-slate-700 text-white placeholder-slate-500 focus:border-blue-500" : "bg-white border-slate-200 text-slate-900 placeholder-slate-400 focus:border-blue-500"}
-   ${err ? "border-red-500" : ""}`;
-
-// ============================================================
-// 📩  CONTACT MODAL
-// ============================================================
-function ContactModal({ car, dark, onClose, onSubmit }) {
-  const [form, setForm] = useState({ name:"", mobile:"", message:"", agent:"" });
-  const [err, setErr] = useState({});
-  const [loading, setLoading] = useState(false);
-  const [done, setDone] = useState(false);
-
-  const validate = () => {
-    const e = {};
-    if (!form.name.trim()) e.name = "Name is required";
-    if (!/^\d{10}$/.test(form.mobile)) e.mobile = "Enter valid 10-digit mobile";
-    if (!form.agent) e.agent = "Please select an agent";
-    return e;
-  };
-
-  const submit = async () => {
-    const e = validate();
-    if (Object.keys(e).length) { setErr(e); return; }
-    setLoading(true);
-    await onSubmit({ ...form, carId: car.id, regNo: car.regNo, carName: `${car.regYear} ${car.make} ${car.model}` });
-    setDone(true);
-    setLoading(false);
-  };
-
-  if (done) return (
-    <Modal dark={dark} onClose={onClose} title="">
-      <div className="text-center py-8">
-        <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
-          <CheckCircle size={30} className="text-emerald-600"/>
-        </div>
-        <h3 className={`text-xl font-bold mb-2 ${dark ? "text-white" : "text-slate-900"}`}>Enquiry Submitted!</h3>
-        <p className={`text-sm mb-1 ${dark ? "text-slate-400" : "text-slate-600"}`}>
-          Agent <strong>{form.agent}</strong> will contact you shortly.
-        </p>
-        <p className={`text-xs mb-6 ${dark ? "text-slate-500" : "text-slate-400"}`}>
-          Regarding: {car.regYear} {car.make} {car.model} ({car.regNo})
-        </p>
-        <button onClick={onClose} className="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-semibold">Done</button>
-      </div>
-    </Modal>
-  );
-
-  return (
-    <Modal dark={dark} onClose={onClose} title="Contact Us">
-      {/* Car summary */}
-      <div className={`rounded-xl p-3 mb-5 flex items-center gap-3 ${dark ? "bg-blue-900/20 border border-blue-900/40" : "bg-blue-50 border border-blue-100"}`}>
-        <Car size={20} className="text-blue-500 flex-shrink-0"/>
-        <div className="flex-1 min-w-0">
-          <p className={`font-bold text-sm ${dark ? "text-white" : "text-slate-900"}`}>{car.regYear} {car.make} {car.model}</p>
-          <p className={`text-xs ${dark ? "text-slate-400" : "text-slate-500"}`}>{car.regNo} · {car.bank}</p>
-        </div>
-        <Badge status={car.status}/>
-      </div>
-
-      <div className="space-y-4">
-        <Field label="Your Name *" error={err.name}>
-          <input placeholder="Full name" value={form.name}
-            onChange={e => { setForm(f => ({...f, name:e.target.value})); setErr(er => ({...er, name:""})); }}
-            className={inp(dark, err.name)}/>
-        </Field>
-        <Field label="Mobile Number *" error={err.mobile}>
-          <input placeholder="10-digit mobile" value={form.mobile} maxLength={10}
-            onChange={e => { setForm(f => ({...f, mobile:e.target.value})); setErr(er => ({...er, mobile:""})); }}
-            className={inp(dark, err.mobile)}/>
-        </Field>
-        <Field label="Message (optional)">
-          <textarea placeholder="Any questions or requirements..." rows={3} value={form.message}
-            onChange={e => setForm(f => ({...f, message:e.target.value}))}
-            className={inp(dark)}/>
-        </Field>
-        <Field label="Select Agent *" error={err.agent}>
-          <select value={form.agent}
-            onChange={e => { setForm(f => ({...f, agent:e.target.value})); setErr(er => ({...er, agent:""})); }}
-            className={inp(dark, err.agent)}>
-            <option value="">-- Select Agent --</option>
-            {AGENT_NAMES.map(a => <option key={a}>{a}</option>)}
-          </select>
-        </Field>
-      </div>
-
-      <div className="flex gap-3 mt-6">
-        <button onClick={onClose}
-          className={`flex-1 py-3 rounded-xl font-semibold border text-sm transition-colors
-            ${dark ? "border-slate-700 text-slate-300 hover:bg-slate-800" : "border-slate-200 text-slate-700 hover:bg-slate-50"}`}>
-          Cancel
-        </button>
-        <button onClick={submit} disabled={loading}
-          className="flex-1 py-3 rounded-xl font-semibold bg-blue-600 hover:bg-blue-700 text-white text-sm transition-colors disabled:opacity-60 flex items-center justify-center gap-2">
-          {loading ? <><Loader2 size={15} className="animate-spin"/> Submitting…</> : "Submit Enquiry"}
-        </button>
-      </div>
-    </Modal>
-  );
-}
-
-// ============================================================
-// 🔧  DEALER MODAL
-// ============================================================
-function DealerModal({ car, dark, onClose, onSubmit }) {
-  const [form, setForm] = useState({ name:"", mobile:"", inspectionRequired:"Yes", offerPrice:"", negotiationAmount:"", remarks:"" });
-  const [err, setErr] = useState({});
-  const [loading, setLoading] = useState(false);
-  const [done, setDone] = useState(false);
-
-  const validate = () => {
-    const e = {};
-    if (!form.name.trim()) e.name = "Dealer name required";
-    if (!/^\d{10}$/.test(form.mobile)) e.mobile = "Valid 10-digit mobile required";
-    if (!form.offerPrice || isNaN(Number(form.offerPrice)) || Number(form.offerPrice) <= 0) e.offerPrice = "Valid offer price required";
-    return e;
-  };
-
-  const submit = async () => {
-    const e = validate();
-    if (Object.keys(e).length) { setErr(e); return; }
-    setLoading(true);
-    await onSubmit({ ...form, carId: car.id, regNo: car.regNo });
-    setDone(true);
-    setLoading(false);
-  };
-
-  if (done) return (
-    <Modal dark={dark} onClose={onClose} title="">
-      <div className="text-center py-8">
-        <div className="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
-          <CheckCircle size={30} className="text-amber-600"/>
-        </div>
-        <h3 className={`text-xl font-bold mb-2 ${dark ? "text-white" : "text-slate-900"}`}>Offer Submitted!</h3>
-        <p className={`text-sm mb-1 ${dark ? "text-slate-400" : "text-slate-600"}`}>
-          Offer of <strong>{formatCurrency(Number(form.offerPrice))}</strong> recorded for
-        </p>
-        <p className={`text-sm font-bold mb-1 ${dark ? "text-white" : "text-slate-900"}`}>{car.make} {car.model} — {car.regNo}</p>
-        <p className={`text-xs mb-6 ${dark ? "text-slate-500" : "text-slate-400"}`}>
-          Inspection: {form.inspectionRequired} · Our team will reach out shortly.
-        </p>
-        <button onClick={onClose} className="px-6 py-2.5 bg-amber-500 hover:bg-amber-600 text-white rounded-xl font-semibold">Done</button>
-      </div>
-    </Modal>
-  );
-
-  return (
-    <Modal dark={dark} onClose={onClose} title="Dealer Offer">
-      <div className={`rounded-xl p-3 mb-5 flex items-center gap-3 ${dark ? "bg-amber-900/20 border border-amber-900/30" : "bg-amber-50 border border-amber-100"}`}>
-        <Wrench size={18} className="text-amber-500 flex-shrink-0"/>
-        <div className="flex-1">
-          <p className={`font-bold text-sm ${dark ? "text-white" : "text-slate-900"}`}>{car.regYear} {car.make} {car.model}</p>
-          <p className={`text-xs ${dark ? "text-slate-400" : "text-slate-500"}`}>Highest Bid: {formatCurrency(car.highestBid)}</p>
-        </div>
-      </div>
-
-      <div className="space-y-4">
-        <div className="grid grid-cols-2 gap-3">
-          <Field label="Dealer Name *" error={err.name}>
-            <input placeholder="Your name" value={form.name}
-              onChange={e => { setForm(f => ({...f, name:e.target.value})); setErr(er => ({...er, name:""})); }}
-              className={inp(dark, err.name)}/>
-          </Field>
-          <Field label="Mobile *" error={err.mobile}>
-            <input placeholder="10-digit mobile" value={form.mobile} maxLength={10}
-              onChange={e => { setForm(f => ({...f, mobile:e.target.value})); setErr(er => ({...er, mobile:""})); }}
-              className={inp(dark, err.mobile)}/>
-          </Field>
-        </div>
-
-        <Field label="Physical Inspection Required?">
-          <div className="flex gap-3">
-            {["Yes","No"].map(o => (
-              <button key={o} onClick={() => setForm(f => ({...f, inspectionRequired:o}))}
-                className={`flex-1 py-2.5 rounded-xl text-sm font-bold border transition-all
-                  ${form.inspectionRequired === o
-                    ? o === "Yes" ? "bg-emerald-600 border-emerald-600 text-white" : "bg-red-500 border-red-500 text-white"
-                    : dark ? "bg-slate-700 border-slate-600 text-slate-300" : "bg-slate-100 border-slate-200 text-slate-600"}`}>
-                {o}
-              </button>
+          <div style={{display:"flex",flexWrap:"wrap",gap:"3px 10px",marginBottom:6}}>
+            {[[Fuel,car.fuelType],[Eye,`${fmtNum(car.km)} km`],[MapPin,car.city],[Building2,car.parkingYard]].map(([Icon,val])=>val&&(
+              <span key={val} style={{display:"inline-flex",alignItems:"center",gap:3,fontSize:"0.68rem",color:MT}}>
+                <Icon size={9} style={{color:B,flexShrink:0}}/>{val}
+              </span>
             ))}
           </div>
-        </Field>
 
-        <div className="grid grid-cols-2 gap-3">
-          <Field label="Offer Price ₹ *" error={err.offerPrice}>
-            <input type="number" placeholder="Enter amount" value={form.offerPrice}
-              onChange={e => { setForm(f => ({...f, offerPrice:e.target.value})); setErr(er => ({...er, offerPrice:""})); }}
-              className={inp(dark, err.offerPrice)}/>
-          </Field>
-          <Field label="Negotiation Amount ₹">
-            <input type="number" placeholder="Max negotiation" value={form.negotiationAmount}
-              onChange={e => setForm(f => ({...f, negotiationAmount:e.target.value}))}
-              className={inp(dark)}/>
-          </Field>
+          <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:6}}>
+            <div>
+              <div style={{fontSize:"0.58rem",fontWeight:500,color:HI,textTransform:"uppercase",letterSpacing:"0.06em"}}>Base Price</div>
+              <div style={{fontWeight:800,fontSize:"1.05rem",color:TX,lineHeight:1,letterSpacing:"-0.02em"}}>{formatCurrency(car.highestBid)}</div>
+            </div>
+            <div style={{display:"flex",gap:5}}>
+              {car.pdfLink&&car.pdfLink!=="#"&&car.pdfLink!=="https://na"&&(
+                <a href={car.pdfLink} target="_blank" rel="noopener noreferrer"
+                   style={{display:"flex",alignItems:"center",gap:3,padding:"6px 9px",borderRadius:8,fontSize:"0.7rem",fontWeight:600,
+                           textDecoration:"none",background:TI,border:`1px solid ${BO}`,color:N}}>
+                  <FileText size={10}/> PDF
+                </a>
+              )}
+              <button onClick={()=>onContact(car)} disabled={sold}
+                style={{display:"flex",alignItems:"center",gap:3,padding:"6px 9px",borderRadius:8,fontSize:"0.7rem",fontWeight:600,
+                        border:`1px solid ${BO}`,cursor:"pointer",background:TI,color:N,opacity:sold?0.5:1}}>
+                <MessageSquare size={10}/> Enquire
+              </button>
+              <button onClick={()=>onBid(car)} disabled={sold}
+                style={{display:"flex",alignItems:"center",gap:3,padding:"6px 12px",borderRadius:8,fontSize:"0.72rem",fontWeight:700,
+                        border:"none",cursor:"pointer",background:`linear-gradient(135deg,${N},${B})`,color:"#fff",opacity:sold?0.5:1}}>
+                Bid Now
+              </button>
+            </div>
+          </div>
         </div>
-
-        <Field label="Remarks / Comments">
-          <textarea placeholder="Condition notes, requirements..." rows={2} value={form.remarks}
-            onChange={e => setForm(f => ({...f, remarks:e.target.value}))}
-            className={inp(dark)}/>
-        </Field>
       </div>
 
-      <div className="flex gap-3 mt-6">
-        <button onClick={onClose}
-          className={`flex-1 py-3 rounded-xl font-semibold border text-sm transition-colors
-            ${dark ? "border-slate-700 text-slate-300 hover:bg-slate-800" : "border-slate-200 text-slate-700 hover:bg-slate-50"}`}>
-          Cancel
-        </button>
-        <button onClick={submit} disabled={loading}
-          className="flex-1 py-3 rounded-xl font-semibold bg-amber-500 hover:bg-amber-600 text-white text-sm transition-colors disabled:opacity-60 flex items-center justify-center gap-2">
-          {loading ? <><Loader2 size={15} className="animate-spin"/> Submitting…</> : "Submit Offer"}
+      <div style={{borderTop:`1px solid ${BR}`,padding:"6px 12px",display:"flex",alignItems:"center",justifyContent:"space-between",background:BG}}>
+        <div style={{display:"flex",gap:12}}>
+          <span style={{fontSize:"0.68rem",color:MT}}><span style={{fontWeight:600,color:N}}>{car.dealerCount}</span> bids</span>
+          <span style={{fontSize:"0.68rem",color:MT}}><span style={{fontWeight:600,color:N}}>{car.contactCount}</span> enquiries</span>
+        </div>
+        <button onClick={share} style={{background:"none",border:"none",cursor:"pointer",color:shared?"#10b981":HI,padding:2}}>
+          {shared?<Check size={13}/>:<Share2 size={13}/>}
         </button>
       </div>
-    </Modal>
+    </div>
   );
 }
 
-// ============================================================
-// 📊  DEALER DASHBOARD
-// ============================================================
-function DealerDashboard({ dark, savedCars, cars }) {
-  const [tab, setTab] = useState("saved");
-  const savedDetails = cars.filter(c => savedCars.includes(c.id));
-
-  const stats = [
-    { label:"Saved Cars",         val: savedCars.length, Icon: Heart,    color:"red"     },
-    { label:"Active Offers",      val: 0,                Icon: TrendingUp, color:"emerald"},
-    { label:"Pending Inspections",val: 0,                Icon: Wrench,   color:"amber"   },
-    { label:"Notifications",      val: 0,                Icon: Bell,     color:"blue"    },
-  ];
-
-  const tabs = [
-    { id:"saved",       label:"Saved Cars",    Icon: Bookmark,   count: savedCars.length },
-    { id:"offers",      label:"My Offers",     Icon: TrendingUp, count: 0               },
-    { id:"inspections", label:"Inspections",   Icon: Wrench,     count: 0               },
-    { id:"alerts",      label:"Alerts",        Icon: Bell,       count: 0               },
-  ];
-
+function BidModal({ car, onClose, onSubmit }) {
+  const [form,setForm]=useState({dealerName:"",mobile:"",bidPrice:"",remarks:"",agent:AGENT_NAMES[0]});
+  const [loading,setLoading]=useState(false);
+  const [errors,setErrors]=useState({});
+  const validate=()=>{
+    const e={};
+    if(!form.dealerName.trim())e.dealerName="Required";
+    if(!/^\d{10}$/.test(form.mobile))e.mobile="Enter valid 10-digit mobile";
+    if(!form.bidPrice||isNaN(form.bidPrice)||Number(form.bidPrice)<=0)e.bidPrice="Enter valid amount";
+    setErrors(e);return Object.keys(e).length===0;
+  };
+  const submit=async()=>{
+    if(!validate())return;
+    setLoading(true);
+    await onSubmit({...form,carId:car.id,regNo:car.regNo,carName:`${car.make} ${car.model}`});
+    setLoading(false);onClose();
+  };
+  const inp=(label,key,ph,type="text")=>(
+    <div style={{marginBottom:12}}>
+      <label style={{display:"block",fontSize:"0.75rem",fontWeight:600,color:TX,marginBottom:4}}>{label}</label>
+      <input type={type} placeholder={ph} value={form[key]} onChange={e=>setForm(p=>({...p,[key]:e.target.value}))}
+        style={{width:"100%",padding:"10px 12px",borderRadius:9,outline:"none",fontSize:"0.85rem",color:TX,
+                border:`1.5px solid ${errors[key]?"#fca5a5":BR}`,background:errors[key]?"#fff5f5":"#fff",boxSizing:"border-box"}}/>
+      {errors[key]&&<div style={{fontSize:"0.7rem",color:"#dc2626",marginTop:3}}>{errors[key]}</div>}
+    </div>
+  );
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 pb-12"
-         style={{ paddingTop: CONFIG.DEMO_MODE ? "5.5rem" : "4.5rem" }}>
-      <div className="mb-8">
-        <div className={`flex items-center gap-3 py-6 border-b ${dark ? "border-slate-800" : "border-slate-100"}`}>
-          <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-800 rounded-xl flex items-center justify-center shadow-lg shadow-blue-900/30">
-            <User size={20} className="text-white"/>
-          </div>
+    <div style={{position:"fixed",inset:0,background:"rgba(0,0,0,0.45)",zIndex:500,display:"flex",alignItems:"flex-end",justifyContent:"center"}}
+         onClick={e=>e.target===e.currentTarget&&onClose()}>
+      <div style={{background:"#fff",borderRadius:"20px 20px 0 0",width:"100%",maxWidth:520,padding:"20px 20px 32px",maxHeight:"90vh",overflowY:"auto"}}>
+        <div style={{width:40,height:4,background:BR,borderRadius:4,margin:"0 auto 16px"}}/>
+        <div style={{background:TI,border:`1px solid ${BO}`,borderRadius:10,padding:"10px 14px",marginBottom:16,display:"flex",alignItems:"center",gap:10}}>
+          <Car size={26} style={{color:N,flexShrink:0}}/>
           <div>
-            <h1 className={`text-2xl font-black ${dark ? "text-white" : "text-slate-900"}`}
-                style={{ fontFamily:"'Syne',sans-serif" }} style={{fontFamily:"'Syne',sans-serif",fontWeight:900}}>Dealer Dashboard</h1>
-            <p className={`text-sm ${dark ? "text-slate-400" : "text-slate-500"}`}>
-              Manage saved cars, offers & inspection requests
-            </p>
+            <div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:"0.9rem",color:TX}}>{car.make} {car.model} {car.regYear}</div>
+            <div style={{fontFamily:"'DM Mono',monospace",fontSize:"0.7rem",color:N,marginTop:2}}>{car.regNo} · Base: {formatCurrency(car.highestBid)}</div>
           </div>
         </div>
-      </div>
-
-      {/* Stats */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
-        {stats.map(({ label, val, Icon, color }) => (
-          <div key={label} className={`rounded-2xl p-4 border shadow-sm ${dark ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
-            <div className={`w-9 h-9 bg-${color}-100 rounded-xl flex items-center justify-center mb-3`}>
-              <Icon size={16} className={`text-${color}-600`}/>
-            </div>
-            <p className={`text-2xl font-black ${dark ? "text-white" : "text-slate-900"}`}
-               style={{ fontFamily:"'Syne',sans-serif" }}>{val}</p>
-            <p className={`text-xs mt-0.5 ${dark ? "text-slate-500" : "text-slate-400"}`}>{label}</p>
+        <div style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:"0.95rem",color:TX,marginBottom:14}}>Submit Your Bid</div>
+        {inp("Dealer / Company Name *","dealerName","e.g. Sharma Auto Pvt Ltd")}
+        {inp("Mobile Number *","mobile","10-digit mobile","tel")}
+        <div style={{marginBottom:12}}>
+          <label style={{display:"block",fontSize:"0.75rem",fontWeight:600,color:TX,marginBottom:4}}>Bid Price (₹) *</label>
+          <div style={{position:"relative"}}>
+            <span style={{position:"absolute",left:12,top:"50%",transform:"translateY(-50%)",fontWeight:700,color:N,fontSize:"1rem"}}>₹</span>
+            <input type="number" placeholder={`Min. ${(car.highestBid||0).toLocaleString("en-IN")}`}
+              value={form.bidPrice} onChange={e=>setForm(p=>({...p,bidPrice:e.target.value}))}
+              style={{width:"100%",padding:"10px 12px 10px 28px",borderRadius:9,outline:"none",fontSize:"0.88rem",fontWeight:700,color:TX,
+                      border:`1.5px solid ${errors.bidPrice?"#fca5a5":BR}`,background:errors.bidPrice?"#fff5f5":"#fff",boxSizing:"border-box"}}/>
           </div>
-        ))}
-      </div>
-
-      {/* Tabs */}
-      <div className={`flex gap-1 p-1 rounded-2xl mb-6 w-fit max-w-full overflow-x-auto ${dark ? "bg-slate-800" : "bg-slate-100"}`}>
-        {tabs.map(t => (
-          <button key={t.id} onClick={() => setTab(t.id)}
-            className={`flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-all
-              ${tab === t.id ? dark ? "bg-slate-700 text-white shadow-md" : "bg-white text-slate-900 shadow-md" : dark ? "text-slate-400 hover:text-slate-200" : "text-slate-500 hover:text-slate-700"}`}>
-            <t.Icon size={13}/>{t.label}
-            {t.count > 0 && <span className="px-1.5 py-0.5 bg-blue-600 text-white rounded-full text-xs">{t.count}</span>}
+          {errors.bidPrice&&<div style={{fontSize:"0.7rem",color:"#dc2626",marginTop:3}}>{errors.bidPrice}</div>}
+          {form.bidPrice&&!errors.bidPrice&&Number(form.bidPrice)>0&&(
+            <div style={{fontSize:"0.72rem",color:"#059669",marginTop:3,fontWeight:600}}>= {formatCurrency(Number(form.bidPrice))}</div>
+          )}
+        </div>
+        <div style={{marginBottom:12}}>
+          <label style={{display:"block",fontSize:"0.75rem",fontWeight:600,color:TX,marginBottom:4}}>Assigned Agent</label>
+          <select value={form.agent} onChange={e=>setForm(p=>({...p,agent:e.target.value}))}
+            style={{width:"100%",padding:"10px 12px",borderRadius:9,outline:"none",fontSize:"0.82rem",color:TX,border:`1px solid ${BR}`,background:"#fff",boxSizing:"border-box"}}>
+            {AGENT_NAMES.map(a=><option key={a}>{a}</option>)}
+          </select>
+        </div>
+        <div style={{marginBottom:18}}>
+          <label style={{display:"block",fontSize:"0.75rem",fontWeight:600,color:TX,marginBottom:4}}>Remarks (optional)</label>
+          <textarea placeholder="Inspection notes, payment terms..." value={form.remarks}
+            onChange={e=>setForm(p=>({...p,remarks:e.target.value}))} rows={2}
+            style={{width:"100%",padding:"10px 12px",borderRadius:9,outline:"none",resize:"vertical",fontSize:"0.82rem",color:TX,border:`1px solid ${BR}`,background:"#fff",boxSizing:"border-box"}}/>
+        </div>
+        <div style={{display:"flex",gap:10}}>
+          <button onClick={onClose}
+            style={{flex:1,padding:"12px",borderRadius:10,fontWeight:600,fontSize:"0.85rem",border:`1px solid ${BR}`,background:"#f8fafc",color:MT,cursor:"pointer"}}>
+            Cancel
           </button>
+          <button onClick={submit} disabled={loading}
+            style={{flex:2,padding:"12px",borderRadius:10,fontWeight:700,fontSize:"0.88rem",border:"none",cursor:"pointer",
+                    background:`linear-gradient(135deg,${N},${B})`,color:"#fff",opacity:loading?0.7:1,
+                    display:"flex",alignItems:"center",justifyContent:"center",gap:8}}>
+            {loading?<><Loader2 size={14}/> Submitting...</>:"Submit Bid"}
+          </button>
+        </div>
+        <p style={{textAlign:"center",fontSize:"0.68rem",color:HI,marginTop:10}}>
+          Your bid is recorded privately — other dealers cannot see it.
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function ContactModal({ car, onClose, onSubmit }) {
+  const [form,setForm]=useState({name:"",mobile:"",message:"",agent:AGENT_NAMES[0]});
+  const [loading,setLoading]=useState(false);
+  const submit=async()=>{
+    if(!form.name.trim()||!form.mobile.trim())return;
+    setLoading(true);
+    await onSubmit({...form,carId:car.id,regNo:car.regNo,carName:`${car.make} ${car.model}`});
+    setLoading(false);onClose();
+  };
+  return (
+    <div style={{position:"fixed",inset:0,background:"rgba(0,0,0,0.45)",zIndex:500,display:"flex",alignItems:"flex-end",justifyContent:"center"}}
+         onClick={e=>e.target===e.currentTarget&&onClose()}>
+      <div style={{background:"#fff",borderRadius:"20px 20px 0 0",width:"100%",maxWidth:520,padding:"20px 20px 32px",maxHeight:"85vh",overflowY:"auto"}}>
+        <div style={{width:40,height:4,background:BR,borderRadius:4,margin:"0 auto 16px"}}/>
+        <div style={{background:TI,border:`1px solid ${BO}`,borderRadius:10,padding:"10px 14px",marginBottom:14}}>
+          <div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:"0.9rem",color:TX}}>{car.make} {car.model} {car.regYear}</div>
+          <div style={{fontFamily:"'DM Mono',monospace",fontSize:"0.7rem",color:N,marginTop:2}}>{car.regNo}</div>
+        </div>
+        <div style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:"0.95rem",color:TX,marginBottom:14}}>Customer Enquiry</div>
+        {[["Name *","name","Your full name"],["Mobile *","mobile","10-digit mobile"]].map(([l,k,p])=>(
+          <div key={k} style={{marginBottom:12}}>
+            <label style={{display:"block",fontSize:"0.75rem",fontWeight:600,color:TX,marginBottom:4}}>{l}</label>
+            <input type={k==="mobile"?"tel":"text"} placeholder={p} value={form[k]}
+              onChange={e=>setForm(x=>({...x,[k]:e.target.value}))}
+              style={{width:"100%",padding:"10px 12px",borderRadius:9,outline:"none",fontSize:"0.85rem",color:TX,border:`1px solid ${BR}`,background:"#fff",boxSizing:"border-box"}}/>
+          </div>
+        ))}
+        <div style={{marginBottom:12}}>
+          <label style={{display:"block",fontSize:"0.75rem",fontWeight:600,color:TX,marginBottom:4}}>Message</label>
+          <textarea placeholder="Your enquiry..." value={form.message} onChange={e=>setForm(p=>({...p,message:e.target.value}))} rows={2}
+            style={{width:"100%",padding:"10px 12px",borderRadius:9,outline:"none",resize:"vertical",fontSize:"0.82rem",color:TX,border:`1px solid ${BR}`,background:"#fff",boxSizing:"border-box"}}/>
+        </div>
+        <div style={{marginBottom:18}}>
+          <label style={{display:"block",fontSize:"0.75rem",fontWeight:600,color:TX,marginBottom:4}}>Agent</label>
+          <select value={form.agent} onChange={e=>setForm(p=>({...p,agent:e.target.value}))}
+            style={{width:"100%",padding:"10px 12px",borderRadius:9,outline:"none",fontSize:"0.82rem",color:TX,border:`1px solid ${BR}`,background:"#fff",boxSizing:"border-box"}}>
+            {AGENT_NAMES.map(a=><option key={a}>{a}</option>)}
+          </select>
+        </div>
+        <div style={{display:"flex",gap:10}}>
+          <button onClick={onClose} style={{flex:1,padding:"12px",borderRadius:10,fontWeight:600,fontSize:"0.85rem",border:`1px solid ${BR}`,background:"#f8fafc",color:MT,cursor:"pointer"}}>Cancel</button>
+          <button onClick={submit} disabled={loading}
+            style={{flex:2,padding:"12px",borderRadius:10,fontWeight:700,fontSize:"0.88rem",border:"none",cursor:"pointer",
+                    background:`linear-gradient(135deg,${N},${B})`,color:"#fff",
+                    display:"flex",alignItems:"center",justifyContent:"center",gap:8}}>
+            {loading?<><Loader2 size={14}/> Sending...</>:"Send Enquiry"}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SavedCars({ cars, savedIds, onContact, onBid, toggleSave }) {
+  const saved=cars.filter(c=>savedIds.includes(c.id));
+  return (
+    <div style={{padding:"16px 14px"}}>
+      <div style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:"1rem",color:TX,marginBottom:12}}>Saved Cars ({saved.length})</div>
+      {saved.length===0?(
+        <div style={{textAlign:"center",padding:"48px 20px"}}>
+          <Heart size={44} style={{color:BR,margin:"0 auto 12px"}}/>
+          <div style={{color:MT,fontSize:"0.88rem",fontWeight:600}}>No saved cars yet</div>
+          <div style={{color:HI,fontSize:"0.78rem",marginTop:6}}>Tap ♡ on any car to save it here</div>
+        </div>
+      ):(
+        <div style={{display:"flex",flexDirection:"column",gap:10}}>
+          {saved.map(c=><CarCard key={c.id} car={c} onContact={onContact} onBid={onBid} saved={true} toggleSave={toggleSave}/>)}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function ContactPage() {
+  return (
+    <div style={{padding:"16px 14px"}}>
+      <div style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:"1rem",color:TX,marginBottom:16}}>Contact Us</div>
+      <div style={{display:"flex",flexDirection:"column",gap:10}}>
+        {[
+          {icon:MessageCircle,label:"WhatsApp",val:"Chat with us now",href:`https://wa.me/${CONFIG.WHATSAPP_NUMBER}`,bg:"#22c55e"},
+          {icon:Phone,label:"Call Now",val:CONFIG.CALL_NUMBER,href:`tel:${CONFIG.CALL_NUMBER}`,bg:N},
+        ].map(c=>(
+          <a key={c.label} href={c.href} target="_blank" rel="noopener noreferrer"
+             style={{display:"flex",alignItems:"center",gap:14,padding:"16px",borderRadius:14,
+                     border:`1px solid ${BR}`,background:"#fff",textDecoration:"none",boxShadow:"0 2px 8px rgba(30,58,138,0.05)"}}>
+            <div style={{width:44,height:44,borderRadius:12,background:c.bg,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
+              <c.icon size={20} style={{color:"#fff"}}/>
+            </div>
+            <div>
+              <div style={{fontWeight:700,fontSize:"0.9rem",color:TX}}>{c.label}</div>
+              <div style={{fontSize:"0.78rem",color:MT,marginTop:2}}>{c.val}</div>
+            </div>
+            <ChevronRight size={16} style={{color:HI,marginLeft:"auto"}}/>
+          </a>
+        ))}
+        <div style={{background:"#fff",border:`1px solid ${BR}`,borderRadius:14,padding:"14px",marginTop:4}}>
+          <div style={{fontWeight:700,fontSize:"0.82rem",color:TX,marginBottom:10}}>Our Agents</div>
+          {AGENT_NAMES.map(a=>(
+            <div key={a} style={{display:"flex",alignItems:"center",gap:10,padding:"7px 0",borderBottom:`1px solid ${BG}`}}>
+              <div style={{width:30,height:30,borderRadius:"50%",background:TI,display:"flex",alignItems:"center",justifyContent:"center"}}>
+                <User size={13} style={{color:N}}/>
+              </div>
+              <span style={{fontSize:"0.82rem",color:TX}}>{a}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function HeroBanner({ carsCount }) {
+  return (
+    <div style={{background:`linear-gradient(135deg,${N} 0%,${B} 100%)`,padding:"18px 16px 14px",color:"#fff"}}>
+      <div style={{display:"inline-flex",alignItems:"center",gap:6,background:"rgba(255,255,255,0.12)",
+                   borderRadius:20,padding:"3px 12px",marginBottom:10}}>
+        <Shield size={10} style={{color:"#93c5fd"}}/>
+        <span style={{fontSize:"0.68rem",fontWeight:600,color:"#93c5fd",letterSpacing:"0.1em",textTransform:"uppercase"}}>Bank Verified · Zero Hidden Charges</span>
+      </div>
+      <h1 style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:"1.35rem",lineHeight:1.1,margin:"0 0 2px",letterSpacing:"-0.02em"}}>Bank Repossessed Cars</h1>
+      <h2 style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontWeight:500,fontSize:"1.05rem",margin:"0 0 14px",color:"#93c5fd"}}>at the Best Prices</h2>
+      <div style={{display:"flex",gap:20}}>
+        {[[`${carsCount}+`,"Cars Listed"],["15+","Partner Banks"],["50+","Cities"]].map(([v,l])=>(
+          <div key={l}>
+            <div style={{fontWeight:800,fontSize:"1.05rem",lineHeight:1}}>{v}</div>
+            <div style={{fontSize:"0.62rem",color:"rgba(255,255,255,0.6)",textTransform:"uppercase",letterSpacing:"0.08em",marginTop:2}}>{l}</div>
+          </div>
         ))}
       </div>
-
-      {/* Tab: Saved Cars */}
-      {tab === "saved" && (
-        savedDetails.length === 0
-          ? <EmptyState icon={Heart} title="No Saved Cars" desc="Tap the heart icon on any listing to save it here" dark={dark}/>
-          : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {savedDetails.map(car => (
-                <div key={car.id} className={`rounded-2xl border p-4 shadow-sm ${dark ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
-                  <div className="flex items-start justify-between mb-3">
-                    <div>
-                      <p className={`font-bold ${dark ? "text-white" : "text-slate-900"}`}>{car.make} {car.model} {car.regYear}</p>
-                      <p className={`text-xs ${dark ? "text-slate-400" : "text-slate-500"}`}>{car.regNo} · {car.bank}</p>
-                    </div>
-                    <Badge status={car.status}/>
-                  </div>
-                  <p className={`text-xl font-black mb-3 ${dark ? "text-white" : "text-slate-900"}`}
-                     style={{ fontFamily:"'Syne',sans-serif",fontWeight:900 }}>{formatCurrency(car.highestBid)}</p>
-                  <div className="flex gap-2">
-                    <a href={car.pdfLink !== "#" ? car.pdfLink : undefined} target="_blank" rel="noopener noreferrer"
-                       onClick={e => car.pdfLink === "#" && e.preventDefault()}
-                       className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-xl text-xs font-semibold border transition-colors
-                         ${dark ? "bg-slate-700 border-slate-600 text-slate-300 hover:bg-slate-600" : "bg-slate-100 border-slate-200 text-slate-700 hover:bg-slate-200"}`}>
-                      <FileText size={12}/> PDF
-                    </a>
-                    <a href={`https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=Interested in ${car.make} ${car.model} (${car.regNo})`}
-                       target="_blank" rel="noopener noreferrer"
-                       className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-xl text-xs font-semibold bg-green-500 hover:bg-green-600 text-white transition-colors">
-                      <MessageCircle size={12}/> WhatsApp
-                    </a>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )
-      )}
-
-      {(tab === "offers" || tab === "inspections" || tab === "alerts") && (
-        <EmptyState icon={BarChart2} title="Coming Soon" desc="Submit offers from listings to see your activity here" dark={dark}/>
-      )}
     </div>
   );
 }
 
-function EmptyState({ icon: Icon, title, desc, dark }) {
+function BottomNav({ view, setView, savedCount }) {
+  const tabs=[{key:"home",icon:Home,label:"Home"},{key:"saved",icon:Heart,label:"Saved",badge:savedCount},{key:"contact",icon:MessageSquare,label:"Contact"}];
   return (
-    <div className={`text-center py-20 rounded-2xl border ${dark ? "bg-slate-800 border-slate-700" : "bg-white border-slate-200"}`}>
-      <Icon size={44} className={`mx-auto mb-4 ${dark ? "text-slate-700" : "text-slate-200"}`}/>
-      <h3 className={`text-lg font-bold mb-1 ${dark ? "text-white" : "text-slate-900"}`}>{title}</h3>
-      <p className={`text-sm ${dark ? "text-slate-500" : "text-slate-400"}`}>{desc}</p>
+    <div style={{position:"fixed",bottom:0,left:0,right:0,zIndex:100,background:"#fff",borderTop:`1px solid ${BR}`,display:"flex",padding:"6px 0 8px",boxShadow:"0 -4px 20px rgba(30,58,138,0.08)"}}>
+      {tabs.map(t=>{
+        const on=view===t.key;
+        const Icon=t.icon;
+        return (
+          <button key={t.key} onClick={()=>setView(t.key)}
+            style={{flex:1,display:"flex",flexDirection:"column",alignItems:"center",gap:3,border:"none",background:"none",cursor:"pointer",padding:"4px 0",position:"relative"}}>
+            {t.badge>0&&(
+              <span style={{position:"absolute",top:0,right:"calc(50% - 16px)",background:"#ef4444",color:"#fff",fontSize:"0.58rem",fontWeight:700,padding:"1px 4px",borderRadius:8}}>{t.badge}</span>
+            )}
+            <Icon size={20} style={{color:on?N:HI}}/>
+            <span style={{fontSize:"0.65rem",fontWeight:on?700:500,color:on?N:HI}}>{t.label}</span>
+          </button>
+        );
+      })}
     </div>
   );
 }
 
-// ============================================================
-// 🦶  FOOTER
-// ============================================================
-function Footer({ dark }) {
-  return (
-    <footer className={`border-t mt-20 ${dark ? "bg-slate-900 border-slate-800" : "bg-slate-50 border-slate-100"}`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 mb-10">
-          <div>
-            <Logo dark={dark}/>
-            <p className={`text-sm mt-4 leading-relaxed ${dark ? "text-slate-400" : "text-slate-500"}`}>
-              India's trusted marketplace for bank repossessed vehicles. 
-              Verified inventory. Transparent pricing. Direct dealer access.
-            </p>
-          </div>
-          <div>
-            <h4 className={`font-bold text-sm mb-4 ${dark ? "text-white" : "text-slate-900"}`}>Quick Links</h4>
-            <ul className={`space-y-2 text-sm ${dark ? "text-slate-400" : "text-slate-500"}`}>
-              {["Car Inventory","How It Works","Dealer Registration","Bank Partners","About Us"].map(l => (
-                <li key={l} className="hover:text-blue-500 cursor-pointer transition-colors">{l}</li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h4 className={`font-bold text-sm mb-4 ${dark ? "text-white" : "text-slate-900"}`}>Contact</h4>
-            <div className={`space-y-3 text-sm ${dark ? "text-slate-400" : "text-slate-500"}`}>
-              <div className="flex items-center gap-2"><Phone size={14} className="text-blue-500"/><span>+91 93152 71911</span></div>
-              <div className="flex items-center gap-2"><MessageCircle size={14} className="text-green-500"/><span>WhatsApp Support</span></div>
-              <a href={`https://wa.me/${CONFIG.WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer"
-                 className="inline-flex items-center gap-2 mt-3 px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-xl text-xs font-bold transition-colors">
-                <MessageCircle size={13}/> Chat on WhatsApp
-              </a>
-            </div>
-          </div>
-        </div>
-        <div className={`border-t pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs ${dark ? "border-slate-800 text-slate-600" : "border-slate-200 text-slate-400"}`}>
-          <span className="flex items-center gap-1.5 flex-wrap justify-center">
-            © 2025 Suraksha24 — Repo Cars by LOANS24. All rights reserved.
-          </span>
-          <span>Powered by Google Sheets · React · Tailwind CSS</span>
-        </div>
-      </div>
-    </footer>
-  );
-}
-
-// ============================================================
-// 🏠  MAIN APP
-// ============================================================
 function App() {
-  const [dark, setDark]       = useState(false);
-  const [view, setView]       = useState("home");
-  const [cars, setCars]       = useState([]);
-  const [master, setMaster]   = useState({ banks:[], zones:[], states:[], cities:[], makes:[], models:[] });
-  const [loading, setLoading] = useState(true);
-  const [error, setError]     = useState(null);
-  const [search, setSearch]   = useState("");
-  const [sort, setSort]       = useState("newest");
-  const [featured, setFeatured] = useState(false);
-  const [filters, setFilters] = useState({ banks:[], zones:[], states:[], cities:[], makes:[], models:[], fuelTypes:[], statuses:[], budget:"" });
-  const [savedCars, setSaved] = useState([]);
-  const [contactCar, setContactCar] = useState(null);
-  const [dealerCar, setDealerCar]   = useState(null);
-  const [toasts, setToasts]   = useState([]);
+  const [cars,setCars]=useState([]);
+  const [master,setMaster]=useState(SAMPLE_MASTER);
+  const [loading,setLoading]=useState(true);
+  const [searchTerm,setSearchTerm]=useState("");
+  const [statusTab,setStatusTab]=useState("all");
+  const [filters,setFilters]=useState({});
+  const [saved,setSaved]=useState([]);
+  const [view,setView]=useState("home");
+  const [contactCar,setContactCar]=useState(null);
+  const [bidCar,setBidCar]=useState(null);
+  const [toasts,setToasts]=useState([]);
 
-  // Load Google Fonts
-  useEffect(() => {
-    if (!document.getElementById("gfonts-suraksha")) {
-      const link = document.createElement("link");
-      link.id = "gfonts-suraksha";
-      link.href = "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400;1,500;1,600;1,700&family=DM+Sans:wght@300;400;500;600;700&family=Syne:wght@700;800;900&display=swap";
-      link.rel = "stylesheet";
-      document.head.appendChild(link);
+  useEffect(()=>{
+    if(!document.getElementById("s24-fonts")){
+      const l=document.createElement("link");l.id="s24-fonts";l.rel="stylesheet";
+      l.href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400;1,500;1,600;1,700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=DM+Mono:wght@400;500&family=Syne:wght@700;800;900&display=swap";
+      document.head.appendChild(l);
     }
-    document.body.style.fontFamily = "'DM Sans', system-ui, sans-serif";
-  }, []);
+    document.body.style.cssText="margin:0;padding:0;background:#F8FAFF;font-family:'DM Sans',sans-serif;";
+  },[]);
 
-  // Fetch data
-  useEffect(() => {
-    (async () => {
-      setLoading(true); setError(null);
-      if (CONFIG.DEMO_MODE || CONFIG.APPS_SCRIPT_URL === "YOUR_GOOGLE_APPS_SCRIPT_URL_HERE") {
-        await new Promise(r => setTimeout(r, 1100));
-        setCars(SAMPLE_CARS);
-        setMaster(SAMPLE_MASTER);
-      } else {
-        try {
-          const res = await fetch(`${CONFIG.APPS_SCRIPT_URL}?action=getData`);
-          const data = await res.json();
-          if (data.status === "success") {
-            setCars(data.cars || []);
-            setMaster({ banks: data.banks||[], zones: data.zones||[], states: data.states||[], cities: data.cities||[], makes: data.makes||[], models: data.models||[] });
-          } else throw new Error(data.message);
-        } catch (e) {
-          setError(e.message);
-          addToast("Failed to load live data — showing demo inventory", "error");
-          setCars(SAMPLE_CARS); setMaster(SAMPLE_MASTER);
-        }
-      }
-      setLoading(false);
+  useEffect(()=>{
+    if(!CONFIG.TAWKTO_ID||document.getElementById("tawk-script"))return;
+    const s=document.createElement("script");s.id="tawk-script";s.async=true;
+    s.src=`https://embed.tawk.to/${CONFIG.TAWKTO_ID}/default`;s.charset="UTF-8";s.setAttribute("crossorigin","*");
+    document.body.appendChild(s);
+  },[]);
+
+  useEffect(()=>{
+    if(CONFIG.DEMO_MODE||!CONFIG.APPS_SCRIPT_URL||CONFIG.APPS_SCRIPT_URL.includes("YOUR_")){
+      setCars(SAMPLE_CARS);setMaster(SAMPLE_MASTER);setLoading(false);return;
+    }
+    (async()=>{
+      try{
+        const res=await fetch(`${CONFIG.APPS_SCRIPT_URL}?action=getData`);
+        const d=await res.json();
+        if(d.cars?.length)setCars(d.cars);else setCars(SAMPLE_CARS);
+        if(d.master)setMaster({...SAMPLE_MASTER,...d.master});
+      }catch{setCars(SAMPLE_CARS);setMaster(SAMPLE_MASTER);}
+      finally{setLoading(false);}
     })();
-  }, []);
+  },[]);
 
-  const addToast = useCallback((message, type = "info") => {
-    const id = Date.now() + Math.random();
-    setToasts(t => [...t, { id, message, type }]);
-    setTimeout(() => setToasts(t => t.filter(x => x.id !== id)), 4200);
-  }, []);
+  const addToast=useCallback((message,type="info")=>{const id=Date.now();setToasts(t=>[...t,{id,message,type}]);setTimeout(()=>setToasts(t=>t.filter(x=>x.id!==id)),4000);},[]);
+  const removeToast=useCallback((id)=>setToasts(t=>t.filter(x=>x.id!==id)),[]);
+  const toggleSave=useCallback((id)=>setSaved(s=>s.includes(id)?s.filter(x=>x!==id):[...s,id]),[]);
 
-  const removeToast = useCallback((id) => setToasts(t => t.filter(x => x.id !== id)), []);
-  const toggleSave = useCallback((id) => setSaved(s => s.includes(id) ? s.filter(x => x !== id) : [...s, id]), []);
+  const filtered=useMemo(()=>{
+    let out=cars;
+    if(statusTab!=="all")out=out.filter(c=>(c.status||"").toLowerCase()===statusTab);
+    if(searchTerm){const q=searchTerm.toLowerCase();out=out.filter(c=>[c.make,c.model,c.regNo,c.city,c.state,c.bank,c.parkingYard,c.fuelType].some(v=>(v||"").toLowerCase().includes(q)));}
+    Object.entries(filters).forEach(([k,vals])=>{if(vals.length)out=out.filter(c=>vals.includes(c[k]));});
+    return out;
+  },[cars,statusTab,searchTerm,filters]);
 
-  const handleContactSubmit = async (data) => {
-    if (!CONFIG.DEMO_MODE && CONFIG.APPS_SCRIPT_URL !== "YOUR_GOOGLE_APPS_SCRIPT_URL_HERE") {
-      try {
-        await fetch(CONFIG.APPS_SCRIPT_URL, { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({ action:"submitEnquiry", data }) });
-      } catch (_) {}
-    }
-    setCars(prev => prev.map(c => c.id === data.carId ? { ...c, contactCount: (c.contactCount||0) + 1 } : c));
-    addToast("Enquiry submitted successfully!", "success");
-  };
+  const counts=useMemo(()=>({
+    all:cars.length,
+    available:cars.filter(c=>c.status?.toLowerCase()==="available").length,
+    pending:cars.filter(c=>c.status?.toLowerCase()==="pending").length,
+    sold:cars.filter(c=>c.status?.toLowerCase()==="sold").length,
+  }),[cars]);
 
-  const handleDealerSubmit = async (data) => {
-    if (!CONFIG.DEMO_MODE && CONFIG.APPS_SCRIPT_URL !== "YOUR_GOOGLE_APPS_SCRIPT_URL_HERE") {
-      try {
-        await fetch(CONFIG.APPS_SCRIPT_URL, { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({ action:"submitDealerResponse", data }) });
-      } catch (_) {}
-    }
-    setCars(prev => prev.map(c => c.id === data.carId ? { ...c, dealerCount: (c.dealerCount||0) + 1 } : c));
-    addToast("Dealer offer submitted!", "success");
-  };
+  const sorted=useMemo(()=>[...filtered].sort((a,b)=>(b.featured?1:0)-(a.featured?1:0)),[filtered]);
 
-  // Filter & sort
-  const filtered = useMemo(() => {
-    let r = cars;
-    if (search) {
-      const q = search.toLowerCase();
-      r = r.filter(c => [c.make, c.model, c.regNo, c.city, c.bank, c.state].some(v => v?.toLowerCase().includes(q)));
-    }
-    if (filters.banks.length)     r = r.filter(c => filters.banks.includes(c.bank));
-    if (filters.zones.length)     r = r.filter(c => filters.zones.includes(c.zone));
-    if (filters.states.length)    r = r.filter(c => filters.states.includes(c.state));
-    if (filters.cities.length)    r = r.filter(c => filters.cities.includes(c.city));
-    if (filters.makes.length)     r = r.filter(c => filters.makes.includes(c.make));
-    if (filters.models.length)    r = r.filter(c => filters.models.includes(c.model));
-    if (filters.fuelTypes.length) r = r.filter(c => filters.fuelTypes.includes(c.fuelType));
-    if (filters.statuses.length)  r = r.filter(c => filters.statuses.includes(c.status));
-    if (featured)                 r = r.filter(c => c.featured);
-    if (filters.budget) {
-      const [min, max] = filters.budget.split("-").map(Number);
-      r = r.filter(c => c.highestBid >= min && c.highestBid <= max);
-    }
-    const sorted = [...r];
-    if (sort === "price_asc")  sorted.sort((a,b) => a.highestBid - b.highestBid);
-    if (sort === "price_desc") sorted.sort((a,b) => b.highestBid - a.highestBid);
-    if (sort === "year")       sorted.sort((a,b) => b.regYear - a.regYear);
-    if (sort === "popular")    sorted.sort((a,b) => b.contactCount - a.contactCount);
-    return sorted;
-  }, [cars, search, filters, sort, featured]);
+  const handleContact=useCallback(async(formData)=>{
+    try{
+      if(!CONFIG.DEMO_MODE&&!CONFIG.APPS_SCRIPT_URL.includes("YOUR_"))
+        await fetch(CONFIG.APPS_SCRIPT_URL,{method:"POST",mode:"no-cors",body:JSON.stringify({action:"submitEnquiry",...formData})});
+      setCars(prev=>prev.map(c=>c.id===formData.carId?{...c,contactCount:(c.contactCount||0)+1}:c));
+      addToast("Enquiry submitted! Our agent will contact you shortly.","success");
+    }catch{addToast("Submitted! We'll get back to you soon.","success");}
+  },[addToast]);
 
-  const activeFilters = Object.values(filters).filter(v => Array.isArray(v) ? v.length > 0 : !!v).length + (featured ? 1 : 0);
+  const handleBid=useCallback(async(formData)=>{
+    try{
+      if(!CONFIG.DEMO_MODE&&!CONFIG.APPS_SCRIPT_URL.includes("YOUR_"))
+        await fetch(CONFIG.APPS_SCRIPT_URL,{method:"POST",mode:"no-cors",body:JSON.stringify({action:"submitDealerResponse",...formData})});
+      setCars(prev=>prev.map(c=>c.id===formData.carId?{...c,dealerCount:(c.dealerCount||0)+1}:c));
+      addToast(`Bid of ₹${Number(formData.bidPrice).toLocaleString("en-IN")} submitted!`,"success");
+    }catch{addToast("Bid submitted! Our team will review it.","success");}
+  },[addToast]);
 
   return (
-    <div className={`min-h-screen transition-colors duration-300 ${dark ? "bg-slate-950" : "bg-slate-50"}`}>
-      {/* Demo banner */}
-      {CONFIG.DEMO_MODE && (
-        <div className="fixed inset-x-0 top-0 z-50 bg-blue-600 text-white text-center py-2 text-xs font-semibold px-4">
-          🔧 Demo Mode — Replace <code className="bg-white/20 px-1 rounded">APPS_SCRIPT_URL</code> in CONFIG to go live with Google Sheets data
-        </div>
-      )}
-
-      <Header dark={dark} toggleDark={() => setDark(d => !d)} view={view} setView={setView} carsCount={cars.length}/>
-
-      {view === "home" && (
-        <>
-          <Hero dark={dark} searchTerm={search} setSearchTerm={setSearch} carsCount={cars.length}/>
-
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 pb-12" style={{ paddingTop:"1.5rem" }}>
-            <FilterPanel dark={dark} master={master} filters={filters} setFilters={setFilters}/>
-
-            {/* Toolbar */}
-            <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
-              <p className={`text-sm font-medium ${dark ? "text-slate-400" : "text-slate-500"}`}>
-                {loading ? "Loading inventory…" : (
-                  <><span className={`font-bold ${dark ? "text-white" : "text-slate-900"}`}>{filtered.length}</span> cars found{activeFilters > 0 && ` (of ${cars.length})`}</>
-                )}
-              </p>
-              <div className="flex flex-wrap items-center gap-2">
-                <button onClick={() => setFeatured(f => !f)}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold border transition-all
-                    ${featured ? "bg-amber-500 border-amber-500 text-white" : dark ? "bg-slate-800 border-slate-700 text-slate-300" : "bg-white border-slate-200 text-slate-700 hover:border-slate-300"}`}>
-                  <Star size={11} fill={featured ? "white" : "none"}/> Featured
-                </button>
-                <select value={sort} onChange={e => setSort(e.target.value)}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-semibold border outline-none transition-all
-                    ${dark ? "bg-slate-800 border-slate-700 text-slate-300" : "bg-white border-slate-200 text-slate-700"}`}>
-                  <option value="newest">Newest First</option>
-                  <option value="price_asc">Price: Low → High</option>
-                  <option value="price_desc">Price: High → Low</option>
-                  <option value="year">Year: Newest</option>
-                  <option value="popular">Most Enquired</option>
-                </select>
-                <button onClick={() => { setLoading(true); setTimeout(() => { setCars([...SAMPLE_CARS]); setLoading(false); }, 700); }}
-                  title="Refresh"
-                  className={`p-1.5 rounded-xl border transition-colors ${dark ? "bg-slate-800 border-slate-700 text-slate-400 hover:text-white" : "bg-white border-slate-200 text-slate-500 hover:text-slate-900"}`}>
-                  <RefreshCw size={13}/>
-                </button>
-              </div>
+    <div style={{minHeight:"100vh",background:BG,paddingBottom:72}}>
+      <Header searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
+      <div style={{paddingTop:54}}>
+        {view==="home"&&(
+          <>
+            <HeroBanner carsCount={cars.length}/>
+            <StatusTabs active={statusTab} onChange={setStatusTab} counts={counts}/>
+            <FilterChips master={master} filters={filters} setFilters={setFilters}/>
+            <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"10px 14px 6px"}}>
+              <span style={{fontSize:"0.78rem",fontWeight:600,color:MT}}>
+                {loading?"Loading...":`${sorted.length} car${sorted.length!==1?"s":""} found`}
+              </span>
+              {Object.values(filters).flat().length>0&&(
+                <button onClick={()=>setFilters({})} style={{fontSize:"0.72rem",color:N,fontWeight:600,background:"none",border:"none",cursor:"pointer"}}>Clear filters</button>
+              )}
             </div>
+            <div style={{padding:"0 14px",display:"flex",flexDirection:"column",gap:10}}>
+              {loading?Array(4).fill(0).map((_,i)=>(
+                <div key={i} style={{background:"#fff",borderRadius:14,height:130,border:`1px solid ${BR}`,animation:"pulse 1.5s ease-in-out infinite"}}/>
+              )):sorted.length===0?(
+                <div style={{textAlign:"center",padding:"48px 20px"}}>
+                  <Car size={48} style={{color:BR,margin:"0 auto 12px"}}/>
+                  <div style={{color:MT,fontSize:"0.9rem",fontWeight:600}}>No cars found</div>
+                  <div style={{color:HI,fontSize:"0.78rem",marginTop:6}}>Try adjusting your filters</div>
+                </div>
+              ):sorted.map(c=>(
+                <CarCard key={c.id} car={c} onContact={setContactCar} onBid={setBidCar}
+                  saved={saved.includes(c.id)} toggleSave={toggleSave}/>
+              ))}
+            </div>
+          </>
+        )}
+        {view==="saved"&&<SavedCars cars={cars} savedIds={saved} onContact={setContactCar} onBid={setBidCar} toggleSave={toggleSave}/>}
+        {view==="contact"&&<ContactPage/>}
+      </div>
 
-            <CarGrid cars={filtered} dark={dark} loading={loading}
-                     onContact={setContactCar} onDealer={setDealerCar}
-                     savedCars={savedCars} toggleSave={toggleSave}/>
-          </div>
-          <Footer dark={dark}/>
-        </>
-      )}
+      <BottomNav view={view} setView={setView} savedCount={saved.length}/>
 
-      {view === "dashboard" && (
-        <DealerDashboard dark={dark} savedCars={savedCars} cars={cars}/>
-      )}
+      {contactCar&&<ContactModal car={contactCar} onClose={()=>setContactCar(null)} onSubmit={handleContact}/>}
+      {bidCar&&<BidModal car={bidCar} onClose={()=>setBidCar(null)} onSubmit={handleBid}/>}
 
-      {/* Modals */}
-      {contactCar && <ContactModal car={contactCar} dark={dark} onClose={() => setContactCar(null)} onSubmit={handleContactSubmit}/>}
-      {dealerCar  && <DealerModal  car={dealerCar}  dark={dark} onClose={() => setDealerCar(null)}  onSubmit={handleDealerSubmit}/>}
-
-      {/* Toast system */}
       <Toast toasts={toasts} remove={removeToast}/>
 
-      {/* WhatsApp floating button */}
-      <a href={`https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=Hi! I'm interested in a repo car from Suraksha Repo Cars`}
+      <a href={`https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=Hi! I'm interested in a repo car from Suraksha24`}
          target="_blank" rel="noopener noreferrer"
-         className="fixed bottom-6 right-6 z-40 w-14 h-14 bg-green-500 hover:bg-green-600 text-white rounded-full flex items-center justify-center shadow-xl hover:shadow-2xl transition-all hover:scale-110"
-         title="Chat on WhatsApp">
-        <MessageCircle size={24}/>
+         style={{position:"fixed",bottom:76,right:16,zIndex:99,width:46,height:46,background:"#22c55e",borderRadius:"50%",
+                 display:"flex",alignItems:"center",justifyContent:"center",boxShadow:"0 4px 16px rgba(34,197,94,0.4)",textDecoration:"none"}}>
+        <MessageCircle size={21} style={{color:"#fff"}}/>
       </a>
+
+      <style>{`@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.5}}@keyframes spin{to{transform:rotate(360deg)}}*{box-sizing:border-box}::-webkit-scrollbar{height:3px;width:4px}::-webkit-scrollbar-thumb{background:#BFDBFE;border-radius:4px}input::placeholder,textarea::placeholder{color:#94a3b8}`}</style>
     </div>
   );
 }
