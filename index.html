@@ -1053,7 +1053,38 @@ function App() {
     }catch{addToast("Bid submitted! Our team will review it.","success");}
   },[addToast]);
 
-  return (
+  // Bundle grouping for Bulk Deals tab
+  const renderCards = () => {
+    if (statusTab === "bulk deals") {
+      const bundled = {};
+      const standalone = [];
+      sorted.forEach(c => {
+        if (c.dealId) {
+          if (!bundled[c.dealId]) bundled[c.dealId] = [];
+          bundled[c.dealId].push(c);
+        } else {
+          standalone.push(c);
+        }
+      });
+      return [
+        ...Object.entries(bundled).map(([did, bCars]) => (
+          <BundleCard key={did} dealId={did} cars={bCars}
+            onBid={(c, d, bc) => setBidCar({...c, _bundleDealId:d, _bundleCars:bc})}
+            onContact={(c, d, bc) => setContactCar({...c, _bundleDealId:d, _bundleCars:bc})}/>
+        )),
+        ...standalone.map(c => (
+          <CarCard key={c.id} car={c} onContact={setContactCar} onBid={setBidCar}
+            saved={saved.includes(c.id)} toggleSave={toggleSave} tl={tl}/>
+        )),
+      ];
+    }
+    return sorted.map(c => (
+      <CarCard key={c.id} car={c} onContact={setContactCar} onBid={setBidCar}
+        saved={saved.includes(c.id)} toggleSave={toggleSave} tl={tl}/>
+    ));
+  };
+
+    return (
     <div style={{minHeight:"100vh",background:BG,paddingBottom:72}}>
       <Header searchTerm={searchTerm} setSearchTerm={setSearchTerm} lang={lang} setLang={setLang} tl={tl}/>
       <div style={{paddingTop:54}}>
@@ -1091,8 +1122,8 @@ function App() {
                   return [
                     ...Object.entries(bundled).map(([did,cars])=>(
                       <BundleCard key={did} dealId={did} cars={cars}
-                        onBid={(car,did,cars)=>{setBidCar({...car,_bundleDealId:did,_bundleCars:cars});}}
-                        onContact={(car,did,cars)=>{setContactCar({...car,_bundleDealId:did,_bundleCars:cars});}}/>
+                        onBid={(car,did,bCars)=>{setBidCar({...car,_bundleDealId:did,_bundleCars:bCars});}}
+                        onContact={(car,did,bCars)=>{setContactCar({...car,_bundleDealId:did,_bundleCars:bCars});}}/>
                     )),
                     ...standalone.map(c=>(
                       <CarCard key={c.id} car={c} onContact={setContactCar} onBid={setBidCar}
