@@ -1110,32 +1110,8 @@ function App() {
                   <div style={{color:MT,fontSize:"0.9rem",fontWeight:600}}>{tl("noCarFound")}</div>
                   <div style={{color:HI,fontSize:"0.78rem",marginTop:6}}>{tl("adjustFilters")}</div>
                 </div>
-              ):(()=>{
-                // Group Bulk Deals by dealId, render rest normally
-                if(statusTab==="bulk deals"){
-                  const bundled = {};
-                  const standalone = [];
-                  sorted.forEach(c=>{
-                    if(c.dealId){ if(!bundled[c.dealId]) bundled[c.dealId]=[]; bundled[c.dealId].push(c); }
-                    else standalone.push(c);
-                  });
-                  return [
-                    ...Object.entries(bundled).map(([did,cars])=>(
-                      <BundleCard key={did} dealId={did} cars={cars}
-                        onBid={(car,did,bCars)=>{setBidCar({...car,_bundleDealId:did,_bundleCars:bCars});}}
-                        onContact={(car,did,bCars)=>{setContactCar({...car,_bundleDealId:did,_bundleCars:bCars});}}/>
-                    )),
-                    ...standalone.map(c=>(
-                      <CarCard key={c.id} car={c} onContact={setContactCar} onBid={setBidCar}
-                        saved={saved.includes(c.id)} toggleSave={toggleSave} tl={tl}/>
-                    ))
-                  ];
-                }
-                return sorted.map(c=>(
-                  <CarCard key={c.id} car={c} onContact={setContactCar} onBid={setBidCar}
-                    saved={saved.includes(c.id)} toggleSave={toggleSave} tl={tl}/>
-                ));
-              })())}
+              ):renderCards()}
+
             </div>
           </>
         )}
