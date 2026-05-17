@@ -433,6 +433,14 @@ function Logo({ size="md" }) {
 }
 
 function Header({ lang, setLang, tl, user, onSignOut }) {
+  const [showMenu, setShowMenu] = useState(false);
+  const menuRef = useRef();
+  useEffect(()=>{
+    const fn = e => { if(menuRef.current && !menuRef.current.contains(e.target)) setShowMenu(false); };
+    document.addEventListener("mousedown", fn);
+    return () => document.removeEventListener("mousedown", fn);
+  },[]);
+
   return (
     <div style={{position:"fixed",top:0,left:0,right:0,zIndex:100,background:N,boxShadow:"0 2px 12px rgba(30,58,138,0.3)"}}>
       <div style={{display:"flex",alignItems:"center",gap:8,padding:"8px 14px"}}>
@@ -440,23 +448,60 @@ function Header({ lang, setLang, tl, user, onSignOut }) {
         <div style={{flex:1}}/>
         <LangSwitcher lang={lang} setLang={setLang}/>
         {user && (
-          <div style={{display:"flex",alignItems:"center",gap:8}}>
-            {user.photoURL ? (
-              <img src={user.photoURL} alt={user.displayName}
-                style={{width:30,height:30,borderRadius:"50%",border:"2px solid rgba(212,175,55,0.5)",objectFit:"cover"}}/>
-            ) : (
-              <div style={{width:30,height:30,borderRadius:"50%",background:"rgba(212,175,55,0.2)",
-                            border:"2px solid rgba(212,175,55,0.5)",display:"flex",alignItems:"center",
-                            justifyContent:"center",fontFamily:"'Syne',sans-serif",fontWeight:800,
-                            fontSize:"0.8rem",color:"#D4AF37"}}>
-                {(user.displayName||user.email||"D").charAt(0).toUpperCase()}
+          <div ref={menuRef} style={{position:"relative"}}>
+            <button onClick={()=>setShowMenu(o=>!o)}
+              style={{display:"flex",alignItems:"center",gap:7,background:"rgba(255,255,255,0.1)",
+                      border:"1px solid rgba(212,175,55,0.3)",borderRadius:30,
+                      padding:"4px 10px 4px 4px",cursor:"pointer"}}>
+              {user.photoURL ? (
+                <img src={user.photoURL} alt={user.displayName}
+                  style={{width:26,height:26,borderRadius:"50%",objectFit:"cover",border:"1.5px solid #D4AF37"}}/>
+              ) : (
+                <div style={{width:26,height:26,borderRadius:"50%",background:"rgba(212,175,55,0.2)",
+                              border:"1.5px solid #D4AF37",display:"flex",alignItems:"center",
+                              justifyContent:"center",fontFamily:"'Syne',sans-serif",
+                              fontWeight:800,fontSize:"0.75rem",color:"#D4AF37"}}>
+                  {(user.displayName||user.email||"D").charAt(0).toUpperCase()}
+                </div>
+              )}
+              <span style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.75rem",fontWeight:600,
+                            color:"rgba(255,255,255,0.9)",maxWidth:72,overflow:"hidden",
+                            textOverflow:"ellipsis",whiteSpace:"nowrap"}}>
+                {(user.displayName||user.email||"").split(" ")[0]}
+              </span>
+              <ChevronDown size={12} style={{color:"rgba(255,255,255,0.6)",
+                transform:showMenu?"rotate(180deg)":"none",transition:"transform 0.15s"}}/>
+            </button>
+
+            {showMenu && (
+              <div style={{position:"absolute",top:"calc(100% + 8px)",right:0,
+                           background:"#fff",borderRadius:14,
+                           boxShadow:"0 8px 32px rgba(0,0,0,0.2)",
+                           border:"1px solid #E2E8F0",minWidth:200,zIndex:200,overflow:"hidden"}}>
+                {/* User info */}
+                <div style={{padding:"14px 16px",borderBottom:"1px solid #F1F5F9"}}>
+                  <div style={{fontFamily:"'Syne',sans-serif",fontWeight:700,fontSize:"0.88rem",
+                               color:"#0A1628"}}>{user.displayName}</div>
+                  <div style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.72rem",
+                               color:"#64748b",marginTop:3}}>{user.email}</div>
+                </div>
+                {/* Sign Out */}
+                <button onClick={()=>{setShowMenu(false);onSignOut();}}
+                  style={{width:"100%",display:"flex",alignItems:"center",gap:10,
+                          padding:"12px 16px",border:"none",cursor:"pointer",
+                          background:"#fff",fontFamily:"'DM Sans',sans-serif",
+                          fontSize:"0.82rem",fontWeight:600,color:"#dc2626",textAlign:"left"}}
+                  onMouseEnter={e=>e.currentTarget.style.background="#fff5f5"}
+                  onMouseLeave={e=>e.currentTarget.style.background="#fff"}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#dc2626" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                    <polyline points="16 17 21 12 16 7"/>
+                    <line x1="21" y1="12" x2="9" y2="12"/>
+                  </svg>
+                  Sign Out
+                </button>
               </div>
             )}
-            <span style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.75rem",fontWeight:600,
-                          color:"rgba(255,255,255,0.85)",maxWidth:80,overflow:"hidden",
-                          textOverflow:"ellipsis",whiteSpace:"nowrap"}}>
-              {(user.displayName||user.email||"").split(" ")[0]}
-            </span>
           </div>
         )}
       </div>
@@ -954,7 +999,7 @@ function SavedCars({ cars, savedIds, onContact, onBid, toggleSave, tl }) {
   );
 }
 
-function ContactPage({ tl, user, onSignOut }) {
+function ContactPage({ tl }) {
   return (
     <div style={{padding:"16px 14px",paddingBottom:24}}>
       <div style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:"1rem",color:TX,marginBottom:16}}>{tl("contactUs")}</div>
@@ -1043,6 +1088,314 @@ function ContactPage({ tl, user, onSignOut }) {
   );
 }
 
+
+
+// ============================================================
+// 📋  PROFILE COMPLETION FORM (shown once after first sign-in)
+// ============================================================
+function ProfileForm({ user, onComplete }) {
+  const [form, setForm] = useState({
+    dealershipName:"", mobile:"", address:"",
+    interestType:"PAN INDIA", interestDetail:"", message:""
+  });
+  const [kycFile, setKycFile]     = useState(null);
+  const [loading, setLoading]     = useState(false);
+  const [errors, setErrors]       = useState({});
+  const [step, setStep]           = useState(1); // 1=details, 2=kyc
+
+  const set = (k,v) => setForm(p=>({...p,[k]:v}));
+
+  const handleFile = (e) => {
+    const file = e.target.files[0];
+    if(!file) return;
+    if(file.size > 10*1024*1024){ setErrors(p=>({...p,kyc:"Max 10MB allowed"})); return; }
+    setKycFile(file);
+    setErrors(p=>({...p,kyc:""}));
+  };
+
+  const validateStep1 = () => {
+    const e={};
+    if(!form.dealershipName.trim()) e.dealershipName="Required";
+    if(!/^\d{10}$/.test(form.mobile)) e.mobile="Valid 10-digit number";
+    if(!form.address.trim()) e.address="Required";
+    if(form.interestType!=="PAN INDIA"&&!form.interestDetail.trim()) e.interestDetail="Please specify";
+    setErrors(e); return Object.keys(e).length===0;
+  };
+
+  const submit = async () => {
+    if(!kycFile){ setErrors({kyc:"Please upload your KYC document"}); return; }
+    setLoading(true);
+    try {
+      // Convert KYC to base64
+      const base64 = await new Promise((res,rej)=>{
+        const r=new FileReader();
+        r.onload=e=>res(e.target.result.split(",")[1]);
+        r.onerror=rej;
+        r.readAsDataURL(kycFile);
+      });
+      const interest = form.interestType==="PAN INDIA"
+        ? "PAN INDIA"
+        : `${form.interestType}: ${form.interestDetail}`;
+      await fetch(CONFIG.APPS_SCRIPT_URL,{
+        method:"POST", mode:"no-cors",
+        body:JSON.stringify({
+          action:"saveProfile", uid:user.uid,
+          dealershipName:form.dealershipName, mobile:form.mobile,
+          address:form.address, interest, message:form.message,
+          kycBase64:base64, kycFileName:kycFile.name, kycMimeType:kycFile.type,
+        })
+      });
+      localStorage.setItem(`s24_profile_${user.uid}`,"complete");
+      onComplete();
+    } catch(e){ console.error("Profile error:",e); }
+    finally { setLoading(false); }
+  };
+
+  const inp = (label,key,placeholder,type="text",err) => (
+    <div style={{marginBottom:14}}>
+      <label style={{display:"block",fontSize:"0.75rem",fontWeight:600,color:"#0A1628",
+                     fontFamily:"'DM Sans',sans-serif",marginBottom:5}}>{label}</label>
+      <input type={type} placeholder={placeholder} value={form[key]}
+        onChange={e=>set(key,e.target.value)}
+        style={{width:"100%",padding:"11px 14px",borderRadius:10,outline:"none",
+                fontFamily:"'DM Sans',sans-serif",fontSize:"0.85rem",color:"#0A1628",
+                border:`1.5px solid ${err?"#fca5a5":"#E2E8F0"}`,
+                background:err?"#fff5f5":"#fff",boxSizing:"border-box"}}/>
+      {err&&<div style={{fontSize:"0.7rem",color:"#dc2626",marginTop:4}}>{err}</div>}
+    </div>
+  );
+
+  return (
+    <div style={{minHeight:"100vh",background:"linear-gradient(160deg,#060B27,#0A2463)",
+                 display:"flex",alignItems:"center",justifyContent:"center",padding:"16px",
+                 position:"relative",overflow:"hidden"}}>
+      <div style={{position:"absolute",top:0,left:0,right:0,height:3,
+                   background:"linear-gradient(90deg,transparent,#D4AF37,#F5C842,#D4AF37,transparent)"}}/>
+
+      <div style={{width:"100%",maxWidth:480}}>
+        {/* Header */}
+        <div style={{textAlign:"center",marginBottom:20}}>
+          <img src={window.__LOGO_SRC__} alt="Suraksha24"
+            style={{height:44,width:"auto",display:"block",margin:"0 auto 14px"}}/>
+          <div style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:"1.1rem",
+                       color:"#fff"}}>Complete Your Profile</div>
+          <div style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.78rem",
+                       color:"rgba(255,255,255,0.5)",marginTop:4}}>
+            One-time setup · Takes 2 minutes
+          </div>
+        </div>
+
+        {/* Step indicators */}
+        <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:20,justifyContent:"center"}}>
+          {[1,2].map(s=>(
+            <div key={s} style={{display:"flex",alignItems:"center",gap:8}}>
+              <div style={{width:28,height:28,borderRadius:"50%",display:"flex",alignItems:"center",
+                           justifyContent:"center",fontFamily:"'Syne',sans-serif",fontWeight:800,
+                           fontSize:"0.8rem",
+                           background:step>=s?"#D4AF37":"rgba(255,255,255,0.1)",
+                           color:step>=s?"#0A1628":"rgba(255,255,255,0.4)"}}>
+                {s}
+              </div>
+              {s<2&&<div style={{width:40,height:2,background:step>s?"#D4AF37":"rgba(255,255,255,0.15)"}}/>}
+            </div>
+          ))}
+        </div>
+
+        {/* Form card */}
+        <div style={{background:"#fff",borderRadius:20,padding:"24px 20px",
+                     boxShadow:"0 24px 64px rgba(0,0,0,0.4)"}}>
+
+          {step===1 && (
+            <>
+              <div style={{fontFamily:"'Syne',sans-serif",fontWeight:700,fontSize:"0.9rem",
+                           color:"#0A1628",marginBottom:16}}>Dealership Details</div>
+              {inp("Dealership / Company Name *","dealershipName","e.g. Sharma Auto Pvt Ltd","text",errors.dealershipName)}
+              {inp("Mobile Number *","mobile","10-digit mobile number","tel",errors.mobile)}
+              <div style={{marginBottom:14}}>
+                <label style={{display:"block",fontSize:"0.75rem",fontWeight:600,color:"#0A1628",
+                               fontFamily:"'DM Sans',sans-serif",marginBottom:5}}>Address *</label>
+                <textarea placeholder="Full dealership address" value={form.address}
+                  onChange={e=>set("address",e.target.value)} rows={2}
+                  style={{width:"100%",padding:"11px 14px",borderRadius:10,outline:"none",resize:"vertical",
+                          fontFamily:"'DM Sans',sans-serif",fontSize:"0.85rem",color:"#0A1628",
+                          border:`1.5px solid ${errors.address?"#fca5a5":"#E2E8F0"}`,
+                          background:errors.address?"#fff5f5":"#fff",boxSizing:"border-box"}}/>
+                {errors.address&&<div style={{fontSize:"0.7rem",color:"#dc2626",marginTop:4}}>{errors.address}</div>}
+              </div>
+
+              {/* Interest */}
+              <div style={{marginBottom:14}}>
+                <label style={{display:"block",fontSize:"0.75rem",fontWeight:600,color:"#0A1628",
+                               fontFamily:"'DM Sans',sans-serif",marginBottom:8}}>
+                  Interested in dealing — Your Interest *
+                </label>
+                <div style={{display:"flex",flexDirection:"column",gap:8}}>
+                  {["PAN INDIA","Specific State","Specific City"].map(opt=>(
+                    <label key={opt} style={{display:"flex",alignItems:"center",gap:10,cursor:"pointer",
+                                             padding:"10px 12px",borderRadius:9,
+                                             border:`1.5px solid ${form.interestType===opt?"#1E3A8A":"#E2E8F0"}`,
+                                             background:form.interestType===opt?"#EEF2FF":"#f8fafc"}}>
+                      <input type="radio" name="interestType" value={opt}
+                        checked={form.interestType===opt} onChange={()=>set("interestType",opt)}
+                        style={{accentColor:"#1E3A8A"}}/>
+                      <span style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.82rem",
+                                    color:"#0A1628",fontWeight:form.interestType===opt?600:400}}>
+                        {opt==="PAN INDIA"?"🇮🇳 PAN INDIA — Any car, anywhere":
+                         opt==="Specific State"?"📍 Specific State":
+                         "🏙️ Specific City"}
+                      </span>
+                    </label>
+                  ))}
+                </div>
+                {form.interestType!=="PAN INDIA"&&(
+                  <input type="text"
+                    placeholder={form.interestType==="Specific State"?"e.g. Maharashtra, Delhi...":"e.g. Mumbai, Pune..."}
+                    value={form.interestDetail} onChange={e=>set("interestDetail",e.target.value)}
+                    style={{width:"100%",marginTop:8,padding:"10px 14px",borderRadius:9,outline:"none",
+                            fontFamily:"'DM Sans',sans-serif",fontSize:"0.82rem",color:"#0A1628",
+                            border:`1.5px solid ${errors.interestDetail?"#fca5a5":"#BFDBFE"}`,
+                            background:"#EEF2FF",boxSizing:"border-box"}}/>
+                )}
+                {errors.interestDetail&&<div style={{fontSize:"0.7rem",color:"#dc2626",marginTop:4}}>{errors.interestDetail}</div>}
+              </div>
+
+              {/* Message */}
+              <div style={{marginBottom:20}}>
+                <label style={{display:"block",fontSize:"0.75rem",fontWeight:600,color:"#0A1628",
+                               fontFamily:"'DM Sans',sans-serif",marginBottom:5}}>
+                  Anything you'd like to tell us? (optional)
+                </label>
+                <textarea placeholder="Years of experience, preferred brands, payment terms..."
+                  value={form.message} onChange={e=>set("message",e.target.value)} rows={2}
+                  style={{width:"100%",padding:"11px 14px",borderRadius:10,outline:"none",resize:"vertical",
+                          fontFamily:"'DM Sans',sans-serif",fontSize:"0.82rem",color:"#0A1628",
+                          border:"1px solid #E2E8F0",background:"#fff",boxSizing:"border-box"}}/>
+              </div>
+
+              <button onClick={()=>{ if(validateStep1()) setStep(2); }}
+                style={{width:"100%",padding:"13px",borderRadius:12,border:"none",cursor:"pointer",
+                        background:"linear-gradient(135deg,#1E3A8A,#2563EB)",color:"#fff",
+                        fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:"0.9rem",
+                        letterSpacing:"0.01em"}}>
+                Next — Upload KYC →
+              </button>
+            </>
+          )}
+
+          {step===2 && (
+            <>
+              <button onClick={()=>setStep(1)}
+                style={{display:"flex",alignItems:"center",gap:6,background:"none",border:"none",
+                        cursor:"pointer",color:"#64748b",fontFamily:"'DM Sans',sans-serif",
+                        fontSize:"0.78rem",marginBottom:14,padding:0}}>
+                ← Back
+              </button>
+              <div style={{fontFamily:"'Syne',sans-serif",fontWeight:700,fontSize:"0.9rem",
+                           color:"#0A1628",marginBottom:6}}>Upload KYC Document</div>
+              <div style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.75rem",color:"#64748b",
+                           marginBottom:16}}>
+                Aadhaar / PAN / GST Certificate / Dealer License — mandatory to proceed
+              </div>
+
+              {/* File upload area */}
+              {!kycFile ? (
+                <>
+                  <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10,marginBottom:10}}>
+                    {/* Camera */}
+                    <label style={{cursor:"pointer"}}>
+                      <div style={{border:"2px dashed #BFDBFE",borderRadius:14,padding:"20px 12px",
+                                   textAlign:"center",background:"#EEF2FF",transition:"all 0.2s"}}
+                        onMouseEnter={e=>e.currentTarget.style.borderColor="#1E3A8A"}
+                        onMouseLeave={e=>e.currentTarget.style.borderColor="#BFDBFE"}>
+                        <div style={{fontSize:"1.8rem",marginBottom:6}}>📷</div>
+                        <div style={{fontFamily:"'DM Sans',sans-serif",fontWeight:700,
+                                     fontSize:"0.78rem",color:"#1E3A8A"}}>Take Photo</div>
+                        <div style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.65rem",
+                                     color:"#64748b",marginTop:3}}>Use camera</div>
+                      </div>
+                      <input type="file" accept="image/*" capture="environment"
+                        onChange={handleFile} style={{display:"none"}}/>
+                    </label>
+                    {/* Gallery / Files */}
+                    <label style={{cursor:"pointer"}}>
+                      <div style={{border:"2px dashed #BFDBFE",borderRadius:14,padding:"20px 12px",
+                                   textAlign:"center",background:"#EEF2FF",transition:"all 0.2s"}}
+                        onMouseEnter={e=>e.currentTarget.style.borderColor="#1E3A8A"}
+                        onMouseLeave={e=>e.currentTarget.style.borderColor="#BFDBFE"}>
+                        <div style={{fontSize:"1.8rem",marginBottom:6}}>🖼️</div>
+                        <div style={{fontFamily:"'DM Sans',sans-serif",fontWeight:700,
+                                     fontSize:"0.78rem",color:"#1E3A8A"}}>Upload File</div>
+                        <div style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.65rem",
+                                     color:"#64748b",marginTop:3}}>Gallery or PDF</div>
+                      </div>
+                      <input type="file" accept="image/*,.pdf,application/pdf"
+                        onChange={handleFile} style={{display:"none"}}/>
+                    </label>
+                  </div>
+                  {errors.kyc&&<div style={{fontSize:"0.7rem",color:"#dc2626",marginBottom:8,
+                                            fontFamily:"'DM Sans',sans-serif",textAlign:"center"}}>
+                    ⚠️ {errors.kyc}
+                  </div>}
+                </>
+              ) : (
+                <div style={{border:"2px solid #1E3A8A",borderRadius:14,padding:"16px",
+                             background:"#EEF2FF",marginBottom:10}}>
+                  <div style={{display:"flex",alignItems:"center",gap:12}}>
+                    <div style={{fontSize:"2rem"}}>✅</div>
+                    <div style={{flex:1,minWidth:0}}>
+                      <div style={{fontFamily:"'DM Sans',sans-serif",fontWeight:700,
+                                   fontSize:"0.82rem",color:"#1E3A8A",
+                                   overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>
+                        {kycFile.name}
+                      </div>
+                      <div style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.7rem",
+                                   color:"#64748b",marginTop:2}}>
+                        {(kycFile.size/1024/1024).toFixed(2)} MB
+                      </div>
+                    </div>
+                    <label style={{cursor:"pointer",flexShrink:0}}>
+                      <span style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.72rem",
+                                    fontWeight:600,color:"#dc2626",textDecoration:"underline"}}>
+                        Change
+                      </span>
+                      <input type="file" accept="image/*,.pdf,application/pdf"
+                        onChange={handleFile} style={{display:"none"}}/>
+                    </label>
+                  </div>
+                </div>
+              )}
+
+              <div style={{marginTop:10,padding:"10px 12px",background:"#FFF7ED",borderRadius:8,
+                           border:"1px solid #FDE68A",fontFamily:"'DM Sans',sans-serif",
+                           fontSize:"0.72rem",color:"#92400e",lineHeight:1.6}}>
+                🔒 Your KYC is stored securely and only accessible to Suraksha24 admin team.
+              </div>
+
+              <button onClick={submit} disabled={loading}
+                style={{width:"100%",marginTop:20,padding:"13px",borderRadius:12,border:"none",
+                        cursor:loading?"not-allowed":"pointer",opacity:loading?0.7:1,
+                        background:"linear-gradient(135deg,#1E3A8A,#2563EB)",color:"#fff",
+                        fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:"0.9rem",
+                        display:"flex",alignItems:"center",justifyContent:"center",gap:10}}>
+                {loading?(
+                  <><div style={{width:18,height:18,border:"2px solid rgba(255,255,255,0.3)",
+                                  borderTopColor:"#fff",borderRadius:"50%",
+                                  animation:"spin 0.7s linear infinite"}}/>
+                  Uploading KYC & Saving...</>
+                ):"Complete Registration 🚀"}
+              </button>
+
+              <div style={{textAlign:"center",marginTop:12,fontFamily:"'DM Sans',sans-serif",
+                           fontSize:"0.7rem",color:"#94a3b8",lineHeight:1.6}}>
+                KYC is mandatory for compliance.<br/>You cannot access inventory without it.
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 // ============================================================
 // 🔐  AUTH SCREEN
@@ -1244,6 +1597,7 @@ function App() {
   const [user,setUser]=useState(null);
   const [authLoading,setAuthLoading]=useState(true);
   const [signInLoading,setSignInLoading]=useState(false);
+  const [profileDone,setProfileDone]=useState(false);
   const [master,setMaster]=useState(SAMPLE_MASTER);
   const [loading,setLoading]=useState(true);
   const [searchTerm,setSearchTerm]=useState("");
@@ -1413,6 +1767,7 @@ function App() {
   );
 
   if(!user) return <AuthScreen onSignIn={handleGoogleSignIn} loading={signInLoading}/>;
+  if(!profileDone) return <ProfileForm user={user} onComplete={()=>setProfileDone(true)}/>;
 
   return (
     <div style={{minHeight:"100vh",background:BG,paddingBottom:72}}>
@@ -1446,13 +1801,13 @@ function App() {
           </>
         )}
         {view==="saved"&&<SavedCars cars={cars} savedIds={saved} onContact={setContactCar} onBid={setBidCar} toggleSave={toggleSave} tl={tl}/>}
-        {view==="contact"&&<ContactPage tl={tl} user={user} onSignOut={handleSignOut}/>}
+        {view==="contact"&&<ContactPage tl={tl}/>}
       </div>
 
       <BottomNav view={view} setView={setView} savedCount={saved.length} tl={tl}/>
 
       {contactCar&&<ContactModal car={contactCar} onClose={()=>setContactCar(null)} onSubmit={handleContact} tl={tl}/>}
-      {bidCar&&<BidModal car={{...bidCar,_prefillName:dealerDisplayName}} bundle={bidBundle} onClose={()=>{setBidCar(null);setBidBundle(null);}} onSubmit={handleBid} tl={tl}/>}
+      {bidCar&&<BidModal car={{...bidCar,_prefillName:user?.displayName||""}} bundle={bidBundle} onClose={()=>{setBidCar(null);setBidBundle(null);}} onSubmit={handleBid} tl={tl}/>}
 
       <Toast toasts={toasts} remove={removeToast}/>
 
