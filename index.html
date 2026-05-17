@@ -1034,25 +1034,27 @@ function HeroBanner({ tl, searchTerm, setSearchTerm }) {
         </div>
       </div>
 
-      {/* Search bar — premium style */}
-      <div style={{
-        background:"rgba(255,255,255,0.97)",
-        borderRadius:14,display:"flex",alignItems:"center",
-        gap:8,padding:"11px 14px",
-        boxShadow:"0 4px 24px rgba(0,0,0,0.35),0 0 0 1px rgba(212,175,55,0.3)"
-      }}>
-        <Search size={16} style={{color:"#0D1B4B",flexShrink:0}}/>
-        <input type="text" placeholder={tl("search")}
-          value={searchTerm} onChange={e=>setSearchTerm(e.target.value)}
-          style={{flex:1,border:"none",outline:"none",fontSize:"0.88rem",
-                  background:"transparent",color:"#0A1628",
-                  fontFamily:"'DM Sans',sans-serif",fontWeight:500}}/>
-        {searchTerm&&(
-          <button onClick={()=>setSearchTerm("")}
-            style={{background:"none",border:"none",cursor:"pointer",padding:0,display:"flex"}}>
-            <X size={14} style={{color:"#94a3b8"}}/>
-          </button>
-        )}
+      {/* Search bar — half width, premium style */}
+      <div style={{maxWidth:480}}>
+        <div style={{
+          background:"rgba(255,255,255,0.97)",
+          borderRadius:14,display:"flex",alignItems:"center",
+          gap:8,padding:"11px 14px",
+          boxShadow:"0 4px 24px rgba(0,0,0,0.35),0 0 0 1px rgba(212,175,55,0.3)"
+        }}>
+          <Search size={16} style={{color:"#0D1B4B",flexShrink:0}}/>
+          <input type="text" placeholder={tl("search")}
+            value={searchTerm} onChange={e=>setSearchTerm(e.target.value)}
+            style={{flex:1,border:"none",outline:"none",fontSize:"0.88rem",
+                    background:"transparent",color:"#0A1628",
+                    fontFamily:"'DM Sans',sans-serif",fontWeight:500}}/>
+          {searchTerm&&(
+            <button onClick={()=>setSearchTerm("")}
+              style={{background:"none",border:"none",cursor:"pointer",padding:0,display:"flex"}}>
+              <X size={14} style={{color:"#94a3b8"}}/>
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );
