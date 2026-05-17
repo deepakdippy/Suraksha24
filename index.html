@@ -118,8 +118,8 @@ const LANGS = [
 const TRANSLATIONS = {
   en: {
     tagline:"Powered by CARS24",
-    hero1:"Bank Repossessed Cars",
-    hero2:"at the Best Prices",
+    hero1:"Premium Repo Inventory",
+    hero2:"Trusted by Dealers",
     carsListed:"Cars Listed", partnerBanks:"Partner Banks", cities:"Cities",
     all:"All", available:"Available", pending:"Pending", sold:"Sold",
     bank:"Bank", make:"Make", state:"State", parkingYard:"Parking Yard", fuel:"Fuel",
@@ -149,8 +149,8 @@ const TRANSLATIONS = {
   },
   hi: {
     tagline:"Powered by CARS24",
-    hero1:"बैंक रिपोज़ेस्ड गाड़ियां",
-    hero2:"सर्वोत्तम कीमतों पर",
+    hero1:"Premium Repo Inventory",
+    hero2:"Trusted by Dealers",
     carsListed:"गाड़ियां सूचीबद्ध", partnerBanks:"पार्टनर बैंक", cities:"शहर",
     all:"सभी", available:"उपलब्ध", pending:"लंबित", sold:"बिका",
     bank:"बैंक", make:"निर्माता", state:"राज्य", parkingYard:"पार्किंग यार्ड", fuel:"ईंधन",
@@ -180,8 +180,8 @@ const TRANSLATIONS = {
   },
   mr: {
     tagline:"Powered by CARS24",
-    hero1:"बँक जप्त केलेल्या गाड्या",
-    hero2:"सर्वोत्तम किमतींवर",
+    hero1:"Premium Repo Inventory",
+    hero2:"Trusted by Dealers",
     carsListed:"गाड्या सूचीबद्ध", partnerBanks:"भागीदार बँका", cities:"शहरे",
     all:"सर्व", available:"उपलब्ध", pending:"प्रलंबित", sold:"विकले",
     bank:"बँक", make:"निर्माता", state:"राज्य", parkingYard:"पार्किंग यार्ड", fuel:"इंधन",
@@ -211,8 +211,8 @@ const TRANSLATIONS = {
   },
   kn: {
     tagline:"Powered by CARS24",
-    hero1:"ಬ್ಯಾಂಕ್ ವಶಪಡಿಸಿದ ವಾಹನಗಳು",
-    hero2:"ಅತ್ಯುತ್ತಮ ಬೆಲೆಯಲ್ಲಿ",
+    hero1:"Premium Repo Inventory",
+    hero2:"Trusted by Dealers",
     carsListed:"ವಾಹನಗಳ ಪಟ್ಟಿ", partnerBanks:"ಪಾಲು ಬ್ಯಾಂಕ್‌ಗಳು", cities:"ನಗರಗಳು",
     all:"ಎಲ್ಲಾ", available:"ಲಭ್ಯ", pending:"ಬಾಕಿ", sold:"ಮಾರಾಟ",
     bank:"ಬ್ಯಾಂಕ್", make:"ತಯಾರಕ", state:"ರಾಜ್ಯ", parkingYard:"ಪಾರ್ಕಿಂಗ್ ಯಾರ್ಡ್", fuel:"ಇಂಧನ",
@@ -242,8 +242,8 @@ const TRANSLATIONS = {
   },
   ta: {
     tagline:"Powered by CARS24",
-    hero1:"வங்கி திரும்பப் பெற்ற வாகனங்கள்",
-    hero2:"சிறந்த விலைகளில்",
+    hero1:"Premium Repo Inventory",
+    hero2:"Trusted by Dealers",
     carsListed:"வாகனங்கள் பட்டியல்", partnerBanks:"கூட்டு வங்கிகள்", cities:"நகரங்கள்",
     all:"அனைத்தும்", available:"கிடைக்கும்", pending:"நிலுவையில்", sold:"விற்கப்பட்டது",
     bank:"வங்கி", make:"தயாரிப்பாளர்", state:"மாநிலம்", parkingYard:"நிறுத்துமிடம்", fuel:"எரிபொருள்",
@@ -273,8 +273,8 @@ const TRANSLATIONS = {
   },
   te: {
     tagline:"Powered by CARS24",
-    hero1:"బ్యాంక్ స్వాధీనం చేసుకున్న వాహనాలు",
-    hero2:"అత్యుత్తమ ధరలకు",
+    hero1:"Premium Repo Inventory",
+    hero2:"Trusted by Dealers",
     carsListed:"వాహనాల జాబితా", partnerBanks:"భాగస్వామ్య బ్యాంకులు", cities:"నగరాలు",
     all:"అన్నీ", available:"అందుబాటులో", pending:"పెండింగ్", sold:"అమ్మబడింది",
     bank:"బ్యాంక్", make:"తయారీదారు", state:"రాష్ట్రం", parkingYard:"పార్కింగ్ యార్డ్", fuel:"ఇంధనం",
@@ -1012,23 +1012,68 @@ function ContactPage({ tl }) {
   );
 }
 
-function HeroBanner({ carsCount, tl }) {
+function HeroBanner({ tl, searchTerm, setSearchTerm }) {
   return (
-    <div style={{background:`linear-gradient(135deg,${N} 0%,${B} 100%)`,padding:"18px 16px 14px",color:"#fff"}}>
-      <div style={{display:"inline-flex",alignItems:"center",gap:6,background:"rgba(255,255,255,0.12)",
-                   borderRadius:20,padding:"5px 16px",marginBottom:12}}>
-        <Shield size={10} style={{color:"#93c5fd"}}/>
-        <span style={{fontSize:"0.8rem",fontWeight:700,color:"#93c5fd",letterSpacing:"0.06em"}}>{tl("tagline")}</span>
+    <div style={{
+      background:"linear-gradient(160deg,#060B27 0%,#0D1B4B 50%,#0A2463 100%)",
+      padding:"20px 16px 18px",color:"#fff",position:"relative",overflow:"hidden"
+    }}>
+      {/* Gold shimmer accent line */}
+      <div style={{position:"absolute",top:0,left:0,right:0,height:3,
+                   background:"linear-gradient(90deg,transparent,#D4AF37,#F5C842,#D4AF37,transparent)"}}/>
+      {/* Subtle radial glow */}
+      <div style={{position:"absolute",top:-40,right:-40,width:180,height:180,
+                   borderRadius:"50%",background:"rgba(212,175,55,0.08)",pointerEvents:"none"}}/>
+
+      {/* Tagline badge */}
+      <div style={{display:"inline-flex",alignItems:"center",gap:6,
+                   background:"rgba(212,175,55,0.12)",
+                   border:"1px solid rgba(212,175,55,0.35)",
+                   borderRadius:30,padding:"4px 14px",marginBottom:14}}>
+        <div style={{width:6,height:6,borderRadius:"50%",background:"#D4AF37",flexShrink:0}}/>
+        <span style={{fontSize:"0.72rem",fontWeight:700,
+                      color:"#D4AF37",letterSpacing:"0.12em",textTransform:"uppercase",
+                      fontFamily:"'DM Sans',sans-serif"}}>{tl("tagline")}</span>
       </div>
-      <h1 style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:"1.35rem",lineHeight:1.1,margin:"0 0 2px",letterSpacing:"-0.02em"}}>{tl("hero1")}</h1>
-      <h2 style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontWeight:500,fontSize:"1.05rem",margin:"0 0 14px",color:"#93c5fd"}}>{tl("hero2")}</h2>
-      <div style={{display:"flex",gap:20}}>
-        {[[`${carsCount}+`,tl("carsListed")],["15+",tl("partnerBanks")],["50+",tl("cities")]].map(([v,l])=>(
-          <div key={l}>
-            <div style={{fontWeight:800,fontSize:"1.05rem",lineHeight:1}}>{v}</div>
-            <div style={{fontSize:"0.62rem",color:"rgba(255,255,255,0.6)",textTransform:"uppercase",letterSpacing:"0.08em",marginTop:2}}>{l}</div>
-          </div>
-        ))}
+
+      {/* Single line hero heading */}
+      <div style={{marginBottom:16}}>
+        <div style={{
+          fontFamily:"'Syne',sans-serif",fontWeight:900,
+          fontSize:"clamp(1.15rem,5.5vw,1.65rem)",
+          lineHeight:1.1,letterSpacing:"-0.025em",
+          color:"#FFFFFF",
+          display:"flex",flexWrap:"wrap",alignItems:"baseline",gap:"0 8px"
+        }}>
+          <span>Premium Repo Inventory</span>
+          <span style={{
+            fontFamily:"'Cormorant Garamond',serif",
+            fontStyle:"italic",fontWeight:600,
+            fontSize:"clamp(1.1rem,5vw,1.55rem)",
+            color:"#D4AF37",letterSpacing:"-0.01em"
+          }}>Trusted by Dealers</span>
+        </div>
+      </div>
+
+      {/* Search bar — premium style */}
+      <div style={{
+        background:"rgba(255,255,255,0.97)",
+        borderRadius:14,display:"flex",alignItems:"center",
+        gap:8,padding:"11px 14px",
+        boxShadow:"0 4px 24px rgba(0,0,0,0.35),0 0 0 1px rgba(212,175,55,0.3)"
+      }}>
+        <Search size={16} style={{color:"#0D1B4B",flexShrink:0}}/>
+        <input type="text" placeholder={tl("search")}
+          value={searchTerm} onChange={e=>setSearchTerm(e.target.value)}
+          style={{flex:1,border:"none",outline:"none",fontSize:"0.88rem",
+                  background:"transparent",color:"#0A1628",
+                  fontFamily:"'DM Sans',sans-serif",fontWeight:500}}/>
+        {searchTerm&&(
+          <button onClick={()=>setSearchTerm("")}
+            style={{background:"none",border:"none",cursor:"pointer",padding:0,display:"flex"}}>
+            <X size={14} style={{color:"#94a3b8"}}/>
+          </button>
+        )}
       </div>
     </div>
   );
@@ -1177,7 +1222,7 @@ function App() {
       <div style={{paddingTop:62}}>
         {view==="home"&&(
           <>
-            <HeroBanner carsCount={cars.length} tl={tl}/>
+            <HeroBanner tl={tl} searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
             <StatusTabs active={statusTab} onChange={setStatusTab} counts={counts} tl={tl}/>
             <FilterChips master={master} filters={filters} setFilters={setFilters} tl={tl}/>
             <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"10px 14px 6px"}}>
