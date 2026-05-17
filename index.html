@@ -1243,10 +1243,15 @@ function App() {
       window.firebase.initializeApp(FIREBASE_CONFIG);
     }
     if(window.firebase){
-      window.firebase.auth().onAuthStateChanged(u=>{
+      const auth = window.firebase.auth();
+      // Handle redirect result first
+      auth.getRedirectResult().then(result=>{
+        if(result?.user) setUser(result.user);
+      }).catch(e=>console.error("Redirect result error:",e));
+      // Then listen for auth state changes
+      auth.onAuthStateChanged(u=>{
         setUser(u);
         setAuthLoading(false);
-        // Save dealer to Google Sheet on first sign-in
         if(u && !CONFIG.DEMO_MODE && !CONFIG.APPS_SCRIPT_URL.includes("YOUR_")){
           fetch(CONFIG.APPS_SCRIPT_URL,{method:"POST",mode:"no-cors",
             body:JSON.stringify({action:"registerDealer",
@@ -1266,9 +1271,10 @@ function App() {
     setSignInLoading(true);
     try {
       const provider = new window.firebase.auth.GoogleAuthProvider();
-      await window.firebase.auth().signInWithPopup(provider);
+      await window.firebase.auth().signInWithRedirect(provider);
     } catch(e) {
       console.error("Sign in error:",e);
+      addToast("Sign in failed: " + e.message, "error");
       setSignInLoading(false);
     }
   };
