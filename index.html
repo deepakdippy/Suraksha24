@@ -75,10 +75,20 @@ const LOGO_SRC=window.__LOGO_SRC__;
 
 
 const CONFIG = {
-  APPS_SCRIPT_URL: "https://script.google.com/a/macros/cars24.com/s/AKfycbwwMnZmR2ZhSgrnQDTscsrVZ0ImzTrCIi8qF6gI4EvTrlwBxFxGxL5BU3TnvCcv2Rtb4w/exec",
+  APPS_SCRIPT_URL: "https://script.google.com/a/macros/cars24.com/s/AKfycbxe6LLbWjUEJ87GG7sA8_ewWhfSaV4sCu8qKQ-LmVXZIGbxmdAOCrTc_8AYq1CJvJFvgw/exec",
   DEMO_MODE: false,
   WHATSAPP_NUMBER: "919315271911",
   EMAIL: "suraksha@cars24.com",
+};
+
+const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyBbY0DKwsIGCt2gyw380lXzsTkepT3AQg0",
+  authDomain: "suraksha24-v1.firebaseapp.com",
+  projectId: "suraksha24-v1",
+  storageBucket: "suraksha24-v1.firebasestorage.app",
+  messagingSenderId: "891138976157",
+  appId: "1:891138976157:web:91c3a414d21fbc7a4da774",
+  measurementId: "G-GTFKF4KYRH"
 };
 
 const AGENTS = [
@@ -1246,48 +1256,58 @@ function App() {
   const [bidBundle,setBidBundle]=useState(null);
   const [toasts,setToasts]=useState([]);
 
-  // Firebase Auth init — uses pre-initialized auth from plain script tag
+  // Firebase Auth init — redirect result must resolve BEFORE auth listener fires
   useEffect(()=>{
-    const auth = window.__fbAuth;
+    const auth = window.__fbAuth || (window.firebase?.apps?.length ? window.firebase.auth() : null);
     if(!auth){ setAuthLoading(false); return; }
-    // Handle redirect result (after Google redirects back)
-    auth.getRedirectResult()
-      .then(result=>{ if(result?.user) console.log("Redirect user:", result.user.displayName); })
-      .catch(e=>console.warn("Redirect:", e.code));
-    // Auth state listener
-    const unsub = auth.onAuthStateChanged(u=>{
-      setUser(u);
-      setAuthLoading(false);
-      if(u && !CONFIG.DEMO_MODE && !CONFIG.APPS_SCRIPT_URL.includes("YOUR_")){
+
+    const saveDealer = (u) => {
+      if(!CONFIG.APPS_SCRIPT_URL.includes("YOUR_")){
         fetch(CONFIG.APPS_SCRIPT_URL,{method:"POST",mode:"no-cors",
-          body:JSON.stringify({action:"registerDealer",
-            uid:u.uid, name:u.displayName, email:u.email,
-            photo:u.photoURL, timestamp:new Date().toISOString()
+          body:JSON.stringify({action:"registerDealer",uid:u.uid,
+            name:u.displayName,email:u.email,
+            photo:u.photoURL,timestamp:new Date().toISOString()
           })
         }).catch(()=>{});
       }
-    });
-    return ()=>unsub();
+    };
+
+    // Step 1: resolve redirect result first
+    auth.getRedirectResult()
+      .then(result=>{
+        if(result?.user){
+          setUser(result.user);
+          setAuthLoading(false);
+          saveDealer(result.user);
+        }
+      })
+      .catch(e=>console.warn("Redirect:",e.code||e))
+      .finally(()=>{
+        // Step 2: attach auth state listener AFTER redirect resolved
+        auth.onAuthStateChanged(u=>{
+          setUser(u);
+          setAuthLoading(false);
+          if(u) saveDealer(u);
+        });
+      });
   },[]);
 
   const handleGoogleSignIn = async () => {
-    const auth = window.__fbAuth;
-    if(!auth){ addToast("Auth not ready. Please refresh.", "error"); return; }
+    if(!window.firebase) return;
     setSignInLoading(true);
     try {
-      const provider = new firebase.auth.GoogleAuthProvider();
-      await auth.signInWithRedirect(provider);
+      const provider = new window.firebase.auth.GoogleAuthProvider();
+      await window.firebase.auth().signInWithRedirect(provider);
     } catch(e) {
-      console.error("Sign in error:", e);
-      addToast("Sign-in failed: " + (e.message||e.code), "error");
+      console.error("Sign in error:",e);
+      addToast("Sign in failed: " + e.message, "error");
       setSignInLoading(false);
     }
   };
 
   const handleSignOut = async () => {
-    const auth = window.__fbAuth;
-    if(!auth) return;
-    await auth.signOut();
+    if(!window.firebase) return;
+    await window.firebase.auth().signOut();
     setUser(null);
   };
 
