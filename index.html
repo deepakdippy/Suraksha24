@@ -1256,13 +1256,14 @@ function App() {
   const [bidBundle,setBidBundle]=useState(null);
   const [toasts,setToasts]=useState([]);
 
-  // Firebase Auth init — redirect result must resolve BEFORE auth listener fires
+  // Firebase Auth init
   useEffect(()=>{
-    const auth = window.__fbAuth || (window.firebase?.apps?.length ? window.firebase.auth() : null);
+    const auth = window.__fbAuth;
     if(!auth){ setAuthLoading(false); return; }
-
-    const saveDealer = (u) => {
-      if(!CONFIG.APPS_SCRIPT_URL.includes("YOUR_")){
+    const unsub = auth.onAuthStateChanged(u=>{
+      setUser(u);
+      setAuthLoading(false);
+      if(u && !CONFIG.APPS_SCRIPT_URL.includes("YOUR_")){
         fetch(CONFIG.APPS_SCRIPT_URL,{method:"POST",mode:"no-cors",
           body:JSON.stringify({action:"registerDealer",uid:u.uid,
             name:u.displayName,email:u.email,
@@ -1270,44 +1271,31 @@ function App() {
           })
         }).catch(()=>{});
       }
-    };
-
-    // Step 1: resolve redirect result first
-    auth.getRedirectResult()
-      .then(result=>{
-        if(result?.user){
-          setUser(result.user);
-          setAuthLoading(false);
-          saveDealer(result.user);
-        }
-      })
-      .catch(e=>console.warn("Redirect:",e.code||e))
-      .finally(()=>{
-        // Step 2: attach auth state listener AFTER redirect resolved
-        auth.onAuthStateChanged(u=>{
-          setUser(u);
-          setAuthLoading(false);
-          if(u) saveDealer(u);
-        });
-      });
+    });
+    return ()=>unsub();
   },[]);
 
   const handleGoogleSignIn = async () => {
-    if(!window.firebase) return;
+    const auth = window.__fbAuth;
+    if(!auth){ alert("Auth not ready — please refresh."); return; }
     setSignInLoading(true);
     try {
       const provider = new window.firebase.auth.GoogleAuthProvider();
-      await window.firebase.auth().signInWithRedirect(provider);
+      const result = await auth.signInWithPopup(provider);
+      if(result?.user) setUser(result.user);
     } catch(e) {
-      console.error("Sign in error:",e);
-      addToast("Sign in failed: " + e.message, "error");
+      console.error("Sign in error:", e.code, e.message);
+      if(e.code !== "auth/popup-closed-by-user"){
+        alert("Sign-in failed: " + (e.code || e.message));
+      }
       setSignInLoading(false);
     }
   };
 
   const handleSignOut = async () => {
-    if(!window.firebase) return;
-    await window.firebase.auth().signOut();
+    const auth = window.__fbAuth;
+    if(!auth) return;
+    await auth.signOut();
     setUser(null);
   };
 
