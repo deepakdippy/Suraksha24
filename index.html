@@ -117,7 +117,7 @@ const LANGS = [
 
 const TRANSLATIONS = {
   en: {
-    tagline:"Bank Verified · Zero Hidden Charges",
+    tagline:"Powered by CARS24",
     hero1:"Bank Repossessed Cars",
     hero2:"at the Best Prices",
     carsListed:"Cars Listed", partnerBanks:"Partner Banks", cities:"Cities",
@@ -148,7 +148,7 @@ const TRANSLATIONS = {
     dealerBids:"dealer bids",
   },
   hi: {
-    tagline:"बैंक सत्यापित · शून्य छुपे शुल्क",
+    tagline:"Powered by CARS24",
     hero1:"बैंक रिपोज़ेस्ड गाड़ियां",
     hero2:"सर्वोत्तम कीमतों पर",
     carsListed:"गाड़ियां सूचीबद्ध", partnerBanks:"पार्टनर बैंक", cities:"शहर",
@@ -179,7 +179,7 @@ const TRANSLATIONS = {
     dealerBids:"डीलर बोलियां",
   },
   mr: {
-    tagline:"बँक सत्यापित · शून्य छुपे शुल्क",
+    tagline:"Powered by CARS24",
     hero1:"बँक जप्त केलेल्या गाड्या",
     hero2:"सर्वोत्तम किमतींवर",
     carsListed:"गाड्या सूचीबद्ध", partnerBanks:"भागीदार बँका", cities:"शहरे",
@@ -210,7 +210,7 @@ const TRANSLATIONS = {
     dealerBids:"डीलर बोल्या",
   },
   kn: {
-    tagline:"ಬ್ಯಾಂಕ್ ಪರಿಶೀಲಿಸಿದೆ · ಮರೆಮಾಡಿದ ಶುಲ್ಕ ಇಲ್ಲ",
+    tagline:"Powered by CARS24",
     hero1:"ಬ್ಯಾಂಕ್ ವಶಪಡಿಸಿದ ವಾಹನಗಳು",
     hero2:"ಅತ್ಯುತ್ತಮ ಬೆಲೆಯಲ್ಲಿ",
     carsListed:"ವಾಹನಗಳ ಪಟ್ಟಿ", partnerBanks:"ಪಾಲು ಬ್ಯಾಂಕ್‌ಗಳು", cities:"ನಗರಗಳು",
@@ -241,7 +241,7 @@ const TRANSLATIONS = {
     dealerBids:"ಡೀಲರ್ ಬಿಡ್‌ಗಳು",
   },
   ta: {
-    tagline:"வங்கி சரிபார்க்கப்பட்டது · மறைக்கப்பட்ட கட்டணம் இல்லை",
+    tagline:"Powered by CARS24",
     hero1:"வங்கி திரும்பப் பெற்ற வாகனங்கள்",
     hero2:"சிறந்த விலைகளில்",
     carsListed:"வாகனங்கள் பட்டியல்", partnerBanks:"கூட்டு வங்கிகள்", cities:"நகரங்கள்",
@@ -272,7 +272,7 @@ const TRANSLATIONS = {
     dealerBids:"டீலர் ஏலங்கள்",
   },
   te: {
-    tagline:"బ్యాంక్ ధృవీకరించింది · దాచిన చార్జీలు లేవు",
+    tagline:"Powered by CARS24",
     hero1:"బ్యాంక్ స్వాధీనం చేసుకున్న వాహనాలు",
     hero2:"అత్యుత్తమ ధరలకు",
     carsListed:"వాహనాల జాబితా", partnerBanks:"భాగస్వామ్య బ్యాంకులు", cities:"నగరాలు",
@@ -1016,9 +1016,9 @@ function HeroBanner({ carsCount, tl }) {
   return (
     <div style={{background:`linear-gradient(135deg,${N} 0%,${B} 100%)`,padding:"18px 16px 14px",color:"#fff"}}>
       <div style={{display:"inline-flex",alignItems:"center",gap:6,background:"rgba(255,255,255,0.12)",
-                   borderRadius:20,padding:"3px 12px",marginBottom:10}}>
+                   borderRadius:20,padding:"5px 16px",marginBottom:12}}>
         <Shield size={10} style={{color:"#93c5fd"}}/>
-        <span style={{fontSize:"0.68rem",fontWeight:600,color:"#93c5fd",letterSpacing:"0.1em",textTransform:"uppercase"}}>{tl("tagline")}</span>
+        <span style={{fontSize:"0.8rem",fontWeight:700,color:"#93c5fd",letterSpacing:"0.06em"}}>{tl("tagline")}</span>
       </div>
       <h1 style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:"1.35rem",lineHeight:1.1,margin:"0 0 2px",letterSpacing:"-0.02em"}}>{tl("hero1")}</h1>
       <h2 style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontWeight:500,fontSize:"1.05rem",margin:"0 0 14px",color:"#93c5fd"}}>{tl("hero2")}</h2>
