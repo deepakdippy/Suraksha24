@@ -401,34 +401,13 @@ function Logo({ size="md" }) {
 }
 
 function Header({ searchTerm, setSearchTerm, lang, setLang, tl }) {
-  const [searchOpen, setSearchOpen] = useState(false);
   return (
     <div style={{position:"fixed",top:0,left:0,right:0,zIndex:100,background:N,boxShadow:"0 2px 12px rgba(30,58,138,0.3)"}}>
       <div style={{display:"flex",alignItems:"center",gap:8,padding:"8px 14px"}}>
         <Logo/>
         <div style={{flex:1}}/>
-        <button onClick={()=>setSearchOpen(o=>!o)}
-          style={{background:"rgba(255,255,255,0.12)",border:"none",borderRadius:8,padding:"7px 10px",cursor:"pointer",display:"flex",alignItems:"center",gap:6}}>
-          <Search size={15} style={{color:"#fff"}}/>
-          <span style={{color:"rgba(255,255,255,0.65)",fontSize:"0.75rem"}}>Search...</span>
-        </button>
         <LangSwitcher lang={lang} setLang={setLang}/>
       </div>
-      {searchOpen && (
-        <div style={{padding:"0 14px 10px",display:"flex",gap:8,alignItems:"center"}}>
-          <div style={{flex:1,background:"rgba(255,255,255,0.96)",borderRadius:10,display:"flex",alignItems:"center",gap:8,padding:"8px 12px"}}>
-            <Search size={15} style={{color:N,flexShrink:0}}/>
-            <input autoFocus type="text" placeholder={tl ? tl("search") : "Search make, model, reg. no., city, bank..."}
-              value={searchTerm} onChange={e=>setSearchTerm(e.target.value)}
-              style={{flex:1,border:"none",outline:"none",fontSize:"0.88rem",background:"transparent",color:TX}}/>
-            {searchTerm&&<button onClick={()=>setSearchTerm("")} style={{background:"none",border:"none",cursor:"pointer",padding:0}}><X size={14} style={{color:MT}}/></button>}
-          </div>
-          <button onClick={()=>{setSearchOpen(false);setSearchTerm("");}}
-            style={{background:"rgba(255,255,255,0.12)",border:"none",borderRadius:8,padding:"8px 10px",cursor:"pointer",color:"#fff",fontSize:"0.78rem"}}>
-            Cancel
-          </button>
-        </div>
-      )}
     </div>
   );
 }
@@ -915,7 +894,7 @@ function SavedCars({ cars, savedIds, onContact, onBid, toggleSave, tl }) {
           <div style={{color:HI,fontSize:"0.78rem",marginTop:6}}>{tl("tapToSave")}</div>
         </div>
       ):(
-        <div style={{display:"flex",flexDirection:"column",gap:10}}>
+        <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(420px,1fr))",gap:12}}>
           {saved.map(c=><CarCard key={c.id} car={c} onContact={onContact} onBid={onBid} saved={true} toggleSave={toggleSave} tl={tl}/>)}
         </div>
       )}
@@ -1233,7 +1212,7 @@ function App() {
                 <button onClick={()=>setFilters({})} style={{fontSize:"0.72rem",color:N,fontWeight:600,background:"none",border:"none",cursor:"pointer"}}>{tl("clearFilters")}</button>
               )}
             </div>
-            <div style={{padding:"0 14px",display:"flex",flexDirection:"column",gap:10}}>
+            <div style={{padding:"0 14px",display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(420px,1fr))",gap:12}}>
               {loading?Array(4).fill(0).map((_,i)=>(
                 <div key={i} style={{background:"#fff",borderRadius:14,height:130,border:`1px solid ${BR}`,animation:"pulse 1.5s ease-in-out infinite"}}/>
               )):sorted.length===0?(
