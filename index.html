@@ -105,7 +105,7 @@ const SAMPLE_CARS = [
   { id:"2",  regNo:"MH02CD5678", make:"Hyundai",    model:"Creta",   variant:"SX",   regYear:2020, fuelType:"Diesel",  rcStatus:"Hypothecation", ownerCount:1, pdfLink:"#", highestBid:850000,  enquiryTotal:15, enquiryUnique:10,bidTotal:7,  bidUnique:5, status:"For Sale",   bank:"HDFC Bank",       state:"Maharashtra",    parkingYard:"Andheri Yard - Mumbai",         kmDriven:62000, comment:"Minor dents",     dealId:"",      timestamp:"2025-01-18" },
   { id:"3",  regNo:"HR26EF9012", make:"Honda",      model:"City",    variant:"V",    regYear:2018, fuelType:"Petrol",  rcStatus:"Clear",         ownerCount:2, pdfLink:"#", highestBid:520000,  enquiryTotal:6,  enquiryUnique:4, bidTotal:2,  bidUnique:2, status:"Upcoming",   bank:"Bajaj Finance",   state:"Haryana",        parkingYard:"Gurgaon Yard",                  kmDriven:78000, comment:"",               dealId:"",      timestamp:"2025-01-20" },
   { id:"4",  regNo:"KA03GH3456", make:"Tata",       model:"Nexon",   variant:"XZ+",   regYear:2021, fuelType:"Diesel",  rcStatus:"Clear",         ownerCount:1, pdfLink:"#", highestBid:720000,  enquiryTotal:20, enquiryUnique:14,bidTotal:10, bidUnique:8, status:"For Sale",   bank:"Piramal Finance", state:"Karnataka",      parkingYard:"Whitefield Yard - Bengaluru",   kmDriven:38000, comment:"Excellent",       dealId:"",      timestamp:"2025-01-22" },
-  { id:"5",  regNo:"TN09IJ7890", make:"Maruti",     model:"Baleno",  variant:"Zeta",  regYear:2020, fuelType:"Petrol",  rcStatus:"NOC Pending",   ownerCount:2, pdfLink:"#", highestBid:580000,  enquiryTotal:11, enquiryUnique:8, bidTotal:4,  bidUnique:3, status:"Scrap",      bank:"Axis Bank",       state:"Tamil Nadu",     parkingYard:"Ambattur Yard - Chennai",       kmDriven:55000, comment:"Scrapped",        dealId:"",      timestamp:"2025-01-25" },
+  { id:"5",  regNo:"TN09IJ7890", make:"Maruti",     model:"Baleno",  variant:"Zeta",  regYear:2020, fuelType:"Petrol",  rcStatus:"NOC Pending",   ownerCount:2, pdfLink:"#", highestBid:580000,  enquiryTotal:11, enquiryUnique:8, bidTotal:4,  bidUnique:3, status:"Total Loss",      bank:"Axis Bank",       state:"Tamil Nadu",     parkingYard:"Ambattur Yard - Chennai",       kmDriven:55000, comment:"Scrapped",        dealId:"",      timestamp:"2025-01-25" },
   { id:"6",  regNo:"UP32KL2345", make:"Hyundai",    model:"i20",     variant:"Asta",     regYear:2019, fuelType:"Petrol",  rcStatus:"Clear",         ownerCount:1, pdfLink:"#", highestBid:490000,  enquiryTotal:9,  enquiryUnique:7, bidTotal:4,  bidUnique:3, status:"Bulk Deals", bank:"Kotak Mahindra",  state:"Uttar Pradesh",  parkingYard:"Noida Yard",                    kmDriven:62000, comment:"Bundle BD-001",   dealId:"BD-001",timestamp:"2025-02-01" },
   { id:"7",  regNo:"GJ05MN6789", make:"Kia",        model:"Seltos",  variant:"HTX",  regYear:2021, fuelType:"Diesel",  rcStatus:"Clear",         ownerCount:1, pdfLink:"#", highestBid:980000,  enquiryTotal:25, enquiryUnique:18,bidTotal:12, bidUnique:9, status:"Bulk Deals", bank:"Kotak Mahindra",  state:"Uttar Pradesh",  parkingYard:"Noida Yard",                    kmDriven:42000, comment:"Bundle BD-001",   dealId:"BD-001",timestamp:"2025-02-05" },
   { id:"8",  regNo:"RJ14OP3456", make:"Mahindra",   model:"Scorpio", variant:"S10", regYear:2018, fuelType:"Diesel",  rcStatus:"Hypothecation", ownerCount:3, pdfLink:"#", highestBid:680000,  enquiryTotal:14, enquiryUnique:10,bidTotal:6,  bidUnique:5, status:"Bulk Deals", bank:"Kotak Mahindra",  state:"Uttar Pradesh",  parkingYard:"Noida Yard",                    kmDriven:95000, comment:"Bundle BD-001",   dealId:"BD-001",timestamp:"2025-02-08" },
@@ -385,7 +385,7 @@ function LangSwitcher({ lang, setLang }) {
 
 const STATUS_STYLE = {
   "for sale":    { bg:"#dcfce7", color:"#166534", dot:"#22c55e", border:"#bbf7d0" },   // Green
-  "scrap":       { bg:"#fee2e2", color:"#991b1b", dot:"#ef4444", border:"#fecaca" },   // Red
+  "total loss":  { bg:"#fee2e2", color:"#991b1b", dot:"#ef4444", border:"#fecaca" },   // Red
   "upcoming":    { bg:"#fef9c3", color:"#92400e", dot:"#f59e0b", border:"#fde68a" },   // Amber
   "bulk deals":  { bg:"#ede9fe", color:"#5b21b6", dot:"#7c3aed", border:"#ddd6fe" },   // Purple
   "blacklisted": { bg:"#1f2937", color:"#f9fafb", dot:"#6b7280", border:"#374151" },   // Dark
@@ -515,7 +515,7 @@ function StatusTabs({ active, onChange, counts, tl }) {
     {key:"for sale",     label:"For Sale"},
     {key:"upcoming",     label:"Upcoming"},
     {key:"bulk deals",   label:"Bulk Deals"},
-    {key:"scrap",        label:"Scrap"},
+    {key:"total loss",   label:"Total Loss"},
     {key:"blacklisted",  label:"Blacklisted"},
     {key:"disputed",     label:"Disputed"},
   ];
@@ -702,7 +702,7 @@ function BundleCard({ dealId, cars, onBid, onContact }) {
 function CarCard({ car, onContact, onBid, saved, toggleSave, tl }) {
   const [shared,setShared]=useState(false);
   const st=getStatus(car.status);
-  const disabled=["scrap","blacklisted"].includes((car.status||"").toLowerCase());
+  const disabled=["total loss","blacklisted"].includes((car.status||"").toLowerCase());
   const share=async()=>{
     const text=`${car.regYear} ${car.make} ${car.model} (${car.regNo}) — ${formatCurrency(car.highestBid)} | Suraksha24`;
     try{await(navigator.share?navigator.share({title:"Suraksha24",text}):navigator.clipboard.writeText(text));}catch{}
@@ -1090,6 +1090,66 @@ function ContactPage({ tl }) {
 
 
 
+
+function KycUploadBox({ label, file, error, onCamera, onFile, onClear }) {
+  return (
+    <div style={{marginBottom:14}}>
+      <div style={{fontFamily:"'DM Sans',sans-serif",fontWeight:600,fontSize:"0.75rem",
+                   color:"#0A1628",marginBottom:8}}>{label}</div>
+      {!file ? (
+        <>
+          <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8}}>
+            <label style={{cursor:"pointer"}}>
+              <div style={{border:`2px dashed ${error?"#fca5a5":"#BFDBFE"}`,borderRadius:12,
+                           padding:"14px 8px",textAlign:"center",
+                           background:error?"#fff5f5":"#EEF2FF"}}>
+                <div style={{fontSize:"1.4rem",marginBottom:4}}>📷</div>
+                <div style={{fontFamily:"'DM Sans',sans-serif",fontWeight:700,
+                             fontSize:"0.72rem",color:"#1E3A8A"}}>Camera</div>
+              </div>
+              <input type="file" accept="image/*" capture="environment"
+                onChange={onCamera} style={{display:"none"}}/>
+            </label>
+            <label style={{cursor:"pointer"}}>
+              <div style={{border:`2px dashed ${error?"#fca5a5":"#BFDBFE"}`,borderRadius:12,
+                           padding:"14px 8px",textAlign:"center",
+                           background:error?"#fff5f5":"#EEF2FF"}}>
+                <div style={{fontSize:"1.4rem",marginBottom:4}}>🖼️</div>
+                <div style={{fontFamily:"'DM Sans',sans-serif",fontWeight:700,
+                             fontSize:"0.72rem",color:"#1E3A8A"}}>Gallery</div>
+              </div>
+              <input type="file" accept="image/*,.pdf,application/pdf"
+                onChange={onFile} style={{display:"none"}}/>
+            </label>
+          </div>
+          {error&&<div style={{fontSize:"0.7rem",color:"#dc2626",marginTop:4,
+                               fontFamily:"'DM Sans',sans-serif"}}>⚠️ {error}</div>}
+        </>
+      ) : (
+        <div style={{border:"2px solid #1E3A8A",borderRadius:12,padding:"12px 14px",
+                     background:"#EEF2FF",display:"flex",alignItems:"center",gap:10}}>
+          <span style={{fontSize:"1.4rem"}}>✅</span>
+          <div style={{flex:1,minWidth:0}}>
+            <div style={{fontFamily:"'DM Sans',sans-serif",fontWeight:700,fontSize:"0.78rem",
+                         color:"#1E3A8A",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>
+              {file.name}
+            </div>
+            <div style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.68rem",color:"#64748b",marginTop:2}}>
+              {(file.size/1024/1024).toFixed(2)} MB
+            </div>
+          </div>
+          <button onClick={onClear}
+            style={{background:"none",border:"none",cursor:"pointer",
+                    fontFamily:"'DM Sans',sans-serif",fontSize:"0.7rem",
+                    fontWeight:600,color:"#dc2626",textDecoration:"underline",flexShrink:0}}>
+            Remove
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ============================================================
 // 📋  PROFILE COMPLETION FORM (shown once after first sign-in)
 // ============================================================
@@ -1098,19 +1158,27 @@ function ProfileForm({ user, onComplete }) {
     dealershipName:"", mobile:"", address:"",
     interestType:"PAN INDIA", interestDetail:"", message:""
   });
-  const [kycFile, setKycFile]     = useState(null);
+  const [aadhaarFile, setAadhaarFile] = useState(null);
+  const [panFile, setPanFile]         = useState(null);
   const [loading, setLoading]     = useState(false);
   const [errors, setErrors]       = useState({});
   const [step, setStep]           = useState(1); // 1=details, 2=kyc
 
   const set = (k,v) => setForm(p=>({...p,[k]:v}));
 
-  const handleFile = (e) => {
+  const handleAadhaar = (e) => {
     const file = e.target.files[0];
     if(!file) return;
-    if(file.size > 10*1024*1024){ setErrors(p=>({...p,kyc:"Max 10MB allowed"})); return; }
-    setKycFile(file);
-    setErrors(p=>({...p,kyc:""}));
+    if(file.size > 10*1024*1024){ setErrors(p=>({...p,aadhaar:"Max 10MB allowed"})); return; }
+    setAadhaarFile(file);
+    setErrors(p=>({...p,aadhaar:""}));
+  };
+  const handlePan = (e) => {
+    const file = e.target.files[0];
+    if(!file) return;
+    if(file.size > 10*1024*1024){ setErrors(p=>({...p,pan:"Max 10MB allowed"})); return; }
+    setPanFile(file);
+    setErrors(p=>({...p,pan:""}));
   };
 
   const validateStep1 = () => {
@@ -1122,17 +1190,21 @@ function ProfileForm({ user, onComplete }) {
     setErrors(e); return Object.keys(e).length===0;
   };
 
+  const toBase64 = (file) => new Promise((res,rej)=>{
+    const r=new FileReader();
+    r.onload=e=>res(e.target.result.split(",")[1]);
+    r.onerror=rej;
+    r.readAsDataURL(file);
+  });
+
   const submit = async () => {
-    if(!kycFile){ setErrors({kyc:"Please upload your KYC document"}); return; }
+    const e={};
+    if(!aadhaarFile) e.aadhaar="Please upload your Aadhaar Card";
+    if(!panFile) e.pan="Please upload your PAN Card";
+    if(Object.keys(e).length){ setErrors(e); return; }
     setLoading(true);
     try {
-      // Convert KYC to base64
-      const base64 = await new Promise((res,rej)=>{
-        const r=new FileReader();
-        r.onload=e=>res(e.target.result.split(",")[1]);
-        r.onerror=rej;
-        r.readAsDataURL(kycFile);
-      });
+      const [aadhaarB64, panB64] = await Promise.all([toBase64(aadhaarFile), toBase64(panFile)]);
       const interest = form.interestType==="PAN INDIA"
         ? "PAN INDIA"
         : `${form.interestType}: ${form.interestDetail}`;
@@ -1142,7 +1214,8 @@ function ProfileForm({ user, onComplete }) {
           action:"saveProfile", uid:user.uid,
           dealershipName:form.dealershipName, mobile:form.mobile,
           address:form.address, interest, message:form.message,
-          kycBase64:base64, kycFileName:kycFile.name, kycMimeType:kycFile.type,
+          kycBase64:aadhaarB64, kycFileName:aadhaarFile.name, kycMimeType:aadhaarFile.type,
+          panBase64:panB64, panFileName:panFile.name, panMimeType:panFile.type,
         })
       });
       localStorage.setItem(`s24_profile_${user.uid}`,"complete");
@@ -1259,19 +1332,6 @@ function ProfileForm({ user, onComplete }) {
                 {errors.interestDetail&&<div style={{fontSize:"0.7rem",color:"#dc2626",marginTop:4}}>{errors.interestDetail}</div>}
               </div>
 
-              {/* Message */}
-              <div style={{marginBottom:20}}>
-                <label style={{display:"block",fontSize:"0.75rem",fontWeight:600,color:"#0A1628",
-                               fontFamily:"'DM Sans',sans-serif",marginBottom:5}}>
-                  Anything you'd like to tell us? (optional)
-                </label>
-                <textarea placeholder="Years of experience, preferred brands, payment terms..."
-                  value={form.message} onChange={e=>set("message",e.target.value)} rows={2}
-                  style={{width:"100%",padding:"11px 14px",borderRadius:10,outline:"none",resize:"vertical",
-                          fontFamily:"'DM Sans',sans-serif",fontSize:"0.82rem",color:"#0A1628",
-                          border:"1px solid #E2E8F0",background:"#fff",boxSizing:"border-box"}}/>
-              </div>
-
               <button onClick={()=>{ if(validateStep1()) setStep(2); }}
                 style={{width:"100%",padding:"13px",borderRadius:12,border:"none",cursor:"pointer",
                         background:"linear-gradient(135deg,#1E3A8A,#2563EB)",color:"#fff",
@@ -1298,72 +1358,38 @@ function ProfileForm({ user, onComplete }) {
               </div>
 
               {/* File upload area */}
-              {!kycFile ? (
-                <>
-                  <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10,marginBottom:10}}>
-                    {/* Camera */}
-                    <label style={{cursor:"pointer"}}>
-                      <div style={{border:"2px dashed #BFDBFE",borderRadius:14,padding:"20px 12px",
-                                   textAlign:"center",background:"#EEF2FF",transition:"all 0.2s"}}
-                        onMouseEnter={e=>e.currentTarget.style.borderColor="#1E3A8A"}
-                        onMouseLeave={e=>e.currentTarget.style.borderColor="#BFDBFE"}>
-                        <div style={{fontSize:"1.8rem",marginBottom:6}}>📷</div>
-                        <div style={{fontFamily:"'DM Sans',sans-serif",fontWeight:700,
-                                     fontSize:"0.78rem",color:"#1E3A8A"}}>Take Photo</div>
-                        <div style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.65rem",
-                                     color:"#64748b",marginTop:3}}>Use camera</div>
-                      </div>
-                      <input type="file" accept="image/*" capture="environment"
-                        onChange={handleFile} style={{display:"none"}}/>
-                    </label>
-                    {/* Gallery / Files */}
-                    <label style={{cursor:"pointer"}}>
-                      <div style={{border:"2px dashed #BFDBFE",borderRadius:14,padding:"20px 12px",
-                                   textAlign:"center",background:"#EEF2FF",transition:"all 0.2s"}}
-                        onMouseEnter={e=>e.currentTarget.style.borderColor="#1E3A8A"}
-                        onMouseLeave={e=>e.currentTarget.style.borderColor="#BFDBFE"}>
-                        <div style={{fontSize:"1.8rem",marginBottom:6}}>🖼️</div>
-                        <div style={{fontFamily:"'DM Sans',sans-serif",fontWeight:700,
-                                     fontSize:"0.78rem",color:"#1E3A8A"}}>Upload File</div>
-                        <div style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.65rem",
-                                     color:"#64748b",marginTop:3}}>Gallery or PDF</div>
-                      </div>
-                      <input type="file" accept="image/*,.pdf,application/pdf"
-                        onChange={handleFile} style={{display:"none"}}/>
-                    </label>
-                  </div>
-                  {errors.kyc&&<div style={{fontSize:"0.7rem",color:"#dc2626",marginBottom:8,
-                                            fontFamily:"'DM Sans',sans-serif",textAlign:"center"}}>
-                    ⚠️ {errors.kyc}
-                  </div>}
-                </>
-              ) : (
-                <div style={{border:"2px solid #1E3A8A",borderRadius:14,padding:"16px",
-                             background:"#EEF2FF",marginBottom:10}}>
-                  <div style={{display:"flex",alignItems:"center",gap:12}}>
-                    <div style={{fontSize:"2rem"}}>✅</div>
-                    <div style={{flex:1,minWidth:0}}>
-                      <div style={{fontFamily:"'DM Sans',sans-serif",fontWeight:700,
-                                   fontSize:"0.82rem",color:"#1E3A8A",
-                                   overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>
-                        {kycFile.name}
-                      </div>
-                      <div style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.7rem",
-                                   color:"#64748b",marginTop:2}}>
-                        {(kycFile.size/1024/1024).toFixed(2)} MB
-                      </div>
-                    </div>
-                    <label style={{cursor:"pointer",flexShrink:0}}>
-                      <span style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.72rem",
-                                    fontWeight:600,color:"#dc2626",textDecoration:"underline"}}>
-                        Change
-                      </span>
-                      <input type="file" accept="image/*,.pdf,application/pdf"
-                        onChange={handleFile} style={{display:"none"}}/>
-                    </label>
-                  </div>
-                </div>
-              )}
+              {/* ── Aadhaar Upload ── */}
+              <KycUploadBox
+                label="Aadhaar Card *"
+                file={aadhaarFile}
+                error={errors.aadhaar}
+                onCamera={handleAadhaar}
+                onFile={handleAadhaar}
+                onClear={()=>setAadhaarFile(null)}
+              />
+
+              {/* ── PAN Card Upload ── */}
+              <KycUploadBox
+                label="PAN Card *"
+                file={panFile}
+                error={errors.pan}
+                onCamera={handlePan}
+                onFile={handlePan}
+                onClear={()=>setPanFile(null)}
+              />
+
+              {/* ── Optional Message (after KYC) ── */}
+              <div style={{marginBottom:14}}>
+                <label style={{display:"block",fontSize:"0.75rem",fontWeight:600,color:"#0A1628",
+                               fontFamily:"'DM Sans',sans-serif",marginBottom:5}}>
+                  Anything you'd like to tell us? (optional)
+                </label>
+                <textarea placeholder="Years of experience, preferred brands, payment terms..."
+                  value={form.message} onChange={e=>set("message",e.target.value)} rows={2}
+                  style={{width:"100%",padding:"11px 14px",borderRadius:10,outline:"none",resize:"vertical",
+                          fontFamily:"'DM Sans',sans-serif",fontSize:"0.82rem",color:"#0A1628",
+                          border:"1px solid #E2E8F0",background:"#fff",boxSizing:"border-box"}}/>
+              </div>
 
               <div style={{marginTop:10,padding:"10px 12px",background:"#FFF7ED",borderRadius:8,
                            border:"1px solid #FDE68A",fontFamily:"'DM Sans',sans-serif",
@@ -1698,7 +1724,7 @@ function App() {
     "bulk deals": cars.filter(c=>c.status?.toLowerCase()==="bulk deals").length,
     "disputed":   cars.filter(c=>c.status?.toLowerCase()==="disputed").length,
     "blacklisted":cars.filter(c=>c.status?.toLowerCase()==="blacklisted").length,
-    "scrap":      cars.filter(c=>c.status?.toLowerCase()==="scrap").length,
+    "total loss":  cars.filter(c=>c.status?.toLowerCase()==="total loss").length,
   }),[cars]);
 
   const sorted=useMemo(()=>[...filtered].sort((a,b)=>(b.featured?1:0)-(a.featured?1:0)),[filtered]);
