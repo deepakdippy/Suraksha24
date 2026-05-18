@@ -1156,10 +1156,13 @@ function KycUploadBox({ label, file, error, onCamera, onFile, onClear }) {
 function ProfileForm({ user, onComplete }) {
   const [form, setForm] = useState({
     dealershipName:"", mobile:"", address:"",
+    pinCode:"", city:"", state:"",
     interestType:"PAN INDIA", interestDetail:"", message:""
   });
   const [aadhaarFile, setAadhaarFile] = useState(null);
   const [panFile, setPanFile]         = useState(null);
+  const [pinLoading, setPinLoading]   = useState(false);
+  const [pinError, setPinError]       = useState("");
   const [loading, setLoading]     = useState(false);
   const [errors, setErrors]       = useState({});
   const [step, setStep]           = useState(1); // 1=details, 2=kyc
@@ -1186,6 +1189,9 @@ function ProfileForm({ user, onComplete }) {
     if(!form.dealershipName.trim()) e.dealershipName="Required";
     if(!/^\d{10}$/.test(form.mobile)) e.mobile="Valid 10-digit number";
     if(!form.address.trim()) e.address="Required";
+    if(!form.pinCode||form.pinCode.length!==6) e.pinCode="Valid PIN required";
+    if(!form.city.trim()) e.city="Required";
+    if(!form.state.trim()) e.state="Required";
     if(form.interestType!=="PAN INDIA"&&!form.interestDetail.trim()) e.interestDetail="Please specify";
     setErrors(e); return Object.keys(e).length===0;
   };
@@ -1213,7 +1219,9 @@ function ProfileForm({ user, onComplete }) {
         body:JSON.stringify({
           action:"saveProfile", uid:user.uid,
           dealershipName:form.dealershipName, mobile:form.mobile,
-          address:form.address, interest, message:form.message,
+          address:`${form.address}, ${form.city}, ${form.state} - ${form.pinCode}`,
+          city:form.city, state:form.state, pinCode:form.pinCode,
+          interest, message:form.message,
           kycBase64:aadhaarB64, kycFileName:aadhaarFile.name, kycMimeType:aadhaarFile.type,
           panBase64:panB64, panFileName:panFile.name, panMimeType:panFile.type,
         })
@@ -1222,6 +1230,31 @@ function ProfileForm({ user, onComplete }) {
       onComplete();
     } catch(e){ console.error("Profile error:",e); }
     finally { setLoading(false); }
+  };
+
+  const fetchPin = async (pin) => {
+    set("pinCode", pin);
+    if(pin.length !== 6 || !/^\d{6}$/.test(pin)) {
+      if(pin.length === 6) setPinError("Enter valid 6-digit PIN");
+      return;
+    }
+    setPinLoading(true); setPinError("");
+    try {
+      const res = await fetch(`https://api.postalpincode.in/pincode/${pin}`);
+      const data = await res.json();
+      if(data[0].Status === "Success" && data[0].PostOffice?.length) {
+        const po = data[0].PostOffice[0];
+        set("city", po.District || po.Block || "");
+        set("state", po.State || "");
+        setPinError("");
+      } else {
+        setPinError("PIN code not found");
+      }
+    } catch(e) {
+      setPinError("Could not fetch. Check connection.");
+    } finally {
+      setPinLoading(false);
+    }
   };
 
   const inp = (label,key,placeholder,type="text",err) => (
@@ -1284,16 +1317,58 @@ function ProfileForm({ user, onComplete }) {
                            color:"#0A1628",marginBottom:16}}>Dealership Details</div>
               {inp("Dealership / Company Name *","dealershipName","e.g. Sharma Auto Pvt Ltd","text",errors.dealershipName)}
               {inp("Mobile Number *","mobile","10-digit mobile number","tel",errors.mobile)}
+              {inp("Street Address / Locality *","address","House No., Street, Area","text",errors.address)}
+
+              {/* Pin Code with auto-fetch */}
               <div style={{marginBottom:14}}>
                 <label style={{display:"block",fontSize:"0.75rem",fontWeight:600,color:"#0A1628",
-                               fontFamily:"'DM Sans',sans-serif",marginBottom:5}}>Address *</label>
-                <textarea placeholder="Full dealership address" value={form.address}
-                  onChange={e=>set("address",e.target.value)} rows={2}
-                  style={{width:"100%",padding:"11px 14px",borderRadius:10,outline:"none",resize:"vertical",
-                          fontFamily:"'DM Sans',sans-serif",fontSize:"0.85rem",color:"#0A1628",
-                          border:`1.5px solid ${errors.address?"#fca5a5":"#E2E8F0"}`,
-                          background:errors.address?"#fff5f5":"#fff",boxSizing:"border-box"}}/>
-                {errors.address&&<div style={{fontSize:"0.7rem",color:"#dc2626",marginTop:4}}>{errors.address}</div>}
+                               fontFamily:"'DM Sans',sans-serif",marginBottom:5}}>PIN Code *</label>
+                <div style={{position:"relative"}}>
+                  <input type="tel" maxLength={6} placeholder="6-digit PIN code"
+                    value={form.pinCode} onChange={e=>fetchPin(e.target.value)}
+                    style={{width:"100%",padding:"11px 44px 11px 14px",borderRadius:10,outline:"none",
+                            fontFamily:"'DM Sans',sans-serif",fontSize:"0.85rem",color:"#0A1628",
+                            border:`1.5px solid ${pinError?"#fca5a5":form.city?"#22c55e":"#E2E8F0"}`,
+                            background:pinError?"#fff5f5":form.city?"#f0fdf4":"#fff",
+                            boxSizing:"border-box"}}/>
+                  <div style={{position:"absolute",right:12,top:"50%",transform:"translateY(-50%)"}}>
+                    {pinLoading
+                      ? <div style={{width:16,height:16,border:"2px solid #BFDBFE",borderTopColor:"#1E3A8A",borderRadius:"50%",animation:"spin 0.7s linear infinite"}}/>
+                      : form.city
+                      ? <span style={{color:"#22c55e",fontSize:"1rem"}}>✓</span>
+                      : null}
+                  </div>
+                </div>
+                {pinError&&<div style={{fontSize:"0.7rem",color:"#dc2626",marginTop:4}}>{pinError}</div>}
+                {form.city&&<div style={{fontSize:"0.7rem",color:"#059669",marginTop:4,fontWeight:600}}>
+                  ✓ {form.city}, {form.state}
+                </div>}
+              </div>
+
+              {/* City + State - auto filled, editable */}
+              <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10,marginBottom:14}}>
+                <div>
+                  <label style={{display:"block",fontSize:"0.75rem",fontWeight:600,color:"#0A1628",
+                                 fontFamily:"'DM Sans',sans-serif",marginBottom:5}}>City *</label>
+                  <input type="text" placeholder="Auto-filled" value={form.city}
+                    onChange={e=>set("city",e.target.value)}
+                    style={{width:"100%",padding:"11px 14px",borderRadius:10,outline:"none",
+                            fontFamily:"'DM Sans',sans-serif",fontSize:"0.85rem",color:"#0A1628",
+                            border:`1.5px solid ${errors.city?"#fca5a5":"#E2E8F0"}`,
+                            background:form.city?"#f0fdf4":"#fff",boxSizing:"border-box"}}/>
+                  {errors.city&&<div style={{fontSize:"0.7rem",color:"#dc2626",marginTop:4}}>{errors.city}</div>}
+                </div>
+                <div>
+                  <label style={{display:"block",fontSize:"0.75rem",fontWeight:600,color:"#0A1628",
+                                 fontFamily:"'DM Sans',sans-serif",marginBottom:5}}>State *</label>
+                  <input type="text" placeholder="Auto-filled" value={form.state}
+                    onChange={e=>set("state",e.target.value)}
+                    style={{width:"100%",padding:"11px 14px",borderRadius:10,outline:"none",
+                            fontFamily:"'DM Sans',sans-serif",fontSize:"0.85rem",color:"#0A1628",
+                            border:`1.5px solid ${errors.state?"#fca5a5":"#E2E8F0"}`,
+                            background:form.state?"#f0fdf4":"#fff",boxSizing:"border-box"}}/>
+                  {errors.state&&<div style={{fontSize:"0.7rem",color:"#dc2626",marginTop:4}}>{errors.state}</div>}
+                </div>
               </div>
 
               {/* Interest */}
@@ -1304,32 +1379,40 @@ function ProfileForm({ user, onComplete }) {
                 </label>
                 <div style={{display:"flex",flexDirection:"column",gap:8}}>
                   {["PAN INDIA","Specific State","Specific City"].map(opt=>(
-                    <label key={opt} style={{display:"flex",alignItems:"center",gap:10,cursor:"pointer",
-                                             padding:"10px 12px",borderRadius:9,
-                                             border:`1.5px solid ${form.interestType===opt?"#1E3A8A":"#E2E8F0"}`,
-                                             background:form.interestType===opt?"#EEF2FF":"#f8fafc"}}>
-                      <input type="radio" name="interestType" value={opt}
-                        checked={form.interestType===opt} onChange={()=>set("interestType",opt)}
-                        style={{accentColor:"#1E3A8A"}}/>
-                      <span style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.82rem",
-                                    color:"#0A1628",fontWeight:form.interestType===opt?600:400}}>
-                        {opt==="PAN INDIA"?"🇮🇳 PAN INDIA — Any car, anywhere":
-                         opt==="Specific State"?"📍 Specific State":
-                         "🏙️ Specific City"}
-                      </span>
-                    </label>
+                    <div key={opt}>
+                      <label style={{display:"flex",alignItems:"center",gap:10,cursor:"pointer",
+                                     padding:"10px 12px",borderRadius:9,
+                                     border:`1.5px solid ${form.interestType===opt?"#1E3A8A":"#E2E8F0"}`,
+                                     background:form.interestType===opt?"#EEF2FF":"#f8fafc"}}>
+                        <input type="radio" name="interestType" value={opt}
+                          checked={form.interestType===opt} onChange={()=>{set("interestType",opt);set("interestDetail","");}}
+                          style={{accentColor:"#1E3A8A"}}/>
+                        <span style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.82rem",
+                                      color:"#0A1628",fontWeight:form.interestType===opt?600:400}}>
+                          {opt==="PAN INDIA"?"🇮🇳 PAN INDIA — Any car, anywhere":
+                           opt==="Specific State"?"📍 Specific State":
+                           "🏙️ Specific City"}
+                        </span>
+                      </label>
+                      {/* Detail input appears right below the selected option */}
+                      {form.interestType===opt && opt!=="PAN INDIA" && (
+                        <div style={{marginTop:6,paddingLeft:8}}>
+                          <input type="text" autoFocus
+                            placeholder={opt==="Specific State"?"e.g. Maharashtra, Delhi, Gujarat...":"e.g. Mumbai, Pune, Ahmedabad..."}
+                            value={form.interestDetail} onChange={e=>set("interestDetail",e.target.value)}
+                            style={{width:"100%",padding:"10px 14px",borderRadius:9,outline:"none",
+                                    fontFamily:"'DM Sans',sans-serif",fontSize:"0.82rem",color:"#0A1628",
+                                    border:`1.5px solid ${errors.interestDetail?"#fca5a5":"#BFDBFE"}`,
+                                    background:"#EEF2FF",boxSizing:"border-box"}}/>
+                          {errors.interestDetail&&(
+                            <div style={{fontSize:"0.7rem",color:"#dc2626",marginTop:4,
+                                         fontFamily:"'DM Sans',sans-serif"}}>{errors.interestDetail}</div>
+                          )}
+                        </div>
+                      )}
+                    </div>
                   ))}
                 </div>
-                {form.interestType!=="PAN INDIA"&&(
-                  <input type="text"
-                    placeholder={form.interestType==="Specific State"?"e.g. Maharashtra, Delhi...":"e.g. Mumbai, Pune..."}
-                    value={form.interestDetail} onChange={e=>set("interestDetail",e.target.value)}
-                    style={{width:"100%",marginTop:8,padding:"10px 14px",borderRadius:9,outline:"none",
-                            fontFamily:"'DM Sans',sans-serif",fontSize:"0.82rem",color:"#0A1628",
-                            border:`1.5px solid ${errors.interestDetail?"#fca5a5":"#BFDBFE"}`,
-                            background:"#EEF2FF",boxSizing:"border-box"}}/>
-                )}
-                {errors.interestDetail&&<div style={{fontSize:"0.7rem",color:"#dc2626",marginTop:4}}>{errors.interestDetail}</div>}
               </div>
 
               <button onClick={()=>{ if(validateStep1()) setStep(2); }}
