@@ -1,0 +1,1978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+  <title>Suraksha24 — Repo Cars by LOANS24</title>
+  <meta name="theme-color" content="#1E3A8A"/>
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.json"/>
+  <meta name="mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+  <meta name="apple-mobile-web-app-title" content="Suraksha24"/>
+  <link rel="apple-touch-icon" href="/icon-192.png"/>
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon-152.png"/>
+  <link rel="apple-touch-icon" sizes="192x192" href="/icon-192.png"/>
+  <link rel="apple-touch-icon" sizes="512x512" href="/icon-512.png"/>
+  <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png"/>
+  <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png"/>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={darkMode:'class'}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400;1,500;1,600;1,700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=DM+Mono:wght@400;500&family=Syne:wght@700;800;900&display=swap" rel="stylesheet"/>
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0;padding:0;font-family:'DM Sans',sans-serif;background:#F8FAFF;-webkit-font-smoothing:antialiased}
+    input,button,a,select,textarea{font-family:'DM Sans',sans-serif}
+    input::placeholder,textarea::placeholder{color:#94a3b8}
+    #loader{display:flex;align-items:center;justify-content:center;height:100vh;flex-direction:column;gap:14px;position:fixed;inset:0;background:#F8FAFF;z-index:9999}
+    .sp{width:40px;height:40px;border:3px solid #DBEAFE;border-top-color:#1E3A8A;border-radius:50%;animation:spin 0.7s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.5}}
+    ::-webkit-scrollbar{height:3px;width:4px}
+    ::-webkit-scrollbar-thumb{background:#BFDBFE;border-radius:4px}
+  </style>
+</head>
+<body>
+  <div id="loader"><div class="sp"></div>
+    <p style="color:#94a3b8;font-size:0.8rem;letter-spacing:0.06em">Loading Suraksha24...</p>
+  </div>
+  <div id="root"></div>
+  <script>window.__LOGO_SRC__="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgNjgwIDIwMCIgcm9sZT0iaW1nIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDx0aXRsZT5TdXJha3NoYTI0IGxvZ288L3RpdGxlPgogIDxkZXNjPlN1cmFrc2hhMjQgbG9nbyBmaW5hbCBzY2FsZWQ8L2Rlc2M+CiAgPGRlZnM+CiAgICA8c3R5bGU+QGltcG9ydCB1cmwoImh0dHBzOi8vZm9udHMuZ29vZ2xlYXBpcy5jb20vY3NzMj9mYW1pbHk9TnVuaXRvOndnaHRAOTAwJmFtcDtkaXNwbGF5PXN3YXAiKTs8L3N0eWxlPgogIDwvZGVmcz4KCiAgPHJlY3QgeD0iNDAiIHk9IjEwIiB3aWR0aD0iNjAwIiBoZWlnaHQ9IjE4MCIgcng9IjIyIiBmaWxsPSIjM0IzQkY1Ii8+CiAgPHJlY3QgeD0iNjIiIHk9IjI4IiB3aWR0aD0iMTQ0IiBoZWlnaHQ9IjE0NCIgcng9IjIyIiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9Ijc0IiB5PSI0MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxMjAiIHJ4PSIxNCIgZmlsbD0iIzNCM0JGNSIvPgoKICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxMzQsMTAwKSI+CiAgICA8cGF0aCBkPSJNIDAsLTQyIEEgNDIsNDIgMCAxLDAgNDIsMCBBIDQyLDQyIDAgMCwwIDI5LjcsLTI5LjciIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMTQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogICAgPHBhdGggZD0iTSAtNDIsMCBBIDQyLDQyIDAgMCwwIC0yOS43LDI5LjciIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMTQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDwvZz4KCiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTM0LDEwMCkgc2NhbGUoMC43MikiPgogICAgPHBhdGggZD0iJiMxMDsgICAgICBNIC0yNCwyMiYjMTA7ICAgICAgUSAtMjgsMjIgLTI4LDE4JiMxMDsgICAgICBMIC0yOCw2JiMxMDsgICAgICBRIC0yOCwzIC0yNSwyJiMxMDsgICAgICBMIC0yNywyIEwgLTI3LC0xIEwgLTI0LC0xJiMxMDsgICAgICBMIC0xOSwtMTYmIzEwOyAgICAgIFEgLTE2LC0yMyAtOCwtMjQmIzEwOyAgICAgIEwgOCwtMjQmIzEwOyAgICAgIFEgMTYsLTIzIDE5LC0xNiYjMTA7ICAgICAgTCAyNCwtMSYjMTA7ICAgICAgTCAyNywtMSBMIDI3LDIgTCAyNSwyJiMxMDsgICAgICBRIDI4LDMgMjgsNiYjMTA7ICAgICAgTCAyOCwxOCYjMTA7ICAgICAgUSAyOCwyMiAyNCwyMiBaJiMxMDsgICAgIiBmaWxsPSJ3aGl0ZSIvPgogICAgPHJlY3QgeD0iLTE0IiB5PSItMjAiIHdpZHRoPSIyOCIgaGVpZ2h0PSIxMiIgcng9IjQiIGZpbGw9IiMzQjNCRjUiLz4KICAgIDxyZWN0IHg9Ii0yMCIgeT0iNiIgd2lkdGg9IjQwIiBoZWlnaHQ9IjYiIHJ4PSIyIiBmaWxsPSIjM0IzQkY1Ii8+CiAgICA8Y2lyY2xlIGN4PSItMjAiIGN5PSIxNCIgcj0iNiIgZmlsbD0iI0ZGRDcwMCIvPgogICAgPGNpcmNsZSBjeD0iMjAiIGN5PSIxNCIgcj0iNiIgZmlsbD0iI0ZGRDcwMCIvPgogICAgPGNpcmNsZSBjeD0iLTIwIiBjeT0iMTQiIHI9IjMiIGZpbGw9IndoaXRlIiBvcGFjaXR5PSIwLjUiLz4KICAgIDxjaXJjbGUgY3g9IjIwIiBjeT0iMTQiIHI9IjMiIGZpbGw9IndoaXRlIiBvcGFjaXR5PSIwLjUiLz4KICA8L2c+CgogIDx0ZXh0IHg9IjIyOCIgeT0iMTAwIiBmb250LWZhbWlseT0iJ051bml0bycsIHNhbnMtc2VyaWYiIGZvbnQtd2VpZ2h0PSI5MDAiIGZvbnQtc2l6ZT0iNTYiIGZpbGw9IndoaXRlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiBsZXR0ZXItc3BhY2luZz0iLTEiPlN1cmFrc2hhMjQ8L3RleHQ+Cgo8L3N2Zz4=";</script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <!-- Firebase SDK + Init (outside Babel) -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script>
+    try {
+      var firebaseConfig = {
+        apiKey: "AIzaSyBbY0DKwsIGCt2gyw38OlXzsTkepT3AQg0",
+        authDomain: "suraksha24-v1.firebaseapp.com",
+        projectId: "suraksha24-v1",
+        storageBucket: "suraksha24-v1.firebasestorage.app",
+        messagingSenderId: "891138976157",
+        appId: "1:891138976157:web:91c3a414d21fbc7a4da774",
+        measurementId: "G-GTFKF4KYRH"
+      };
+      if (!firebase.apps.length) { firebase.initializeApp(firebaseConfig); }
+      window.__fbAuth = firebase.auth();
+      console.log("✅ Firebase initialized");
+    } catch(e) {
+      console.error("Firebase init error:", e);
+    }
+  </script>
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/lucide-react@0.263.1/dist/umd/lucide-react.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.23.10/babel.min.js"></script>
+  <script type="text/babel" data-presets="react,env">
+const {useState,useEffect,useCallback,useMemo,useRef}=React;
+const _L=window.LucideReact||window.lucideReact||window.lucide||{};
+const mkI=n=>_L[n]||(({size=16,className='',style:s={}})=>React.createElement('span',{className,style:{display:'inline-flex',width:size,height:size,...s}}));
+const Search=mkI('Search'),X=mkI('X'),Check=mkI('Check'),Car=mkI('Car'),Mail=mkI('Mail'),
+MapPin=mkI('MapPin'),Calendar=mkI('Calendar'),Fuel=mkI('Fuel'),Building2=mkI('Building2'),
+Star=mkI('Star'),Bell=mkI('Bell'),User=mkI('User'),Heart=mkI('Heart'),Eye=mkI('Eye'),
+FileText=mkI('FileText'),Share2=mkI('Share2'),MessageSquare=mkI('MessageSquare'),
+Phone=mkI('Phone'),MessageCircle=mkI('MessageCircle'),ChevronDown=mkI('ChevronDown'),
+ChevronRight=mkI('ChevronRight'),Home=mkI('Home'),Shield=mkI('Shield'),
+CheckCircle=mkI('CheckCircle'),AlertCircle=mkI('AlertCircle'),Loader2=mkI('Loader2'),
+Filter=mkI('Filter'),Menu=mkI('Menu'),ArrowLeft=mkI('ArrowLeft'),Wrench=mkI('Wrench'),
+BarChart2=mkI('BarChart2'),Clock=mkI('Clock'),Award=mkI('Award'),Zap=mkI('Zap');
+const LOGO_SRC=window.__LOGO_SRC__;
+// ============================================================
+// SURAKSHA24 — Repo Cars Marketplace
+// CarDekho-style UI | React + Tailwind | Google Sheets Backend
+// ============================================================
+
+
+const CONFIG = {
+  APPS_SCRIPT_URL: "https://script.google.com/a/macros/cars24.com/s/AKfycbxe6LLbWjUEJ87GG7sA8_ewWhfSaV4sCu8qKQ-LmVXZIGbxmdAOCrTc_8AYq1CJvJFvgw/exec",
+  DEMO_MODE: false,
+  WHATSAPP_NUMBER: "919315271911",
+  EMAIL: "suraksha@cars24.com",
+};
+
+const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyBbY0DKwsIGCt2gyw380lXzsTkepT3AQg0",
+  authDomain: "suraksha24-v1.firebaseapp.com",
+  projectId: "suraksha24-v1",
+  storageBucket: "suraksha24-v1.firebasestorage.app",
+  messagingSenderId: "891138976157",
+  appId: "1:891138976157:web:91c3a414d21fbc7a4da774",
+  measurementId: "G-GTFKF4KYRH"
+};
+
+const AGENTS = [
+  { name:"Abhinav Pandey",             whatsapp:"919870124354" },
+  { name:"Ayush Gupta",                whatsapp:"917828303506" },
+  { name:"Rahul Gupta",                whatsapp:"917223899770" },
+  { name:"Rakesh",                     whatsapp:"918448692346" },
+  { name:"Deepak Sharma (Escalation)", whatsapp:"919315271911" },
+];
+const AGENT_NAMES = AGENTS.map(a => a.name);
+
+const SAMPLE_CARS = [
+  { id:"1",  regNo:"DL01AB1234", make:"Maruti",     model:"Swift",   variant:"VXi",   regYear:2019, fuelType:"Petrol",  rcStatus:"Clear",         ownerCount:1, pdfLink:"#", highestBid:425000,  enquiryTotal:8,  enquiryUnique:6, bidTotal:3,  bidUnique:2, status:"For Sale",   bank:"ICICI Bank",      state:"Delhi",          parkingYard:"Okhla Yard - Delhi",            kmDriven:45000, comment:"Good condition",  dealId:"",      timestamp:"2025-01-15" },
+  { id:"2",  regNo:"MH02CD5678", make:"Hyundai",    model:"Creta",   variant:"SX",   regYear:2020, fuelType:"Diesel",  rcStatus:"Hypothecation", ownerCount:1, pdfLink:"#", highestBid:850000,  enquiryTotal:15, enquiryUnique:10,bidTotal:7,  bidUnique:5, status:"For Sale",   bank:"HDFC Bank",       state:"Maharashtra",    parkingYard:"Andheri Yard - Mumbai",         kmDriven:62000, comment:"Minor dents",     dealId:"",      timestamp:"2025-01-18" },
+  { id:"3",  regNo:"HR26EF9012", make:"Honda",      model:"City",    variant:"V",    regYear:2018, fuelType:"Petrol",  rcStatus:"Clear",         ownerCount:2, pdfLink:"#", highestBid:520000,  enquiryTotal:6,  enquiryUnique:4, bidTotal:2,  bidUnique:2, status:"Upcoming",   bank:"Bajaj Finance",   state:"Haryana",        parkingYard:"Gurgaon Yard",                  kmDriven:78000, comment:"",               dealId:"",      timestamp:"2025-01-20" },
+  { id:"4",  regNo:"KA03GH3456", make:"Tata",       model:"Nexon",   variant:"XZ+",   regYear:2021, fuelType:"Diesel",  rcStatus:"Clear",         ownerCount:1, pdfLink:"#", highestBid:720000,  enquiryTotal:20, enquiryUnique:14,bidTotal:10, bidUnique:8, status:"For Sale",   bank:"Piramal Finance", state:"Karnataka",      parkingYard:"Whitefield Yard - Bengaluru",   kmDriven:38000, comment:"Excellent",       dealId:"",      timestamp:"2025-01-22" },
+  { id:"5",  regNo:"TN09IJ7890", make:"Maruti",     model:"Baleno",  variant:"Zeta",  regYear:2020, fuelType:"Petrol",  rcStatus:"NOC Pending",   ownerCount:2, pdfLink:"#", highestBid:580000,  enquiryTotal:11, enquiryUnique:8, bidTotal:4,  bidUnique:3, status:"Total Loss",      bank:"Axis Bank",       state:"Tamil Nadu",     parkingYard:"Ambattur Yard - Chennai",       kmDriven:55000, comment:"Scrapped",        dealId:"",      timestamp:"2025-01-25" },
+  { id:"6",  regNo:"UP32KL2345", make:"Hyundai",    model:"i20",     variant:"Asta",     regYear:2019, fuelType:"Petrol",  rcStatus:"Clear",         ownerCount:1, pdfLink:"#", highestBid:490000,  enquiryTotal:9,  enquiryUnique:7, bidTotal:4,  bidUnique:3, status:"Bulk Deals", bank:"Kotak Mahindra",  state:"Uttar Pradesh",  parkingYard:"Noida Yard",                    kmDriven:62000, comment:"Bundle BD-001",   dealId:"BD-001",timestamp:"2025-02-01" },
+  { id:"7",  regNo:"GJ05MN6789", make:"Kia",        model:"Seltos",  variant:"HTX",  regYear:2021, fuelType:"Diesel",  rcStatus:"Clear",         ownerCount:1, pdfLink:"#", highestBid:980000,  enquiryTotal:25, enquiryUnique:18,bidTotal:12, bidUnique:9, status:"Bulk Deals", bank:"Kotak Mahindra",  state:"Uttar Pradesh",  parkingYard:"Noida Yard",                    kmDriven:42000, comment:"Bundle BD-001",   dealId:"BD-001",timestamp:"2025-02-05" },
+  { id:"8",  regNo:"RJ14OP3456", make:"Mahindra",   model:"Scorpio", variant:"S10", regYear:2018, fuelType:"Diesel",  rcStatus:"Hypothecation", ownerCount:3, pdfLink:"#", highestBid:680000,  enquiryTotal:14, enquiryUnique:10,bidTotal:6,  bidUnique:5, status:"Bulk Deals", bank:"Kotak Mahindra",  state:"Uttar Pradesh",  parkingYard:"Noida Yard",                    kmDriven:95000, comment:"Bundle BD-001",   dealId:"BD-001",timestamp:"2025-02-08" },
+  { id:"9",  regNo:"WB20QR7890", make:"Toyota",     model:"Innova",  variant:"GX",  regYear:2019, fuelType:"Diesel",  rcStatus:"Clear",         ownerCount:2, pdfLink:"#", highestBid:1150000, enquiryTotal:18, enquiryUnique:13,bidTotal:8,  bidUnique:6, status:"For Sale",   bank:"Bajaj Finance",   state:"West Bengal",    parkingYard:"Howrah Yard - Kolkata",         kmDriven:82000, comment:"",               dealId:"",      timestamp:"2025-02-10" },
+  { id:"10", regNo:"PB10ST1234", make:"Volkswagen", model:"Polo",    variant:"Comfortline",    regYear:2018, fuelType:"Petrol",  rcStatus:"Clear",         ownerCount:1, pdfLink:"#", highestBid:380000,  enquiryTotal:7,  enquiryUnique:5, bidTotal:2,  bidUnique:2, status:"Blacklisted",bank:"Piramal Finance", state:"Punjab",         parkingYard:"Chandigarh Yard",               kmDriven:71000, comment:"Fraud history",   dealId:"",      timestamp:"2025-02-12" },
+  { id:"11", regNo:"AP09UV5678", make:"Renault",    model:"Duster",  variant:"RXZ",  regYear:2019, fuelType:"Diesel",  rcStatus:"NOC Pending",   ownerCount:2, pdfLink:"#", highestBid:620000,  enquiryTotal:13, enquiryUnique:9, bidTotal:5,  bidUnique:4, status:"Disputed",   bank:"ICICI Bank",      state:"Andhra Pradesh", parkingYard:"Hyderabad Yard",                kmDriven:68000, comment:"NOC in process",  dealId:"",      timestamp:"2025-02-15" },
+  { id:"12", regNo:"MP04WX9012", make:"Tata",       model:"Tiago",   variant:"XT",   regYear:2020, fuelType:"Petrol",  rcStatus:"Clear",         ownerCount:1, pdfLink:"#", highestBid:340000,  enquiryTotal:5,  enquiryUnique:4, bidTotal:2,  bidUnique:2, status:"Upcoming",   bank:"Kotak Mahindra",  state:"Madhya Pradesh", parkingYard:"Bhopal Yard",                   kmDriven:35000, comment:"",               dealId:"BD-002",timestamp:"2025-02-18" },
+  { id:"13", regNo:"GJ07YZ4321", make:"Maruti",     model:"Wagon R", variant:"VXi", regYear:2019, fuelType:"CNG",     rcStatus:"Clear",         ownerCount:1, pdfLink:"#", highestBid:290000,  enquiryTotal:3,  enquiryUnique:3, bidTotal:1,  bidUnique:1, status:"Upcoming",   bank:"Kotak Mahindra",  state:"Madhya Pradesh", parkingYard:"Bhopal Yard",                   kmDriven:48000, comment:"",               dealId:"BD-002",timestamp:"2025-02-18" },
+];
+
+const SAMPLE_MASTER = {
+  banks:        ["ICICI Bank","HDFC Bank","Bajaj Finance","Piramal Finance","Axis Bank","Kotak Mahindra"],
+  states:       ["Delhi","Maharashtra","Karnataka","Tamil Nadu","Telangana","Gujarat","Rajasthan","Uttar Pradesh","West Bengal","Haryana","Punjab","Andhra Pradesh","Madhya Pradesh"],
+  makes:        ["Maruti","Hyundai","Honda","Tata","Kia","Mahindra","Toyota","Volkswagen","Renault","Skoda"],
+  parkingYards: ["Okhla Yard - Delhi","Andheri Yard - Mumbai","Whitefield Yard - Bengaluru","Ambattur Yard - Chennai","Hyderabad Yard","Naroda Yard - Ahmedabad","Jaipur Yard","Howrah Yard - Kolkata"],
+  fuelTypes:    ["Petrol","Diesel","CNG","Electric","Hybrid"],
+  rcStatuses:   ["Clear","Hypothecation","NOC Pending"],
+};
+
+const formatCurrency = (n) => {
+  if (!n) return "₹0";
+  if (n >= 10000000) return `₹${(n/10000000).toFixed(2)} Cr`;
+  if (n >= 100000)   return `₹${(n/100000).toFixed(2)}L`;
+  if (n >= 1000)     return `₹${(n/1000).toFixed(0)}K`;
+  return `₹${n.toLocaleString("en-IN")}`;
+};
+const fmtNum = (n) => (n||0).toLocaleString("en-IN");
+
+
+// ============================================================
+// 🌐  TRANSLATIONS
+// ============================================================
+const LANGS = [
+  { code:"en", label:"English",  native:"EN"  },
+  { code:"hi", label:"Hindi",    native:"हि"   },
+  { code:"mr", label:"Marathi",  native:"मर"   },
+  { code:"kn", label:"Kannada",  native:"ಕ"    },
+  { code:"ta", label:"Tamil",    native:"த"    },
+  { code:"te", label:"Telugu",   native:"తె"   },
+];
+
+const TRANSLATIONS = {
+  en: {
+    tagline:"Powered by CARS24",
+    hero1:"Premium Repo Inventory",
+    hero2:"Trusted by Dealers",
+    carsListed:"Cars Listed", partnerBanks:"Partner Banks", cities:"Cities",
+    all:"All", available:"Available", pending:"Pending", sold:"Sold",
+    bank:"Bank", make:"Make", state:"State", parkingYard:"Parking Yard", fuel:"Fuel",
+    bidNow:"Bid Now", enquire:"Enquire", pdf:"PDF",
+    basePrice:"Base Price", bids:"bids", enquiries:"enquiries",
+    home:"Home", saved:"Saved", contact:"Contact",
+    search:"Search make, model, reg. no., city, bank...",
+    searchBtn:"Search", cancel:"Cancel", clear:"Clear",
+    clearFilters:"Clear filters", carsFound:"cars found",
+    loading:"Loading Suraksha24...", noCarFound:"No cars found",
+    adjustFilters:"Try adjusting your filters",
+    submitBid:"Submit Your Bid", dealerEnquiry:"Dealer Enquiry",
+    dealerName:"Dealer / Company Name *", mobile:"Mobile Number *",
+    bidPrice:"Bid Price (₹) *", agent:"Assigned Agent", remarks:"Remarks (optional)",
+    submitBidBtn:"Submit Bid", sendEnquiry:"Send Enquiry",
+    bidPrivate:"Your bid is recorded privately — other dealers cannot see it.",
+    name:"Name *", message:"Message", msgPlaceholder:"Your enquiry...",
+    mobilePlaceholder:"10-digit mobile", namePlaceholder:"Your full name",
+    dealerPlaceholder:"e.g. Sharma Auto Pvt Ltd",
+    contactUs:"Contact Us", chatNow:"Chat with us now", callNow:"Call Now",
+    ourAgents:"Our Agents", savedCars:"Saved Cars",
+    noSaved:"No saved cars yet", tapToSave:"Tap ♡ on any car to save it here",
+    required:"Required", validMobile:"Enter valid 10-digit mobile",
+    validAmount:"Enter valid amount", minBid:"Min.",
+    submitting:"Submitting...", sending:"Sending...",
+    dealerBids:"dealer bids",
+  },
+  hi: {
+    tagline:"Powered by CARS24",
+    hero1:"Premium Repo Inventory",
+    hero2:"Trusted by Dealers",
+    carsListed:"गाड़ियां सूचीबद्ध", partnerBanks:"पार्टनर बैंक", cities:"शहर",
+    all:"सभी", available:"उपलब्ध", pending:"लंबित", sold:"बिका",
+    bank:"बैंक", make:"निर्माता", state:"राज्य", parkingYard:"पार्किंग यार्ड", fuel:"ईंधन",
+    bidNow:"बोली लगाएं", enquire:"पूछताछ करें", pdf:"PDF",
+    basePrice:"आधार मूल्य", bids:"बोलियां", enquiries:"पूछताछ",
+    home:"होम", saved:"सहेजे", contact:"संपर्क",
+    search:"मेक, मॉडल, रेग. नं., शहर खोजें...",
+    searchBtn:"खोजें", cancel:"रद्द करें", clear:"हटाएं",
+    clearFilters:"फ़िल्टर हटाएं", carsFound:"गाड़ियां मिलीं",
+    loading:"लोड हो रहा है...", noCarFound:"कोई गाड़ी नहीं मिली",
+    adjustFilters:"फ़िल्टर बदलकर देखें",
+    submitBid:"अपनी बोली जमा करें", dealerEnquiry:"ग्राहक पूछताछ",
+    dealerName:"डीलर / कंपनी का नाम *", mobile:"मोबाइल नंबर *",
+    bidPrice:"बोली मूल्य (₹) *", agent:"नियुक्त एजेंट", remarks:"टिप्पणी (वैकल्पिक)",
+    submitBidBtn:"बोली जमा करें", sendEnquiry:"पूछताछ भेजें",
+    bidPrivate:"आपकी बोली गोपनीय रूप से दर्ज की गई है।",
+    name:"नाम *", message:"संदेश", msgPlaceholder:"आपकी पूछताछ...",
+    mobilePlaceholder:"10 अंकों का मोबाइल", namePlaceholder:"आपका पूरा नाम",
+    dealerPlaceholder:"जैसे. शर्मा ऑटो प्रा. लि.",
+    contactUs:"हमसे संपर्क करें", chatNow:"अभी चैट करें", callNow:"अभी कॉल करें",
+    ourAgents:"हमारे एजेंट", savedCars:"सहेजी गाड़ियां",
+    noSaved:"अभी तक कोई सहेजी गाड़ी नहीं", tapToSave:"किसी भी गाड़ी पर ♡ दबाएं",
+    required:"आवश्यक है", validMobile:"सही 10 अंकों का मोबाइल दर्ज करें",
+    validAmount:"सही राशि दर्ज करें", minBid:"न्यूनतम",
+    submitting:"जमा हो रहा है...", sending:"भेजा जा रहा है...",
+    dealerBids:"डीलर बोलियां",
+  },
+  mr: {
+    tagline:"Powered by CARS24",
+    hero1:"Premium Repo Inventory",
+    hero2:"Trusted by Dealers",
+    carsListed:"गाड्या सूचीबद्ध", partnerBanks:"भागीदार बँका", cities:"शहरे",
+    all:"सर्व", available:"उपलब्ध", pending:"प्रलंबित", sold:"विकले",
+    bank:"बँक", make:"निर्माता", state:"राज्य", parkingYard:"पार्किंग यार्ड", fuel:"इंधन",
+    bidNow:"बोली द्या", enquire:"चौकशी करा", pdf:"PDF",
+    basePrice:"आधार किंमत", bids:"बोल्या", enquiries:"चौकश्या",
+    home:"मुख्यपृष्ठ", saved:"जतन केलेल्या", contact:"संपर्क",
+    search:"मेक, मॉडल, नोंदणी क्र., शहर शोधा...",
+    searchBtn:"शोधा", cancel:"रद्द करा", clear:"साफ करा",
+    clearFilters:"फिल्टर साफ करा", carsFound:"गाड्या सापडल्या",
+    loading:"लोड होत आहे...", noCarFound:"कोणतीही गाडी सापडली नाही",
+    adjustFilters:"फिल्टर बदलून पाहा",
+    submitBid:"तुमची बोली सादर करा", dealerEnquiry:"ग्राहक चौकशी",
+    dealerName:"डीलर / कंपनीचे नाव *", mobile:"मोबाइल नंबर *",
+    bidPrice:"बोली किंमत (₹) *", agent:"नियुक्त एजंट", remarks:"शेरा (ऐच्छिक)",
+    submitBidBtn:"बोली सादर करा", sendEnquiry:"चौकशी पाठवा",
+    bidPrivate:"तुमची बोली खाजगीरित्या नोंदवली गेली आहे।",
+    name:"नाव *", message:"संदेश", msgPlaceholder:"तुमची चौकशी...",
+    mobilePlaceholder:"10 अंकी मोबाइल", namePlaceholder:"तुमचे पूर्ण नाव",
+    dealerPlaceholder:"उदा. शर्मा ऑटो प्रा. लि.",
+    contactUs:"आमच्याशी संपर्क साधा", chatNow:"आत्ता चॅट करा", callNow:"आत्ता कॉल करा",
+    ourAgents:"आमचे एजंट", savedCars:"जतन केलेल्या गाड्या",
+    noSaved:"अद्याप कोणतीही जतन केलेली गाडी नाही", tapToSave:"कोणत्याही गाडीवर ♡ दाबा",
+    required:"आवश्यक", validMobile:"वैध 10 अंकी मोबाइल प्रविष्ट करा",
+    validAmount:"वैध रक्कम प्रविष्ट करा", minBid:"किमान",
+    submitting:"सादर होत आहे...", sending:"पाठवत आहे...",
+    dealerBids:"डीलर बोल्या",
+  },
+  kn: {
+    tagline:"Powered by CARS24",
+    hero1:"Premium Repo Inventory",
+    hero2:"Trusted by Dealers",
+    carsListed:"ವಾಹನಗಳ ಪಟ್ಟಿ", partnerBanks:"ಪಾಲು ಬ್ಯಾಂಕ್‌ಗಳು", cities:"ನಗರಗಳು",
+    all:"ಎಲ್ಲಾ", available:"ಲಭ್ಯ", pending:"ಬಾಕಿ", sold:"ಮಾರಾಟ",
+    bank:"ಬ್ಯಾಂಕ್", make:"ತಯಾರಕ", state:"ರಾಜ್ಯ", parkingYard:"ಪಾರ್ಕಿಂಗ್ ಯಾರ್ಡ್", fuel:"ಇಂಧನ",
+    bidNow:"ಈಗ ಬಿಡ್ ಮಾಡಿ", enquire:"ವಿಚಾರಿಸಿ", pdf:"PDF",
+    basePrice:"ಮೂಲ ಬೆಲೆ", bids:"ಬಿಡ್‌ಗಳು", enquiries:"ವಿಚಾರಣೆಗಳು",
+    home:"ಮುಖಪುಟ", saved:"ಉಳಿಸಿದ", contact:"ಸಂಪರ್ಕ",
+    search:"ಮೇಕ್, ಮಾಡೆಲ್, ನಂ., ನಗರ ಹುಡುಕಿ...",
+    searchBtn:"ಹುಡುಕಿ", cancel:"ರದ್ದು ಮಾಡಿ", clear:"ತೆರವುಗೊಳಿಸಿ",
+    clearFilters:"ಫಿಲ್ಟರ್ ತೆರವು", carsFound:"ವಾಹನಗಳು ಸಿಕ್ಕಿವೆ",
+    loading:"ಲೋಡ್ ಆಗುತ್ತಿದೆ...", noCarFound:"ಯಾವ ವಾಹನವೂ ಸಿಗಲಿಲ್ಲ",
+    adjustFilters:"ಫಿಲ್ಟರ್ ಬದಲಿಸಿ ನೋಡಿ",
+    submitBid:"ನಿಮ್ಮ ಬಿಡ್ ಸಲ್ಲಿಸಿ", dealerEnquiry:"ಗ್ರಾಹಕ ವಿಚಾರಣೆ",
+    dealerName:"ಡೀಲರ್ / ಕಂಪನಿ ಹೆಸರು *", mobile:"ಮೊಬೈಲ್ ಸಂಖ್ಯೆ *",
+    bidPrice:"ಬಿಡ್ ಬೆಲೆ (₹) *", agent:"ನಿಯೋಜಿತ ಏಜೆಂಟ್", remarks:"ಟಿಪ್ಪಣಿ (ಐಚ್ಛಿಕ)",
+    submitBidBtn:"ಬಿಡ್ ಸಲ್ಲಿಸಿ", sendEnquiry:"ವಿಚಾರಣೆ ಕಳುಹಿಸಿ",
+    bidPrivate:"ನಿಮ್ಮ ಬಿಡ್ ಖಾಸಗಿಯಾಗಿ ದಾಖಲಾಗಿದೆ।",
+    name:"ಹೆಸರು *", message:"ಸಂದೇಶ", msgPlaceholder:"ನಿಮ್ಮ ವಿಚಾರಣೆ...",
+    mobilePlaceholder:"10 ಅಂಕಿ ಮೊಬೈಲ್", namePlaceholder:"ನಿಮ್ಮ ಪೂರ್ಣ ಹೆಸರು",
+    dealerPlaceholder:"ಉದಾ. ಶರ್ಮಾ ಆಟೋ ಪ್ರೈ. ಲಿ.",
+    contactUs:"ನಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಿ", chatNow:"ಈಗ ಚಾಟ್ ಮಾಡಿ", callNow:"ಈಗ ಕರೆ ಮಾಡಿ",
+    ourAgents:"ನಮ್ಮ ಏಜೆಂಟ್‌ಗಳು", savedCars:"ಉಳಿಸಿದ ವಾಹನಗಳು",
+    noSaved:"ಇನ್ನೂ ಯಾವ ವಾಹನವೂ ಉಳಿಸಿಲ್ಲ", tapToSave:"ಯಾವುದೇ ವಾಹನದ ♡ ಒತ್ತಿ",
+    required:"ಅಗತ್ಯವಿದೆ", validMobile:"ಸರಿಯಾದ 10 ಅಂಕಿ ಮೊಬೈಲ್ ನಮೂದಿಸಿ",
+    validAmount:"ಸರಿಯಾದ ಮೊತ್ತ ನಮೂದಿಸಿ", minBid:"ಕನಿಷ್ಠ",
+    submitting:"ಸಲ್ಲಿಸಲಾಗುತ್ತಿದೆ...", sending:"ಕಳುಹಿಸಲಾಗುತ್ತಿದೆ...",
+    dealerBids:"ಡೀಲರ್ ಬಿಡ್‌ಗಳು",
+  },
+  ta: {
+    tagline:"Powered by CARS24",
+    hero1:"Premium Repo Inventory",
+    hero2:"Trusted by Dealers",
+    carsListed:"வாகனங்கள் பட்டியல்", partnerBanks:"கூட்டு வங்கிகள்", cities:"நகரங்கள்",
+    all:"அனைத்தும்", available:"கிடைக்கும்", pending:"நிலுவையில்", sold:"விற்கப்பட்டது",
+    bank:"வங்கி", make:"தயாரிப்பாளர்", state:"மாநிலம்", parkingYard:"நிறுத்துமிடம்", fuel:"எரிபொருள்",
+    bidNow:"இப்போது ஏலம்", enquire:"விசாரி", pdf:"PDF",
+    basePrice:"அடிப்படை விலை", bids:"ஏலங்கள்", enquiries:"விசாரணைகள்",
+    home:"முகப்பு", saved:"சேமித்தவை", contact:"தொடர்பு",
+    search:"மேக், மாடல், எண், நகரம் தேடுங்கள்...",
+    searchBtn:"தேடு", cancel:"ரத்து செய்", clear:"அழி",
+    clearFilters:"வடிகட்டிகளை அழி", carsFound:"வாகனங்கள் கண்டறியப்பட்டன",
+    loading:"ஏற்றுகிறது...", noCarFound:"வாகனங்கள் எதுவும் இல்லை",
+    adjustFilters:"வடிகட்டிகளை மாற்றி பாருங்கள்",
+    submitBid:"உங்கள் ஏலத்தை சமர்ப்பிக்கவும்", dealerEnquiry:"வாடிக்கையாளர் விசாரணை",
+    dealerName:"டீலர் / நிறுவன பெயர் *", mobile:"மொபைல் எண் *",
+    bidPrice:"ஏல விலை (₹) *", agent:"நியமிக்கப்பட்ட முகவர்", remarks:"கருத்துக்கள் (விரும்பினால்)",
+    submitBidBtn:"ஏலம் சமர்ப்பி", sendEnquiry:"விசாரணை அனுப்பு",
+    bidPrivate:"உங்கள் ஏலம் தனிப்பட்ட முறையில் பதிவு செய்யப்பட்டது।",
+    name:"பெயர் *", message:"செய்தி", msgPlaceholder:"உங்கள் விசாரணை...",
+    mobilePlaceholder:"10 இலக்க மொபைல்", namePlaceholder:"உங்கள் முழு பெயர்",
+    dealerPlaceholder:"எ.கா. சர்மா ஆட்டோ பிரை. லி.",
+    contactUs:"எங்களை தொடர்பு கொள்ளுங்கள்", chatNow:"இப்போது அரட்டை", callNow:"இப்போது அழை",
+    ourAgents:"எங்கள் முகவர்கள்", savedCars:"சேமித்த வாகனங்கள்",
+    noSaved:"இன்னும் சேமித்த வாகனங்கள் இல்லை", tapToSave:"எந்த வாகனத்திலும் ♡ தட்டுங்கள்",
+    required:"தேவை", validMobile:"சரியான 10 இலக்க மொபைல் உள்ளிடவும்",
+    validAmount:"சரியான தொகை உள்ளிடவும்", minBid:"குறைந்தது",
+    submitting:"சமர்ப்பிக்கிறது...", sending:"அனுப்புகிறது...",
+    dealerBids:"டீலர் ஏலங்கள்",
+  },
+  te: {
+    tagline:"Powered by CARS24",
+    hero1:"Premium Repo Inventory",
+    hero2:"Trusted by Dealers",
+    carsListed:"వాహనాల జాబితా", partnerBanks:"భాగస్వామ్య బ్యాంకులు", cities:"నగరాలు",
+    all:"అన్నీ", available:"అందుబాటులో", pending:"పెండింగ్", sold:"అమ్మబడింది",
+    bank:"బ్యాంక్", make:"తయారీదారు", state:"రాష్ట్రం", parkingYard:"పార్కింగ్ యార్డ్", fuel:"ఇంధనం",
+    bidNow:"ఇప్పుడు బిడ్ చేయండి", enquire:"విచారించండి", pdf:"PDF",
+    basePrice:"ప్రాథమిక ధర", bids:"బిడ్లు", enquiries:"విచారణలు",
+    home:"హోమ్", saved:"సేవ్ చేసినవి", contact:"సంప్రదింపు",
+    search:"మేక్, మోడల్, నెం., నగరం వెతకండి...",
+    searchBtn:"వెతకండి", cancel:"రద్దు చేయండి", clear:"తొలగించు",
+    clearFilters:"ఫిల్టర్లు తొలగించు", carsFound:"వాహనాలు కనుగొనబడ్డాయి",
+    loading:"లోడ్ అవుతోంది...", noCarFound:"వాహనాలు ఏవీ కనుగొనబడలేదు",
+    adjustFilters:"ఫిల్టర్లు మార్చి చూడండి",
+    submitBid:"మీ బిడ్ సమర్పించండి", dealerEnquiry:"కస్టమర్ విచారణ",
+    dealerName:"డీలర్ / కంపెనీ పేరు *", mobile:"మొబైల్ నంబర్ *",
+    bidPrice:"బిడ్ ధర (₹) *", agent:"నియమించిన ఏజెంట్", remarks:"వ్యాఖ్యలు (ఐచ్ఛికం)",
+    submitBidBtn:"బిడ్ సమర్పించు", sendEnquiry:"విచారణ పంపండి",
+    bidPrivate:"మీ బిడ్ ప్రైవేట్‌గా నమోదు చేయబడింది।",
+    name:"పేరు *", message:"సందేశం", msgPlaceholder:"మీ విచారణ...",
+    mobilePlaceholder:"10 అంకెల మొబైల్", namePlaceholder:"మీ పూర్తి పేరు",
+    dealerPlaceholder:"ఉదా. శర్మా ఆటో ప్రై. లి.",
+    contactUs:"మమ్మల్ని సంప్రదించండి", chatNow:"ఇప్పుడు చాట్ చేయండి", callNow:"ఇప్పుడు కాల్ చేయండి",
+    ourAgents:"మా ఏజెంట్లు", savedCars:"సేవ్ చేసిన వాహనాలు",
+    noSaved:"ఇంకా సేవ్ చేసిన వాహనాలు లేవు", tapToSave:"ఏదైనా వాహనంపై ♡ నొక్కండి",
+    required:"అవసరం", validMobile:"చెల్లుబాటు అయ్యే 10 అంకెల మొబైల్ నమోదు చేయండి",
+    validAmount:"చెల్లుబాటు అయ్యే మొత్తం నమోదు చేయండి", minBid:"కనీసం",
+    submitting:"సమర్పిస్తోంది...", sending:"పంపుతోంది...",
+    dealerBids:"డీలర్ బిడ్లు",
+  },
+};
+
+const t = (lang, key) => (TRANSLATIONS[lang] || TRANSLATIONS.en)[key] || TRANSLATIONS.en[key] || key;
+
+
+// ============================================================
+// 🌐  LANGUAGE SWITCHER
+// ============================================================
+function LangSwitcher({ lang, setLang }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef();
+  useEffect(() => {
+    const fn = e => { if(ref.current && !ref.current.contains(e.target)) setOpen(false); };
+    document.addEventListener("mousedown", fn);
+    return () => document.removeEventListener("mousedown", fn);
+  }, []);
+  const cur = LANGS.find(l => l.code === lang) || LANGS[0];
+  return (
+    <div ref={ref} style={{position:"relative"}}>
+      <button onClick={() => setOpen(o => !o)}
+        style={{background:"rgba(255,255,255,0.12)",border:"none",borderRadius:8,
+                padding:"6px 10px",cursor:"pointer",color:"#fff",display:"flex",
+                alignItems:"center",gap:4,fontSize:"0.78rem",fontWeight:700}}>
+        {cur.native}
+        <ChevronDown size={10} style={{opacity:0.7,transform:open?"rotate(180deg)":"none",transition:"transform 0.15s"}}/>
+      </button>
+      {open && (
+        <div style={{position:"absolute",top:"calc(100% + 6px)",right:0,zIndex:300,
+                     background:"#fff",borderRadius:10,border:"1px solid #E2E8F0",
+                     boxShadow:"0 8px 24px rgba(30,58,138,0.15)",minWidth:130,padding:"4px 0"}}>
+          {LANGS.map(l => (
+            <button key={l.code} onClick={() => { setLang(l.code); setOpen(false); }}
+              style={{width:"100%",display:"flex",alignItems:"center",gap:8,padding:"8px 14px",
+                      border:"none",cursor:"pointer",background:lang===l.code?"#EEF2FF":"transparent",
+                      fontSize:"0.82rem",fontWeight:lang===l.code?700:400,
+                      color:lang===l.code?"#1E3A8A":"#0A1628",textAlign:"left"}}>
+              <span style={{fontSize:"1rem",minWidth:20}}>{l.native}</span>
+              <span>{l.label}</span>
+              {lang===l.code && <Check size={12} style={{color:"#1E3A8A",marginLeft:"auto"}}/>}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+
+
+const STATUS_STYLE = {
+  "for sale":    { bg:"#dcfce7", color:"#166534", dot:"#22c55e", border:"#bbf7d0" },   // Green
+  "total loss":  { bg:"#fee2e2", color:"#991b1b", dot:"#ef4444", border:"#fecaca" },   // Red
+  "upcoming":    { bg:"#fef9c3", color:"#92400e", dot:"#f59e0b", border:"#fde68a" },   // Amber
+  "bulk deals":  { bg:"#ede9fe", color:"#5b21b6", dot:"#7c3aed", border:"#ddd6fe" },   // Purple
+  "blacklisted": { bg:"#1f2937", color:"#f9fafb", dot:"#6b7280", border:"#374151" },   // Dark
+  "disputed":    { bg:"#fff7ed", color:"#9a3412", dot:"#f97316", border:"#fed7aa" },   // Orange
+};
+const getStatus = (s) => STATUS_STYLE[(s||"").toLowerCase()] || { bg:"#f1f5f9", color:"#475569", dot:"#94a3b8", border:"#e2e8f0" };
+
+const N = "#1E3A8A";  // navy
+const B = "#2563EB";  // blue
+const TI = "#EEF2FF"; // tint
+const BO = "#BFDBFE"; // blue outline
+const TX = "#0A1628"; // text dark
+const MT = "#64748b"; // muted
+const HI = "#94a3b8"; // hint
+const BR = "#E2E8F0"; // border
+const BG = "#F8FAFF"; // bg
+
+function Toast({ toasts, remove }) {
+  return (
+    <div style={{position:"fixed",top:16,right:16,zIndex:9999,display:"flex",flexDirection:"column",gap:8,pointerEvents:"none"}}>
+      {toasts.map(t => (
+        <div key={t.id} style={{
+          pointerEvents:"auto",display:"flex",alignItems:"center",gap:10,padding:"12px 16px",
+          borderRadius:12,color:"#fff",fontSize:"0.82rem",fontWeight:500,minWidth:260,
+          background:t.type==="success"?"#059669":t.type==="error"?"#dc2626":N,
+          boxShadow:"0 8px 24px rgba(0,0,0,0.15)"
+        }}>
+          {t.type==="success"?<CheckCircle size={14}/>:t.type==="error"?<AlertCircle size={14}/>:<Bell size={14}/>}
+          <span style={{flex:1}}>{t.message}</span>
+          <button onClick={()=>remove(t.id)} style={{background:"none",border:"none",color:"#fff",cursor:"pointer",opacity:0.7,padding:0}}><X size={12}/></button>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+
+function Logo({ size="md" }) {
+  const h = size==="lg" ? 64 : 46;
+  const w = Math.round(h * 3.4); // SVG aspect ratio 680:200
+  return (
+    <img src={LOGO_SRC} alt="Suraksha24"
+      style={{height:h, width:w, display:"block", objectFit:"contain"}}/>
+  );
+}
+
+function Header({ lang, setLang, tl, user, onSignOut }) {
+  const [showMenu, setShowMenu] = useState(false);
+  const menuRef = useRef();
+  useEffect(()=>{
+    const fn = e => { if(menuRef.current && !menuRef.current.contains(e.target)) setShowMenu(false); };
+    document.addEventListener("mousedown", fn);
+    return () => document.removeEventListener("mousedown", fn);
+  },[]);
+
+  return (
+    <div style={{position:"fixed",top:0,left:0,right:0,zIndex:100,background:N,boxShadow:"0 2px 12px rgba(30,58,138,0.3)"}}>
+      <div style={{display:"flex",alignItems:"center",gap:8,padding:"8px 14px"}}>
+        <Logo/>
+        <div style={{flex:1}}/>
+        <LangSwitcher lang={lang} setLang={setLang}/>
+        {user && (
+          <div ref={menuRef} style={{position:"relative"}}>
+            <button onClick={()=>setShowMenu(o=>!o)}
+              style={{display:"flex",alignItems:"center",gap:7,background:"rgba(255,255,255,0.1)",
+                      border:"1px solid rgba(212,175,55,0.3)",borderRadius:30,
+                      padding:"4px 10px 4px 4px",cursor:"pointer"}}>
+              {user.photoURL ? (
+                <img src={user.photoURL} alt={user.displayName}
+                  style={{width:26,height:26,borderRadius:"50%",objectFit:"cover",border:"1.5px solid #D4AF37"}}/>
+              ) : (
+                <div style={{width:26,height:26,borderRadius:"50%",background:"rgba(212,175,55,0.2)",
+                              border:"1.5px solid #D4AF37",display:"flex",alignItems:"center",
+                              justifyContent:"center",fontFamily:"'Syne',sans-serif",
+                              fontWeight:800,fontSize:"0.75rem",color:"#D4AF37"}}>
+                  {(user.displayName||user.email||"D").charAt(0).toUpperCase()}
+                </div>
+              )}
+              <span style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.75rem",fontWeight:600,
+                            color:"rgba(255,255,255,0.9)",maxWidth:72,overflow:"hidden",
+                            textOverflow:"ellipsis",whiteSpace:"nowrap"}}>
+                {(user.displayName||user.email||"").split(" ")[0]}
+              </span>
+              <ChevronDown size={12} style={{color:"rgba(255,255,255,0.6)",
+                transform:showMenu?"rotate(180deg)":"none",transition:"transform 0.15s"}}/>
+            </button>
+
+            {showMenu && (
+              <div style={{position:"absolute",top:"calc(100% + 8px)",right:0,
+                           background:"#fff",borderRadius:14,
+                           boxShadow:"0 8px 32px rgba(0,0,0,0.2)",
+                           border:"1px solid #E2E8F0",minWidth:200,zIndex:200,overflow:"hidden"}}>
+                {/* User info */}
+                <div style={{padding:"14px 16px",borderBottom:"1px solid #F1F5F9"}}>
+                  <div style={{fontFamily:"'Syne',sans-serif",fontWeight:700,fontSize:"0.88rem",
+                               color:"#0A1628"}}>{user.displayName}</div>
+                  <div style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.72rem",
+                               color:"#64748b",marginTop:3}}>{user.email}</div>
+                </div>
+                {/* Sign Out */}
+                <button onClick={()=>{setShowMenu(false);onSignOut();}}
+                  style={{width:"100%",display:"flex",alignItems:"center",gap:10,
+                          padding:"12px 16px",border:"none",cursor:"pointer",
+                          background:"#fff",fontFamily:"'DM Sans',sans-serif",
+                          fontSize:"0.82rem",fontWeight:600,color:"#dc2626",textAlign:"left"}}
+                  onMouseEnter={e=>e.currentTarget.style.background="#fff5f5"}
+                  onMouseLeave={e=>e.currentTarget.style.background="#fff"}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#dc2626" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                    <polyline points="16 17 21 12 16 7"/>
+                    <line x1="21" y1="12" x2="9" y2="12"/>
+                  </svg>
+                  Sign Out
+                </button>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function StatusTabs({ active, onChange, counts, tl }) {
+  const tabs=[
+    {key:"all",          label:tl("all")},
+    {key:"for sale",     label:"For Sale"},
+    {key:"upcoming",     label:"Upcoming"},
+    {key:"bulk deals",   label:"Bulk Deals"},
+    {key:"total loss",   label:"Total Loss"},
+    {key:"blacklisted",  label:"Blacklisted"},
+    {key:"disputed",     label:"Disputed"},
+  ];
+  return (
+    <div style={{display:"flex",background:"#fff",borderBottom:`1px solid ${BR}`,overflowX:"auto"}}>
+      {tabs.map(t=>{
+        const on=active===t.key;
+        return (
+          <button key={t.key} onClick={()=>onChange(t.key)}
+            style={{flex:"0 0 auto",padding:"10px 16px",border:"none",cursor:"pointer",background:"transparent",
+                    fontSize:"0.82rem",fontWeight:on?700:500,color:on?N:MT,
+                    borderBottom:on?`2.5px solid ${N}`:"2.5px solid transparent",
+                    display:"flex",alignItems:"center",gap:5,whiteSpace:"nowrap"}}>
+            {t.label}
+            {counts[t.key]!==undefined&&(
+              <span style={{background:on?TI:"#f1f5f9",color:on?N:MT,fontSize:"0.68rem",fontWeight:700,padding:"1px 6px",borderRadius:10}}>
+                {counts[t.key]}
+              </span>
+            )}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+function FilterChips({ master, filters, setFilters, tl }) {
+  const groups=[
+    {key:"bank",        label:tl("bank"),         options:master.banks||[]},
+    {key:"make",        label:tl("make"),         options:master.makes||[]},
+    {key:"state",       label:tl("state"),        options:master.states||[]},
+    {key:"parkingYard", label:tl("parkingYard"), options:master.parkingYards||[]},
+    {key:"fuelType",    label:tl("fuel"),         options:master.fuelTypes||["Petrol","Diesel","CNG","Electric"]},
+    {key:"rcStatus",    label:"RC Status",        options:master.rcStatuses||["Clear","Hypothecation","NOC Pending"]},
+  ];
+  const [open,setOpen]=useState(null);
+  const ref=useRef();
+  useEffect(()=>{
+    const fn=(e)=>{if(ref.current&&!ref.current.contains(e.target))setOpen(null);};
+    document.addEventListener("mousedown",fn);
+    return()=>document.removeEventListener("mousedown",fn);
+  },[]);
+  const toggle=(key,val)=>setFilters(prev=>{const c=prev[key]||[];return{...prev,[key]:c.includes(val)?c.filter(x=>x!==val):[...c,val]};});
+  const activeCount=Object.values(filters).flat().length;
+  return (
+    <div ref={ref} style={{background:"#fff",borderBottom:`1px solid ${BR}`,padding:"8px 14px",position:"relative"}}>
+      <div style={{display:"flex",gap:7,overflowX:"auto",paddingBottom:2}}>
+        {activeCount>0&&(
+          <button onClick={()=>setFilters({})}
+            style={{flexShrink:0,display:"flex",alignItems:"center",gap:4,padding:"5px 10px",borderRadius:20,
+                    border:"1px solid #fca5a5",background:"#fee2e2",color:"#dc2626",fontSize:"0.75rem",fontWeight:600,cursor:"pointer",whiteSpace:"nowrap"}}>
+            <X size={11}/> {tl("clear")} ({activeCount})
+          </button>
+        )}
+        {groups.map(g=>{
+          const active=(filters[g.key]||[]).length>0;
+          const isOpen=open===g.key;
+          return (
+            <div key={g.key} style={{position:"relative",flexShrink:0}}>
+              <button onClick={()=>setOpen(isOpen?null:g.key)}
+                style={{display:"flex",alignItems:"center",gap:5,padding:"5px 12px",borderRadius:20,cursor:"pointer",whiteSpace:"nowrap",
+                        fontSize:"0.78rem",fontWeight:active?700:500,
+                        border:active?`1.5px solid ${N}`:`1px solid ${BR}`,
+                        background:active?TI:"#f8fafc",color:active?N:MT}}>
+                {g.label}
+                {active&&<span style={{background:N,color:"#fff",fontSize:"0.62rem",fontWeight:700,padding:"1px 5px",borderRadius:8}}>{(filters[g.key]||[]).length}</span>}
+                <ChevronDown size={11} style={{transition:"transform 0.15s",transform:isOpen?"rotate(180deg)":"none"}}/>
+              </button>
+              {isOpen&&(
+                <div style={{position:"absolute",top:"calc(100% + 6px)",left:0,zIndex:200,background:"#fff",
+                             border:`1px solid ${BR}`,borderRadius:12,boxShadow:"0 8px 24px rgba(30,58,138,0.12)",
+                             minWidth:180,maxHeight:260,overflowY:"auto",padding:"6px 0"}}>
+                  {g.options.map(opt=>{
+                    const sel=(filters[g.key]||[]).includes(opt);
+                    return (
+                      <button key={opt} onClick={()=>toggle(g.key,opt)}
+                        style={{width:"100%",display:"flex",alignItems:"center",gap:10,padding:"8px 14px",border:"none",
+                                cursor:"pointer",background:sel?TI:"transparent",fontSize:"0.82rem",color:sel?N:TX,fontWeight:sel?600:400,textAlign:"left"}}>
+                        <div style={{width:16,height:16,borderRadius:4,flexShrink:0,border:`1.5px solid ${sel?N:BR}`,
+                                     background:sel?N:"transparent",display:"flex",alignItems:"center",justifyContent:"center"}}>
+                          {sel&&<Check size={10} style={{color:"#fff"}}/>}
+                        </div>
+                        {opt}
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+
+// ============================================================
+// 📦  BUNDLE CARD — groups cars sharing same dealId
+// ============================================================
+function BundleCard({ dealId, cars, onBid, onContact }) {
+  const totalPrice = cars.reduce((s,c) => s+(c.highestBid||0), 0);
+  const bank = cars[0]?.bank || "";
+  const state = cars[0]?.state || "";
+  return (
+    <div style={{
+      background:"#fff",borderRadius:14,overflow:"hidden",
+      border:"2px solid #7c3aed",
+      boxShadow:"0 4px 20px rgba(124,58,237,0.12)",
+    }}>
+      {/* Bundle header */}
+      <div style={{background:"linear-gradient(135deg,#5b21b6,#7c3aed)",padding:"8px 14px",
+                   display:"flex",alignItems:"center",justifyContent:"space-between"}}>
+        <div style={{display:"flex",alignItems:"center",gap:8}}>
+          <span style={{fontSize:"1rem"}}>📦</span>
+          <div>
+            <div style={{color:"#fff",fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:"0.88rem"}}>
+              Bundle Deal — {dealId}
+            </div>
+            <div style={{color:"#ddd6fe",fontSize:"0.68rem",fontFamily:"'DM Sans',sans-serif"}}>
+              {cars.length} cars · {bank} · {state}
+            </div>
+          </div>
+        </div>
+        <div style={{textAlign:"right"}}>
+          <div style={{color:"#ddd6fe",fontSize:"0.62rem",fontFamily:"'DM Sans',sans-serif"}}>Bundle Price</div>
+          <div style={{color:"#fff",fontFamily:"'DM Sans',sans-serif",fontWeight:800,fontSize:"1rem",letterSpacing:"-0.02em"}}>
+            {formatCurrency(totalPrice)}
+          </div>
+        </div>
+      </div>
+
+      {/* Car list */}
+      <div style={{padding:"10px 14px",display:"flex",flexDirection:"column",gap:8}}>
+        {cars.map((car,i) => (
+          <div key={car.id} style={{
+            display:"flex",alignItems:"center",gap:10,padding:"8px 10px",
+            borderRadius:8,background:"#f5f3ff",border:"1px solid #ede9fe"
+          }}>
+            <div style={{width:32,height:32,borderRadius:6,background:"#ede9fe",
+                          display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
+              <Car size={16} style={{color:"#7c3aed"}}/>
+            </div>
+            <div style={{flex:1,minWidth:0}}>
+              <div style={{fontWeight:600,fontSize:"0.82rem",color:TX,fontFamily:"'DM Sans',sans-serif"}}>
+                {car.make} {car.model}
+                <span style={{fontWeight:400,color:MT,marginLeft:5,fontSize:"0.75rem"}}>{car.variant?car.variant+" · ":""}{car.regYear}</span>
+              </div>
+              <div style={{fontFamily:"'DM Mono',monospace",fontSize:"0.65rem",color:"#7c3aed"}}>
+                {car.regNo} · {fmtNum(car.kmDriven)} km · {car.fuelType}
+              </div>
+            </div>
+            <div style={{textAlign:"right",flexShrink:0}}>
+              <div style={{fontFamily:"'DM Sans',sans-serif",fontWeight:700,fontSize:"0.82rem",color:TX}}>
+                {formatCurrency(car.highestBid)}
+              </div>
+              <div style={{fontSize:"0.62rem",color:MT,fontFamily:"'DM Sans',sans-serif"}}>{car.rcStatus}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Action buttons */}
+      <div style={{padding:"8px 14px 12px",display:"flex",gap:8}}>
+        <button onClick={() => onContact(cars[0], dealId, cars)}
+          style={{flex:1,padding:"9px",borderRadius:9,fontSize:"0.78rem",fontWeight:600,
+                  fontFamily:"'DM Sans',sans-serif",cursor:"pointer",
+                  background:"#ede9fe",border:"1px solid #ddd6fe",color:"#5b21b6",
+                  display:"flex",alignItems:"center",justifyContent:"center",gap:5}}>
+          <MessageSquare size={13}/> Enquire Bundle
+        </button>
+        <button onClick={() => onBid(cars[0], dealId, cars)}
+          style={{flex:1,padding:"9px",borderRadius:9,fontSize:"0.78rem",fontWeight:700,
+                  fontFamily:"'DM Sans',sans-serif",cursor:"pointer",border:"none",
+                  background:"linear-gradient(135deg,#5b21b6,#7c3aed)",color:"#fff",
+                  display:"flex",alignItems:"center",justifyContent:"center",gap:5}}>
+          📦 Bid on Bundle
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function CarCard({ car, onContact, onBid, saved, toggleSave, tl }) {
+  const [shared,setShared]=useState(false);
+  const st=getStatus(car.status);
+  const disabled=["total loss","blacklisted"].includes((car.status||"").toLowerCase());
+  const share=async()=>{
+    const text=`${car.regYear} ${car.make} ${car.model} (${car.regNo}) — ${formatCurrency(car.highestBid)} | Suraksha24`;
+    try{await(navigator.share?navigator.share({title:"Suraksha24",text}):navigator.clipboard.writeText(text));}catch{}
+    setShared(true);setTimeout(()=>setShared(false),2000);
+  };
+  return (
+    <div style={{background:"#fff",borderRadius:14,overflow:"hidden",
+                 border:car.featured?`1.5px solid ${N}`:`1px solid ${BR}`,
+                 boxShadow:"0 2px 12px rgba(30,58,138,0.05)",transition:"all 0.2s",opacity:disabled?0.72:1}}
+      onMouseEnter={e=>{if(!disabled){e.currentTarget.style.boxShadow="0 8px 24px rgba(30,58,138,0.13)";e.currentTarget.style.transform="translateY(-2px)";}}}
+      onMouseLeave={e=>{e.currentTarget.style.boxShadow="0 2px 12px rgba(30,58,138,0.05)";e.currentTarget.style.transform="translateY(0)";}}>
+
+      {(()=>{
+        const s = (car.status||"").toLowerCase();
+        if(s==="bulk deals") return (
+          <div style={{background:"linear-gradient(135deg,#5b21b6,#7c3aed)",padding:"3px 12px",display:"flex",alignItems:"center",justifyContent:"space-between"}}>
+            <span style={{fontSize:"0.65rem",fontWeight:700,color:"#fff",letterSpacing:"0.08em"}}>📦 BULK DEAL</span>
+            <span style={{fontSize:"0.65rem",color:"rgba(255,255,255,0.75)"}}>{car.bank}</span>
+          </div>
+        );
+        if(s==="blacklisted") return (
+          <div style={{background:"#1f2937",padding:"3px 12px",display:"flex",alignItems:"center",justifyContent:"space-between"}}>
+            <span style={{fontSize:"0.65rem",fontWeight:700,color:"#f87171",letterSpacing:"0.08em"}}>⛔ BLACKLISTED</span>
+            <span style={{fontSize:"0.65rem",color:"#6b7280"}}>{car.bank}</span>
+          </div>
+        );
+        if(s==="disputed") return (
+          <div style={{background:"#fff7ed",borderBottom:"1px solid #fed7aa",padding:"3px 12px",display:"flex",alignItems:"center",justifyContent:"space-between"}}>
+            <span style={{fontSize:"0.65rem",fontWeight:700,color:"#c2410c",letterSpacing:"0.08em"}}>⚠️ DISPUTED</span>
+            <span style={{fontSize:"0.65rem",color:"#9a3412"}}>{car.bank}</span>
+          </div>
+        );
+        return null;
+      })()}
+
+      <div style={{display:"flex"}}>
+        <div style={{width:100,flexShrink:0,background:`linear-gradient(135deg,${TI},#DBEAFE)`,
+                     display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",
+                     padding:"10px 6px",position:"relative"}}>
+          <Car size={36} style={{color:N,opacity:0.65}}/>
+          <div style={{marginTop:5,textAlign:"center"}}>
+            <div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:"0.75rem",color:TX,lineHeight:1}}>{car.make}</div>
+            <div style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontWeight:600,fontSize:"0.85rem",color:N,lineHeight:1.1}}>{car.model}{car.variant?<span style={{fontSize:"0.65rem",fontStyle:"normal",marginLeft:3,color:MT}}>{car.variant}</span>:null}</div>
+          </div>
+          <div style={{position:"absolute",top:5,left:5,display:"flex",alignItems:"center",gap:3,
+                       padding:"2px 5px",borderRadius:20,background:st.bg,border:`1px solid ${st.border}`}}>
+            <span style={{width:4,height:4,borderRadius:"50%",background:st.dot,flexShrink:0}}/>
+            <span style={{fontSize:"0.55rem",fontWeight:700,color:st.color}}>{car.status}</span>
+          </div>
+        </div>
+
+        <div style={{flex:1,padding:"10px 12px",minWidth:0}}>
+          <div style={{display:"flex",alignItems:"flex-start",justifyContent:"space-between",marginBottom:5}}>
+            <div>
+              <div style={{fontWeight:700,fontSize:"0.88rem",color:TX,lineHeight:1.2}}>
+                {car.make} {car.model} <span style={{fontWeight:400,color:MT}}>{car.regYear}</span>
+              </div>
+              <div style={{fontFamily:"'DM Mono',monospace",fontSize:"0.7rem",color:N,fontWeight:500,marginTop:2,letterSpacing:"0.04em"}}>{car.regNo}</div>
+            </div>
+            <button onClick={()=>toggleSave(car.id)}
+              style={{background:"none",border:"none",cursor:"pointer",padding:4,flexShrink:0,color:saved?"#ef4444":HI}}>
+              <Heart size={15} fill={saved?"#ef4444":"none"}/>
+            </button>
+          </div>
+
+          <div style={{display:"flex",flexWrap:"wrap",gap:"3px 10px",marginBottom:6}}>
+            {[[Fuel,car.fuelType],[Eye,`${fmtNum(car.kmDriven)} km`],[User,`${car.ownerCount} Owner${car.ownerCount>1?'s':''}`],[CheckCircle,car.rcStatus]].map(([Icon,val])=>val&&(
+              <span key={val} style={{display:"inline-flex",alignItems:"center",gap:3,fontSize:"0.68rem",color:MT}}>
+                <Icon size={9} style={{color:B,flexShrink:0}}/>{val}
+              </span>
+            ))}
+          </div>
+
+          <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:6}}>
+            <div>
+              <div style={{fontSize:"0.58rem",fontWeight:500,color:HI,textTransform:"uppercase",letterSpacing:"0.06em"}}>{tl("basePrice")}</div>
+              <div style={{fontWeight:800,fontSize:"1.05rem",color:TX,lineHeight:1,letterSpacing:"-0.02em"}}>{formatCurrency(car.highestBid)}</div>
+            </div>
+            <div style={{display:"flex",gap:5}}>
+              {car.pdfLink&&car.pdfLink!=="#"&&car.pdfLink!=="https://na"&&(
+                <a href={car.pdfLink} target="_blank" rel="noopener noreferrer"
+                   style={{display:"flex",alignItems:"center",gap:3,padding:"6px 9px",borderRadius:8,fontSize:"0.7rem",fontWeight:600,
+                           textDecoration:"none",background:TI,border:`1px solid ${BO}`,color:N}}>
+                  <FileText size={10}/> {tl("pdf")}
+                </a>
+              )}
+              <button onClick={()=>onContact(car)} disabled={disabled}
+                style={{display:"flex",alignItems:"center",gap:3,padding:"6px 9px",borderRadius:8,fontSize:"0.7rem",fontWeight:600,
+                        border:`1px solid ${BO}`,cursor:"pointer",background:TI,color:N,opacity:disabled?0.5:1}}>
+                <MessageSquare size={10}/> {tl("enquire")}
+              </button>
+              <button onClick={()=>onBid(car)} disabled={disabled}
+                style={{display:"flex",alignItems:"center",gap:3,padding:"6px 12px",borderRadius:8,fontSize:"0.72rem",fontWeight:700,
+                        border:"none",cursor:"pointer",background:`linear-gradient(135deg,${N},${B})`,color:"#fff",opacity:disabled?0.5:1}}>
+                {tl("bidNow")}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style={{borderTop:`1px solid ${BR}`,padding:"6px 12px",display:"flex",alignItems:"center",justifyContent:"space-between",background:BG}}>
+        <div style={{display:"flex",gap:12}}>
+          <span style={{fontSize:"0.68rem",color:MT}}><span style={{fontWeight:600,color:N}}>{car.bidUnique}</span>/{car.bidTotal} {tl("bids")}</span>
+          <span style={{fontSize:"0.68rem",color:MT}}><span style={{fontWeight:600,color:N}}>{car.enquiryUnique}</span>/{car.enquiryTotal} {tl("enquiries")}</span>
+        </div>
+        <button onClick={share} style={{background:"none",border:"none",cursor:"pointer",color:shared?"#10b981":HI,padding:2}}>
+          {shared?<Check size={13}/>:<Share2 size={13}/>}
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function BidModal({ car, bundle, onClose, onSubmit, tl }) {
+  const [form,setForm]=useState({dealerName:car._prefillName||"",mobile:"",bidPrice:"",remarks:"",agent:AGENT_NAMES[0]});
+  const [loading,setLoading]=useState(false);
+  const [errors,setErrors]=useState({});
+  const validate=()=>{
+    const e={};
+    if(!form.dealerName.trim())e.dealerName=tl("required");
+    if(!/^\d{10}$/.test(form.mobile))e.mobile=tl("validMobile");
+    if(!form.bidPrice||isNaN(form.bidPrice)||Number(form.bidPrice)<=0)e.bidPrice=tl("validAmount");
+    setErrors(e);return Object.keys(e).length===0;
+  };
+  const submit=async()=>{
+    if(!validate())return;
+    setLoading(true);
+    await onSubmit({...form,carId:bundle?`Bundle:${bundle.dealId}`:car.id,regNo:bundle?`Bundle:${bundle.dealId}`:car.regNo,carName:bundle?`Bundle Deal ${bundle.dealId}`:`${car.make} ${car.model}`,dealId:bundle?bundle.dealId:"",dealerName:form.dealerName||form.name||""});
+    setLoading(false);onClose();
+  };
+  const inp=(label,key,ph,type="text")=>(
+    <div style={{marginBottom:12}}>
+      <label style={{display:"block",fontSize:"0.75rem",fontWeight:600,color:TX,marginBottom:4}}>{label}</label>
+      <input type={type} placeholder={ph} value={form[key]} onChange={e=>setForm(p=>({...p,[key]:e.target.value}))}
+        style={{width:"100%",padding:"10px 12px",borderRadius:9,outline:"none",fontSize:"0.85rem",color:TX,
+                border:`1.5px solid ${errors[key]?"#fca5a5":BR}`,background:errors[key]?"#fff5f5":"#fff",boxSizing:"border-box"}}/>
+      {errors[key]&&<div style={{fontSize:"0.7rem",color:"#dc2626",marginTop:3}}>{errors[key]}</div>}
+    </div>
+  );
+  return (
+    <div style={{position:"fixed",inset:0,background:"rgba(0,0,0,0.45)",zIndex:500,display:"flex",alignItems:"flex-end",justifyContent:"center"}}
+         onClick={e=>e.target===e.currentTarget&&onClose()}>
+      <div style={{background:"#fff",borderRadius:"20px 20px 0 0",width:"100%",maxWidth:520,padding:"20px 20px 32px",maxHeight:"90vh",overflowY:"auto"}}>
+        <div style={{width:40,height:4,background:BR,borderRadius:4,margin:"0 auto 16px"}}/>
+        {bundle ? (
+          <div style={{background:"#f5f3ff",border:"1px solid #ddd6fe",borderRadius:10,padding:"12px 14px",marginBottom:14}}>
+            <div style={{display:"flex",alignItems:"center",gap:6,marginBottom:8}}>
+              <span style={{fontSize:"1rem"}}>📦</span>
+              <div style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:"0.88rem",color:"#5b21b6"}}>Bundle Deal — {bundle.dealId}</div>
+            </div>
+            {bundle.cars.map(c=>(
+              <div key={c.id} style={{display:"flex",justifyContent:"space-between",padding:"5px 0",
+                                       borderBottom:"1px solid #ede9fe",fontSize:"0.75rem",
+                                       fontFamily:"'DM Sans',sans-serif"}}>
+                <span style={{color:TX,fontWeight:500}}>{c.make} {c.model} {c.variant||""} · {c.regNo}</span>
+                <span style={{color:"#5b21b6",fontWeight:700}}>{formatCurrency(c.highestBid)}</span>
+              </div>
+            ))}
+            <div style={{display:"flex",justifyContent:"space-between",marginTop:8,padding:"6px 0 0",
+                         fontFamily:"'DM Sans',sans-serif",fontWeight:800,fontSize:"0.9rem",
+                         borderTop:"2px solid #ddd6fe"}}>
+              <span style={{color:"#5b21b6"}}>Bundle Total</span>
+              <span style={{color:"#5b21b6"}}>{formatCurrency(bundle.cars.reduce((s,c)=>s+(c.highestBid||0),0))}</span>
+            </div>
+          </div>
+        ) : (
+          <div style={{background:TI,border:`1px solid ${BO}`,borderRadius:10,padding:"10px 14px",marginBottom:14,display:"flex",alignItems:"center",gap:10}}>
+            <Car size={26} style={{color:N,flexShrink:0}}/>
+            <div>
+              <div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:"0.9rem",color:TX}}>{car.make} {car.model} {car.variant||""} {car.regYear}</div>
+              <div style={{fontFamily:"'DM Mono',monospace",fontSize:"0.7rem",color:N,marginTop:2}}>{car.regNo} · Base: {formatCurrency(car.highestBid)}</div>
+            </div>
+          </div>
+        )}
+        <div style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:"0.95rem",color:TX,marginBottom:14}}>{bundle?"Submit Bundle Bid":tl("submitBid")}</div>
+        {inp("Dealer / Company Name *","dealerName","e.g. Sharma Auto Pvt Ltd")}
+        {inp("Mobile Number *","mobile","10-digit mobile","tel")}
+        <div style={{marginBottom:12}}>
+          <label style={{display:"block",fontSize:"0.75rem",fontWeight:600,color:TX,marginBottom:4}}>{tl("bidPrice")}</label>
+          <div style={{position:"relative"}}>
+            <span style={{position:"absolute",left:12,top:"50%",transform:"translateY(-50%)",fontWeight:700,color:N,fontSize:"1rem"}}>₹</span>
+            <input type="number" placeholder={bundle ? `Min. ${bundle.cars.reduce((s,c)=>s+(c.highestBid||0),0).toLocaleString("en-IN")} (bundle total)` : `Min. ${(car.highestBid||0).toLocaleString("en-IN")}`}
+              value={form.bidPrice} onChange={e=>setForm(p=>({...p,bidPrice:e.target.value}))}
+              style={{width:"100%",padding:"10px 12px 10px 28px",borderRadius:9,outline:"none",fontSize:"0.88rem",fontWeight:700,color:TX,
+                      border:`1.5px solid ${errors.bidPrice?"#fca5a5":BR}`,background:errors.bidPrice?"#fff5f5":"#fff",boxSizing:"border-box"}}/>
+          </div>
+          {errors.bidPrice&&<div style={{fontSize:"0.7rem",color:"#dc2626",marginTop:3}}>{errors.bidPrice}</div>}
+          {form.bidPrice&&!errors.bidPrice&&Number(form.bidPrice)>0&&(
+            <div style={{fontSize:"0.72rem",color:"#059669",marginTop:3,fontWeight:600}}>= {formatCurrency(Number(form.bidPrice))}</div>
+          )}
+        </div>
+        <div style={{marginBottom:12}}>
+          <label style={{display:"block",fontSize:"0.75rem",fontWeight:600,color:TX,marginBottom:4}}>{tl("agent")}</label>
+          <select value={form.agent} onChange={e=>setForm(p=>({...p,agent:e.target.value}))}
+            style={{width:"100%",padding:"10px 12px",borderRadius:9,outline:"none",fontSize:"0.82rem",color:TX,border:`1px solid ${BR}`,background:"#fff",boxSizing:"border-box"}}>
+            {AGENT_NAMES.map(a=><option key={a}>{a}</option>)}
+          </select>
+        </div>
+        <div style={{marginBottom:18}}>
+          <label style={{display:"block",fontSize:"0.75rem",fontWeight:600,color:TX,marginBottom:4}}>{tl("remarks")}</label>
+          <textarea placeholder="Inspection notes, payment terms..." value={form.remarks}
+            onChange={e=>setForm(p=>({...p,remarks:e.target.value}))} rows={2}
+            style={{width:"100%",padding:"10px 12px",borderRadius:9,outline:"none",resize:"vertical",fontSize:"0.82rem",color:TX,border:`1px solid ${BR}`,background:"#fff",boxSizing:"border-box"}}/>
+        </div>
+        <div style={{display:"flex",gap:10}}>
+          <button onClick={onClose}
+            style={{flex:1,padding:"12px",borderRadius:10,fontWeight:600,fontSize:"0.85rem",border:`1px solid ${BR}`,background:"#f8fafc",color:MT,cursor:"pointer"}}>
+            Cancel
+          </button>
+          <button onClick={submit} disabled={loading}
+            style={{flex:2,padding:"12px",borderRadius:10,fontWeight:700,fontSize:"0.88rem",border:"none",cursor:"pointer",
+                    background:`linear-gradient(135deg,${N},${B})`,color:"#fff",opacity:loading?0.7:1,
+                    display:"flex",alignItems:"center",justifyContent:"center",gap:8}}>
+            {loading?<><Loader2 size={14}/> {tl("submitting")}</>:tl("submitBidBtn")}
+          </button>
+        </div>
+        <p style={{textAlign:"center",fontSize:"0.68rem",color:HI,marginTop:10}}>{tl("bidPrivate")}</p>
+      </div>
+    </div>
+  );
+}
+
+function ContactModal({ car, onClose, onSubmit, tl }) {
+  const [form,setForm]=useState({dealerName:"",mobile:"",message:"",agent:AGENT_NAMES[0]});
+  const [loading,setLoading]=useState(false);
+  const submit=async()=>{
+    if(!form.name.trim()||!form.mobile.trim())return;
+    setLoading(true);
+    await onSubmit({...form,carId:bundle?`Bundle:${bundle.dealId}`:car.id,regNo:bundle?`Bundle:${bundle.dealId}`:car.regNo,carName:bundle?`Bundle Deal ${bundle.dealId}`:`${car.make} ${car.model}`,dealId:bundle?bundle.dealId:"",dealerName:form.dealerName||form.name||""});
+    setLoading(false);onClose();
+  };
+  return (
+    <div style={{position:"fixed",inset:0,background:"rgba(0,0,0,0.45)",zIndex:500,display:"flex",alignItems:"flex-end",justifyContent:"center"}}
+         onClick={e=>e.target===e.currentTarget&&onClose()}>
+      <div style={{background:"#fff",borderRadius:"20px 20px 0 0",width:"100%",maxWidth:520,padding:"20px 20px 32px",maxHeight:"85vh",overflowY:"auto"}}>
+        <div style={{width:40,height:4,background:BR,borderRadius:4,margin:"0 auto 16px"}}/>
+        <div style={{background:TI,border:`1px solid ${BO}`,borderRadius:10,padding:"10px 14px",marginBottom:14}}>
+          <div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:"0.9rem",color:TX}}>{car.make} {car.model} {car.regYear}</div>
+          <div style={{fontFamily:"'DM Mono',monospace",fontSize:"0.7rem",color:N,marginTop:2}}>{car.regNo}</div>
+        </div>
+        <div style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:"0.95rem",color:TX,marginBottom:14}}>{tl("dealerEnquiry")}</div>
+        {[[tl("dealerName"),"dealerName",tl("dealerPlaceholder")],[tl("mobile"),"mobile",tl("mobilePlaceholder")]].map(([l,k,p])=>(
+          <div key={k} style={{marginBottom:12}}>
+            <label style={{display:"block",fontSize:"0.75rem",fontWeight:600,color:TX,marginBottom:4}}>{l}</label>
+            <input type={k==="mobile"?"tel":"text"} placeholder={p} value={form[k]}
+              onChange={e=>setForm(x=>({...x,[k]:e.target.value}))}
+              style={{width:"100%",padding:"10px 12px",borderRadius:9,outline:"none",fontSize:"0.85rem",color:TX,border:`1px solid ${BR}`,background:"#fff",boxSizing:"border-box"}}/>
+          </div>
+        ))}
+        <div style={{marginBottom:12}}>
+          <label style={{display:"block",fontSize:"0.75rem",fontWeight:600,color:TX,marginBottom:4}}>{tl("message")}</label>
+          <textarea placeholder="Your enquiry..." value={form.message} onChange={e=>setForm(p=>({...p,message:e.target.value}))} rows={2}
+            style={{width:"100%",padding:"10px 12px",borderRadius:9,outline:"none",resize:"vertical",fontSize:"0.82rem",color:TX,border:`1px solid ${BR}`,background:"#fff",boxSizing:"border-box"}}/>
+        </div>
+        <div style={{marginBottom:18}}>
+          <label style={{display:"block",fontSize:"0.75rem",fontWeight:600,color:TX,marginBottom:4}}>{tl("agent")}</label>
+          <select value={form.agent} onChange={e=>setForm(p=>({...p,agent:e.target.value}))}
+            style={{width:"100%",padding:"10px 12px",borderRadius:9,outline:"none",fontSize:"0.82rem",color:TX,border:`1px solid ${BR}`,background:"#fff",boxSizing:"border-box"}}>
+            {AGENT_NAMES.map(a=><option key={a}>{a}</option>)}
+          </select>
+        </div>
+        <div style={{display:"flex",gap:10}}>
+          <button onClick={onClose} style={{flex:1,padding:"12px",borderRadius:10,fontWeight:600,fontSize:"0.85rem",border:`1px solid ${BR}`,background:"#f8fafc",color:MT,cursor:"pointer"}}>Cancel</button>
+          <button onClick={submit} disabled={loading}
+            style={{flex:2,padding:"12px",borderRadius:10,fontWeight:700,fontSize:"0.88rem",border:"none",cursor:"pointer",
+                    background:`linear-gradient(135deg,${N},${B})`,color:"#fff",
+                    display:"flex",alignItems:"center",justifyContent:"center",gap:8}}>
+            {loading?<><Loader2 size={14}/> {tl("sending")}</>:tl("sendEnquiry")}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SavedCars({ cars, savedIds, onContact, onBid, toggleSave, tl }) {
+  const saved=cars.filter(c=>savedIds.includes(c.id));
+  return (
+    <div style={{padding:"16px 14px"}}>
+      <div style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:"1rem",color:TX,marginBottom:12}}>{tl("savedCars")} ({saved.length})</div>
+      {saved.length===0?(
+        <div style={{textAlign:"center",padding:"48px 20px"}}>
+          <Heart size={44} style={{color:BR,margin:"0 auto 12px"}}/>
+          <div style={{color:MT,fontSize:"0.88rem",fontWeight:600}}>{tl("noSaved")}</div>
+          <div style={{color:HI,fontSize:"0.78rem",marginTop:6}}>{tl("tapToSave")}</div>
+        </div>
+      ):(
+        <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(420px,1fr))",gap:12}}>
+          {saved.map(c=><CarCard key={c.id} car={c} onContact={onContact} onBid={onBid} saved={true} toggleSave={toggleSave} tl={tl}/>)}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function ContactPage({ tl }) {
+  return (
+    <div style={{padding:"16px 14px",paddingBottom:24}}>
+      <div style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:"1rem",color:TX,marginBottom:16}}>{tl("contactUs")}</div>
+      <div style={{display:"flex",flexDirection:"column",gap:10}}>
+
+        {/* WhatsApp general */}
+        <a href={`https://wa.me/${CONFIG.WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer"
+           style={{display:"flex",alignItems:"center",gap:14,padding:"14px 16px",borderRadius:14,
+                   border:`1px solid ${BR}`,background:"#fff",textDecoration:"none",
+                   boxShadow:"0 2px 8px rgba(30,58,138,0.05)"}}>
+          <div style={{width:44,height:44,borderRadius:12,background:"#22c55e",
+                        display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+              <path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.554 4.118 1.52 5.851L.057 23.886a.5.5 0 00.611.61l6.218-1.635A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.65-.52-5.163-1.428l-.37-.22-3.839 1.01 1.035-3.73-.243-.386A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+            </svg>
+          </div>
+          <div style={{flex:1}}>
+            <div style={{fontWeight:700,fontSize:"0.9rem",color:TX}}>WhatsApp</div>
+            <div style={{fontSize:"0.75rem",color:MT,marginTop:1}}>{tl("chatNow")}</div>
+          </div>
+          <ChevronRight size={16} style={{color:HI}}/>
+        </a>
+
+        {/* Email */}
+        <a href={`mailto:${CONFIG.EMAIL}`}
+           style={{display:"flex",alignItems:"center",gap:14,padding:"14px 16px",borderRadius:14,
+                   border:`1px solid ${BR}`,background:"#fff",textDecoration:"none",
+                   boxShadow:"0 2px 8px rgba(30,58,138,0.05)"}}>
+          <div style={{width:44,height:44,borderRadius:12,background:N,
+                        display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <polyline points="2,4 12,13 22,4"/>
+            </svg>
+          </div>
+          <div style={{flex:1}}>
+            <div style={{fontWeight:700,fontSize:"0.9rem",color:TX}}>Email Us</div>
+            <div style={{fontSize:"0.75rem",color:MT,marginTop:1}}>{CONFIG.EMAIL}</div>
+          </div>
+          <ChevronRight size={16} style={{color:HI}}/>
+        </a>
+
+        {/* Our Agents */}
+        <div style={{background:"#fff",border:`1px solid ${BR}`,borderRadius:14,
+                     padding:"14px",marginTop:4}}>
+          <div style={{fontFamily:"'Syne',sans-serif",fontWeight:700,fontSize:"0.88rem",
+                       color:TX,marginBottom:12}}>{tl("ourAgents")}</div>
+          {AGENTS.map((agent,i) => (
+            <div key={agent.name} style={{
+              display:"flex",alignItems:"center",gap:12,padding:"10px 0",
+              borderBottom:i<AGENTS.length-1?`1px solid ${BG}`:"none"
+            }}>
+              {/* Avatar */}
+              <div style={{width:38,height:38,borderRadius:"50%",background:TI,flexShrink:0,
+                            display:"flex",alignItems:"center",justifyContent:"center",
+                            border:`1.5px solid ${BO}`}}>
+                <span style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:"0.85rem",
+                              color:N}}>{agent.name.charAt(0)}</span>
+              </div>
+              {/* Name */}
+              <div style={{flex:1,minWidth:0}}>
+                <div style={{fontWeight:600,fontSize:"0.82rem",color:TX,
+                             overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>
+                  {agent.name}
+                </div>
+                <div style={{fontSize:"0.68rem",color:MT,marginTop:1}}>Tap to chat on WhatsApp</div>
+              </div>
+              {/* WA button */}
+              <a href={`https://wa.me/${agent.whatsapp}?text=Hi ${agent.name.split(" ")[0]}! I need help with a repo car.`}
+                 target="_blank" rel="noopener noreferrer"
+                 style={{display:"flex",alignItems:"center",gap:5,padding:"7px 12px",
+                         borderRadius:8,background:"#dcfce7",border:"1px solid #bbf7d0",
+                         textDecoration:"none",flexShrink:0}}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#16a34a">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                  <path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.554 4.118 1.52 5.851L.057 23.886a.5.5 0 00.611.61l6.218-1.635A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.65-.52-5.163-1.428l-.37-.22-3.839 1.01 1.035-3.73-.243-.386A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+                </svg>
+                <span style={{fontSize:"0.72rem",fontWeight:700,color:"#16a34a"}}>Chat</span>
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
+
+
+function KycUploadBox({ label, file, error, onCamera, onFile, onClear }) {
+  return (
+    <div style={{marginBottom:14}}>
+      <div style={{fontFamily:"'DM Sans',sans-serif",fontWeight:600,fontSize:"0.75rem",
+                   color:"#0A1628",marginBottom:8}}>{label}</div>
+      {!file ? (
+        <>
+          <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8}}>
+            <label style={{cursor:"pointer"}}>
+              <div style={{border:`2px dashed ${error?"#fca5a5":"#BFDBFE"}`,borderRadius:12,
+                           padding:"14px 8px",textAlign:"center",
+                           background:error?"#fff5f5":"#EEF2FF"}}>
+                <div style={{fontSize:"1.4rem",marginBottom:4}}>📷</div>
+                <div style={{fontFamily:"'DM Sans',sans-serif",fontWeight:700,
+                             fontSize:"0.72rem",color:"#1E3A8A"}}>Camera</div>
+              </div>
+              <input type="file" accept="image/*" capture="environment"
+                onChange={onCamera} style={{display:"none"}}/>
+            </label>
+            <label style={{cursor:"pointer"}}>
+              <div style={{border:`2px dashed ${error?"#fca5a5":"#BFDBFE"}`,borderRadius:12,
+                           padding:"14px 8px",textAlign:"center",
+                           background:error?"#fff5f5":"#EEF2FF"}}>
+                <div style={{fontSize:"1.4rem",marginBottom:4}}>🖼️</div>
+                <div style={{fontFamily:"'DM Sans',sans-serif",fontWeight:700,
+                             fontSize:"0.72rem",color:"#1E3A8A"}}>Gallery</div>
+              </div>
+              <input type="file" accept="image/*,.pdf,application/pdf"
+                onChange={onFile} style={{display:"none"}}/>
+            </label>
+          </div>
+          {error&&<div style={{fontSize:"0.7rem",color:"#dc2626",marginTop:4,
+                               fontFamily:"'DM Sans',sans-serif"}}>⚠️ {error}</div>}
+        </>
+      ) : (
+        <div style={{border:"2px solid #1E3A8A",borderRadius:12,padding:"12px 14px",
+                     background:"#EEF2FF",display:"flex",alignItems:"center",gap:10}}>
+          <span style={{fontSize:"1.4rem"}}>✅</span>
+          <div style={{flex:1,minWidth:0}}>
+            <div style={{fontFamily:"'DM Sans',sans-serif",fontWeight:700,fontSize:"0.78rem",
+                         color:"#1E3A8A",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>
+              {file.name}
+            </div>
+            <div style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.68rem",color:"#64748b",marginTop:2}}>
+              {(file.size/1024/1024).toFixed(2)} MB
+            </div>
+          </div>
+          <button onClick={onClear}
+            style={{background:"none",border:"none",cursor:"pointer",
+                    fontFamily:"'DM Sans',sans-serif",fontSize:"0.7rem",
+                    fontWeight:600,color:"#dc2626",textDecoration:"underline",flexShrink:0}}>
+            Remove
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ============================================================
+// 📋  PROFILE COMPLETION FORM (shown once after first sign-in)
+// ============================================================
+function ProfileForm({ user, onComplete }) {
+  const [form, setForm] = useState({
+    dealershipName:"", mobile:"", address:"",
+    pinCode:"", city:"", state:"",
+    interestType:"PAN INDIA", interestDetail:"", message:""
+  });
+  const [aadhaarFile, setAadhaarFile] = useState(null);
+  const [panFile, setPanFile]         = useState(null);
+  const [pinLoading, setPinLoading]   = useState(false);
+  const [pinError, setPinError]       = useState("");
+  const [loading, setLoading]     = useState(false);
+  const [errors, setErrors]       = useState({});
+  const [step, setStep]           = useState(1); // 1=details, 2=kyc
+
+  const set = (k,v) => setForm(p=>({...p,[k]:v}));
+
+  const handleAadhaar = (e) => {
+    const file = e.target.files[0];
+    if(!file) return;
+    if(file.size > 10*1024*1024){ setErrors(p=>({...p,aadhaar:"Max 10MB allowed"})); return; }
+    setAadhaarFile(file);
+    setErrors(p=>({...p,aadhaar:""}));
+  };
+  const handlePan = (e) => {
+    const file = e.target.files[0];
+    if(!file) return;
+    if(file.size > 10*1024*1024){ setErrors(p=>({...p,pan:"Max 10MB allowed"})); return; }
+    setPanFile(file);
+    setErrors(p=>({...p,pan:""}));
+  };
+
+  const validateStep1 = () => {
+    const e={};
+    if(!form.dealershipName.trim()) e.dealershipName="Required";
+    if(!/^\d{10}$/.test(form.mobile)) e.mobile="Valid 10-digit number";
+    if(!form.address.trim()) e.address="Required";
+    if(!form.pinCode||form.pinCode.length!==6) e.pinCode="Valid PIN required";
+    if(!form.city.trim()) e.city="Required";
+    if(!form.state.trim()) e.state="Required";
+    if(form.interestType!=="PAN INDIA"&&!form.interestDetail.trim()) e.interestDetail="Please specify";
+    setErrors(e); return Object.keys(e).length===0;
+  };
+
+  const toBase64 = (file) => new Promise((res,rej)=>{
+    const r=new FileReader();
+    r.onload=e=>res(e.target.result.split(",")[1]);
+    r.onerror=rej;
+    r.readAsDataURL(file);
+  });
+
+  const submit = async () => {
+    const e={};
+    if(!aadhaarFile) e.aadhaar="Please upload your Aadhaar Card";
+    if(!panFile) e.pan="Please upload your PAN Card";
+    if(Object.keys(e).length){ setErrors(e); return; }
+    setLoading(true);
+    try {
+      const [aadhaarB64, panB64] = await Promise.all([toBase64(aadhaarFile), toBase64(panFile)]);
+      const interest = form.interestType==="PAN INDIA"
+        ? "PAN INDIA"
+        : `${form.interestType}: ${form.interestDetail}`;
+      await fetch(CONFIG.APPS_SCRIPT_URL,{
+        method:"POST", mode:"no-cors",
+        body:JSON.stringify({
+          action:"saveProfile", uid:user.uid,
+          dealershipName:form.dealershipName, mobile:form.mobile,
+          address:`${form.address}, ${form.city}, ${form.state} - ${form.pinCode}`,
+          city:form.city, state:form.state, pinCode:form.pinCode,
+          interest, message:form.message,
+          kycBase64:aadhaarB64, kycFileName:aadhaarFile.name, kycMimeType:aadhaarFile.type,
+          panBase64:panB64, panFileName:panFile.name, panMimeType:panFile.type,
+        })
+      });
+      localStorage.setItem(`s24_profile_${user.uid}`,"complete");
+      onComplete();
+    } catch(e){ console.error("Profile error:",e); }
+    finally { setLoading(false); }
+  };
+
+  const fetchPin = async (pin) => {
+    set("pinCode", pin);
+    if(pin.length !== 6 || !/^\d{6}$/.test(pin)) {
+      if(pin.length === 6) setPinError("Enter valid 6-digit PIN");
+      return;
+    }
+    setPinLoading(true); setPinError("");
+    try {
+      const res = await fetch(`https://api.postalpincode.in/pincode/${pin}`);
+      const data = await res.json();
+      if(data[0].Status === "Success" && data[0].PostOffice?.length) {
+        const po = data[0].PostOffice[0];
+        set("city", po.District || po.Block || "");
+        set("state", po.State || "");
+        setPinError("");
+      } else {
+        setPinError("PIN code not found");
+      }
+    } catch(e) {
+      setPinError("Could not fetch. Check connection.");
+    } finally {
+      setPinLoading(false);
+    }
+  };
+
+  const inp = (label,key,placeholder,type="text",err) => (
+    <div style={{marginBottom:14}}>
+      <label style={{display:"block",fontSize:"0.75rem",fontWeight:600,color:"#0A1628",
+                     fontFamily:"'DM Sans',sans-serif",marginBottom:5}}>{label}</label>
+      <input type={type} placeholder={placeholder} value={form[key]}
+        onChange={e=>set(key,e.target.value)}
+        style={{width:"100%",padding:"11px 14px",borderRadius:10,outline:"none",
+                fontFamily:"'DM Sans',sans-serif",fontSize:"0.85rem",color:"#0A1628",
+                border:`1.5px solid ${err?"#fca5a5":"#E2E8F0"}`,
+                background:err?"#fff5f5":"#fff",boxSizing:"border-box"}}/>
+      {err&&<div style={{fontSize:"0.7rem",color:"#dc2626",marginTop:4}}>{err}</div>}
+    </div>
+  );
+
+  return (
+    <div style={{minHeight:"100vh",background:"linear-gradient(160deg,#060B27,#0A2463)",
+                 display:"flex",alignItems:"center",justifyContent:"center",padding:"16px",
+                 position:"relative",overflow:"hidden"}}>
+      <div style={{position:"absolute",top:0,left:0,right:0,height:3,
+                   background:"linear-gradient(90deg,transparent,#D4AF37,#F5C842,#D4AF37,transparent)"}}/>
+
+      <div style={{width:"100%",maxWidth:480}}>
+        {/* Header */}
+        <div style={{textAlign:"center",marginBottom:20}}>
+          <img src={window.__LOGO_SRC__} alt="Suraksha24"
+            style={{height:44,width:"auto",display:"block",margin:"0 auto 14px"}}/>
+          <div style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:"1.1rem",
+                       color:"#fff"}}>Complete Your Profile</div>
+          <div style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.78rem",
+                       color:"rgba(255,255,255,0.5)",marginTop:4}}>
+            One-time setup · Takes 2 minutes
+          </div>
+        </div>
+
+        {/* Step indicators */}
+        <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:20,justifyContent:"center"}}>
+          {[1,2].map(s=>(
+            <div key={s} style={{display:"flex",alignItems:"center",gap:8}}>
+              <div style={{width:28,height:28,borderRadius:"50%",display:"flex",alignItems:"center",
+                           justifyContent:"center",fontFamily:"'Syne',sans-serif",fontWeight:800,
+                           fontSize:"0.8rem",
+                           background:step>=s?"#D4AF37":"rgba(255,255,255,0.1)",
+                           color:step>=s?"#0A1628":"rgba(255,255,255,0.4)"}}>
+                {s}
+              </div>
+              {s<2&&<div style={{width:40,height:2,background:step>s?"#D4AF37":"rgba(255,255,255,0.15)"}}/>}
+            </div>
+          ))}
+        </div>
+
+        {/* Form card */}
+        <div style={{background:"#fff",borderRadius:20,padding:"24px 20px",
+                     boxShadow:"0 24px 64px rgba(0,0,0,0.4)"}}>
+
+          {step===1 && (
+            <>
+              <div style={{fontFamily:"'Syne',sans-serif",fontWeight:700,fontSize:"0.9rem",
+                           color:"#0A1628",marginBottom:16}}>Dealership Details</div>
+              {inp("Dealership / Company Name *","dealershipName","e.g. Sharma Auto Pvt Ltd","text",errors.dealershipName)}
+              {inp("Mobile Number *","mobile","10-digit mobile number","tel",errors.mobile)}
+              {inp("Street Address / Locality *","address","House No., Street, Area","text",errors.address)}
+
+              {/* Pin Code with auto-fetch */}
+              <div style={{marginBottom:14}}>
+                <label style={{display:"block",fontSize:"0.75rem",fontWeight:600,color:"#0A1628",
+                               fontFamily:"'DM Sans',sans-serif",marginBottom:5}}>PIN Code *</label>
+                <div style={{position:"relative"}}>
+                  <input type="tel" maxLength={6} placeholder="6-digit PIN code"
+                    value={form.pinCode} onChange={e=>fetchPin(e.target.value)}
+                    style={{width:"100%",padding:"11px 44px 11px 14px",borderRadius:10,outline:"none",
+                            fontFamily:"'DM Sans',sans-serif",fontSize:"0.85rem",color:"#0A1628",
+                            border:`1.5px solid ${pinError?"#fca5a5":form.city?"#22c55e":"#E2E8F0"}`,
+                            background:pinError?"#fff5f5":form.city?"#f0fdf4":"#fff",
+                            boxSizing:"border-box"}}/>
+                  <div style={{position:"absolute",right:12,top:"50%",transform:"translateY(-50%)"}}>
+                    {pinLoading
+                      ? <div style={{width:16,height:16,border:"2px solid #BFDBFE",borderTopColor:"#1E3A8A",borderRadius:"50%",animation:"spin 0.7s linear infinite"}}/>
+                      : form.city
+                      ? <span style={{color:"#22c55e",fontSize:"1rem"}}>✓</span>
+                      : null}
+                  </div>
+                </div>
+                {pinError&&<div style={{fontSize:"0.7rem",color:"#dc2626",marginTop:4}}>{pinError}</div>}
+                {form.city&&<div style={{fontSize:"0.7rem",color:"#059669",marginTop:4,fontWeight:600}}>
+                  ✓ {form.city}, {form.state}
+                </div>}
+              </div>
+
+              {/* City + State - auto filled, editable */}
+              <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10,marginBottom:14}}>
+                <div>
+                  <label style={{display:"block",fontSize:"0.75rem",fontWeight:600,color:"#0A1628",
+                                 fontFamily:"'DM Sans',sans-serif",marginBottom:5}}>City *</label>
+                  <input type="text" placeholder="Auto-filled" value={form.city}
+                    onChange={e=>set("city",e.target.value)}
+                    style={{width:"100%",padding:"11px 14px",borderRadius:10,outline:"none",
+                            fontFamily:"'DM Sans',sans-serif",fontSize:"0.85rem",color:"#0A1628",
+                            border:`1.5px solid ${errors.city?"#fca5a5":"#E2E8F0"}`,
+                            background:form.city?"#f0fdf4":"#fff",boxSizing:"border-box"}}/>
+                  {errors.city&&<div style={{fontSize:"0.7rem",color:"#dc2626",marginTop:4}}>{errors.city}</div>}
+                </div>
+                <div>
+                  <label style={{display:"block",fontSize:"0.75rem",fontWeight:600,color:"#0A1628",
+                                 fontFamily:"'DM Sans',sans-serif",marginBottom:5}}>State *</label>
+                  <input type="text" placeholder="Auto-filled" value={form.state}
+                    onChange={e=>set("state",e.target.value)}
+                    style={{width:"100%",padding:"11px 14px",borderRadius:10,outline:"none",
+                            fontFamily:"'DM Sans',sans-serif",fontSize:"0.85rem",color:"#0A1628",
+                            border:`1.5px solid ${errors.state?"#fca5a5":"#E2E8F0"}`,
+                            background:form.state?"#f0fdf4":"#fff",boxSizing:"border-box"}}/>
+                  {errors.state&&<div style={{fontSize:"0.7rem",color:"#dc2626",marginTop:4}}>{errors.state}</div>}
+                </div>
+              </div>
+
+              {/* Interest */}
+              <div style={{marginBottom:14}}>
+                <label style={{display:"block",fontSize:"0.75rem",fontWeight:600,color:"#0A1628",
+                               fontFamily:"'DM Sans',sans-serif",marginBottom:8}}>
+                  Interested in dealing — Your Interest *
+                </label>
+                <div style={{display:"flex",flexDirection:"column",gap:8}}>
+                  {["PAN INDIA","Specific State","Specific City"].map(opt=>(
+                    <div key={opt}>
+                      <label style={{display:"flex",alignItems:"center",gap:10,cursor:"pointer",
+                                     padding:"10px 12px",borderRadius:9,
+                                     border:`1.5px solid ${form.interestType===opt?"#1E3A8A":"#E2E8F0"}`,
+                                     background:form.interestType===opt?"#EEF2FF":"#f8fafc"}}>
+                        <input type="radio" name="interestType" value={opt}
+                          checked={form.interestType===opt} onChange={()=>{set("interestType",opt);set("interestDetail","");}}
+                          style={{accentColor:"#1E3A8A"}}/>
+                        <span style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.82rem",
+                                      color:"#0A1628",fontWeight:form.interestType===opt?600:400}}>
+                          {opt==="PAN INDIA"?"🇮🇳 PAN INDIA — Any car, anywhere":
+                           opt==="Specific State"?"📍 Specific State":
+                           "🏙️ Specific City"}
+                        </span>
+                      </label>
+                      {/* Detail input appears right below the selected option */}
+                      {form.interestType===opt && opt!=="PAN INDIA" && (
+                        <div style={{marginTop:6,paddingLeft:8}}>
+                          <input type="text" autoFocus
+                            placeholder={opt==="Specific State"?"e.g. Maharashtra, Delhi, Gujarat...":"e.g. Mumbai, Pune, Ahmedabad..."}
+                            value={form.interestDetail} onChange={e=>set("interestDetail",e.target.value)}
+                            style={{width:"100%",padding:"10px 14px",borderRadius:9,outline:"none",
+                                    fontFamily:"'DM Sans',sans-serif",fontSize:"0.82rem",color:"#0A1628",
+                                    border:`1.5px solid ${errors.interestDetail?"#fca5a5":"#BFDBFE"}`,
+                                    background:"#EEF2FF",boxSizing:"border-box"}}/>
+                          {errors.interestDetail&&(
+                            <div style={{fontSize:"0.7rem",color:"#dc2626",marginTop:4,
+                                         fontFamily:"'DM Sans',sans-serif"}}>{errors.interestDetail}</div>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <button onClick={()=>{ if(validateStep1()) setStep(2); }}
+                style={{width:"100%",padding:"13px",borderRadius:12,border:"none",cursor:"pointer",
+                        background:"linear-gradient(135deg,#1E3A8A,#2563EB)",color:"#fff",
+                        fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:"0.9rem",
+                        letterSpacing:"0.01em"}}>
+                Next — Upload KYC →
+              </button>
+            </>
+          )}
+
+          {step===2 && (
+            <>
+              <button onClick={()=>setStep(1)}
+                style={{display:"flex",alignItems:"center",gap:6,background:"none",border:"none",
+                        cursor:"pointer",color:"#64748b",fontFamily:"'DM Sans',sans-serif",
+                        fontSize:"0.78rem",marginBottom:14,padding:0}}>
+                ← Back
+              </button>
+              <div style={{fontFamily:"'Syne',sans-serif",fontWeight:700,fontSize:"0.9rem",
+                           color:"#0A1628",marginBottom:6}}>Upload KYC Document</div>
+              <div style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.75rem",color:"#64748b",
+                           marginBottom:16}}>
+                Aadhaar / PAN / GST Certificate / Dealer License — mandatory to proceed
+              </div>
+
+              {/* File upload area */}
+              {/* ── Aadhaar Upload ── */}
+              <KycUploadBox
+                label="Aadhaar Card *"
+                file={aadhaarFile}
+                error={errors.aadhaar}
+                onCamera={handleAadhaar}
+                onFile={handleAadhaar}
+                onClear={()=>setAadhaarFile(null)}
+              />
+
+              {/* ── PAN Card Upload ── */}
+              <KycUploadBox
+                label="PAN Card *"
+                file={panFile}
+                error={errors.pan}
+                onCamera={handlePan}
+                onFile={handlePan}
+                onClear={()=>setPanFile(null)}
+              />
+
+              {/* ── Optional Message (after KYC) ── */}
+              <div style={{marginBottom:14}}>
+                <label style={{display:"block",fontSize:"0.75rem",fontWeight:600,color:"#0A1628",
+                               fontFamily:"'DM Sans',sans-serif",marginBottom:5}}>
+                  Anything you'd like to tell us? (optional)
+                </label>
+                <textarea placeholder="Years of experience, preferred brands, payment terms..."
+                  value={form.message} onChange={e=>set("message",e.target.value)} rows={2}
+                  style={{width:"100%",padding:"11px 14px",borderRadius:10,outline:"none",resize:"vertical",
+                          fontFamily:"'DM Sans',sans-serif",fontSize:"0.82rem",color:"#0A1628",
+                          border:"1px solid #E2E8F0",background:"#fff",boxSizing:"border-box"}}/>
+              </div>
+
+              <div style={{marginTop:10,padding:"10px 12px",background:"#FFF7ED",borderRadius:8,
+                           border:"1px solid #FDE68A",fontFamily:"'DM Sans',sans-serif",
+                           fontSize:"0.72rem",color:"#92400e",lineHeight:1.6}}>
+                🔒 Your KYC is stored securely and only accessible to Suraksha24 admin team.
+              </div>
+
+              <button onClick={submit} disabled={loading}
+                style={{width:"100%",marginTop:20,padding:"13px",borderRadius:12,border:"none",
+                        cursor:loading?"not-allowed":"pointer",opacity:loading?0.7:1,
+                        background:"linear-gradient(135deg,#1E3A8A,#2563EB)",color:"#fff",
+                        fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:"0.9rem",
+                        display:"flex",alignItems:"center",justifyContent:"center",gap:10}}>
+                {loading?(
+                  <><div style={{width:18,height:18,border:"2px solid rgba(255,255,255,0.3)",
+                                  borderTopColor:"#fff",borderRadius:"50%",
+                                  animation:"spin 0.7s linear infinite"}}/>
+                  Uploading KYC & Saving...</>
+                ):"Complete Registration 🚀"}
+              </button>
+
+              <div style={{textAlign:"center",marginTop:12,fontFamily:"'DM Sans',sans-serif",
+                           fontSize:"0.7rem",color:"#94a3b8",lineHeight:1.6}}>
+                KYC is mandatory for compliance.<br/>You cannot access inventory without it.
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ============================================================
+// 🔐  AUTH SCREEN
+// ============================================================
+function AuthScreen({ onSignIn, loading }) {
+  return (
+    <div style={{
+      minHeight:"100vh",background:"linear-gradient(160deg,#060B27 0%,#0D1B4B 50%,#0A2463 100%)",
+      display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",
+      padding:"20px",position:"relative",overflow:"hidden"
+    }}>
+      {/* Gold shimmer top */}
+      <div style={{position:"absolute",top:0,left:0,right:0,height:3,
+                   background:"linear-gradient(90deg,transparent,#D4AF37,#F5C842,#D4AF37,transparent)"}}/>
+      {/* Glow */}
+      <div style={{position:"absolute",top:-80,right:-80,width:300,height:300,borderRadius:"50%",
+                   background:"rgba(212,175,55,0.06)",pointerEvents:"none"}}/>
+      <div style={{position:"absolute",bottom:-80,left:-80,width:250,height:250,borderRadius:"50%",
+                   background:"rgba(37,99,235,0.08)",pointerEvents:"none"}}/>
+
+      {/* Logo */}
+      <div style={{marginBottom:32,textAlign:"center"}}>
+        <img src={window.__LOGO_SRC__} alt="Suraksha24"
+          style={{height:56,width:"auto",display:"block",margin:"0 auto 16px"}}/>
+        <div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:"1.35rem",
+                     color:"#fff",letterSpacing:"-0.02em",lineHeight:1.1}}>
+          Premium Repo Inventory
+        </div>
+        <div style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontWeight:500,
+                     fontSize:"1.05rem",color:"#D4AF37",marginTop:4}}>
+          Trusted by Dealers
+        </div>
+      </div>
+
+      {/* Login card */}
+      <div style={{
+        background:"#fff",borderRadius:20,padding:"32px 28px",width:"100%",maxWidth:380,
+        boxShadow:"0 24px 64px rgba(0,0,0,0.4),0 0 0 1px rgba(212,175,55,0.2)"
+      }}>
+        <div style={{textAlign:"center",marginBottom:24}}>
+          <div style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:"1.1rem",
+                       color:"#0A1628",marginBottom:6}}>Sign in to continue</div>
+          <div style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.82rem",color:"#64748b"}}>
+            Access India's premium repo car inventory
+          </div>
+        </div>
+
+        {/* Google Sign In Button */}
+        <button onClick={onSignIn} disabled={loading}
+          style={{
+            width:"100%",display:"flex",alignItems:"center",justifyContent:"center",gap:12,
+            padding:"13px 20px",borderRadius:12,cursor:loading?"not-allowed":"pointer",
+            background:loading?"#f8fafc":"#fff",
+            border:"1.5px solid #E2E8F0",
+            boxShadow:"0 2px 8px rgba(0,0,0,0.08)",
+            transition:"all 0.2s",opacity:loading?0.7:1,
+            fontFamily:"'DM Sans',sans-serif",fontSize:"0.9rem",fontWeight:600,color:"#1a1a1a"
+          }}
+          onMouseEnter={e=>{if(!loading){e.currentTarget.style.boxShadow="0 4px 16px rgba(0,0,0,0.12)";e.currentTarget.style.borderColor="#BFDBFE";}}}
+          onMouseLeave={e=>{e.currentTarget.style.boxShadow="0 2px 8px rgba(0,0,0,0.08)";e.currentTarget.style.borderColor="#E2E8F0";}}>
+          {loading ? (
+            <div style={{width:20,height:20,border:"2px solid #E2E8F0",borderTopColor:"#1E3A8A",
+                          borderRadius:"50%",animation:"spin 0.7s linear infinite"}}/>
+          ) : (
+            <svg width="20" height="20" viewBox="0 0 48 48">
+              <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+              <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+              <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+              <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+              <path fill="none" d="M0 0h48v48H0z"/>
+            </svg>
+          )}
+          {loading ? "Signing in..." : "Continue with Google"}
+        </button>
+
+        <div style={{marginTop:20,padding:"12px",background:"#F8FAFF",borderRadius:10,
+                     border:"1px solid #EEF2FF"}}>
+          <div style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.72rem",color:"#64748b",
+                       textAlign:"center",lineHeight:1.6}}>
+            🔒 Secure sign-in powered by Google.<br/>
+            Your data is safe and never shared.
+          </div>
+        </div>
+
+        <div style={{marginTop:16,textAlign:"center",fontFamily:"'DM Sans',sans-serif",
+                     fontSize:"0.68rem",color:"#94a3b8"}}>
+          By signing in you agree to our Terms of Service
+        </div>
+      </div>
+
+      {/* Badge */}
+      <div style={{marginTop:24,display:"inline-flex",alignItems:"center",gap:6,
+                   background:"rgba(212,175,55,0.12)",border:"1px solid rgba(212,175,55,0.3)",
+                   borderRadius:30,padding:"4px 14px"}}>
+        <div style={{width:6,height:6,borderRadius:"50%",background:"#D4AF37"}}/>
+        <span style={{fontSize:"0.7rem",fontWeight:700,color:"#D4AF37",
+                      letterSpacing:"0.1em",textTransform:"uppercase",
+                      fontFamily:"'DM Sans',sans-serif"}}>Powered by CARS24</span>
+      </div>
+    </div>
+  );
+}
+
+function HeroBanner({ tl, searchTerm, setSearchTerm }) {
+  return (
+    <div style={{
+      background:"linear-gradient(160deg,#060B27 0%,#0D1B4B 50%,#0A2463 100%)",
+      padding:"20px 16px 18px",color:"#fff",position:"relative",overflow:"hidden"
+    }}>
+      {/* Gold shimmer accent line */}
+      <div style={{position:"absolute",top:0,left:0,right:0,height:3,
+                   background:"linear-gradient(90deg,transparent,#D4AF37,#F5C842,#D4AF37,transparent)"}}/>
+      {/* Subtle radial glow */}
+      <div style={{position:"absolute",top:-40,right:-40,width:180,height:180,
+                   borderRadius:"50%",background:"rgba(212,175,55,0.08)",pointerEvents:"none"}}/>
+
+      {/* Tagline badge */}
+      <div style={{display:"inline-flex",alignItems:"center",gap:6,
+                   background:"rgba(212,175,55,0.12)",
+                   border:"1px solid rgba(212,175,55,0.35)",
+                   borderRadius:30,padding:"4px 14px",marginBottom:14}}>
+        <div style={{width:6,height:6,borderRadius:"50%",background:"#D4AF37",flexShrink:0}}/>
+        <span style={{fontSize:"0.72rem",fontWeight:700,
+                      color:"#D4AF37",letterSpacing:"0.12em",textTransform:"uppercase",
+                      fontFamily:"'DM Sans',sans-serif"}}>{tl("tagline")}</span>
+      </div>
+
+      {/* Single line hero heading */}
+      <div style={{marginBottom:16}}>
+        <div style={{
+          fontFamily:"'Syne',sans-serif",fontWeight:900,
+          fontSize:"clamp(1.15rem,5.5vw,1.65rem)",
+          lineHeight:1.1,letterSpacing:"-0.025em",
+          color:"#FFFFFF",
+          display:"flex",flexWrap:"wrap",alignItems:"baseline",gap:"0 8px"
+        }}>
+          <span>Premium Repo Inventory</span>
+          <span style={{
+            fontFamily:"'Cormorant Garamond',serif",
+            fontStyle:"italic",fontWeight:600,
+            fontSize:"clamp(1.1rem,5vw,1.55rem)",
+            color:"#D4AF37",letterSpacing:"-0.01em"
+          }}>Trusted by Dealers</span>
+        </div>
+      </div>
+
+      {/* Search bar — half width, premium style */}
+      <div style={{maxWidth:480}}>
+        <div style={{
+          background:"rgba(255,255,255,0.97)",
+          borderRadius:14,display:"flex",alignItems:"center",
+          gap:8,padding:"11px 14px",
+          boxShadow:"0 4px 24px rgba(0,0,0,0.35),0 0 0 1px rgba(212,175,55,0.3)"
+        }}>
+          <Search size={16} style={{color:"#0D1B4B",flexShrink:0}}/>
+          <input type="text" placeholder={tl("search")}
+            value={searchTerm} onChange={e=>setSearchTerm(e.target.value)}
+            style={{flex:1,border:"none",outline:"none",fontSize:"0.88rem",
+                    background:"transparent",color:"#0A1628",
+                    fontFamily:"'DM Sans',sans-serif",fontWeight:500}}/>
+          {searchTerm&&(
+            <button onClick={()=>setSearchTerm("")}
+              style={{background:"none",border:"none",cursor:"pointer",padding:0,display:"flex"}}>
+              <X size={14} style={{color:"#94a3b8"}}/>
+            </button>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function BottomNav({ view, setView, savedCount, tl }) {
+  const tabs=[{key:"home",icon:Home,label:tl("home")},{key:"saved",icon:Heart,label:tl("saved"),badge:savedCount},{key:"contact",icon:MessageSquare,label:tl("contactUs")}];
+  return (
+    <div style={{position:"fixed",bottom:0,left:0,right:0,zIndex:100,background:"#fff",borderTop:`1px solid ${BR}`,display:"flex",padding:"6px 0 8px",boxShadow:"0 -4px 20px rgba(30,58,138,0.08)"}}>
+      {tabs.map(t=>{
+        const on=view===t.key;
+        const Icon=t.icon;
+        return (
+          <button key={t.key} onClick={()=>setView(t.key)}
+            style={{flex:1,display:"flex",flexDirection:"column",alignItems:"center",gap:3,border:"none",background:"none",cursor:"pointer",padding:"4px 0",position:"relative"}}>
+            {t.badge>0&&(
+              <span style={{position:"absolute",top:0,right:"calc(50% - 16px)",background:"#ef4444",color:"#fff",fontSize:"0.58rem",fontWeight:700,padding:"1px 4px",borderRadius:8}}>{t.badge}</span>
+            )}
+            <Icon size={20} style={{color:on?N:HI}}/>
+            <span style={{fontSize:"0.65rem",fontWeight:on?700:500,color:on?N:HI}}>{t.label}</span>
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+function App() {
+  const [cars,setCars]=useState([]);
+  const [lang,setLang]=useState('en');
+  const tl=(key)=>t(lang,key);
+  const [user,setUser]=useState(null);
+  const [authLoading,setAuthLoading]=useState(true);
+  const [signInLoading,setSignInLoading]=useState(false);
+  const [profileDone,setProfileDone]=useState(false);
+  const [master,setMaster]=useState(SAMPLE_MASTER);
+  const [loading,setLoading]=useState(true);
+  const [searchTerm,setSearchTerm]=useState("");
+  const [statusTab,setStatusTab]=useState("all");
+  const [filters,setFilters]=useState({});
+  const [saved,setSaved]=useState([]);
+  const [view,setView]=useState("home");
+  const [contactCar,setContactCar]=useState(null);
+  const [bidCar,setBidCar]=useState(null);
+  const [bidBundle,setBidBundle]=useState(null);
+  const [toasts,setToasts]=useState([]);
+
+  // Firebase Auth init
+  useEffect(()=>{
+    const auth = window.__fbAuth;
+    if(!auth){ setAuthLoading(false); return; }
+    const unsub = auth.onAuthStateChanged(async u=>{
+      setUser(u);
+      if(!u){ setAuthLoading(false); return; }
+
+      // 1. Check localStorage first (fast)
+      const localDone = localStorage.getItem(`s24_profile_${u.uid}`);
+      if(localDone){
+        setProfileDone(true);
+        setAuthLoading(false);
+      } else {
+        // 2. Check Sheet — works across all devices/browsers
+        try {
+          const res  = await fetch(`${CONFIG.APPS_SCRIPT_URL}?action=getProfile&uid=${encodeURIComponent(u.uid)}`);
+          const data = await res.json();
+          if(data.profileComplete){
+            localStorage.setItem(`s24_profile_${u.uid}`,"complete");
+            setProfileDone(true);
+          } else {
+            setProfileDone(false);
+          }
+        } catch(e){
+          setProfileDone(false);
+        }
+        setAuthLoading(false);
+      }
+
+      // 3. Record sign-in
+      if(!CONFIG.APPS_SCRIPT_URL.includes("YOUR_")){
+        fetch(CONFIG.APPS_SCRIPT_URL,{method:"POST",mode:"no-cors",
+          body:JSON.stringify({action:"registerDealer",uid:u.uid,
+            name:u.displayName,email:u.email,
+            photo:u.photoURL,timestamp:new Date().toISOString()
+          })
+        }).catch(()=>{});
+      }
+    });
+    return ()=>unsub();
+  },[]);
+
+  const handleGoogleSignIn = async () => {
+    const auth = window.__fbAuth;
+    if(!auth){ alert("Auth not ready — please refresh."); return; }
+    setSignInLoading(true);
+    try {
+      const provider = new window.firebase.auth.GoogleAuthProvider();
+      const result = await auth.signInWithPopup(provider);
+      if(result?.user) setUser(result.user);
+    } catch(e) {
+      console.error("Sign in error:", e.code, e.message);
+      if(e.code !== "auth/popup-closed-by-user"){
+        alert("Sign-in failed: " + (e.code || e.message));
+      }
+      setSignInLoading(false);
+    }
+  };
+
+  const handleSignOut = async () => {
+    const auth = window.__fbAuth;
+    if(!auth) return;
+    await auth.signOut();
+    setUser(null);
+  };
+
+  useEffect(()=>{
+    if(!document.getElementById("s24-fonts")){
+      const l=document.createElement("link");l.id="s24-fonts";l.rel="stylesheet";
+      l.href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400;1,500;1,600;1,700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=DM+Mono:wght@400;500&family=Syne:wght@700;800;900&display=swap";
+      document.head.appendChild(l);
+    }
+    document.body.style.cssText="margin:0;padding:0;background:#F8FAFF;font-family:'DM Sans',sans-serif;";
+  },[]);
+
+
+
+  useEffect(()=>{
+    if(CONFIG.DEMO_MODE||!CONFIG.APPS_SCRIPT_URL||CONFIG.APPS_SCRIPT_URL.includes("YOUR_")){
+      setCars(SAMPLE_CARS);setMaster(SAMPLE_MASTER);setLoading(false);return;
+    }
+    (async()=>{
+      try{
+        const res=await fetch(`${CONFIG.APPS_SCRIPT_URL}?action=getData`);
+        const d=await res.json();
+        if(d.cars?.length)setCars(d.cars);else setCars(SAMPLE_CARS);
+        if(d.master)setMaster({...SAMPLE_MASTER,...d.master});
+      }catch{setCars(SAMPLE_CARS);setMaster(SAMPLE_MASTER);}
+      finally{setLoading(false);}
+    })();
+  },[]);
+
+  const addToast=useCallback((message,type="info")=>{const id=Date.now();setToasts(t=>[...t,{id,message,type}]);setTimeout(()=>setToasts(t=>t.filter(x=>x.id!==id)),4000);},[]);
+  const removeToast=useCallback((id)=>setToasts(t=>t.filter(x=>x.id!==id)),[]);
+  const toggleSave=useCallback((id)=>setSaved(s=>s.includes(id)?s.filter(x=>x!==id):[...s,id]),[]);
+
+  const filtered=useMemo(()=>{
+    let out=cars;
+    if(statusTab!=="all")out=out.filter(c=>(c.status||"").toLowerCase()===statusTab);
+    if(searchTerm){const q=searchTerm.toLowerCase();out=out.filter(c=>[c.make,c.model,c.variant,c.regNo,c.state,c.bank,c.parkingYard,c.fuelType,c.rcStatus].some(v=>(v||"").toLowerCase().includes(q)));}
+    Object.entries(filters).forEach(([k,vals])=>{if(vals.length)out=out.filter(c=>vals.includes(c[k]));});
+    return out;
+  },[cars,statusTab,searchTerm,filters]);
+
+  const counts=useMemo(()=>({
+    all:          cars.length,
+    "for sale":   cars.filter(c=>c.status?.toLowerCase()==="for sale").length,
+    "upcoming":   cars.filter(c=>c.status?.toLowerCase()==="upcoming").length,
+    "bulk deals": cars.filter(c=>c.status?.toLowerCase()==="bulk deals").length,
+    "disputed":   cars.filter(c=>c.status?.toLowerCase()==="disputed").length,
+    "blacklisted":cars.filter(c=>c.status?.toLowerCase()==="blacklisted").length,
+    "total loss":  cars.filter(c=>c.status?.toLowerCase()==="total loss").length,
+  }),[cars]);
+
+  const sorted=useMemo(()=>[...filtered].sort((a,b)=>(b.featured?1:0)-(a.featured?1:0)),[filtered]);
+
+  const handleContact=useCallback(async(formData)=>{
+    try{
+      if(!CONFIG.DEMO_MODE&&!CONFIG.APPS_SCRIPT_URL.includes("YOUR_"))
+        await fetch(CONFIG.APPS_SCRIPT_URL,{method:"POST",mode:"no-cors",body:JSON.stringify({action:"submitEnquiry",...formData})});
+      setCars(prev=>prev.map(c=>c.id===formData.carId?{...c,enquiryTotal:(c.enquiryTotal||0)+1}:c));
+      addToast("Enquiry submitted! Our agent will contact you shortly.","success");
+    }catch{addToast("Submitted! We'll get back to you soon.","success");}
+  },[addToast]);
+
+  const handleBid=useCallback(async(formData)=>{
+    try{
+      if(!CONFIG.DEMO_MODE&&!CONFIG.APPS_SCRIPT_URL.includes("YOUR_"))
+        await fetch(CONFIG.APPS_SCRIPT_URL,{method:"POST",mode:"no-cors",body:JSON.stringify({action:"submitDealerResponse",...formData,dealId:formData.dealId||""})});
+      setCars(prev=>prev.map(c=>c.id===formData.carId?{...c,bidTotal:(c.bidTotal||0)+1}:c));
+      addToast(`Bid of ₹${Number(formData.bidPrice).toLocaleString("en-IN")} submitted!`,"success");
+    }catch{addToast("Bid submitted! Our team will review it.","success");}
+  },[addToast]);
+
+  // Bundle grouping for Bulk Deals tab
+  const renderCards = () => {
+    if (statusTab === "bulk deals") {
+      const bundled = {};
+      const standalone = [];
+      sorted.forEach(c => {
+        if (c.dealId) {
+          if (!bundled[c.dealId]) bundled[c.dealId] = [];
+          bundled[c.dealId].push(c);
+        } else {
+          standalone.push(c);
+        }
+      });
+      return [
+        ...Object.entries(bundled).map(([did, bCars]) => (
+          <BundleCard key={did} dealId={did} cars={bCars}
+            onBid={(c, d, bc) => { setBidCar(c); setBidBundle({dealId:d, cars:bc}); }}
+            onContact={(c, d, bc) => { setContactCar(c); setBidBundle(null); }}/>
+        )),
+        ...standalone.map(c => (
+          <CarCard key={c.id} car={c} onContact={setContactCar} onBid={setBidCar}
+            saved={saved.includes(c.id)} toggleSave={toggleSave} tl={tl}/>
+        )),
+      ];
+    }
+    return sorted.map(c => (
+      <CarCard key={c.id} car={c} onContact={setContactCar} onBid={setBidCar}
+        saved={saved.includes(c.id)} toggleSave={toggleSave} tl={tl}/>
+    ));
+  };
+
+    // Pre-fill dealer name from Google account
+  const dealerDisplayName = user?.displayName || "";
+  const dealerEmail = user?.email || "";
+
+  if(authLoading) return (
+    <div style={{minHeight:"100vh",background:"linear-gradient(160deg,#060B27,#0A2463)",
+                 display:"flex",alignItems:"center",justifyContent:"center",flexDirection:"column",gap:16}}>
+      <div style={{width:40,height:40,border:"3px solid rgba(212,175,55,0.3)",borderTopColor:"#D4AF37",
+                   borderRadius:"50%",animation:"spin 0.7s linear infinite"}}/>
+      <p style={{color:"rgba(255,255,255,0.5)",fontSize:"0.8rem",fontFamily:"'DM Sans',sans-serif"}}>Loading Suraksha24...</p>
+      <style>{`@keyframes spin{to{transform:rotate(360deg)}}`}</style>
+    </div>
+  );
+
+  if(!user) return <AuthScreen onSignIn={handleGoogleSignIn} loading={signInLoading}/>;
+  if(!profileDone) return <ProfileForm user={user} onComplete={()=>setProfileDone(true)}/>;
+
+  return (
+    <div style={{minHeight:"100vh",background:BG,paddingBottom:72}}>
+      <Header lang={lang} setLang={setLang} tl={tl} user={user} onSignOut={handleSignOut}/>
+      <div style={{paddingTop:62}}>
+        {view==="home"&&(
+          <>
+            <HeroBanner tl={tl} searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
+            <StatusTabs active={statusTab} onChange={setStatusTab} counts={counts} tl={tl}/>
+            <FilterChips master={master} filters={filters} setFilters={setFilters} tl={tl}/>
+            <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"10px 14px 6px"}}>
+              <span style={{fontSize:"0.78rem",fontWeight:600,color:MT}}>
+                {loading?tl("loading"):`${sorted.length} ${tl("carsFound")}`}
+              </span>
+              {Object.values(filters).flat().length>0&&(
+                <button onClick={()=>setFilters({})} style={{fontSize:"0.72rem",color:N,fontWeight:600,background:"none",border:"none",cursor:"pointer"}}>{tl("clearFilters")}</button>
+              )}
+            </div>
+            <div style={{padding:"0 14px",display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(420px,1fr))",gap:12}}>
+              {loading?Array(4).fill(0).map((_,i)=>(
+                <div key={i} style={{background:"#fff",borderRadius:14,height:130,border:`1px solid ${BR}`,animation:"pulse 1.5s ease-in-out infinite"}}/>
+              )):sorted.length===0?(
+                <div style={{textAlign:"center",padding:"48px 20px"}}>
+                  <Car size={48} style={{color:BR,margin:"0 auto 12px"}}/>
+                  <div style={{color:MT,fontSize:"0.9rem",fontWeight:600}}>{tl("noCarFound")}</div>
+                  <div style={{color:HI,fontSize:"0.78rem",marginTop:6}}>{tl("adjustFilters")}</div>
+                </div>
+              ):renderCards()}
+
+            </div>
+          </>
+        )}
+        {view==="saved"&&<SavedCars cars={cars} savedIds={saved} onContact={setContactCar} onBid={setBidCar} toggleSave={toggleSave} tl={tl}/>}
+        {view==="contact"&&<ContactPage tl={tl}/>}
+      </div>
+
+      <BottomNav view={view} setView={setView} savedCount={saved.length} tl={tl}/>
+
+      {contactCar&&<ContactModal car={contactCar} onClose={()=>setContactCar(null)} onSubmit={handleContact} tl={tl}/>}
+      {bidCar&&<BidModal car={{...bidCar,_prefillName:user?.displayName||""}} bundle={bidBundle} onClose={()=>{setBidCar(null);setBidBundle(null);}} onSubmit={handleBid} tl={tl}/>}
+
+      <Toast toasts={toasts} remove={removeToast}/>
+
+      <style>{`@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.5}}@keyframes spin{to{transform:rotate(360deg)}}*{box-sizing:border-box}::-webkit-scrollbar{height:3px;width:4px}::-webkit-scrollbar-thumb{background:#BFDBFE;border-radius:4px}input::placeholder,textarea::placeholder{color:#94a3b8}`}</style>
+    </div>
+  );
+}
+
+document.getElementById('loader').style.display='none';
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+  </script>
+  <script>
+    if("serviceWorker" in navigator){
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("/sw.js")
+          .then(r => console.log("SW registered"))
+          .catch(e => console.log("SW error:", e));
+      });
+    }
+  </script>
+</body>
+</html>
