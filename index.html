@@ -5,6 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
   <title>Suraksha24 — Repo Cars by LOANS24</title>
   <meta name="theme-color" content="#1E3A8A"/>
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.json"/>
+  <meta name="mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+  <meta name="apple-mobile-web-app-title" content="Suraksha24"/>
+  <link rel="apple-touch-icon" href="/icon-192.png"/>
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon-152.png"/>
+  <link rel="apple-touch-icon" sizes="192x192" href="/icon-192.png"/>
+  <link rel="apple-touch-icon" sizes="512x512" href="/icon-512.png"/>
+  <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png"/>
+  <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png"/>
+
   <script src="https://cdn.tailwindcss.com"></script>
   <script>tailwind.config={darkMode:'class'}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -75,7 +88,7 @@ const LOGO_SRC=window.__LOGO_SRC__;
 
 
 const CONFIG = {
-  APPS_SCRIPT_URL: "https://script.google.com/a/macros/cars24.com/s/AKfycbwwMnZmR2ZhSgrnQDTscsrVZ0ImzTrCIi8qF6gI4EvTrlwBxFxGxL5BU3TnvCcv2Rtb4w/exec",
+  APPS_SCRIPT_URL: "https://script.google.com/a/macros/cars24.com/s/AKfycbxe6LLbWjUEJ87GG7sA8_ewWhfSaV4sCu8qKQ-LmVXZIGbxmdAOCrTc_8AYq1CJvJFvgw/exec",
   DEMO_MODE: false,
   WHATSAPP_NUMBER: "919315271911",
   EMAIL: "suraksha@cars24.com",
@@ -1723,10 +1736,34 @@ function App() {
   useEffect(()=>{
     const auth = window.__fbAuth;
     if(!auth){ setAuthLoading(false); return; }
-    const unsub = auth.onAuthStateChanged(u=>{
+    const unsub = auth.onAuthStateChanged(async u=>{
       setUser(u);
-      setAuthLoading(false);
-      if(u && !CONFIG.APPS_SCRIPT_URL.includes("YOUR_")){
+      if(!u){ setAuthLoading(false); return; }
+
+      // 1. Check localStorage first (fast)
+      const localDone = localStorage.getItem(`s24_profile_${u.uid}`);
+      if(localDone){
+        setProfileDone(true);
+        setAuthLoading(false);
+      } else {
+        // 2. Check Sheet — works across all devices/browsers
+        try {
+          const res  = await fetch(`${CONFIG.APPS_SCRIPT_URL}?action=getProfile&uid=${encodeURIComponent(u.uid)}`);
+          const data = await res.json();
+          if(data.profileComplete){
+            localStorage.setItem(`s24_profile_${u.uid}`,"complete");
+            setProfileDone(true);
+          } else {
+            setProfileDone(false);
+          }
+        } catch(e){
+          setProfileDone(false);
+        }
+        setAuthLoading(false);
+      }
+
+      // 3. Record sign-in
+      if(!CONFIG.APPS_SCRIPT_URL.includes("YOUR_")){
         fetch(CONFIG.APPS_SCRIPT_URL,{method:"POST",mode:"no-cors",
           body:JSON.stringify({action:"registerDealer",uid:u.uid,
             name:u.displayName,email:u.email,
