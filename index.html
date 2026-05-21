@@ -2365,6 +2365,8 @@ function App() {
               ):renderCards()}
 
             </div>
+          </>
+        )}
         {view==="saved"&&<SavedCars cars={cars} savedIds={saved} onContact={setContactCar} onBid={setBidCar} toggleSave={toggleSave} tl={tl}/>}
         {view==="contact"&&<ContactPage tl={tl}/>}
         {view==="feedback"&&<FeedbackModal onClose={()=>setView("home")} onSubmit={handleFeedbackSubmit}/>}
