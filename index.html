@@ -368,11 +368,15 @@ function LangSwitcher({ lang, setLang }) {
   return (
     <div ref={ref} style={{position:"relative"}}>
       <button onClick={() => setOpen(o => !o)}
-        style={{background:"rgba(255,255,255,0.12)",border:"none",borderRadius:8,
-                padding:"6px 10px",cursor:"pointer",color:"#fff",display:"flex",
+        style={{background:"rgba(212,175,55,0.12)",border:"1px solid rgba(212,175,55,0.5)",
+                borderRadius:8,padding:"5px 10px",cursor:"pointer",color:"#D4AF37",display:"flex",
                 alignItems:"center",gap:4,fontSize:"0.78rem",fontWeight:700}}>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/>
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+        </svg>
         {cur.native}
-        <ChevronDown size={10} style={{opacity:0.7,transform:open?"rotate(180deg)":"none",transition:"transform 0.15s"}}/>
+        <ChevronDown size={10} style={{color:"#D4AF37",transform:open?"rotate(180deg)":"none",transition:"transform 0.15s"}}/>
       </button>
       {open && (
         <div style={{position:"absolute",top:"calc(100% + 6px)",right:0,zIndex:300,
@@ -465,7 +469,7 @@ function Header({ lang, setLang, tl, user, onSignOut, onHome }) {
           <div ref={menuRef} style={{position:"relative"}}>
             <button onClick={()=>setShowMenu(o=>!o)}
               style={{display:"flex",alignItems:"center",gap:7,background:"rgba(255,255,255,0.1)",
-                      border:"1px solid rgba(212,175,55,0.3)",borderRadius:30,
+                      border:"1.5px solid rgba(212,175,55,0.7)",borderRadius:30,
                       padding:"4px 10px 4px 4px",cursor:"pointer"}}>
               {user.photoURL ? (
                 <img src={user.photoURL} alt={user.displayName}
@@ -479,11 +483,11 @@ function Header({ lang, setLang, tl, user, onSignOut, onHome }) {
                 </div>
               )}
               <span style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.75rem",fontWeight:600,
-                            color:"rgba(255,255,255,0.9)",maxWidth:72,overflow:"hidden",
+                            color:"#D4AF37",maxWidth:72,overflow:"hidden",
                             textOverflow:"ellipsis",whiteSpace:"nowrap"}}>
                 {(user.displayName||user.email||"").split(" ")[0]}
               </span>
-              <ChevronDown size={12} style={{color:"rgba(255,255,255,0.6)",
+              <ChevronDown size={12} style={{color:"#D4AF37",
                 transform:showMenu?"rotate(180deg)":"none",transition:"transform 0.15s"}}/>
             </button>
 
@@ -1175,8 +1179,8 @@ function ContactPage({ tl }) {
                   ["1️⃣","Open Chrome browser on your Android phone"],
                   ["2️⃣","Visit suraksha24.vercel.app"],
                   ["3️⃣","Tap the ⋮ menu (3 dots, top right)"],
-                  ["4️⃣",'Tap "Add to Home Screen"'],
-                  ["5️⃣",'Tap "Add" — done! ✅'],
+                  ["4️⃣","Tap "Add to Home Screen""],
+                  ["5️⃣","Tap "Add" — done! ✅"],
                 ].map(([n,s])=>(
                   <div key={n} style={{display:"flex",gap:12,padding:"10px 0",
                                        borderBottom:"1px solid #F1F5F9"}}>
@@ -1197,8 +1201,8 @@ function ContactPage({ tl }) {
                   ["1️⃣","Open Safari browser (not Chrome)"],
                   ["2️⃣","Visit suraksha24.vercel.app"],
                   ["3️⃣","Tap the Share button (□↑) at the bottom"],
-                  ["4️⃣",'Scroll down → tap "Add to Home Screen"'],
-                  ["5️⃣",'Tap "Add" — done! ✅'],
+                  ["4️⃣","Scroll down → tap "Add to Home Screen""],
+                  ["5️⃣","Tap "Add" — done! ✅"],
                 ].map(([n,s])=>(
                   <div key={n} style={{display:"flex",gap:12,padding:"10px 0",
                                        borderBottom:"1px solid #F1F5F9"}}>
