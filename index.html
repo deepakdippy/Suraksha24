@@ -2218,14 +2218,31 @@ function App() {
 
             </div>
 
-            {/* ── Homepage Footer ── */}
-            <div style={{padding:"14px 14px 8px",borderTop:`1px solid ${BR}`,marginTop:8}}>
+            {/* ── Homepage Footer placeholder (height) ── */}
+            <div style={{height:78}}/>
+          </>
+        )}
+        {/* ── Fixed Homepage Footer ── */}
+        {view==="home"&&(
+          <div style={{position:"fixed",bottom:72,left:0,right:0,zIndex:90,
+                       background:"#fff",borderTop:`1px solid ${BR}`,
+                       padding:"8px 14px 6px",
+                       boxShadow:"0 -2px 12px rgba(30,58,138,0.08)"}}>
               <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8}}>
                 <a href={CONFIG.APK_URL} target="_blank" rel="noopener noreferrer"
                    style={{display:"flex",flexDirection:"column",alignItems:"center",gap:5,
                            padding:"10px 6px",borderRadius:12,border:"1px solid #bbf7d0",
                            background:"#f0fdf4",textDecoration:"none"}}>
-                  <svg width="22" height="22" viewBox="0 0 24 24"><path fill="#22c55e" d="M17.523 15.34l1.84-3.19a.38.38 0 0 0-.66-.38l-1.86 3.23A11.3 11.3 0 0 1 12 16a11.3 11.3 0 0 1-4.84-1l-1.86-3.23a.38.38 0 0 0-.66.38l1.84 3.19C3.69 14.06 1.5 11.27 1.5 8h21c0 3.27-2.19 6.06-4.977 7.34zM8.5 11a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm7 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2zM16.81 4.5l1.5-2.6a.38.38 0 0 0-.66-.38l-1.52 2.63A11.45 11.45 0 0 0 12 3.5c-1.45 0-2.84.28-4.13.65L6.35 1.52a.38.38 0 0 0-.66.38l1.5 2.6C4.28 5.8 2.5 8.2 2.5 8h19c0-3.8-1.78-3.2-4.69-3.5z"/></svg>
+                  <svg width="22" height="22" viewBox="0 0 24 24">
+      <defs><linearGradient id="pg1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#00C6FF"/><stop offset="100%" stopColor="#0066CC"/></linearGradient>
+      <linearGradient id="pg2" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stopColor="#FFD700"/><stop offset="100%" stopColor="#FF8C00"/></linearGradient>
+      <linearGradient id="pg3" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stopColor="#FF4444"/><stop offset="100%" stopColor="#CC0000"/></linearGradient>
+      <linearGradient id="pg4" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stopColor="#00E676"/><stop offset="100%" stopColor="#00897B"/></linearGradient></defs>
+      <path d="M3 20.5v-17c0-.83 1-.88 1.38-.31L17 12 4.38 20.81C4 21.38 3 21.33 3 20.5z" fill="url(#pg4)"/>
+      <path d="M17 12l3.49 1.49c.9.38.9 1.64 0 2.02L17 17l-3.5-5z" fill="url(#pg2)"/>
+      <path d="M3 20.5L13.5 17l-3.38-4.81z" fill="url(#pg3)"/>
+      <path d="M3 3.5L13.5 7 17 12 4.38 3.19C4 2.62 3 2.67 3 3.5z" fill="url(#pg1)"/>
+    </svg>
                   <span style={{fontFamily:"'DM Sans',sans-serif",fontWeight:700,fontSize:"0.65rem",color:"#166534"}}>Android App</span>
                 </a>
                 <button onClick={()=>{setView("contact");}}
@@ -2243,8 +2260,7 @@ function App() {
                   <span style={{fontFamily:"'DM Sans',sans-serif",fontWeight:700,fontSize:"0.65rem",color:"#1E3A8A"}}>Feedback</span>
                 </button>
               </div>
-            </div>
-          </>
+          </div>
         )}
         {view==="saved"&&<SavedCars cars={cars} savedIds={saved} onContact={setContactCar} onBid={setBidCar} toggleSave={toggleSave} tl={tl}/>}
         {view==="contact"&&<ContactPage tl={tl}/>}
