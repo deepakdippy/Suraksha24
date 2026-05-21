@@ -2125,6 +2125,22 @@ function App() {
   const [profileDone,setProfileDone]=useState(false);
   const [showHomeFeedback,setShowHomeFeedback]=useState(false);
   const [installModal,setInstallModal]=useState(null);
+
+  const handleFeedbackSubmit = async (data) => {
+    try {
+      await fetch(CONFIG.APPS_SCRIPT_URL, {
+        method:"POST", mode:"no-cors",
+        body: JSON.stringify({
+          action:"submitFeedback",
+          name: data.name,
+          mobile: data.mobile,
+          rating: data.rating,
+          feedback: data.feedback,
+          timestamp: new Date().toISOString()
+        })
+      });
+    } catch(e) {}
+  };
   const [master,setMaster]=useState(SAMPLE_MASTER);
   const [loading,setLoading]=useState(true);
   const [searchTerm,setSearchTerm]=useState("");
@@ -2351,13 +2367,19 @@ function App() {
             </div>
         {view==="saved"&&<SavedCars cars={cars} savedIds={saved} onContact={setContactCar} onBid={setBidCar} toggleSave={toggleSave} tl={tl}/>}
         {view==="contact"&&<ContactPage tl={tl}/>}
-        {view==="feedback"&&<FeedbackModal onClose={()=>setView("home")} onSubmit={async(data)=>{await fetch(CONFIG.APPS_SCRIPT_URL,{method:"POST",mode:"no-cors",body:JSON.stringify({action:"submitFeedback",...data,timestamp:new Date().toISOString()})}).catch(()=>{});}}/>}
+        {view==="feedback"&&<FeedbackModal onClose={()=>setView("home")} onSubmit={handleFeedbackSubmit}/>}
         {view==="getapps"&&<GetAppsPage tl={tl} onInstall={(type)=>setInstallModal(type)}/>}
       </div>
 
       <BottomNav view={view} setView={setView} savedCount={saved.length} tl={tl}/>
 
-      {installModal&&<div style={{position:'fixed',inset:0,background:'rgba(0,0,0,0.5)',zIndex:600,display:'flex',alignItems:'flex-end',justifyContent:'center'}} onClick={()=>setInstallModal(null)}><InstallInstructions type={installModal} onClose={()=>setInstallModal(null)}/></div>}
+      {installModal&&(
+        <div onClick={()=>setInstallModal(null)}
+          style={{position:"fixed",inset:0,background:"rgba(0,0,0,0.5)",zIndex:600,
+                  display:"flex",alignItems:"flex-end",justifyContent:"center"}}>
+          <InstallInstructions type={installModal} onClose={()=>setInstallModal(null)}/>
+        </div>
+      )}
       {showHomeFeedback&&<FeedbackModal onClose={()=>setShowHomeFeedback(false)} onSubmit={async(data)=>{await fetch(CONFIG.APPS_SCRIPT_URL,{method:"POST",mode:"no-cors",body:JSON.stringify({action:"submitFeedback",...data,timestamp:new Date().toISOString()})}).catch(()=>{});}}/>}
       {contactCar&&<ContactModal car={contactCar} onClose={()=>setContactCar(null)} onSubmit={handleContact} tl={tl}/>}
       {bidCar&&<BidModal car={{...bidCar,_prefillName:user?.displayName||""}} bundle={bidBundle} onClose={()=>{setBidCar(null);setBidBundle(null);}} onSubmit={handleBid} tl={tl}/>}
