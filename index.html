@@ -1144,19 +1144,21 @@ function FeedbackModal({ onClose, onSubmit }) {
 
 
 function InstallInstructions({ type, onClose }) {
-  const steps = type === "android" ? [
-    ["1️⃣","Open Chrome browser on your Android phone"],
-    ["2️⃣","Visit suraksha24.vercel.app"],
-    ["3️⃣","Tap the ⋮ menu (3 dots, top right)"],
-    ['4️⃣',‘Tap “Add to Home Screen”’],
-    ['5️⃣',‘Tap “Add” — done! ✅’],
-  ] : [
-    ["1️⃣","Open Safari browser (not Chrome)"],
-    ["2️⃣","Visit suraksha24.vercel.app"],
-    ["3️⃣","Tap the Share button (□↑) at the bottom"],
-    ['4️⃣',‘Scroll down → tap “Add to Home Screen”’],
-    ['5️⃣',‘Tap “Add” — done! ✅’],
+  const androidSteps = [
+    ["1.", "Open Chrome browser on your Android phone"],
+    ["2.", "Visit suraksha24.vercel.app"],
+    ["3.", "Tap the menu (3 dots, top right)"],
+    ["4.", 'Tap Add to Home Screen'],
+    ["5.", 'Tap Add — done!'],
   ];
+  const iosSteps = [
+    ["1.", "Open Safari browser (not Chrome)"],
+    ["2.", "Visit suraksha24.vercel.app"],
+    ["3.", "Tap the Share button at the bottom"],
+    ["4.", "Scroll down and tap Add to Home Screen"],
+    ["5.", "Tap Add — done!"],
+  ];
+  const steps = type === "android" ? androidSteps : iosSteps;
   return (
     <div style={{background:"#fff",borderRadius:"20px 20px 0 0",width:"100%",
                  maxWidth:500,padding:"20px 20px 36px"}}
@@ -1168,25 +1170,27 @@ function InstallInstructions({ type, onClose }) {
       </div>
       {steps.map(([n,s])=>(
         <div key={n} style={{display:"flex",gap:12,padding:"10px 0",borderBottom:"1px solid #F1F5F9"}}>
-          <span style={{fontSize:"1.1rem",flexShrink:0}}>{n}</span>
+          <span style={{fontFamily:"'Syne',sans-serif",fontWeight:700,fontSize:"0.85rem",
+                        color:N,flexShrink:0,minWidth:24}}>{n}</span>
           <span style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.85rem",color:"#0A1628"}}>{s}</span>
         </div>
       ))}
       {type==="ios"&&(
         <div style={{marginTop:12,padding:"10px",background:"#FFF7ED",borderRadius:8,
                      fontFamily:"'DM Sans',sans-serif",fontSize:"0.72rem",color:"#92400e"}}>
-          ⚠️ Must use Safari — Chrome on iPhone does not support install
+          Must use Safari — Chrome on iPhone does not support install
         </div>
       )}
       <button onClick={onClose}
         style={{width:"100%",marginTop:20,padding:"12px",borderRadius:12,border:"none",
-                cursor:"pointer",background:`linear-gradient(135deg,#1E3A8A,#2563EB)`,
+                cursor:"pointer",background:"linear-gradient(135deg,#1E3A8A,#2563EB)",
                 color:"#fff",fontFamily:"'Syne',sans-serif",fontWeight:700,fontSize:"0.88rem"}}>
         Got it!
       </button>
     </div>
   );
 }
+
 
 function GetAppsPage({ tl, onInstall }) {
   return (
