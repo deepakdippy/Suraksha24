@@ -725,7 +725,7 @@ function CarCard({ car, onContact, onBid, saved, toggleSave, tl }) {
   const disabled=["total loss","blacklisted"].includes((car.status||"").toLowerCase());
   const share=async()=>{
     const text=`${car.regYear} ${car.make} ${car.model} (${car.regNo}) — ${formatCurrency(car.highestBid)} | Suraksha24`;
-    try{await(navigator.share?navigator.share({title:"Suraksha24",text}):navigator.clipboard.writeText(text));}catch{}
+    try{await(navigator.share?navigator.share({title:"Suraksha24",text}):navigator.clipboard.writeText(text));}catch(e){}
     setShared(true);setTimeout(()=>setShared(false),2000);
   };
   return (
@@ -2251,7 +2251,7 @@ function App() {
         const d=await res.json();
         if(d.cars?.length)setCars(d.cars);else setCars(SAMPLE_CARS);
         if(d.master)setMaster({...SAMPLE_MASTER,...d.master});
-      }catch{setCars(SAMPLE_CARS);setMaster(SAMPLE_MASTER);}
+      }catch(e){setCars(SAMPLE_CARS);setMaster(SAMPLE_MASTER);}
       finally{setLoading(false);}
     })();
   },[]);
@@ -2286,7 +2286,7 @@ function App() {
         await fetch(CONFIG.APPS_SCRIPT_URL,{method:"POST",mode:"no-cors",body:JSON.stringify({action:"submitEnquiry",...formData})});
       setCars(prev=>prev.map(c=>c.id===formData.carId?{...c,enquiryTotal:(c.enquiryTotal||0)+1}:c));
       addToast("Enquiry submitted! Our agent will contact you shortly.","success");
-    }catch{addToast("Submitted! We'll get back to you soon.","success");}
+    }catch(e){addToast("Submitted! We'll get back to you soon.","success");}
   },[addToast]);
 
   const handleBid=useCallback(async(formData)=>{
@@ -2295,7 +2295,7 @@ function App() {
         await fetch(CONFIG.APPS_SCRIPT_URL,{method:"POST",mode:"no-cors",body:JSON.stringify({action:"submitDealerResponse",...formData,dealId:formData.dealId||""})});
       setCars(prev=>prev.map(c=>c.id===formData.carId?{...c,bidTotal:(c.bidTotal||0)+1}:c));
       addToast(`Bid of ₹${Number(formData.bidPrice).toLocaleString("en-IN")} submitted!`,"success");
-    }catch{addToast("Bid submitted! Our team will review it.","success");}
+    }catch(e){addToast("Bid submitted! Our team will review it.","success");}
   },[addToast]);
 
   // Bundle grouping for Bulk Deals tab
