@@ -1,5 +1,5 @@
 // Suraksha24 Service Worker
-const CACHE = "suraksha24-v1";
+const CACHE = "suraksha24-v2";
 const ASSETS = ["/", "/index.html", "/manifest.json", "/icon-192.png", "/icon-512.png"];
 
 self.addEventListener("install", e => {
@@ -15,7 +15,19 @@ self.addEventListener("activate", e => {
 });
 
 self.addEventListener("fetch", e => {
-  e.respondWith(
-    fetch(e.request).catch(() => caches.match(e.request))
-  );
+  const url = new URL(e.request.url);
+  
+  // Only handle same-origin requests — don't intercept external APIs
+  if (url.origin !== self.location.origin) return;
+  
+  // For same-origin: cache-first for assets, network-first for HTML
+  if (e.request.destination === 'document') {
+    e.respondWith(
+      fetch(e.request).catch(() => caches.match('/index.html'))
+    );
+  } else {
+    e.respondWith(
+      caches.match(e.request).then(cached => cached || fetch(e.request))
+    );
+  }
 });
