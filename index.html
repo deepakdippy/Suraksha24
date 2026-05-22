@@ -1498,7 +1498,7 @@ function KycUploadBox({ label, file, error, onCamera, onFile, onClear }) {
                 <div style={{fontFamily:"'DM Sans',sans-serif",fontWeight:700,
                              fontSize:"0.72rem",color:"#1E3A8A"}}>Camera</div>
               </div>
-              <input type="file" accept="image}
+              <input type="file" accept="image/*" capture="environment" onChange={onCamera} style={{display:"none"}}/>
         <div style={{textAlign:"center",marginBottom:20}}>
           <img src={window.__LOGO_SRC__} alt="Suraksha24"
             style={{height:44,width:"auto",display:"block",margin:"0 auto 14px"}}/>
