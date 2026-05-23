@@ -1615,52 +1615,23 @@ function ProfileForm({ user, onComplete }) {
     finally { setLoading(false); }
   };
 
-  const fetchPin = async (pin) => {
+  const fetchPin = (pin) => {
     set("pinCode", pin);
-    if(pin.length !== 6 || !/^\d{6}$/.test(pin)) {
-      if(pin.length < 6) { set("city",""); set("state",""); setPinError(""); }
-      else setPinError("Enter valid 6-digit PIN");
-      return;
-    }
-    setPinLoading(true); setPinError("");
+    if(pin.length < 6) { set("city",""); set("state",""); setPinError(""); return; }
+    if(!/^\d{6}$/.test(pin)) { setPinError("Enter valid 6-digit PIN"); return; }
 
-    // Instant state from prefix while API loads
-    const PIN_STATE = {
-      "11":"Delhi","12":"Haryana","13":"Haryana","14":"Punjab","15":"Punjab","16":"Punjab",
-      "17":"Himachal Pradesh","18":"Jammu & Kashmir","19":"Jammu & Kashmir",
-      "20":"Uttar Pradesh","21":"Uttar Pradesh","22":"Uttar Pradesh","23":"Uttar Pradesh",
-      "24":"Uttar Pradesh","25":"Uttar Pradesh","26":"Uttar Pradesh","27":"Uttar Pradesh",
-      "30":"Rajasthan","31":"Rajasthan","32":"Rajasthan","33":"Rajasthan","34":"Rajasthan",
-      "36":"Gujarat","37":"Gujarat","38":"Gujarat","39":"Gujarat",
-      "40":"Maharashtra","41":"Maharashtra","42":"Maharashtra","43":"Maharashtra","44":"Maharashtra",
-      "45":"Madhya Pradesh","46":"Madhya Pradesh","47":"Madhya Pradesh","48":"Madhya Pradesh","49":"Madhya Pradesh",
-      "50":"Telangana","51":"Telangana","52":"Andhra Pradesh","53":"Andhra Pradesh",
-      "56":"Karnataka","57":"Karnataka","58":"Karnataka","59":"Karnataka",
-      "60":"Tamil Nadu","61":"Tamil Nadu","62":"Tamil Nadu","63":"Tamil Nadu","64":"Tamil Nadu",
-      "67":"Kerala","68":"Kerala","69":"Kerala",
-      "70":"West Bengal","71":"West Bengal","72":"West Bengal","73":"West Bengal","74":"West Bengal",
-      "75":"Odisha","76":"Odisha","77":"Odisha",
-      "78":"Assam","79":"Assam",
-      "80":"Bihar","81":"Bihar","82":"Bihar","83":"Bihar","84":"Bihar","85":"Bihar",
-    };
-    const stateGuess = PIN_STATE[pin.substring(0,2)] || "";
-    if(stateGuess) set("state", stateGuess);
+    // Static master — instant, no API, works offline
+    const PIN_MASTER={"110":"New Delhi:Delhi","121":"Faridabad:Haryana","122":"Gurugram:Haryana","123":"Rewari:Haryana","124":"Rohtak:Haryana","125":"Hisar:Haryana","126":"Jind:Haryana","127":"Bhiwani:Haryana","128":"Ambala:Haryana","129":"Panipat:Haryana","130":"Ambala:Haryana","131":"Karnal:Haryana","132":"Karnal:Haryana","133":"Ambala:Haryana","134":"Panchkula:Haryana","135":"Yamunanagar:Haryana","136":"Kurukshetra:Haryana","140":"Rupnagar:Punjab","141":"Ludhiana:Punjab","142":"Ludhiana:Punjab","143":"Amritsar:Punjab","144":"Jalandhar:Punjab","145":"Amritsar:Punjab","146":"Gurdaspur:Punjab","147":"Gurdaspur:Punjab","148":"Sangrur:Punjab","149":"Mansa:Punjab","151":"Bathinda:Punjab","152":"Ferozepur:Punjab","153":"Fazilka:Punjab","160":"Chandigarh:Punjab","170":"Shimla:Himachal Pradesh","171":"Shimla:Himachal Pradesh","172":"Shimla:Himachal Pradesh","173":"Solan:Himachal Pradesh","174":"Solan:Himachal Pradesh","175":"Mandi:Himachal Pradesh","176":"Kangra:Himachal Pradesh","177":"Hamirpur:Himachal Pradesh","180":"Jammu:Jammu & Kashmir","181":"Jammu:Jammu & Kashmir","182":"Doda:Jammu & Kashmir","190":"Srinagar:Jammu & Kashmir","191":"Srinagar:Jammu & Kashmir","192":"Anantnag:Jammu & Kashmir","193":"Baramulla:Jammu & Kashmir","194":"Leh:Ladakh","201":"Ghaziabad:Uttar Pradesh","202":"Aligarh:Uttar Pradesh","203":"Bulandshahr:Uttar Pradesh","204":"Meerut:Uttar Pradesh","205":"Etawah:Uttar Pradesh","206":"Agra:Uttar Pradesh","207":"Agra:Uttar Pradesh","208":"Kanpur:Uttar Pradesh","209":"Kanpur:Uttar Pradesh","210":"Banda:Uttar Pradesh","211":"Prayagraj:Uttar Pradesh","212":"Prayagraj:Uttar Pradesh","213":"Lucknow:Uttar Pradesh","214":"Lucknow:Uttar Pradesh","215":"Hardoi:Uttar Pradesh","221":"Varanasi:Uttar Pradesh","226":"Lucknow:Uttar Pradesh","227":"Lucknow:Uttar Pradesh","243":"Bareilly:Uttar Pradesh","244":"Moradabad:Uttar Pradesh","247":"Saharanpur:Uttar Pradesh","250":"Meerut:Uttar Pradesh","251":"Meerut:Uttar Pradesh","261":"Lucknow:Uttar Pradesh","263":"Nainital:Uttarakhand","265":"Dehradun:Uttarakhand","271":"Faizabad:Uttar Pradesh","273":"Gorakhpur:Uttar Pradesh","281":"Mathura:Uttar Pradesh","282":"Agra:Uttar Pradesh","283":"Agra:Uttar Pradesh","284":"Jhansi:Uttar Pradesh","302":"Jaipur:Rajasthan","303":"Jaipur:Rajasthan","304":"Jaipur:Rajasthan","305":"Ajmer:Rajasthan","306":"Nagaur:Rajasthan","307":"Sirohi:Rajasthan","311":"Bhilwara:Rajasthan","312":"Chittorgarh:Rajasthan","313":"Udaipur:Rajasthan","314":"Dungarpur:Rajasthan","323":"Kota:Rajasthan","324":"Kota:Rajasthan","325":"Baran:Rajasthan","326":"Jhalawar:Rajasthan","331":"Churu:Rajasthan","332":"Sikar:Rajasthan","333":"Jhunjhunu:Rajasthan","334":"Bikaner:Rajasthan","341":"Jodhpur:Rajasthan","342":"Jodhpur:Rajasthan","344":"Barmer:Rajasthan","345":"Jaisalmer:Rajasthan","360":"Rajkot:Gujarat","361":"Jamnagar:Gujarat","362":"Junagadh:Gujarat","363":"Surendranagar:Gujarat","364":"Bhavnagar:Gujarat","365":"Amreli:Gujarat","370":"Kutch:Gujarat","380":"Ahmedabad:Gujarat","382":"Ahmedabad:Gujarat","383":"Gandhinagar:Gujarat","384":"Mehsana:Gujarat","385":"Mehsana:Gujarat","387":"Anand:Gujarat","388":"Kheda:Gujarat","390":"Vadodara:Gujarat","391":"Vadodara:Gujarat","392":"Bharuch:Gujarat","394":"Surat:Gujarat","395":"Surat:Gujarat","396":"Valsad:Gujarat","400":"Mumbai:Maharashtra","401":"Mumbai:Maharashtra","402":"Raigad:Maharashtra","403":"Goa:Goa","410":"Pune:Maharashtra","411":"Pune:Maharashtra","412":"Pune:Maharashtra","413":"Solapur:Maharashtra","414":"Ahmednagar:Maharashtra","415":"Satara:Maharashtra","416":"Kolhapur:Maharashtra","421":"Thane:Maharashtra","422":"Nashik:Maharashtra","423":"Nashik:Maharashtra","424":"Dhule:Maharashtra","425":"Jalgaon:Maharashtra","431":"Aurangabad:Maharashtra","432":"Aurangabad:Maharashtra","440":"Nagpur:Maharashtra","441":"Nagpur:Maharashtra","442":"Wardha:Maharashtra","443":"Amravati:Maharashtra","444":"Akola:Maharashtra","445":"Washim:Maharashtra","450":"Indore:Madhya Pradesh","451":"Indore:Madhya Pradesh","452":"Indore:Madhya Pradesh","453":"Dewas:Madhya Pradesh","454":"Ratlam:Madhya Pradesh","455":"Ujjain:Madhya Pradesh","456":"Ujjain:Madhya Pradesh","457":"Mandsaur:Madhya Pradesh","458":"Neemuch:Madhya Pradesh","460":"Betul:Madhya Pradesh","461":"Hoshangabad:Madhya Pradesh","462":"Bhopal:Madhya Pradesh","463":"Sehore:Madhya Pradesh","464":"Vidisha:Madhya Pradesh","465":"Shajapur:Madhya Pradesh","470":"Sagar:Madhya Pradesh","471":"Gwalior:Madhya Pradesh","474":"Gwalior:Madhya Pradesh","480":"Chhindwara:Madhya Pradesh","481":"Balaghat:Madhya Pradesh","482":"Jabalpur:Madhya Pradesh","483":"Jabalpur:Madhya Pradesh","484":"Katni:Madhya Pradesh","485":"Satna:Madhya Pradesh","486":"Rewa:Madhya Pradesh","490":"Durg:Chhattisgarh","491":"Durg:Chhattisgarh","492":"Raipur:Chhattisgarh","493":"Raipur:Chhattisgarh","494":"Bastar:Chhattisgarh","500":"Hyderabad:Telangana","501":"Hyderabad:Telangana","502":"Medak:Telangana","503":"Nizamabad:Telangana","504":"Adilabad:Telangana","505":"Karimnagar:Telangana","506":"Warangal:Telangana","507":"Khammam:Telangana","508":"Nalgonda:Telangana","509":"Mahbubnagar:Telangana","515":"Anantapur:Andhra Pradesh","516":"Kurnool:Andhra Pradesh","517":"Chittoor:Andhra Pradesh","518":"Kurnool:Andhra Pradesh","520":"Vijayawada:Andhra Pradesh","521":"Vijayawada:Andhra Pradesh","522":"Guntur:Andhra Pradesh","523":"Bapatla:Andhra Pradesh","524":"Nellore:Andhra Pradesh","530":"Visakhapatnam:Andhra Pradesh","531":"Vizianagaram:Andhra Pradesh","532":"Srikakulam:Andhra Pradesh","533":"East Godavari:Andhra Pradesh","534":"West Godavari:Andhra Pradesh","560":"Bengaluru:Karnataka","561":"Bengaluru:Karnataka","562":"Bengaluru:Karnataka","563":"Kolar:Karnataka","564":"Tumkur:Karnataka","565":"Davangere:Karnataka","566":"Chitradurga:Karnataka","570":"Mysuru:Karnataka","571":"Mysuru:Karnataka","572":"Chamarajanagar:Karnataka","573":"Hassan:Karnataka","574":"Mangaluru:Karnataka","575":"Udupi:Karnataka","576":"Uttara Kannada:Karnataka","577":"Shivamogga:Karnataka","580":"Dharwad:Karnataka","581":"Gadag:Karnataka","582":"Ballari:Karnataka","583":"Ballari:Karnataka","584":"Raichur:Karnataka","585":"Kalaburagi:Karnataka","586":"Vijayapura:Karnataka","590":"Belagavi:Karnataka","591":"Belagavi:Karnataka","600":"Chennai:Tamil Nadu","601":"Chennai:Tamil Nadu","602":"Chennai:Tamil Nadu","603":"Chengalpattu:Tamil Nadu","604":"Villupuram:Tamil Nadu","605":"Puducherry:Puducherry","606":"Villupuram:Tamil Nadu","607":"Cuddalore:Tamil Nadu","608":"Nagapattinam:Tamil Nadu","609":"Nagapattinam:Tamil Nadu","610":"Thanjavur:Tamil Nadu","611":"Thanjavur:Tamil Nadu","612":"Tiruvarur:Tamil Nadu","613":"Tiruchirappalli:Tamil Nadu","614":"Tiruchirappalli:Tamil Nadu","620":"Tiruchirappalli:Tamil Nadu","621":"Perambalur:Tamil Nadu","622":"Pudukkottai:Tamil Nadu","623":"Sivaganga:Tamil Nadu","624":"Dindigul:Tamil Nadu","625":"Madurai:Tamil Nadu","626":"Virudhunagar:Tamil Nadu","627":"Tirunelveli:Tamil Nadu","628":"Thoothukudi:Tamil Nadu","629":"Kanyakumari:Tamil Nadu","630":"Sivaganga:Tamil Nadu","631":"Vellore:Tamil Nadu","632":"Vellore:Tamil Nadu","635":"Krishnagiri:Tamil Nadu","636":"Salem:Tamil Nadu","637":"Namakkal:Tamil Nadu","638":"Erode:Tamil Nadu","639":"Tiruppur:Tamil Nadu","641":"Coimbatore:Tamil Nadu","642":"Coimbatore:Tamil Nadu","643":"Nilgiris:Tamil Nadu","670":"Kannur:Kerala","671":"Kannur:Kerala","672":"Wayanad:Kerala","673":"Kozhikode:Kerala","674":"Malappuram:Kerala","676":"Malappuram:Kerala","678":"Palakkad:Kerala","679":"Palakkad:Kerala","680":"Thrissur:Kerala","681":"Thrissur:Kerala","682":"Ernakulam:Kerala","683":"Ernakulam:Kerala","685":"Idukki:Kerala","686":"Kottayam:Kerala","688":"Alappuzha:Kerala","689":"Pathanamthitta:Kerala","691":"Kollam:Kerala","695":"Thiruvananthapuram:Kerala","700":"Kolkata:West Bengal","701":"Kolkata:West Bengal","711":"Howrah:West Bengal","712":"Hooghly:West Bengal","713":"Purba Burdwan:West Bengal","721":"Midnapore:West Bengal","731":"Murshidabad:West Bengal","732":"Murshidabad:West Bengal","733":"Malda:West Bengal","734":"Darjeeling:West Bengal","735":"Jalpaiguri:West Bengal","736":"Cooch Behar:West Bengal","741":"Nadia:West Bengal","742":"Nadia:West Bengal","743":"North 24 Parganas:West Bengal","751":"Bhubaneswar:Odisha","752":"Bhubaneswar:Odisha","753":"Cuttack:Odisha","754":"Jagatsinghpur:Odisha","755":"Kendrapara:Odisha","756":"Bhadrak:Odisha","757":"Balasore:Odisha","758":"Sundargarh:Odisha","759":"Rourkela:Odisha","760":"Sambalpur:Odisha","761":"Ganjam:Odisha","763":"Gajapati:Odisha","764":"Koraput:Odisha","765":"Rayagada:Odisha","766":"Kalahandi:Odisha","767":"Bargarh:Odisha","768":"Jharsuguda:Odisha","769":"Sundargarh:Odisha","770":"Sundergarh:Odisha","781":"Guwahati:Assam","782":"Nagaon:Assam","783":"Goalpara:Assam","784":"Sonitpur:Assam","785":"Jorhat:Assam","786":"Dibrugarh:Assam","787":"Lakhimpur:Assam","788":"Cachar:Assam","800":"Patna:Bihar","801":"Patna:Bihar","802":"Patna:Bihar","803":"Patna:Bihar","804":"Arwal:Bihar","805":"Gaya:Bihar","811":"Nalanda:Bihar","812":"Gaya:Bihar","813":"Aurangabad:Bihar","814":"Nawada:Bihar","815":"Giridih:Jharkhand","816":"Dhanbad:Jharkhand","820":"Palamu:Jharkhand","822":"Hazaribagh:Jharkhand","823":"Hazaribagh:Jharkhand","824":"Gaya:Bihar","825":"Hazaribagh:Jharkhand","826":"Dhanbad:Jharkhand","827":"Bokaro:Jharkhand","828":"Dhanbad:Jharkhand","829":"Ranchi:Jharkhand","831":"Ranchi:Jharkhand","832":"Jamshedpur:Jharkhand","833":"West Singhbhum:Jharkhand","834":"Ranchi:Jharkhand","835":"Ranchi:Jharkhand","841":"Saran:Bihar","842":"Siwan:Bihar","843":"Muzaffarpur:Bihar","844":"Vaishali:Bihar","845":"Champaran:Bihar","846":"Madhubani:Bihar","847":"Sitamarhi:Bihar","848":"Samastipur:Bihar","851":"Bhagalpur:Bihar","852":"Bhagalpur:Bihar","853":"Banka:Bihar","854":"Kishanganj:Bihar","855":"Araria:Bihar"};
 
-    try {
-      // Route through Apps Script to avoid CORS
-      const res = await fetch(`${CONFIG.APPS_SCRIPT_URL}?action=getPin&pin=${pin}`);
-      const data = await res.json();
-      if(data.status === "success") {
-        set("city",  data.city  || "");
-        set("state", data.state || stateGuess);
-        setPinError("");
-      } else {
-        setPinError(stateGuess ? "" : "PIN not found — enter city manually");
-      }
-    } catch(e) {
-      setPinError(stateGuess ? "" : "Enter city manually");
-    } finally {
-      setPinLoading(false);
+    const p3 = pin.substring(0,3);
+    const match = PIN_MASTER[p3];
+    if(match) {
+      const [city, state] = match.split(":");
+      set("city", city);
+      set("state", state);
+      setPinError("");
+    } else {
+      setPinError("PIN not in master — enter city & state manually");
     }
   };
 
