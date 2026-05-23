@@ -109,19 +109,19 @@ const AGENTS = [
 const AGENT_NAMES = AGENTS.map(a => a.name);
 
 const SAMPLE_CARS = [
-  { id:"1",  regNo:"DL01AB1234", make:"Maruti",     model:"Swift",   variant:"VXi",   regYear:2019, fuelType:"Petrol",  rcStatus:"Clear",         ownerCount:1, pdfLink:"#", highestBid:425000,  enquiryTotal:8,  enquiryUnique:6, bidTotal:3,  bidUnique:2, status:"For Sale",   bank:"ICICI Bank",      state:"Delhi",          parkingYard:"Okhla Yard - Delhi",            kmDriven:45000, comment:"Good condition",  dealId:"",      timestamp:"2025-01-15" },
-  { id:"2",  regNo:"MH02CD5678", make:"Hyundai",    model:"Creta",   variant:"SX",   regYear:2020, fuelType:"Diesel",  rcStatus:"Hypothecation", ownerCount:1, pdfLink:"#", highestBid:850000,  enquiryTotal:15, enquiryUnique:10,bidTotal:7,  bidUnique:5, status:"For Sale",   bank:"HDFC Bank",       state:"Maharashtra",    parkingYard:"Andheri Yard - Mumbai",         kmDriven:62000, comment:"Minor dents",     dealId:"",      timestamp:"2025-01-18" },
-  { id:"3",  regNo:"HR26EF9012", make:"Honda",      model:"City",    variant:"V",    regYear:2018, fuelType:"Petrol",  rcStatus:"Clear",         ownerCount:2, pdfLink:"#", highestBid:520000,  enquiryTotal:6,  enquiryUnique:4, bidTotal:2,  bidUnique:2, status:"Upcoming",   bank:"Bajaj Finance",   state:"Haryana",        parkingYard:"Gurgaon Yard",                  kmDriven:78000, comment:"",               dealId:"",      timestamp:"2025-01-20" },
-  { id:"4",  regNo:"KA03GH3456", make:"Tata",       model:"Nexon",   variant:"XZ+",   regYear:2021, fuelType:"Diesel",  rcStatus:"Clear",         ownerCount:1, pdfLink:"#", highestBid:720000,  enquiryTotal:20, enquiryUnique:14,bidTotal:10, bidUnique:8, status:"For Sale",   bank:"Piramal Finance", state:"Karnataka",      parkingYard:"Whitefield Yard - Bengaluru",   kmDriven:38000, comment:"Excellent",       dealId:"",      timestamp:"2025-01-22" },
-  { id:"5",  regNo:"TN09IJ7890", make:"Maruti",     model:"Baleno",  variant:"Zeta",  regYear:2020, fuelType:"Petrol",  rcStatus:"NOC Pending",   ownerCount:2, pdfLink:"#", highestBid:580000,  enquiryTotal:11, enquiryUnique:8, bidTotal:4,  bidUnique:3, status:"Total Loss",      bank:"Axis Bank",       state:"Tamil Nadu",     parkingYard:"Ambattur Yard - Chennai",       kmDriven:55000, comment:"Scrapped",        dealId:"",      timestamp:"2025-01-25" },
-  { id:"6",  regNo:"UP32KL2345", make:"Hyundai",    model:"i20",     variant:"Asta",     regYear:2019, fuelType:"Petrol",  rcStatus:"Clear",         ownerCount:1, pdfLink:"#", highestBid:490000,  enquiryTotal:9,  enquiryUnique:7, bidTotal:4,  bidUnique:3, status:"Bulk Deals", bank:"Kotak Mahindra",  state:"Uttar Pradesh",  parkingYard:"Noida Yard",                    kmDriven:62000, comment:"Bundle BD-001",   dealId:"BD-001",timestamp:"2025-02-01" },
-  { id:"7",  regNo:"GJ05MN6789", make:"Kia",        model:"Seltos",  variant:"HTX",  regYear:2021, fuelType:"Diesel",  rcStatus:"Clear",         ownerCount:1, pdfLink:"#", highestBid:980000,  enquiryTotal:25, enquiryUnique:18,bidTotal:12, bidUnique:9, status:"Bulk Deals", bank:"Kotak Mahindra",  state:"Uttar Pradesh",  parkingYard:"Noida Yard",                    kmDriven:42000, comment:"Bundle BD-001",   dealId:"BD-001",timestamp:"2025-02-05" },
-  { id:"8",  regNo:"RJ14OP3456", make:"Mahindra",   model:"Scorpio", variant:"S10", regYear:2018, fuelType:"Diesel",  rcStatus:"Hypothecation", ownerCount:3, pdfLink:"#", highestBid:680000,  enquiryTotal:14, enquiryUnique:10,bidTotal:6,  bidUnique:5, status:"Bulk Deals", bank:"Kotak Mahindra",  state:"Uttar Pradesh",  parkingYard:"Noida Yard",                    kmDriven:95000, comment:"Bundle BD-001",   dealId:"BD-001",timestamp:"2025-02-08" },
-  { id:"9",  regNo:"WB20QR7890", make:"Toyota",     model:"Innova",  variant:"GX",  regYear:2019, fuelType:"Diesel",  rcStatus:"Clear",         ownerCount:2, pdfLink:"#", highestBid:1150000, enquiryTotal:18, enquiryUnique:13,bidTotal:8,  bidUnique:6, status:"For Sale",   bank:"Bajaj Finance",   state:"West Bengal",    parkingYard:"Howrah Yard - Kolkata",         kmDriven:82000, comment:"",               dealId:"",      timestamp:"2025-02-10" },
-  { id:"10", regNo:"PB10ST1234", make:"Volkswagen", model:"Polo",    variant:"Comfortline",    regYear:2018, fuelType:"Petrol",  rcStatus:"Clear",         ownerCount:1, pdfLink:"#", highestBid:380000,  enquiryTotal:7,  enquiryUnique:5, bidTotal:2,  bidUnique:2, status:"Blacklisted",bank:"Piramal Finance", state:"Punjab",         parkingYard:"Chandigarh Yard",               kmDriven:71000, comment:"Fraud history",   dealId:"",      timestamp:"2025-02-12" },
-  { id:"11", regNo:"AP09UV5678", make:"Renault",    model:"Duster",  variant:"RXZ",  regYear:2019, fuelType:"Diesel",  rcStatus:"NOC Pending",   ownerCount:2, pdfLink:"#", highestBid:620000,  enquiryTotal:13, enquiryUnique:9, bidTotal:5,  bidUnique:4, status:"Disputed",   bank:"ICICI Bank",      state:"Andhra Pradesh", parkingYard:"Hyderabad Yard",                kmDriven:68000, comment:"NOC in process",  dealId:"",      timestamp:"2025-02-15" },
-  { id:"12", regNo:"MP04WX9012", make:"Tata",       model:"Tiago",   variant:"XT",   regYear:2020, fuelType:"Petrol",  rcStatus:"Clear",         ownerCount:1, pdfLink:"#", highestBid:340000,  enquiryTotal:5,  enquiryUnique:4, bidTotal:2,  bidUnique:2, status:"Upcoming",   bank:"Kotak Mahindra",  state:"Madhya Pradesh", parkingYard:"Bhopal Yard",                   kmDriven:35000, comment:"",               dealId:"BD-002",timestamp:"2025-02-18" },
-  { id:"13", regNo:"GJ07YZ4321", make:"Maruti",     model:"Wagon R", variant:"VXi", regYear:2019, fuelType:"CNG",     rcStatus:"Clear",         ownerCount:1, pdfLink:"#", highestBid:290000,  enquiryTotal:3,  enquiryUnique:3, bidTotal:1,  bidUnique:1, status:"Upcoming",   bank:"Kotak Mahindra",  state:"Madhya Pradesh", parkingYard:"Bhopal Yard",                   kmDriven:48000, comment:"",               dealId:"BD-002",timestamp:"2025-02-18" },
+  { id:"1",  regNo:"DL01AB1234", make:"Maruti",     model:"Swift",   variant:"VXi",   regYear:2019, fuelType:"Petrol",  rcStatus:"Original",         ownerCount:1, pdfLink:"#", highestBid:425000,  enquiryTotal:8,  enquiryUnique:6, bidTotal:3,  bidUnique:2, status:"For Sale",   bank:"ICICI Bank",      state:"Delhi",          parkingYard:"Okhla Yard - Delhi",            kmDriven:45000, comment:"Good condition",  dealId:"",      timestamp:"2025-01-15", partyPeshi:true },
+  { id:"2",  regNo:"MH02CD5678", make:"Hyundai",    model:"Creta",   variant:"SX",   regYear:2020, fuelType:"Diesel",  rcStatus:"Original", ownerCount:1, pdfLink:"#", highestBid:850000,  enquiryTotal:15, enquiryUnique:10,bidTotal:7,  bidUnique:5, status:"For Sale",   bank:"HDFC Bank",       state:"Maharashtra",    parkingYard:"Andheri Yard - Mumbai",         kmDriven:62000, comment:"Minor dents",     dealId:"",      timestamp:"2025-01-18" },
+  { id:"3",  regNo:"HR26EF9012", make:"Honda",      model:"City",    variant:"V",    regYear:2018, fuelType:"Petrol",  rcStatus:"Original",         ownerCount:2, pdfLink:"#", highestBid:520000,  enquiryTotal:6,  enquiryUnique:4, bidTotal:2,  bidUnique:2, status:"Upcoming",   bank:"Bajaj Finance",   state:"Haryana",        parkingYard:"Gurgaon Yard",                  kmDriven:78000, comment:"",               dealId:"",      timestamp:"2025-01-20" },
+  { id:"4",  regNo:"KA03GH3456", make:"Tata",       model:"Nexon",   variant:"XZ+",   regYear:2021, fuelType:"Diesel",  rcStatus:"Original",         ownerCount:1, pdfLink:"#", highestBid:720000,  enquiryTotal:20, enquiryUnique:14,bidTotal:10, bidUnique:8, status:"For Sale",   bank:"Piramal Finance", state:"Karnataka",      parkingYard:"Whitefield Yard - Bengaluru",   kmDriven:38000, comment:"Excellent",       dealId:"",      timestamp:"2025-01-22", partyPeshi:true },
+  { id:"5",  regNo:"TN09IJ7890", make:"Maruti",     model:"Baleno",  variant:"Zeta",  regYear:2020, fuelType:"Petrol",  rcStatus:"Photocopy",   ownerCount:2, pdfLink:"#", highestBid:580000,  enquiryTotal:11, enquiryUnique:8, bidTotal:4,  bidUnique:3, status:"Total Loss",      bank:"Axis Bank",       state:"Tamil Nadu",     parkingYard:"Ambattur Yard - Chennai",       kmDriven:55000, comment:"Scrapped",        dealId:"",      timestamp:"2025-01-25" },
+  { id:"6",  regNo:"UP32KL2345", make:"Hyundai",    model:"i20",     variant:"Asta",     regYear:2019, fuelType:"Petrol",  rcStatus:"Original",         ownerCount:1, pdfLink:"#", highestBid:490000,  enquiryTotal:9,  enquiryUnique:7, bidTotal:4,  bidUnique:3, status:"Bulk Deals", bank:"Kotak Mahindra",  state:"Uttar Pradesh",  parkingYard:"Noida Yard",                    kmDriven:62000, comment:"Bundle BD-001",   dealId:"BD-001",timestamp:"2025-02-01" },
+  { id:"7",  regNo:"GJ05MN6789", make:"Kia",        model:"Seltos",  variant:"HTX",  regYear:2021, fuelType:"Diesel",  rcStatus:"Original",         ownerCount:1, pdfLink:"#", highestBid:980000,  enquiryTotal:25, enquiryUnique:18,bidTotal:12, bidUnique:9, status:"Bulk Deals", bank:"Kotak Mahindra",  state:"Uttar Pradesh",  parkingYard:"Noida Yard",                    kmDriven:42000, comment:"Bundle BD-001",   dealId:"BD-001",timestamp:"2025-02-05" },
+  { id:"8",  regNo:"RJ14OP3456", make:"Mahindra",   model:"Scorpio", variant:"S10", regYear:2018, fuelType:"Diesel",  rcStatus:"Original", ownerCount:3, pdfLink:"#", highestBid:680000,  enquiryTotal:14, enquiryUnique:10,bidTotal:6,  bidUnique:5, status:"Bulk Deals", bank:"Kotak Mahindra",  state:"Uttar Pradesh",  parkingYard:"Noida Yard",                    kmDriven:95000, comment:"Bundle BD-001",   dealId:"BD-001",timestamp:"2025-02-08" },
+  { id:"9",  regNo:"WB20QR7890", make:"Toyota",     model:"Innova",  variant:"GX",  regYear:2019, fuelType:"Diesel",  rcStatus:"Original",         ownerCount:2, pdfLink:"#", highestBid:1150000, enquiryTotal:18, enquiryUnique:13,bidTotal:8,  bidUnique:6, status:"For Sale",   bank:"Bajaj Finance",   state:"West Bengal",    parkingYard:"Howrah Yard - Kolkata",         kmDriven:82000, comment:"",               dealId:"",      timestamp:"2025-02-10" },
+  { id:"10", regNo:"PB10ST1234", make:"Volkswagen", model:"Polo",    variant:"Comfortline",    regYear:2018, fuelType:"Petrol",  rcStatus:"Original",         ownerCount:1, pdfLink:"#", highestBid:380000,  enquiryTotal:7,  enquiryUnique:5, bidTotal:2,  bidUnique:2, status:"Blacklisted",bank:"Piramal Finance", state:"Punjab",         parkingYard:"Chandigarh Yard",               kmDriven:71000, comment:"Fraud history",   dealId:"",      timestamp:"2025-02-12" },
+  { id:"11", regNo:"AP09UV5678", make:"Renault",    model:"Duster",  variant:"RXZ",  regYear:2019, fuelType:"Diesel",  rcStatus:"Photocopy",   ownerCount:2, pdfLink:"#", highestBid:620000,  enquiryTotal:13, enquiryUnique:9, bidTotal:5,  bidUnique:4, status:"Disputed",   bank:"ICICI Bank",      state:"Andhra Pradesh", parkingYard:"Hyderabad Yard",                kmDriven:68000, comment:"NOC in process",  dealId:"",      timestamp:"2025-02-15" },
+  { id:"12", regNo:"MP04WX9012", make:"Tata",       model:"Tiago",   variant:"XT",   regYear:2020, fuelType:"Petrol",  rcStatus:"Original",         ownerCount:1, pdfLink:"#", highestBid:340000,  enquiryTotal:5,  enquiryUnique:4, bidTotal:2,  bidUnique:2, status:"Upcoming",   bank:"Kotak Mahindra",  state:"Madhya Pradesh", parkingYard:"Bhopal Yard",                   kmDriven:35000, comment:"",               dealId:"BD-002",timestamp:"2025-02-18" },
+  { id:"13", regNo:"GJ07YZ4321", make:"Maruti",     model:"Wagon R", variant:"VXi", regYear:2019, fuelType:"CNG",     rcStatus:"Original",         ownerCount:1, pdfLink:"#", highestBid:290000,  enquiryTotal:3,  enquiryUnique:3, bidTotal:1,  bidUnique:1, status:"Upcoming",   bank:"Kotak Mahindra",  state:"Madhya Pradesh", parkingYard:"Bhopal Yard",                   kmDriven:48000, comment:"",               dealId:"BD-002",timestamp:"2025-02-18" },
 ];
 
 const SAMPLE_MASTER = {
@@ -129,8 +129,8 @@ const SAMPLE_MASTER = {
   states:       ["Delhi","Maharashtra","Karnataka","Tamil Nadu","Telangana","Gujarat","Rajasthan","Uttar Pradesh","West Bengal","Haryana","Punjab","Andhra Pradesh","Madhya Pradesh"],
   makes:        ["Maruti","Hyundai","Honda","Tata","Kia","Mahindra","Toyota","Volkswagen","Renault","Skoda"],
   parkingYards: ["Okhla Yard - Delhi","Andheri Yard - Mumbai","Whitefield Yard - Bengaluru","Ambattur Yard - Chennai","Hyderabad Yard","Naroda Yard - Ahmedabad","Jaipur Yard","Howrah Yard - Kolkata"],
-  fuelTypes:    ["Petrol","Diesel","CNG","Electric","Hybrid"],
-  rcStatuses:   ["Clear","Hypothecation","NOC Pending"],
+  fuelTypes:    ["Petrol","Diesel","CNG","Petrol+CNG","Electric","Hybrid"],
+  rcStatuses:   ["Original","Lost","Photocopy"],
 };
 
 const formatCurrency = (n) => {
@@ -560,8 +560,8 @@ function FilterChips({ master, filters, setFilters, tl }) {
     {key:"make",        label:tl("make"),         options:master.makes||[]},
     {key:"state",       label:tl("state"),        options:master.states||[]},
     {key:"parkingYard", label:tl("parkingYard"), options:master.parkingYards||[]},
-    {key:"fuelType",    label:tl("fuel"),         options:master.fuelTypes||["Petrol","Diesel","CNG","Electric"]},
-    {key:"rcStatus",    label:"RC Status",        options:master.rcStatuses||["Clear","Hypothecation","NOC Pending"]},
+    {key:"fuelType",    label:tl("fuel"),         options:master.fuelTypes||["Petrol","Diesel","CNG","Petrol+CNG","Electric","Hybrid"]},
+    {key:"rcStatus",    label:"RC Status",        options:master.rcStatuses||["Original","Lost","Photocopy"]},
   ];
   const [open,setOpen]=useState(null);
   const ref=useRef();
@@ -750,6 +750,25 @@ function CarCard({ car, onContact, onBid, saved, toggleSave, tl }) {
         return null;
       })()}
 
+      {car.partyPeshi&&(
+        <div className="peshi-badge" style={{
+          display:"flex",alignItems:"center",gap:5,
+          padding:"5px 10px",
+          background:"linear-gradient(90deg,#854d0e,#ca8a04,#854d0e)",
+          backgroundSize:"200% 100%",
+          borderBottom:"2px solid #fbbf24",
+          justifyContent:"center"
+        }}>
+          <span className="peshi-dot" style={{width:7,height:7,borderRadius:"50%",
+            background:"#fef08a",flexShrink:0,boxShadow:"0 0 4px #fbbf24"}}/>
+          <span style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:"0.68rem",
+            color:"#fef9c3",letterSpacing:"0.08em",textTransform:"uppercase"}}>
+            🎯 Party Peshi Available
+          </span>
+          <span className="peshi-dot" style={{width:7,height:7,borderRadius:"50%",
+            background:"#fef08a",flexShrink:0,boxShadow:"0 0 4px #fbbf24"}}/>
+        </div>
+      )}
       <div style={{display:"flex"}}>
         <div style={{width:110,flexShrink:0,background:`linear-gradient(135deg,${TI},#DBEAFE)`,
                      display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",
