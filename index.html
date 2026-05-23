@@ -1615,26 +1615,62 @@ function ProfileForm({ user, onComplete }) {
     finally { setLoading(false); }
   };
 
+  const PIN_STATE = {
+    "11":"Delhi","12":"Haryana","13":"Haryana","14":"Punjab","15":"Punjab","16":"Punjab",
+    "17":"Himachal Pradesh","18":"Jammu & Kashmir","19":"Jammu & Kashmir",
+    "20":"Uttar Pradesh","21":"Uttar Pradesh","22":"Uttar Pradesh","23":"Uttar Pradesh",
+    "24":"Uttar Pradesh","25":"Uttar Pradesh","26":"Uttar Pradesh","27":"Uttar Pradesh",
+    "28":"Uttar Pradesh","29":"Uttar Pradesh",
+    "30":"Rajasthan","31":"Rajasthan","32":"Rajasthan","33":"Rajasthan","34":"Rajasthan",
+    "36":"Gujarat","37":"Gujarat","38":"Gujarat","39":"Gujarat",
+    "40":"Maharashtra","41":"Maharashtra","42":"Maharashtra","43":"Maharashtra","44":"Maharashtra","45":"Madhya Pradesh",
+    "46":"Madhya Pradesh","47":"Madhya Pradesh","48":"Madhya Pradesh","49":"Madhya Pradesh",
+    "50":"Telangana","51":"Telangana","52":"Andhra Pradesh","53":"Andhra Pradesh",
+    "56":"Karnataka","57":"Karnataka","58":"Karnataka","59":"Karnataka",
+    "60":"Tamil Nadu","61":"Tamil Nadu","62":"Tamil Nadu","63":"Tamil Nadu","64":"Tamil Nadu",
+    "67":"Kerala","68":"Kerala","69":"Kerala",
+    "70":"West Bengal","71":"West Bengal","72":"West Bengal","73":"West Bengal","74":"West Bengal",
+    "75":"Odisha","76":"Odisha","77":"Odisha",
+    "78":"Assam","79":"Assam",
+    "80":"Bihar","81":"Bihar","82":"Bihar","83":"Bihar","84":"Bihar","85":"Bihar",
+    "110":"Delhi",
+  };
+
   const fetchPin = async (pin) => {
     set("pinCode", pin);
     if(pin.length !== 6 || !/^\d{6}$/.test(pin)) {
       if(pin.length === 6) setPinError("Enter valid 6-digit PIN");
+      else { set("city",""); set("state",""); }
       return;
     }
     setPinLoading(true); setPinError("");
+
+    // Instant state from prefix
+    const prefix = pin.substring(0,2);
+    const stateGuess = PIN_STATE[prefix] || "";
+    if(stateGuess) set("state", stateGuess);
+
     try {
-      const res = await fetch(`https://api.postalpincode.in/pincode/${pin}`);
+      const controller = new AbortController();
+      setTimeout(() => controller.abort(), 5000);
+      const res = await fetch(
+        `https://api.postalpincode.in/pincode/${pin}`,
+        { signal: controller.signal, mode: "cors" }
+      );
       const data = await res.json();
-      if(data[0].Status === "Success" && data[0].PostOffice?.length) {
+      if(data[0]?.Status === "Success" && data[0].PostOffice?.length) {
         const po = data[0].PostOffice[0];
-        set("city", po.District || po.Block || "");
-        set("state", po.State || "");
+        set("city",  po.District || po.Block || po.Name || "");
+        set("state", po.State || stateGuess);
         setPinError("");
       } else {
-        setPinError("PIN code not found");
+        if(!stateGuess) setPinError("PIN not found — enter city manually");
+        else setPinError("");
       }
     } catch(e) {
-      setPinError("Could not fetch. Check connection.");
+      // API failed but state was already set from prefix
+      if(!stateGuess) setPinError("Enter city manually");
+      else setPinError("");
     } finally {
       setPinLoading(false);
     }
