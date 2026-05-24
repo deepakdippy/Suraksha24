@@ -2372,28 +2372,34 @@ function App() {
   const toggleSave=useCallback((id)=>setSaved(s=>s.includes(id)?s.filter(x=>x!==id):[...s,id]),[]);
 
   const filtered=useMemo(()=>{
-    try {
-      let out=cars;
-      if(statusTab!=="all") {
-        out=out.filter(c=>{
-          const s=String(c.status||"").trim().toLowerCase();
-          if(statusTab==="not running") return s==="not in running condition"||s==="not running";
-          return s===statusTab;
-        });
-      }
-      if(searchTerm.trim()){
-        const q=searchTerm.trim().toLowerCase();
-        out=out.filter(c=>[c.make,c.model,c.variant,c.regNo,c.state,c.bank,c.parkingYard,c.fuelType,c.rcStatus,c.comment]
-          .some(v=>String(v||"").toLowerCase().includes(q)));
-      }
-      Object.entries(filters).forEach(([k,vals])=>{
-        if(vals&&vals.length) {
-          const normVals = vals.map(v=>String(v||"").trim().toLowerCase());
-          out=out.filter(c=>normVals.includes(String(c[k]||"").trim().toLowerCase()));
+    let out=cars;
+    // Status tab filter
+    if(statusTab!=="all"){
+      out=out.filter(c=>{
+        const s=String(c.status||"").trim().toLowerCase();
+        if(statusTab==="not running") return s==="not running"||s==="not in running condition";
+        return s===statusTab;
+      });
+    }
+    // Search filter
+    if(searchTerm&&searchTerm.trim()){
+      const q=searchTerm.trim().toLowerCase();
+      out=out.filter(c=>[c.make,c.model,c.regNo,c.state,c.bank,c.parkingYard,c.fuelType,c.rcStatus]
+        .some(v=>v&&String(v).toLowerCase().includes(q)));
+    }
+    // Chip filters
+    if(Object.keys(filters).length){
+      Object.keys(filters).forEach(k=>{
+        const vals=filters[k];
+        if(vals&&vals.length>0){
+          out=out.filter(c=>{
+            const carVal=String(c[k]||"").trim().toLowerCase();
+            return vals.some(v=>String(v||"").trim().toLowerCase()===carVal);
+          });
         }
       });
-      return out;
-    } catch(e) { return cars; }
+    }
+    return out;
   },[cars,statusTab,searchTerm,filters]);
 
   const counts=useMemo(()=>({
