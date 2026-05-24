@@ -795,7 +795,15 @@ function BundleCard({ dealId, cars, onBid, onContact }) {
   );
 }
 
-const tlFuel=(f,t)=>({'Petrol':t('petrol'),'Diesel':t('diesel'),'CNG':t('cng'),'Petrol+CNG':t('petrolCng'),'Electric':t('electric'),'Hybrid':t('hybrid')}[f]||f);
+const SteeringWheel=({size=14})=>(
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="10"/>
+    <circle cx="12" cy="12" r="3"/>
+    <line x1="12" y1="9" x2="12" y2="2"/>
+    <line x1="9" y1="11.5" x2="2.5" y2="16"/>
+    <line x1="15" y1="11.5" x2="21.5" y2="16"/>
+  </svg>
+);
 const tlRC=(r,t)=>({'Original':t('rcOriginal'),'Lost':t('rcLost'),'Photocopy':t('rcPhotocopy')}[r]||r);
 const tlSt=(s,t)=>({'For Sale':t('forSale'),'Upcoming':t('upcoming'),'Bulk Deals':t('bulkDeals'),'Total Loss':t('totalLoss'),'Not in Running Condition':t('notRunning'),'Blacklisted':t('blacklisted'),'Disputed':t('disputed')}[s]||s);
 function CarCard({ car, onContact, onBid, saved, toggleSave, tl }) {
@@ -857,7 +865,7 @@ function CarCard({ car, onContact, onBid, saved, toggleSave, tl }) {
         </div>
       )}
       <div style={{display:"flex"}}>
-        <div style={{width:110,flexShrink:0,background:`linear-gradient(135deg,${TI},#DBEAFE)`,
+        <div style={{width:90,flexShrink:0,background:`linear-gradient(135deg,${TI},#DBEAFE)`,
                      display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",
                      padding:"10px 5px",position:"relative"}}>
           <Car size={30} style={{color:N,opacity:0.55}}/>
@@ -888,20 +896,20 @@ function CarCard({ car, onContact, onBid, saved, toggleSave, tl }) {
               <div style={{fontFamily:"'DM Mono',monospace",fontSize:"0.7rem",color:N,fontWeight:500,marginTop:2,letterSpacing:"0.04em"}}>{car.regNo}</div>
             </div>
             <button onClick={()=>toggleSave(car.id)}
-              style={{background:"none",border:"none",cursor:"pointer",padding:4,flexShrink:0,color:saved?"#ef4444":HI}}>
+              style={{background:saved?"#fee2e2":"#f1f5f9",border:"none",borderRadius:20,cursor:"pointer",padding:"5px 8px",flexShrink:0,color:saved?"#ef4444":MT}}>
               <Heart size={15} fill={saved?"#ef4444":"none"}/>
             </button>
           </div>
 
           <div style={{display:"flex",flexWrap:"wrap",gap:"3px 10px",marginBottom:6}}>
-            {[[Fuel,tlFuel(car.fuelType,tl)],[Eye,`${fmtNum(car.kmDriven)} ${tl('km')}`],[User,`${car.ownerCount} ${car.ownerCount>1?tl('owners'):tl('owner')}`],[Check,tlRC(car.rcStatus,tl)]].map(([Icon,val])=>val&&(
+            {[[Fuel,tlFuel(car.fuelType,tl)],[Gauge,`${fmtNum(car.kmDriven)} ${tl('km')}`],[SteeringWheel,`${car.ownerCount} ${car.ownerCount>1?tl('owners'):tl('owner')}`],[Check,car.rcStatus?`RC: ${tlRC(car.rcStatus,tl)}`:null]].map(([Icon,val])=>val&&(
               <span key={val} style={{display:"inline-flex",alignItems:"center",gap:3,fontSize:"0.68rem",color:MT}}>
                 <Icon size={9} style={{color:B,flexShrink:0}}/>{val}
               </span>
             ))}
           </div>
 
-          <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:6}}>
+          <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:4,flexWrap:"wrap"}}>
             <div>
               <div style={{fontSize:"0.58rem",fontWeight:500,color:HI,textTransform:"uppercase",letterSpacing:"0.06em"}}>{tl("basePrice")}</div>
               <div style={{fontWeight:800,fontSize:"1.05rem",color:TX,lineHeight:1,letterSpacing:"-0.02em"}}>{formatCurrency(car.highestBid)}</div>
@@ -920,7 +928,7 @@ function CarCard({ car, onContact, onBid, saved, toggleSave, tl }) {
                 <MessageSquare size={10}/> {tl("enquire")}
               </button>
               <button onClick={()=>onBid(car)} disabled={disabled}
-                style={{display:"flex",alignItems:"center",gap:3,padding:"6px 12px",borderRadius:8,fontSize:"0.72rem",fontWeight:700,
+                style={{display:"flex",alignItems:"center",gap:3,padding:"6px 10px",borderRadius:8,fontSize:"0.7rem",fontWeight:700,
                         border:"none",cursor:"pointer",background:`linear-gradient(135deg,${N},${B})`,color:"#fff",opacity:disabled?0.5:1}}>
                 {tl("bidNow")}
               </button>
@@ -1142,7 +1150,7 @@ function SavedCars({ cars, savedIds, onContact, onBid, toggleSave, tl }) {
           <div style={{color:HI,fontSize:"0.78rem",marginTop:6}}>{tl("tapToSave")}</div>
         </div>
       ):(
-        <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(420px,1fr))",gap:12}}>
+        <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(min(100%,340px),1fr))",gap:12}}>
           {saved.map(c=><CarCard key={c.id} car={c} onContact={onContact} onBid={onBid} saved={true} toggleSave={toggleSave} tl={tl}/>)}
         </div>
       )}
@@ -2126,9 +2134,9 @@ function HeroBanner({ tl, searchTerm, setSearchTerm }) {
       <div style={{marginBottom:6}}>
         <div style={{
           fontFamily:"'Syne',sans-serif",fontWeight:900,
-          fontSize:"clamp(1.4rem,6vw,2rem)",
-          lineHeight:1.05,letterSpacing:"-0.03em",
-          color:"#FFFFFF",whiteSpace:"nowrap"
+          fontSize:"clamp(1.1rem,5vw,1.8rem)",
+          lineHeight:1.1,letterSpacing:"-0.02em",
+          color:"#FFFFFF",whiteSpace:"normal",wordBreak:"break-word"
         }}>
           Premium Repo Inventory
         </div>
@@ -2508,7 +2516,7 @@ function App() {
                 <button onClick={()=>setFilters({})} style={{fontSize:"0.72rem",color:N,fontWeight:600,background:"none",border:"none",cursor:"pointer"}}>{tl("clearFilters")}</button>
               )}
             </div>
-            <div style={{padding:"0 14px",display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(420px,1fr))",gap:12}}>
+            <div style={{padding:"0 14px",display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(min(100%,340px),1fr))",gap:12}}>
               {loading?Array(6).fill(0).map((_,i)=>(
                 <div key={i} style={{background:"#fff",borderRadius:14,height:130,
                   border:`1px solid ${BR}`,overflow:"hidden",display:"flex",gap:0}}>
