@@ -795,6 +795,7 @@ function BundleCard({ dealId, cars, onBid, onContact }) {
   );
 }
 
+const tlFuel=(f,t)=>({'Petrol':t('petrol'),'Diesel':t('diesel'),'CNG':t('cng'),'Petrol+CNG':t('petrolCng'),'Electric':t('electric'),'Hybrid':t('hybrid')}[f]||f);
 const SteeringWheel=({size=14})=>(
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <circle cx="12" cy="12" r="10"/>
@@ -802,6 +803,12 @@ const SteeringWheel=({size=14})=>(
     <line x1="12" y1="9" x2="12" y2="2"/>
     <line x1="9" y1="11.5" x2="2.5" y2="16"/>
     <line x1="15" y1="11.5" x2="21.5" y2="16"/>
+  </svg>
+);
+const PersonIcon=({size=14,style:s={}})=>(
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" style={s}>
+    <circle cx="12" cy="7" r="3.5"/>
+    <path d="M5 20c0-3.5 3-6 7-6s7 2.5 7 6"/>
   </svg>
 );
 const tlRC=(r,t)=>({'Original':t('rcOriginal'),'Lost':t('rcLost'),'Photocopy':t('rcPhotocopy')}[r]||r);
@@ -902,7 +909,15 @@ function CarCard({ car, onContact, onBid, saved, toggleSave, tl }) {
           </div>
 
           <div style={{display:"flex",flexWrap:"wrap",gap:"3px 10px",marginBottom:6}}>
-            {[[Fuel,tlFuel(car.fuelType,tl)],[Gauge,`${fmtNum(car.kmDriven)} ${tl('km')}`],[SteeringWheel,`${car.ownerCount} ${car.ownerCount>1?tl('owners'):tl('owner')}`],[Check,car.rcStatus?`RC: ${tlRC(car.rcStatus,tl)}`:null]].map(([Icon,val])=>val&&(
+            {[[Fuel,tlFuel(car.fuelType,tl)],[Gauge,`${fmtNum(car.kmDriven)} ${tl('km')}`],[Check,car.rcStatus?`RC: ${tlRC(car.rcStatus,tl)}`:null]].map(([Icon,val])=>val&&(
+              <span key={val} style={{display:"inline-flex",alignItems:"center",gap:3,fontSize:"0.68rem",color:MT}}>
+                <Icon size={9} style={{color:B,flexShrink:0}}/>{val}
+              </span>
+            ))}
+            <span style={{display:"inline-flex",alignItems:"center",gap:3,fontSize:"0.68rem",color:MT}}>
+              <PersonIcon size={10} style={{color:B,flexShrink:0}}/>
+              {`${car.ownerCount} ${car.ownerCount>1?tl('owners'):tl('owner')}`}
+            </span>
               <span key={val} style={{display:"inline-flex",alignItems:"center",gap:3,fontSize:"0.68rem",color:MT}}>
                 <Icon size={9} style={{color:B,flexShrink:0}}/>{val}
               </span>
