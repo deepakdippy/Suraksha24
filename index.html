@@ -14,6 +14,16 @@
   <meta name="apple-mobile-web-app-title" content="Suraksha24"/>
   <link rel="apple-touch-icon" href="/icon-192.png"/>
   <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png"/>
+  <!-- Preconnect to CDN hosts for faster loading -->
+  <link rel="preconnect" href="https://unpkg.com" crossorigin/>
+  <link rel="preconnect" href="https://www.gstatic.com" crossorigin/>
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="dns-prefetch" href="https://script.google.com"/>
+  <!-- Preload critical scripts -->
+  <link rel="preload" href="https://unpkg.com/react@18/umd/react.development.js" as="script" crossorigin/>
+  <link rel="preload" href="https://unpkg.com/react-dom@18/umd/react-dom.development.js" as="script" crossorigin/>
+  <link rel="preload" href="https://unpkg.com/@babel/standalone@7.23.10/babel.min.js" as="script" crossorigin/>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>tailwind.config={darkMode:'class'}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -2159,7 +2169,7 @@ function HeroBanner({ tl, searchTerm, setSearchTerm }) {
   );
 }
 
-function BottomNav({ view, setView, savedCount, tl }) {
+function BottomNav({ view, setView, savedCount, tl, onRefresh }) {
   const tabs = [
     { key:"home",
       label:tl("home"),
@@ -2189,7 +2199,7 @@ function BottomNav({ view, setView, savedCount, tl }) {
       {tabs.map(t=>{
         const on = view===t.key;
         return (
-          <button key={t.key} onClick={()=>setView(t.key)}
+          <button key={t.key} onClick={()=>{ if(t.key==="home"&&view==="home"){ onRefresh&&onRefresh(); } else { setView(t.key); } }}
             style={{flex:1,display:"flex",flexDirection:"column",alignItems:"center",gap:3,
                     border:"none",background:"none",cursor:"pointer",padding:"4px 0",position:"relative"}}>
             {t.badge>0&&(
@@ -2324,20 +2334,21 @@ function App() {
 
 
 
-  useEffect(()=>{
+  const fetchCars = useCallback(async () => {
     if(CONFIG.DEMO_MODE||!CONFIG.APPS_SCRIPT_URL||CONFIG.APPS_SCRIPT_URL.includes("YOUR_")){
       setCars(SAMPLE_CARS);setMaster(SAMPLE_MASTER);setLoading(false);return;
     }
-    (async()=>{
-      try{
-        const res=await fetch(`${CONFIG.APPS_SCRIPT_URL}?action=getData`);
-        const d=await res.json();
-        if(d.cars?.length)setCars(d.cars);else setCars(SAMPLE_CARS);
-        if(d.master)setMaster({...SAMPLE_MASTER,...d.master});
-      }catch(e){setCars(SAMPLE_CARS);setMaster(SAMPLE_MASTER);}
-      finally{setLoading(false);}
-    })();
+    setLoading(true);
+    try{
+      const res=await fetch(`${CONFIG.APPS_SCRIPT_URL}?action=getData&t=${Date.now()}`);
+      const d=await res.json();
+      if(d.cars?.length)setCars(d.cars);else setCars(SAMPLE_CARS);
+      if(d.master)setMaster({...SAMPLE_MASTER,...d.master});
+    }catch(e){setCars(SAMPLE_CARS);setMaster(SAMPLE_MASTER);}
+    finally{setLoading(false);}
   },[]);
+
+  useEffect(()=>{ fetchCars(); },[]);
 
   const addToast=useCallback((message,type="info")=>{const id=Date.now();setToasts(t=>[...t,{id,message,type}]);setTimeout(()=>setToasts(t=>t.filter(x=>x.id!==id)),4000);},[]);
   const removeToast=useCallback((id)=>setToasts(t=>t.filter(x=>x.id!==id)),[]);
@@ -2431,7 +2442,7 @@ function App() {
 
   return (
     <div style={{minHeight:"100vh",background:BG,paddingBottom:72,width:"100%",overflowX:"hidden"}}>
-      <Header lang={lang} setLang={setLang} tl={tl} user={user} onSignOut={handleSignOut} onHome={()=>setView("home")}/>
+      <Header lang={lang} setLang={setLang} tl={tl} user={user} onSignOut={handleSignOut} onHome={()=>{setView("home");fetchCars();}}/>
       <div style={{paddingTop:62}}>
         {view==="home"&&(
           <>
@@ -2466,7 +2477,7 @@ function App() {
         {view==="getapps"&&<GetAppsPage tl={tl} onInstall={(type)=>setInstallModal(type)}/>}
       </div>
 
-      <BottomNav view={view} setView={setView} savedCount={saved.length} tl={tl}/>
+      <BottomNav view={view} setView={setView} savedCount={saved.length} tl={tl} onRefresh={()=>{setView("home");fetchCars();}}/>
 
       {installModal&&(
         <div onClick={()=>setInstallModal(null)}
