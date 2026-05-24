@@ -1578,6 +1578,13 @@ function ProfileForm({ user, onComplete }) {
     setAadhaarFile(file);
     setErrors(p=>({...p,aadhaar:""}));
   };
+  const handleAadhaarBack = (e) => {
+    const file = e.target.files[0];
+    if(!file) return;
+    if(file.size > 10*1024*1024){ setErrors(p=>({...p,aadhaarBack:"Max 10MB allowed"})); return; }
+    setAadhaarBackFile(file);
+    setErrors(p=>({...p,aadhaarBack:""}));
+  };
   const handlePan = (e) => {
     const file = e.target.files[0];
     if(!file) return;
