@@ -2334,18 +2334,18 @@ function App() {
 
 
 
-  const fetchCars = useCallback(async () => {
+  const fetchCars = useCallback(async (silent=false) => {
     if(CONFIG.DEMO_MODE||!CONFIG.APPS_SCRIPT_URL||CONFIG.APPS_SCRIPT_URL.includes("YOUR_")){
       setCars(SAMPLE_CARS);setMaster(SAMPLE_MASTER);setLoading(false);return;
     }
-    setLoading(true);
+    if(!silent) setLoading(true);
     try{
       const res=await fetch(`${CONFIG.APPS_SCRIPT_URL}?action=getData&t=${Date.now()}`);
       const d=await res.json();
-      if(d.cars?.length)setCars(d.cars);else setCars(SAMPLE_CARS);
+      if(d.cars?.length)setCars(d.cars);else if(!silent)setCars(SAMPLE_CARS);
       if(d.master)setMaster({...SAMPLE_MASTER,...d.master});
-    }catch(e){setCars(SAMPLE_CARS);setMaster(SAMPLE_MASTER);}
-    finally{setLoading(false);}
+    }catch(e){ if(!silent){setCars(SAMPLE_CARS);setMaster(SAMPLE_MASTER);} }
+    finally{ setLoading(false); }
   },[]);
 
   useEffect(()=>{ fetchCars(); },[]);
@@ -2442,7 +2442,13 @@ function App() {
 
   return (
     <div style={{minHeight:"100vh",background:BG,paddingBottom:72,width:"100%",overflowX:"hidden"}}>
-      <Header lang={lang} setLang={setLang} tl={tl} user={user} onSignOut={handleSignOut} onHome={()=>{setView("home");fetchCars();}}/>
+      <Header lang={lang} setLang={setLang} tl={tl} user={user} onSignOut={handleSignOut} onHome={()=>{
+        setView("home");
+        setStatusTab("all");
+        setFilters({});
+        setSearchTerm("");
+        fetchCars(true);
+      }}/>
       <div style={{paddingTop:62}}>
         {view==="home"&&(
           <>
@@ -2458,8 +2464,22 @@ function App() {
               )}
             </div>
             <div style={{padding:"0 14px",display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(420px,1fr))",gap:12}}>
-              {loading?Array(4).fill(0).map((_,i)=>(
-                <div key={i} style={{background:"#fff",borderRadius:14,height:130,border:`1px solid ${BR}`,animation:"pulse 1.5s ease-in-out infinite"}}/>
+              {loading?Array(6).fill(0).map((_,i)=>(
+                <div key={i} style={{background:"#fff",borderRadius:14,height:130,
+                  border:`1px solid ${BR}`,overflow:"hidden",display:"flex",gap:0}}>
+                  <div style={{width:110,background:"#E2E8F0",flexShrink:0,
+                    animation:"pulse 1.4s ease-in-out infinite",animationDelay:`${i*0.1}s`}}/>
+                  <div style={{flex:1,padding:"14px 12px",display:"flex",flexDirection:"column",gap:8}}>
+                    <div style={{height:14,background:"#E2E8F0",borderRadius:6,width:"60%",
+                      animation:"pulse 1.4s ease-in-out infinite",animationDelay:`${i*0.1+0.1}s`}}/>
+                    <div style={{height:10,background:"#F1F5F9",borderRadius:6,width:"40%",
+                      animation:"pulse 1.4s ease-in-out infinite",animationDelay:`${i*0.1+0.2}s`}}/>
+                    <div style={{height:10,background:"#F1F5F9",borderRadius:6,width:"80%",
+                      animation:"pulse 1.4s ease-in-out infinite",animationDelay:`${i*0.1+0.3}s`}}/>
+                    <div style={{height:18,background:"#DBEAFE",borderRadius:6,width:"35%",marginTop:4,
+                      animation:"pulse 1.4s ease-in-out infinite",animationDelay:`${i*0.1+0.4}s`}}/>
+                  </div>
+                </div>
               )):sorted.length===0?(
                 <div style={{textAlign:"center",padding:"48px 20px"}}>
                   <Car size={48} style={{color:BR,margin:"0 auto 12px"}}/>
@@ -2477,7 +2497,13 @@ function App() {
         {view==="getapps"&&<GetAppsPage tl={tl} onInstall={(type)=>setInstallModal(type)}/>}
       </div>
 
-      <BottomNav view={view} setView={setView} savedCount={saved.length} tl={tl} onRefresh={()=>{setView("home");fetchCars();}}/>
+      <BottomNav view={view} setView={setView} savedCount={saved.length} tl={tl} onRefresh={()=>{
+        setView("home");
+        setStatusTab("all");
+        setFilters({});
+        setSearchTerm("");
+        fetchCars(true);
+      }}/>
 
       {installModal&&(
         <div onClick={()=>setInstallModal(null)}
