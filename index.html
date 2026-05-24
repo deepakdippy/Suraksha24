@@ -871,86 +871,96 @@ function CarCard({ car, onContact, onBid, saved, toggleSave, tl }) {
             background:"#fef08a",flexShrink:0,boxShadow:"0 0 4px #fbbf24"}}/>
         </div>
       )}
-      <div style={{display:"flex"}}>
-        <div style={{width:90,flexShrink:0,background:`linear-gradient(135deg,${TI},#DBEAFE)`,
+      <div style={{display:"flex",alignItems:"stretch"}}>
+        {/* Left panel */}
+        <div style={{width:84,flexShrink:0,background:`linear-gradient(160deg,${TI},#DBEAFE)`,
                      display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",
-                     padding:"10px 5px",position:"relative"}}>
-          <Car size={30} style={{color:N,opacity:0.55}}/>
-          <div style={{marginTop:5,textAlign:"center"}}>
-            <div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,
-                         fontSize:car.make&&car.make.length>8?"0.58rem":"0.72rem",
-                         color:TX,lineHeight:1.1,wordBreak:"break-word",textAlign:"center"}}>{car.make}</div>
-            <div style={{fontFamily:"'DM Sans',sans-serif",fontWeight:700,
-                         fontSize:"0.8rem",color:N,lineHeight:1.2,marginTop:2,textAlign:"center"}}>{car.model}</div>
-            {car.variant&&<div style={{fontFamily:"'DM Sans',sans-serif",fontWeight:500,
-                         fontSize:"0.62rem",color:MT,lineHeight:1.1,marginTop:1,textAlign:"center",
+                     padding:"26px 4px 10px",position:"relative",gap:4}}>
+          <Car size={26} style={{color:N,opacity:0.5}}/>
+          <div style={{textAlign:"center",width:"100%",padding:"0 3px"}}>
+            <div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:"0.65rem",
+                         color:TX,lineHeight:1.1,wordBreak:"break-word"}}>{car.make}</div>
+            <div style={{fontFamily:"'DM Sans',sans-serif",fontWeight:700,fontSize:"0.72rem",
+                         color:N,lineHeight:1.2,marginTop:2}}>{car.model}</div>
+            {car.variant&&<div style={{fontFamily:"'DM Sans',sans-serif",fontWeight:400,
+                         fontSize:"0.57rem",color:MT,lineHeight:1.1,marginTop:1,
                          overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",
-                         maxWidth:"100%",paddingBottom:2}}>{car.variant}</div>}
+                         maxWidth:"100%"}}>{car.variant}</div>}
           </div>
-          <div style={{position:"absolute",top:5,left:5,display:"flex",alignItems:"center",gap:3,
-                       padding:"2px 5px",borderRadius:20,background:st.bg,border:`1px solid ${st.border}`}}>
+          <div style={{position:"absolute",top:4,left:3,right:3,
+                       display:"flex",alignItems:"center",justifyContent:"center",gap:2,
+                       padding:"2px 3px",borderRadius:6,background:st.bg,border:`1px solid ${st.border}`}}>
             <span style={{width:4,height:4,borderRadius:"50%",background:st.dot,flexShrink:0}}/>
-            <span style={{fontSize:"0.55rem",fontWeight:700,color:st.color}}>{tlSt(car.status,tl)}</span>
+            <span style={{fontSize:"0.48rem",fontWeight:700,color:st.color,
+                          overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{tlSt(car.status,tl)}</span>
           </div>
         </div>
 
-        <div style={{flex:1,padding:"10px 10px 10px 12px",minWidth:0,display:"flex",flexDirection:"column",gap:6}}>
-          {/* Row 1: Make/Model + Save */}
-          <div style={{display:"flex",alignItems:"flex-start",justifyContent:"space-between",gap:4}}>
-            <div style={{minWidth:0,flex:1}}>
-              <div style={{fontWeight:700,fontSize:"0.85rem",color:TX,lineHeight:1.2,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>
-                {car.make} {car.model} <span style={{fontWeight:400,color:MT,fontSize:"0.78rem"}}>{car.regYear}</span>
+        {/* Right panel */}
+        <div style={{flex:1,minWidth:0,padding:"8px 10px 8px 10px",
+                     display:"flex",flexDirection:"column",justifyContent:"space-between"}}>
+          {/* Name + Heart */}
+          <div style={{display:"flex",alignItems:"flex-start",gap:4,marginBottom:4}}>
+            <div style={{flex:1,minWidth:0}}>
+              <div style={{fontWeight:700,fontSize:"0.82rem",color:TX,lineHeight:1.25,
+                           overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>
+                {car.make} {car.model}
+                <span style={{fontWeight:400,color:MT,fontSize:"0.74rem",marginLeft:4}}>{car.regYear||""}</span>
               </div>
-              <div style={{fontFamily:"'DM Mono',monospace",fontSize:"0.68rem",color:N,fontWeight:500,marginTop:2,letterSpacing:"0.04em"}}>{car.regNo}</div>
+              <div style={{fontFamily:"'DM Mono',monospace",fontSize:"0.64rem",color:N,
+                           fontWeight:500,marginTop:1,letterSpacing:"0.03em"}}>{car.regNo}</div>
             </div>
             <button onClick={()=>toggleSave(car.id)}
-              style={{background:"none",border:"none",cursor:"pointer",padding:"2px",flexShrink:0,lineHeight:1,marginTop:1}}>
-              <Heart size={17} color={saved?"#ef4444":"#cbd5e1"} fill={saved?"#ef4444":"none"}/>
+              style={{background:"none",border:"none",cursor:"pointer",
+                      padding:"2px 0 0 4px",flexShrink:0,lineHeight:1}}>
+              <Heart size={16} color={saved?"#ef4444":"#cbd5e1"} fill={saved?"#ef4444":"none"}/>
             </button>
           </div>
 
-          {/* Row 2: Details chips */}
-          <div style={{display:"flex",flexWrap:"wrap",gap:"2px 8px"}}>
+          {/* Detail chips */}
+          <div style={{display:"flex",flexWrap:"wrap",gap:"2px 6px",marginBottom:6}}>
             {[[Fuel,tlFuel(car.fuelType,tl)],[Gauge,`${fmtNum(car.kmDriven)} ${tl('km')}`],[Check,car.rcStatus?`RC: ${tlRC(car.rcStatus,tl)}`:null]].map(([Icon,val])=>val&&(
-              <span key={val} style={{display:"inline-flex",alignItems:"center",gap:3,fontSize:"0.67rem",color:MT}}>
-                <Icon size={9} style={{color:B,flexShrink:0}}/>{val}
+              <span key={val} style={{display:"inline-flex",alignItems:"center",gap:2,fontSize:"0.63rem",color:MT}}>
+                <Icon size={8} style={{color:B,flexShrink:0}}/>{val}
               </span>
             ))}
-            <span style={{display:"inline-flex",alignItems:"center",gap:3,fontSize:"0.67rem",color:MT}}>
-              <PersonIcon size={9} style={{color:B,flexShrink:0}}/>
-              {`${car.ownerCount} ${car.ownerCount>1?tl('owners'):tl('owner')}`}
+            <span style={{display:"inline-flex",alignItems:"center",gap:2,fontSize:"0.63rem",color:MT}}>
+              <PersonIcon size={8} style={{color:B,flexShrink:0}}/>
+              {car.ownerCount} {car.ownerCount>1?tl('owners'):tl('owner')}
             </span>
           </div>
 
-          {/* Row 3: Price + Buttons */}
-          <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:4,marginTop:"auto"}}>
-            <div style={{flexShrink:0}}>
-              <div style={{fontSize:"0.55rem",fontWeight:500,color:HI,textTransform:"uppercase",letterSpacing:"0.06em"}}>{tl("basePrice")}</div>
-              <div style={{fontWeight:800,fontSize:"1rem",color:TX,lineHeight:1,letterSpacing:"-0.02em"}}>{formatCurrency(car.highestBid)}</div>
+          {/* Price + Buttons */}
+          <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:3}}>
+            <div style={{flexShrink:0,minWidth:0}}>
+              <div style={{fontSize:"0.52rem",color:HI,textTransform:"uppercase",letterSpacing:"0.05em",fontWeight:500}}>{tl("basePrice")}</div>
+              <div style={{fontWeight:800,fontSize:"0.92rem",color:TX,lineHeight:1,letterSpacing:"-0.02em",whiteSpace:"nowrap"}}>{formatCurrency(car.highestBid)}</div>
             </div>
-            <div style={{display:"flex",gap:4,flexShrink:0}}>
+            <div style={{display:"flex",alignItems:"center",gap:3,flexShrink:0}}>
               {car.pdfLink&&car.pdfLink!=="#"&&car.pdfLink!=="https://na"&&(
                 <a href={car.pdfLink} target="_blank" rel="noopener noreferrer"
-                   style={{display:"flex",alignItems:"center",gap:2,padding:"5px 7px",borderRadius:7,fontSize:"0.67rem",fontWeight:600,
-                           textDecoration:"none",background:TI,border:`1px solid ${BO}`,color:N}}>
-                  <FileText size={9}/>{tl("pdf")}
+                   style={{display:"flex",alignItems:"center",gap:2,padding:"5px 6px",borderRadius:6,
+                           fontSize:"0.62rem",fontWeight:600,textDecoration:"none",
+                           background:TI,border:`1px solid ${BO}`,color:N,whiteSpace:"nowrap"}}>
+                  <FileText size={8}/>{tl("pdf")}
                 </a>
               )}
               <button onClick={()=>onContact(car)} disabled={disabled}
-                style={{display:"flex",alignItems:"center",gap:2,padding:"5px 7px",borderRadius:7,fontSize:"0.67rem",fontWeight:600,
-                        border:`1px solid ${BO}`,cursor:"pointer",background:TI,color:N,opacity:disabled?0.5:1}}>
-                <MessageSquare size={9}/>{tl("enquire")}
+                style={{display:"flex",alignItems:"center",gap:2,padding:"5px 6px",borderRadius:6,
+                        fontSize:"0.62rem",fontWeight:600,border:`1px solid ${BO}`,
+                        cursor:"pointer",background:TI,color:N,opacity:disabled?0.5:1,whiteSpace:"nowrap"}}>
+                <MessageSquare size={8}/>{tl("enquire")}
               </button>
               <button onClick={()=>onBid(car)} disabled={disabled}
-                style={{display:"flex",alignItems:"center",gap:2,padding:"5px 9px",borderRadius:7,fontSize:"0.67rem",fontWeight:700,
-                        border:"none",cursor:"pointer",background:`linear-gradient(135deg,${N},${B})`,color:"#fff",opacity:disabled?0.5:1}}>
+                style={{display:"flex",alignItems:"center",gap:2,padding:"5px 7px",borderRadius:6,
+                        fontSize:"0.62rem",fontWeight:700,border:"none",cursor:"pointer",
+                        background:`linear-gradient(135deg,${N},${B})`,color:"#fff",
+                        opacity:disabled?0.5:1,whiteSpace:"nowrap"}}>
                 {tl("bidNow")}
               </button>
             </div>
           </div>
         </div>
-      </div>
-
       <div style={{borderTop:`1px solid ${BR}`,padding:"6px 12px",display:"flex",alignItems:"center",justifyContent:"space-between",background:BG}}>
         <div style={{display:"flex",gap:12}}>
           <span style={{fontSize:"0.68rem",color:MT}}><span style={{fontWeight:600,color:N}}>{car.bidUnique}</span>/{car.bidTotal} {tl("bids")}</span>
