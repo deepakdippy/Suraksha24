@@ -918,10 +918,6 @@ function CarCard({ car, onContact, onBid, saved, toggleSave, tl }) {
               <PersonIcon size={10} style={{color:B,flexShrink:0}}/>
               {`${car.ownerCount} ${car.ownerCount>1?tl('owners'):tl('owner')}`}
             </span>
-              <span key={val} style={{display:"inline-flex",alignItems:"center",gap:3,fontSize:"0.68rem",color:MT}}>
-                <Icon size={9} style={{color:B,flexShrink:0}}/>{val}
-              </span>
-            ))}
           </div>
 
           <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:4,flexWrap:"wrap"}}>
