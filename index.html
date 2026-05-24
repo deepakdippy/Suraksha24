@@ -894,52 +894,55 @@ function CarCard({ car, onContact, onBid, saved, toggleSave, tl }) {
           </div>
         </div>
 
-        <div style={{flex:1,padding:"10px 12px",minWidth:0}}>
-          <div style={{display:"flex",alignItems:"flex-start",justifyContent:"space-between",marginBottom:5}}>
-            <div>
-              <div style={{fontWeight:700,fontSize:"0.88rem",color:TX,lineHeight:1.2}}>
-                {car.make} {car.model} <span style={{fontWeight:400,color:MT}}>{car.regYear}</span>
+        <div style={{flex:1,padding:"10px 10px 10px 12px",minWidth:0,display:"flex",flexDirection:"column",gap:6}}>
+          {/* Row 1: Make/Model + Save */}
+          <div style={{display:"flex",alignItems:"flex-start",justifyContent:"space-between",gap:4}}>
+            <div style={{minWidth:0,flex:1}}>
+              <div style={{fontWeight:700,fontSize:"0.85rem",color:TX,lineHeight:1.2,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>
+                {car.make} {car.model} <span style={{fontWeight:400,color:MT,fontSize:"0.78rem"}}>{car.regYear}</span>
               </div>
-              <div style={{fontFamily:"'DM Mono',monospace",fontSize:"0.7rem",color:N,fontWeight:500,marginTop:2,letterSpacing:"0.04em"}}>{car.regNo}</div>
+              <div style={{fontFamily:"'DM Mono',monospace",fontSize:"0.68rem",color:N,fontWeight:500,marginTop:2,letterSpacing:"0.04em"}}>{car.regNo}</div>
             </div>
             <button onClick={()=>toggleSave(car.id)}
-              style={{background:"none",border:"none",cursor:"pointer",padding:"4px",flexShrink:0,color:saved?"#ef4444":HI}}>
-              <Heart size={16} fill={saved?"#ef4444":"none"} stroke={saved?"#ef4444":HI}/>
+              style={{background:"none",border:"none",cursor:"pointer",padding:"2px",flexShrink:0,lineHeight:1,marginTop:1}}>
+              <Heart size={17} color={saved?"#ef4444":"#cbd5e1"} fill={saved?"#ef4444":"none"}/>
             </button>
           </div>
 
-          <div style={{display:"flex",flexWrap:"wrap",gap:"3px 10px",marginBottom:6}}>
+          {/* Row 2: Details chips */}
+          <div style={{display:"flex",flexWrap:"wrap",gap:"2px 8px"}}>
             {[[Fuel,tlFuel(car.fuelType,tl)],[Gauge,`${fmtNum(car.kmDriven)} ${tl('km')}`],[Check,car.rcStatus?`RC: ${tlRC(car.rcStatus,tl)}`:null]].map(([Icon,val])=>val&&(
-              <span key={val} style={{display:"inline-flex",alignItems:"center",gap:3,fontSize:"0.68rem",color:MT}}>
+              <span key={val} style={{display:"inline-flex",alignItems:"center",gap:3,fontSize:"0.67rem",color:MT}}>
                 <Icon size={9} style={{color:B,flexShrink:0}}/>{val}
               </span>
             ))}
-            <span style={{display:"inline-flex",alignItems:"center",gap:3,fontSize:"0.68rem",color:MT}}>
-              <PersonIcon size={10} style={{color:B,flexShrink:0}}/>
+            <span style={{display:"inline-flex",alignItems:"center",gap:3,fontSize:"0.67rem",color:MT}}>
+              <PersonIcon size={9} style={{color:B,flexShrink:0}}/>
               {`${car.ownerCount} ${car.ownerCount>1?tl('owners'):tl('owner')}`}
             </span>
           </div>
 
-          <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:4,flexWrap:"wrap"}}>
-            <div>
-              <div style={{fontSize:"0.58rem",fontWeight:500,color:HI,textTransform:"uppercase",letterSpacing:"0.06em"}}>{tl("basePrice")}</div>
-              <div style={{fontWeight:800,fontSize:"1.05rem",color:TX,lineHeight:1,letterSpacing:"-0.02em"}}>{formatCurrency(car.highestBid)}</div>
+          {/* Row 3: Price + Buttons */}
+          <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:4,marginTop:"auto"}}>
+            <div style={{flexShrink:0}}>
+              <div style={{fontSize:"0.55rem",fontWeight:500,color:HI,textTransform:"uppercase",letterSpacing:"0.06em"}}>{tl("basePrice")}</div>
+              <div style={{fontWeight:800,fontSize:"1rem",color:TX,lineHeight:1,letterSpacing:"-0.02em"}}>{formatCurrency(car.highestBid)}</div>
             </div>
-            <div style={{display:"flex",gap:5}}>
+            <div style={{display:"flex",gap:4,flexShrink:0}}>
               {car.pdfLink&&car.pdfLink!=="#"&&car.pdfLink!=="https://na"&&(
                 <a href={car.pdfLink} target="_blank" rel="noopener noreferrer"
-                   style={{display:"flex",alignItems:"center",gap:3,padding:"6px 9px",borderRadius:8,fontSize:"0.7rem",fontWeight:600,
+                   style={{display:"flex",alignItems:"center",gap:2,padding:"5px 7px",borderRadius:7,fontSize:"0.67rem",fontWeight:600,
                            textDecoration:"none",background:TI,border:`1px solid ${BO}`,color:N}}>
-                  <FileText size={10}/> {tl("pdf")}
+                  <FileText size={9}/>{tl("pdf")}
                 </a>
               )}
               <button onClick={()=>onContact(car)} disabled={disabled}
-                style={{display:"flex",alignItems:"center",gap:3,padding:"6px 9px",borderRadius:8,fontSize:"0.7rem",fontWeight:600,
+                style={{display:"flex",alignItems:"center",gap:2,padding:"5px 7px",borderRadius:7,fontSize:"0.67rem",fontWeight:600,
                         border:`1px solid ${BO}`,cursor:"pointer",background:TI,color:N,opacity:disabled?0.5:1}}>
-                <MessageSquare size={10}/> {tl("enquire")}
+                <MessageSquare size={9}/>{tl("enquire")}
               </button>
               <button onClick={()=>onBid(car)} disabled={disabled}
-                style={{display:"flex",alignItems:"center",gap:3,padding:"6px 10px",borderRadius:8,fontSize:"0.7rem",fontWeight:700,
+                style={{display:"flex",alignItems:"center",gap:2,padding:"5px 9px",borderRadius:7,fontSize:"0.67rem",fontWeight:700,
                         border:"none",cursor:"pointer",background:`linear-gradient(135deg,${N},${B})`,color:"#fff",opacity:disabled?0.5:1}}>
                 {tl("bidNow")}
               </button>
