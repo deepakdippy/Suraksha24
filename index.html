@@ -903,8 +903,8 @@ function CarCard({ car, onContact, onBid, saved, toggleSave, tl }) {
               <div style={{fontFamily:"'DM Mono',monospace",fontSize:"0.7rem",color:N,fontWeight:500,marginTop:2,letterSpacing:"0.04em"}}>{car.regNo}</div>
             </div>
             <button onClick={()=>toggleSave(car.id)}
-              style={{background:saved?"#fee2e2":"#f1f5f9",border:"none",borderRadius:20,cursor:"pointer",padding:"5px 8px",flexShrink:0,color:saved?"#ef4444":MT}}>
-              <Heart size={15} fill={saved?"#ef4444":"none"}/>
+              style={{background:"none",border:"none",cursor:"pointer",padding:"4px",flexShrink:0,color:saved?"#ef4444":HI}}>
+              <Heart size={16} fill={saved?"#ef4444":"none"} stroke={saved?"#ef4444":HI}/>
             </button>
           </div>
 
