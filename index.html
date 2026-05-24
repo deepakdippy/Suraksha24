@@ -642,9 +642,11 @@ function FilterChips({ master, filters, setFilters, tl }) {
   const [open,setOpen]=useState(null);
   const ref=useRef();
   useEffect(()=>{
-    const fn=(e)=>{if(ref.current&&!ref.current.contains(e.target))setOpen(null);};
-    document.addEventListener("mousedown",fn);
-    return()=>document.removeEventListener("mousedown",fn);
+    const fn=(e)=>{
+      if(ref.current&&!ref.current.contains(e.target)) setOpen(null);
+    };
+    document.addEventListener("pointerdown",fn);
+    return()=>document.removeEventListener("pointerdown",fn);
   },[]);
   const toggle=(key,val)=>setFilters(prev=>{
     const v=String(val||"").trim();
@@ -667,7 +669,7 @@ function FilterChips({ master, filters, setFilters, tl }) {
           const isOpen=open===g.key;
           return (
             <div key={g.key} style={{position:"relative",flexShrink:0}}>
-              <button onClick={()=>setOpen(isOpen?null:g.key)}
+              <button onPointerDown={(e)=>{e.stopPropagation();setOpen(isOpen?null:g.key);}}
                 style={{display:"flex",alignItems:"center",gap:5,padding:"5px 12px",borderRadius:20,cursor:"pointer",whiteSpace:"nowrap",
                         fontSize:"0.78rem",fontWeight:active?700:500,
                         border:active?`1.5px solid ${N}`:`1px solid ${BR}`,
@@ -681,9 +683,9 @@ function FilterChips({ master, filters, setFilters, tl }) {
                              border:`1px solid ${BR}`,borderRadius:12,boxShadow:"0 8px 24px rgba(30,58,138,0.12)",
                              minWidth:180,maxHeight:260,overflowY:"auto",padding:"6px 0"}}>
                   {g.options.map(opt=>{
-                    const sel=(filters[g.key]||[]).includes(opt);
+                    const sel=(filters[g.key]||[]).map(x=>String(x).trim().toLowerCase()).includes(String(opt).trim().toLowerCase());
                     return (
-                      <button key={opt} onClick={()=>toggle(g.key,opt)}
+                      <button key={opt} onPointerDown={(e)=>{e.stopPropagation();toggle(g.key,opt);}}
                         style={{width:"100%",display:"flex",alignItems:"center",gap:10,padding:"8px 14px",border:"none",
                                 cursor:"pointer",background:sel?TI:"transparent",fontSize:"0.82rem",color:sel?N:TX,fontWeight:sel?600:400,textAlign:"left"}}>
                         <div style={{width:16,height:16,borderRadius:4,flexShrink:0,border:`1.5px solid ${sel?N:BR}`,
