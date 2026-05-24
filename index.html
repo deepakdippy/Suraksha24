@@ -2280,23 +2280,27 @@ function App() {
       setUser(u);
       if(!u){ setAuthLoading(false); return; }
 
-      // 1. Check localStorage first (fast)
-      const localDone = localStorage.getItem(`s24_profile_${u.uid}`);
+      // 1. Check localStorage first (fast) — wrapped in try-catch for private browsing
+      let localDone = false;
+      try { localDone = !!localStorage.getItem(`s24_profile_${u.uid}`); } catch(e){}
+
       if(localDone){
         setProfileDone(true);
         setAuthLoading(false);
       } else {
         // 2. Check Sheet — works across all devices/browsers
+        // Keep authLoading=true until this resolves so no half-page flash
         try {
           const res  = await fetch(`${CONFIG.APPS_SCRIPT_URL}?action=getProfile&uid=${encodeURIComponent(u.uid)}`);
           const data = await res.json();
           if(data.profileComplete){
-            localStorage.setItem(`s24_profile_${u.uid}`,"complete");
+            try { localStorage.setItem(`s24_profile_${u.uid}`,"complete"); } catch(e){}
             setProfileDone(true);
           } else {
             setProfileDone(false);
           }
         } catch(e){
+          // On network failure, default to showing profile form
           setProfileDone(false);
         }
         setAuthLoading(false);
@@ -2362,7 +2366,7 @@ function App() {
           const {cars:cc, master:cm} = JSON.parse(cached);
           if(cc?.length){ setCars(cc); if(cm) setMaster(cm); }
         }
-      } catch(e){}
+      } catch(e){ /* sessionStorage unavailable (private browser) — ignore */ }
     }
     if(!silent) setLoading(true);
     try{
@@ -2371,7 +2375,7 @@ function App() {
       if(d.cars?.length){
         setCars(d.cars);
         if(d.master) setMaster(d.master);
-        sessionStorage.setItem("s24_cars", JSON.stringify({cars:d.cars,master:d.master}));
+        try { sessionStorage.setItem("s24_cars", JSON.stringify({cars:d.cars,master:d.master})); } catch(e){}
       }
     }catch(e){}
     finally{ setLoading(false); }
@@ -2576,8 +2580,49 @@ function App() {
   );
 }
 
-document.getElementById('loader').style.display='none';
-ReactDOM.render(React.createElement(App),document.getElementById('root'));
+// Hide loader only after React mounts to prevent blank flash
+function AppWithLoader() {
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => {
+    setMounted(true);
+    const loader = document.getElementById('loader');
+    if (loader) loader.style.display = 'none';
+  }, []);
+  return React.createElement(App);
+}
+
+class ErrorBoundary extends React.Component {
+  constructor(props) { super(props); this.state = { hasError: false, error: null }; }
+  static getDerivedStateFromError(error) { return { hasError: true, error }; }
+  componentDidCatch(error, info) { console.error('Suraksha24 render error:', error, info); }
+  render() {
+    if (this.state.hasError) {
+      return React.createElement('div', {
+        style: { minHeight: '100vh', background: 'linear-gradient(160deg,#060B27,#0A2463)',
+                 display: 'flex', flexDirection: 'column', alignItems: 'center',
+                 justifyContent: 'center', gap: 16, padding: 24 }
+      },
+        React.createElement('div', { style: { color: '#D4AF37', fontFamily: "'Syne',sans-serif",
+          fontWeight: 800, fontSize: '1.1rem', textAlign: 'center' } }, 'Suraksha24'),
+        React.createElement('div', { style: { color: 'rgba(255,255,255,0.6)', fontFamily: "'DM Sans',sans-serif",
+          fontSize: '0.85rem', textAlign: 'center', maxWidth: 300 } },
+          'Something went wrong loading the app. Please refresh the page.'),
+        React.createElement('button', {
+          onClick: () => window.location.reload(),
+          style: { marginTop: 8, padding: '10px 28px', borderRadius: 10, border: 'none',
+                   background: '#D4AF37', color: '#0A1628', fontWeight: 700,
+                   fontFamily: "'DM Sans',sans-serif", cursor: 'pointer', fontSize: '0.88rem' }
+        }, 'Refresh Page')
+      );
+    }
+    return this.props.children;
+  }
+}
+
+ReactDOM.render(
+  React.createElement(ErrorBoundary, null, React.createElement(AppWithLoader)),
+  document.getElementById('root')
+);
   </script>
 
   <script>
