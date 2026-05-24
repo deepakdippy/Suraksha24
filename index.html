@@ -2338,12 +2338,23 @@ function App() {
     if(CONFIG.DEMO_MODE||!CONFIG.APPS_SCRIPT_URL||CONFIG.APPS_SCRIPT_URL.includes("YOUR_")){
       setCars(SAMPLE_CARS);setMaster(SAMPLE_MASTER);setLoading(false);return;
     }
+    // Show cached cars instantly while fetching fresh data
+    try {
+      const cached = sessionStorage.getItem("s24_cars");
+      if(cached) {
+        const {cars:cc, master:cm} = JSON.parse(cached);
+        if(cc?.length){ setCars(cc); setMaster(m=>({...m,...cm})); setLoading(false); }
+      }
+    } catch(e){}
     if(!silent) setLoading(true);
     try{
       const res=await fetch(`${CONFIG.APPS_SCRIPT_URL}?action=getData&t=${Date.now()}`,{cache:"no-store"});
       const d=await res.json();
-      if(d.cars?.length)setCars(d.cars);else if(!silent)setCars(SAMPLE_CARS);
-      if(d.master)setMaster({...SAMPLE_MASTER,...d.master});
+      if(d.cars?.length){
+        setCars(d.cars);
+        sessionStorage.setItem("s24_cars", JSON.stringify({cars:d.cars,master:d.master}));
+      } else if(!silent) setCars(SAMPLE_CARS);
+      if(d.master) setMaster({...SAMPLE_MASTER,...d.master});
     }catch(e){ if(!silent){setCars(SAMPLE_CARS);setMaster(SAMPLE_MASTER);} }
     finally{ setLoading(false); }
   },[]);
@@ -2356,20 +2367,29 @@ function App() {
 
   const filtered=useMemo(()=>{
     let out=cars;
-    if(statusTab!=="all")out=out.filter(c=>(c.status||"").toLowerCase()===statusTab);
+    if(statusTab!=="all") {
+      out=out.filter(c=>{
+        const s=(c.status||"").toLowerCase();
+        if(statusTab==="not running") return s==="not in running condition"||s==="not running";
+        return s===statusTab;
+      });
+    }
     if(searchTerm){const q=searchTerm.toLowerCase();out=out.filter(c=>[c.make,c.model,c.variant,c.regNo,c.state,c.bank,c.parkingYard,c.fuelType,c.rcStatus].some(v=>(v||"").toLowerCase().includes(q)));}
-    Object.entries(filters).forEach(([k,vals])=>{if(vals.length)out=out.filter(c=>vals.includes(c[k]));});
+    Object.entries(filters).forEach(([k,vals])=>{
+      if(vals.length) out=out.filter(c=>vals.some(v=>String(v).toLowerCase()===String(c[k]||"").toLowerCase()));
+    });
     return out;
   },[cars,statusTab,searchTerm,filters]);
 
   const counts=useMemo(()=>({
-    all:          cars.length,
-    "for sale":   cars.filter(c=>c.status?.toLowerCase()==="for sale").length,
-    "upcoming":   cars.filter(c=>c.status?.toLowerCase()==="upcoming").length,
-    "bulk deals": cars.filter(c=>c.status?.toLowerCase()==="bulk deals").length,
-    "disputed":   cars.filter(c=>c.status?.toLowerCase()==="disputed").length,
-    "blacklisted":cars.filter(c=>c.status?.toLowerCase()==="blacklisted").length,
+    all:           cars.length,
+    "for sale":    cars.filter(c=>c.status?.toLowerCase()==="for sale").length,
+    "upcoming":    cars.filter(c=>c.status?.toLowerCase()==="upcoming").length,
+    "bulk deals":  cars.filter(c=>c.status?.toLowerCase()==="bulk deals").length,
+    "disputed":    cars.filter(c=>c.status?.toLowerCase()==="disputed").length,
+    "blacklisted": cars.filter(c=>c.status?.toLowerCase()==="blacklisted").length,
     "total loss":  cars.filter(c=>c.status?.toLowerCase()==="total loss").length,
+    "not running": cars.filter(c=>["not in running condition","not running"].includes(c.status?.toLowerCase()||"")).length,
   }),[cars]);
 
   const sorted=useMemo(()=>[...filtered].sort((a,b)=>(b.featured?1:0)-(a.featured?1:0)),[filtered]);
