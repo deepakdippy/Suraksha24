@@ -2248,7 +2248,7 @@ function App() {
       });
     } catch(e) {}
   };
-  const [master,setMaster]=useState(SAMPLE_MASTER);
+  const [master,setMaster]=useState({banks:[],states:[],makes:[],parkingYards:[],fuelTypes:["Petrol","Diesel","CNG","Petrol+CNG","Electric","Hybrid"],rcStatuses:["Original","Lost","Photocopy"]});
   const [loading,setLoading]=useState(true);
   const [searchTerm,setSearchTerm]=useState("");
   const [statusTab,setStatusTab]=useState("all");
@@ -2342,12 +2342,12 @@ function App() {
     if(CONFIG.DEMO_MODE||!CONFIG.APPS_SCRIPT_URL||CONFIG.APPS_SCRIPT_URL.includes("YOUR_")){
       setCars(SAMPLE_CARS);setMaster(SAMPLE_MASTER);setLoading(false);return;
     }
-    // Show cached cars instantly while fetching fresh data
+    // Show cached cars instantly
     try {
       const cached = sessionStorage.getItem("s24_cars");
       if(cached) {
         const {cars:cc, master:cm} = JSON.parse(cached);
-        if(cc?.length){ setCars(cc); setMaster(m=>({...m,...cm})); setLoading(false); }
+        if(cc?.length){ setCars(cc); if(cm) setMaster(cm); setLoading(false); }
       }
     } catch(e){}
     if(!silent) setLoading(true);
@@ -2356,10 +2356,11 @@ function App() {
       const d=await res.json();
       if(d.cars?.length){
         setCars(d.cars);
+        // Use ONLY real master — no sample data mixed in
+        if(d.master) setMaster(d.master);
         sessionStorage.setItem("s24_cars", JSON.stringify({cars:d.cars,master:d.master}));
-      } else if(!silent) setCars(SAMPLE_CARS);
-      if(d.master) setMaster({...SAMPLE_MASTER,...d.master});
-    }catch(e){ if(!silent){setCars(SAMPLE_CARS);setMaster(SAMPLE_MASTER);} }
+      }
+    }catch(e){}
     finally{ setLoading(false); }
   },[]);
 
