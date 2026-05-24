@@ -1560,7 +1560,8 @@ function ProfileForm({ user, onComplete }) {
     pinCode:"", city:"", state:"",
     interestType:"PAN INDIA", interestDetail:"", message:""
   });
-  const [aadhaarFile, setAadhaarFile] = useState(null);
+  const [aadhaarFile,     setAadhaarFile]     = useState(null);
+  const [aadhaarBackFile, setAadhaarBackFile] = useState(null);
   const [panFile, setPanFile]         = useState(null);
   const [pinLoading, setPinLoading]   = useState(false);
   const [pinError, setPinError]       = useState("");
@@ -1606,12 +1607,13 @@ function ProfileForm({ user, onComplete }) {
 
   const submit = async () => {
     const e={};
-    if(!aadhaarFile) e.aadhaar="Please upload your Aadhaar Card";
+    if(!aadhaarFile)     e.aadhaar="Please upload Aadhaar Front Side";
+    if(!aadhaarBackFile) e.aadhaarBack="Please upload Aadhaar Back Side";
     if(!panFile) e.pan="Please upload your PAN Card";
     if(Object.keys(e).length){ setErrors(e); return; }
     setLoading(true);
     try {
-      const [aadhaarB64, panB64] = await Promise.all([toBase64(aadhaarFile), toBase64(panFile)]);
+      const [aadhaarB64, aadhaarBackB64, panB64] = await Promise.all([toBase64(aadhaarFile), toBase64(aadhaarBackFile), toBase64(panFile)]);
       const interest = form.interestType==="PAN INDIA"
         ? "PAN INDIA"
         : `${form.interestType}: ${form.interestDetail}`;
@@ -1623,7 +1625,8 @@ function ProfileForm({ user, onComplete }) {
           address:`${form.address}, ${form.city}, ${form.state} - ${form.pinCode}`,
           city:form.city, state:form.state, pinCode:form.pinCode,
           interest, message:form.message,
-          kycBase64:aadhaarB64, kycFileName:aadhaarFile.name, kycMimeType:aadhaarFile.type,
+          kycBase64:aadhaarB64,         kycFileName:aadhaarFile.name,     kycMimeType:aadhaarFile.type,
+          kycBackBase64:aadhaarBackB64, kycBackFileName:aadhaarBackFile.name, kycBackMimeType:aadhaarBackFile.type,
           panBase64:panB64, panFileName:panFile.name, panMimeType:panFile.type,
         })
       });
@@ -1837,14 +1840,23 @@ function ProfileForm({ user, onComplete }) {
               </div>
 
               {/* File upload area */}
-              {/* ── Aadhaar Upload ── */}
+              {/* ── Aadhaar Front Upload ── */}
               <KycUploadBox
-                label="Aadhaar Card *"
+                label="Aadhaar Card — Front Side *"
                 file={aadhaarFile}
                 error={errors.aadhaar}
                 onCamera={handleAadhaar}
                 onFile={handleAadhaar}
                 onClear={()=>setAadhaarFile(null)}
+              />
+              {/* ── Aadhaar Back Upload ── */}
+              <KycUploadBox
+                label="Aadhaar Card — Back Side *"
+                file={aadhaarBackFile}
+                error={errors.aadhaarBack}
+                onCamera={handleAadhaarBack}
+                onFile={handleAadhaarBack}
+                onClear={()=>setAadhaarBackFile(null)}
               />
 
               {/* ── PAN Card Upload ── */}
