@@ -2342,21 +2342,22 @@ function App() {
     if(CONFIG.DEMO_MODE||!CONFIG.APPS_SCRIPT_URL||CONFIG.APPS_SCRIPT_URL.includes("YOUR_")){
       setCars(SAMPLE_CARS);setMaster(SAMPLE_MASTER);setLoading(false);return;
     }
-    // Show cached cars instantly
-    try {
-      const cached = sessionStorage.getItem("s24_cars");
-      if(cached) {
-        const {cars:cc, master:cm} = JSON.parse(cached);
-        if(cc?.length){ setCars(cc); if(cm) setMaster(cm); setLoading(false); }
-      }
-    } catch(e){}
+    // Only use cache on silent background refresh (not on first load)
+    if(silent) {
+      try {
+        const cached = sessionStorage.getItem("s24_cars");
+        if(cached) {
+          const {cars:cc, master:cm} = JSON.parse(cached);
+          if(cc?.length){ setCars(cc); if(cm) setMaster(cm); }
+        }
+      } catch(e){}
+    }
     if(!silent) setLoading(true);
     try{
       const res=await fetch(`${CONFIG.APPS_SCRIPT_URL}?action=getData&t=${Date.now()}`,{cache:"no-store"});
       const d=await res.json();
       if(d.cars?.length){
         setCars(d.cars);
-        // Use ONLY real master — no sample data mixed in
         if(d.master) setMaster(d.master);
         sessionStorage.setItem("s24_cars", JSON.stringify({cars:d.cars,master:d.master}));
       }
