@@ -2340,7 +2340,7 @@ function App() {
     }
     if(!silent) setLoading(true);
     try{
-      const res=await fetch(`${CONFIG.APPS_SCRIPT_URL}?action=getData&t=${Date.now()}`);
+      const res=await fetch(`${CONFIG.APPS_SCRIPT_URL}?action=getData&t=${Date.now()}`,{cache:"no-store"});
       const d=await res.json();
       if(d.cars?.length)setCars(d.cars);else if(!silent)setCars(SAMPLE_CARS);
       if(d.master)setMaster({...SAMPLE_MASTER,...d.master});
