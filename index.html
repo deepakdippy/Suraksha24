@@ -452,20 +452,49 @@ const BR = "#E2E8F0"; // border
 const BG = "#F8FAFF"; // bg
 
 function Toast({ toasts, remove }) {
+  if(!toasts.length) return null;
+  const t = toasts[toasts.length - 1]; // Show latest one centered
   return (
-    <div style={{position:"fixed",top:16,right:16,zIndex:9999,display:"flex",flexDirection:"column",gap:8,pointerEvents:"none"}}>
-      {toasts.map(t => (
-        <div key={t.id} style={{
-          pointerEvents:"auto",display:"flex",alignItems:"center",gap:10,padding:"12px 16px",
-          borderRadius:12,color:"#fff",fontSize:"0.82rem",fontWeight:500,minWidth:260,
-          background:t.type==="success"?"#059669":t.type==="error"?"#dc2626":N,
-          boxShadow:"0 8px 24px rgba(0,0,0,0.15)"
+    <div style={{position:"fixed",inset:0,zIndex:9999,display:"flex",
+                 alignItems:"center",justifyContent:"center",
+                 pointerEvents:"none",padding:24}}>
+      <div key={t.id} className="modal-card" style={{
+        pointerEvents:"auto",
+        display:"flex",flexDirection:"column",alignItems:"center",
+        gap:12,padding:"28px 32px",
+        borderRadius:20,color:"#fff",
+        textAlign:"center",maxWidth:320,width:"100%",
+        background:t.type==="success"
+          ? "linear-gradient(135deg,#059669,#047857)"
+          : t.type==="error"
+          ? "linear-gradient(135deg,#dc2626,#b91c1c)"
+          : `linear-gradient(135deg,${N},${B})`,
+        boxShadow:"0 24px 64px rgba(0,0,0,0.35)"
+      }}>
+        <div style={{
+          width:52,height:52,borderRadius:"50%",
+          background:"rgba(255,255,255,0.2)",
+          display:"flex",alignItems:"center",justifyContent:"center"
         }}>
-          {t.type==="success"?<Check size={14}/>:t.type==="error"?<AlertCircle size={14}/>:<Bell size={14}/>}
-          <span style={{flex:1}}>{t.message}</span>
-          <button onClick={()=>remove(t.id)} style={{background:"none",border:"none",color:"#fff",cursor:"pointer",opacity:0.7,padding:0}}><X size={12}/></button>
+          {t.type==="success"
+            ? <Check size={26}/>
+            : t.type==="error"
+            ? <AlertCircle size={26}/>
+            : <Bell size={26}/>}
         </div>
-      ))}
+        <div style={{fontFamily:"'Syne',sans-serif",fontWeight:800,
+                     fontSize:"1rem",lineHeight:1.3}}>
+          {t.type==="success" ? "Success!" : t.type==="error" ? "Oops!" : "Notice"}
+        </div>
+        <div style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.85rem",
+                     opacity:0.92,lineHeight:1.5}}>{t.message}</div>
+        <button onClick={()=>remove(t.id)}
+          style={{marginTop:4,padding:"9px 28px",borderRadius:30,border:"2px solid rgba(255,255,255,0.5)",
+                  background:"rgba(255,255,255,0.15)",color:"#fff",cursor:"pointer",
+                  fontFamily:"'Syne',sans-serif",fontWeight:700,fontSize:"0.82rem"}}>
+          OK
+        </button>
+      </div>
     </div>
   );
 }
@@ -922,10 +951,10 @@ function BidModal({ car, bundle, onClose, onSubmit, tl }) {
     </div>
   );
   return (
-    <div style={{position:"fixed",inset:0,background:"rgba(0,0,0,0.45)",zIndex:500,display:"flex",alignItems:"flex-end",justifyContent:"center"}}
+    <div style={{position:"fixed",inset:0,background:"rgba(0,0,0,0.45)",zIndex:500,display:"flex",alignItems:"center",justifyContent:"center",padding:"16px"}}
          onClick={e=>e.target===e.currentTarget&&onClose()}>
-      <div style={{background:"#fff",borderRadius:"20px 20px 0 0",width:"100%",maxWidth:520,padding:"20px 20px 32px",maxHeight:"90vh",overflowY:"auto"}}>
-        <div style={{width:40,height:4,background:BR,borderRadius:4,margin:"0 auto 16px"}}/>
+      <div className="modal-card" style={{background:"#fff",borderRadius:20,width:"100%",maxWidth:480,padding:"24px 24px 32px",maxHeight:"90vh",boxShadow:"0 32px 80px rgba(0,0,0,0.35)",overflowY:"auto"}}>
+        
         {bundle ? (
           <div style={{background:"#f5f3ff",border:"1px solid #ddd6fe",borderRadius:10,padding:"12px 14px",marginBottom:14}}>
             <div style={{display:"flex",alignItems:"center",gap:6,marginBottom:8}}>
@@ -1008,16 +1037,16 @@ function ContactModal({ car, onClose, onSubmit, tl }) {
   const [form,setForm]=useState({dealerName:"",mobile:"",message:"",agent:AGENT_NAMES[0]});
   const [loading,setLoading]=useState(false);
   const submit=async()=>{
-    if(!form.name.trim()||!form.mobile.trim())return;
+    if(!form.dealerName.trim()||!/^\d{10}$/.test(form.mobile)){return;}
     setLoading(true);
     await onSubmit({...form,carId:bundle?`Bundle:${bundle.dealId}`:car.id,regNo:bundle?`Bundle:${bundle.dealId}`:car.regNo,carName:bundle?`Bundle Deal ${bundle.dealId}`:`${car.make} ${car.model}`,dealId:bundle?bundle.dealId:"",dealerName:form.dealerName||form.name||""});
     setLoading(false);onClose();
   };
   return (
-    <div style={{position:"fixed",inset:0,background:"rgba(0,0,0,0.45)",zIndex:500,display:"flex",alignItems:"flex-end",justifyContent:"center"}}
+    <div style={{position:"fixed",inset:0,background:"rgba(0,0,0,0.45)",zIndex:500,display:"flex",alignItems:"center",justifyContent:"center",padding:"16px"}}
          onClick={e=>e.target===e.currentTarget&&onClose()}>
-      <div style={{background:"#fff",borderRadius:"20px 20px 0 0",width:"100%",maxWidth:520,padding:"20px 20px 32px",maxHeight:"85vh",overflowY:"auto"}}>
-        <div style={{width:40,height:4,background:BR,borderRadius:4,margin:"0 auto 16px"}}/>
+      <div className="modal-card" style={{background:"#fff",borderRadius:20,width:"100%",maxWidth:480,padding:"24px 24px 32px",maxHeight:"88vh",boxShadow:"0 32px 80px rgba(0,0,0,0.35)",overflowY:"auto"}}>
+        
         <div style={{background:TI,border:`1px solid ${BO}`,borderRadius:10,padding:"10px 14px",marginBottom:14}}>
           <div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:"0.9rem",color:TX}}>{car.make} {car.model} {car.regYear}</div>
           <div style={{fontFamily:"'DM Mono',monospace",fontSize:"0.7rem",color:N,marginTop:2}}>{car.regNo}</div>
@@ -1045,9 +1074,9 @@ function ContactModal({ car, onClose, onSubmit, tl }) {
         </div>
         <div style={{display:"flex",gap:10}}>
           <button onClick={onClose} style={{flex:1,padding:"12px",borderRadius:10,fontWeight:600,fontSize:"0.85rem",border:`1px solid ${BR}`,background:"#f8fafc",color:MT,cursor:"pointer"}}>Cancel</button>
-          <button onClick={submit} disabled={loading}
+          <button onClick={submit} disabled={loading||!form.dealerName.trim()||!/^\d{10}$/.test(form.mobile)}
             style={{flex:2,padding:"12px",borderRadius:10,fontWeight:700,fontSize:"0.88rem",border:"none",cursor:"pointer",
-                    background:`linear-gradient(135deg,${N},${B})`,color:"#fff",
+                    background:(loading||!form.dealerName.trim()||!/^\d{10}$/.test(form.mobile))?"#94a3b8":`linear-gradient(135deg,${N},${B})`,color:"#fff",
                     display:"flex",alignItems:"center",justifyContent:"center",gap:8}}>
             {loading?<><Loader2 size={14}/> {tl("sending")}</>:tl("sendEnquiry")}
           </button>
@@ -1098,11 +1127,11 @@ function FeedbackModal({ onClose, onSubmit }) {
 
   return (
     <div style={{position:"fixed",inset:0,background:"rgba(0,0,0,0.5)",zIndex:600,
-                 display:"flex",alignItems:"flex-end",justifyContent:"center"}}
+                 display:"flex",alignItems:"center",justifyContent:"center",padding:"16px"}}
          onClick={e=>e.target===e.currentTarget&&onClose()}>
-      <div style={{background:"#fff",borderRadius:"20px 20px 0 0",width:"100%",
+      <div className="modal-card" style={{background:"#fff",borderRadius:20,width:"100%",
                    maxWidth:500,padding:"20px 20px 36px",maxHeight:"90vh",overflowY:"auto"}}>
-        <div style={{width:40,height:4,background:"#E2E8F0",borderRadius:4,margin:"0 auto 16px"}}/>
+        
 
         {done ? (
           <div style={{textAlign:"center",padding:"32px 0"}}>
@@ -1220,10 +1249,10 @@ function InstallInstructions({ type, onClose }) {
   ];
   const steps = type === "android" ? androidSteps : iosSteps;
   return (
-    <div style={{background:"#fff",borderRadius:"20px 20px 0 0",width:"100%",
+    <div className="modal-card" style={{background:"#fff",borderRadius:20,width:"100%",
                  maxWidth:500,padding:"20px 20px 36px"}}
          onClick={e=>e.stopPropagation()}>
-      <div style={{width:40,height:4,background:"#E2E8F0",borderRadius:4,margin:"0 auto 20px"}}/>
+      
       <div style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:"1rem",
                    color:"#0A1628",marginBottom:16}}>
         {type==="android" ? "Install on Android" : "Install on iPhone (iOS)"}
@@ -1339,12 +1368,12 @@ function ContactPage({ tl }) {
       {/* Install Modal */}
       {installModal && (
         <div style={{position:"fixed",inset:0,background:"rgba(0,0,0,0.5)",zIndex:600,
-                     display:"flex",alignItems:"flex-end",justifyContent:"center"}}
+                     display:"flex",alignItems:"center",justifyContent:"center",padding:"16px"}}
              onClick={()=>setInstallModal(null)}>
-          <div style={{background:"#fff",borderRadius:"20px 20px 0 0",width:"100%",maxWidth:500,
+          <div style={{background:"#fff",borderRadius:20,width:"100%",maxWidth:500,
                        padding:"20px 20px 36px"}}
                onClick={e=>e.stopPropagation()}>
-            <div style={{width:40,height:4,background:"#E2E8F0",borderRadius:4,margin:"0 auto 20px"}}/>
+            
             {installModal==="android" ? (
               <>
                 <div style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:"1rem",
@@ -2416,7 +2445,7 @@ function App() {
       {installModal&&(
         <div onClick={()=>setInstallModal(null)}
           style={{position:"fixed",inset:0,background:"rgba(0,0,0,0.5)",zIndex:600,
-                  display:"flex",alignItems:"flex-end",justifyContent:"center"}}>
+                  display:"flex",alignItems:"center",justifyContent:"center",padding:"16px"}}>
           <InstallInstructions type={installModal} onClose={()=>setInstallModal(null)}/>
         </div>
       )}
