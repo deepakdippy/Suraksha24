@@ -666,67 +666,46 @@ function FilterChips({ master, filters, setFilters, tl }) {
         )}
         {groups.map(g=>{
           const cnt=(filters[g.key]||[]).length;
+          const isOpen=activeGroup===g.key;
           return (
-            <button key={g.key} onPointerDown={()=>setActiveGroup(g.key)}
+            <button key={g.key} onPointerDown={()=>setActiveGroup(isOpen?null:g.key)}
               style={{flexShrink:0,display:"flex",alignItems:"center",gap:5,padding:"6px 14px",
                       borderRadius:20,cursor:"pointer",whiteSpace:"nowrap",fontSize:"0.78rem",
-                      fontWeight:cnt>0?700:500,border:cnt>0?`1.5px solid ${N}`:`1px solid ${BR}`,
-                      background:cnt>0?TI:"#f8fafc",color:cnt>0?N:MT}}>
+                      fontWeight:cnt>0||isOpen?700:500,
+                      border:cnt>0||isOpen?`1.5px solid ${N}`:`1px solid ${BR}`,
+                      background:cnt>0||isOpen?TI:"#f8fafc",color:cnt>0||isOpen?N:MT}}>
               {g.label}
               {cnt>0&&<span style={{background:N,color:"#fff",fontSize:"0.62rem",fontWeight:700,
                 padding:"1px 5px",borderRadius:8}}>{cnt}</span>}
-              <ChevronDown size={11}/>
+              <ChevronDown size={11} style={{transform:isOpen?"rotate(180deg)":"none",transition:"transform 0.15s"}}/>
             </button>
           );
         })}
       </div>
+
+      {/* Inline panel — opens just below chips */}
       {activeGroup&&openGroup&&(
-        <div onPointerDown={()=>setActiveGroup(null)}
-          style={{position:"fixed",inset:0,background:"rgba(0,0,0,0.45)",zIndex:500,
-                  display:"flex",alignItems:"flex-end",justifyContent:"center"}}>
-          <div onPointerDown={e=>e.stopPropagation()}
-            style={{background:"#fff",borderRadius:"20px 20px 0 0",width:"100%",
-                    maxWidth:520,maxHeight:"70vh",display:"flex",flexDirection:"column"}}>
-            <div style={{padding:"16px 20px 12px",borderBottom:`1px solid ${BR}`,
-                         display:"flex",alignItems:"center",justifyContent:"space-between",flexShrink:0}}>
-              <span style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:"0.95rem",color:TX}}>
-                {openGroup.label}
-              </span>
-              <button onPointerDown={()=>setActiveGroup(null)}
-                style={{background:"none",border:"none",cursor:"pointer",padding:4,color:MT}}>
-                <X size={20}/>
-              </button>
-            </div>
-            <div style={{overflowY:"auto",flex:1,padding:"8px 0 16px"}}>
-              {openGroup.options.length===0
-                ?<div style={{textAlign:"center",padding:"32px",color:MT,fontSize:"0.85rem"}}>No data</div>
-                :openGroup.options.map(opt=>{
-                  const sel=isSel(openGroup.key,opt);
-                  return (
-                    <button key={opt} onPointerDown={()=>toggle(openGroup.key,opt)}
-                      style={{width:"100%",display:"flex",alignItems:"center",gap:12,padding:"13px 20px",
-                              border:"none",cursor:"pointer",background:sel?TI:"transparent",textAlign:"left"}}>
-                      <div style={{width:20,height:20,borderRadius:5,flexShrink:0,
-                                    border:`2px solid ${sel?N:BR}`,background:sel?N:"transparent",
-                                    display:"flex",alignItems:"center",justifyContent:"center"}}>
-                        {sel&&<Check size={12} style={{color:"#fff"}}/>}
-                      </div>
-                      <span style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.88rem",
-                                     color:sel?N:TX,fontWeight:sel?600:400}}>{opt}</span>
-                    </button>
-                  );
-                })
-              }
-            </div>
-            <div style={{padding:"12px 20px 28px",borderTop:`1px solid ${BR}`,flexShrink:0}}>
-              <button onPointerDown={()=>setActiveGroup(null)}
-                style={{width:"100%",padding:"13px",borderRadius:12,border:"none",cursor:"pointer",
-                        background:`linear-gradient(135deg,${N},${B})`,color:"#fff",
-                        fontFamily:"'Syne',sans-serif",fontWeight:700,fontSize:"0.9rem"}}>
-                Done {(filters[openGroup.key]||[]).length>0?`(${(filters[openGroup.key]||[]).length} selected)`:""}
-              </button>
-            </div>
-          </div>
+        <div style={{borderTop:`1px solid ${BR}`,background:"#fff",
+                     maxHeight:220,overflowY:"auto",padding:"6px 0"}}>
+          {openGroup.options.length===0
+            ?<div style={{textAlign:"center",padding:"16px",color:MT,fontSize:"0.82rem"}}>No data</div>
+            :openGroup.options.map(opt=>{
+              const sel=isSel(openGroup.key,opt);
+              return (
+                <button key={opt} onPointerDown={()=>toggle(openGroup.key,opt)}
+                  style={{width:"100%",display:"flex",alignItems:"center",gap:10,padding:"9px 16px",
+                          border:"none",cursor:"pointer",background:sel?TI:"transparent",textAlign:"left"}}>
+                  <div style={{width:18,height:18,borderRadius:4,flexShrink:0,
+                                border:`2px solid ${sel?N:BR}`,background:sel?N:"transparent",
+                                display:"flex",alignItems:"center",justifyContent:"center"}}>
+                    {sel&&<Check size={11} style={{color:"#fff"}}/>}
+                  </div>
+                  <span style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.85rem",
+                                 color:sel?N:TX,fontWeight:sel?600:400}}>{opt}</span>
+                </button>
+              );
+            })
+          }
         </div>
       )}
     </div>
