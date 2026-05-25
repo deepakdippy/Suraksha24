@@ -965,6 +965,7 @@ const PersonIcon=({size=14,style:s={}})=>(
     <path d="M5 20c0-3.5 3-6 7-6s7 2.5 7 6"/>
   </svg>
 );
+const tlFuel=(f,t)=>({'Petrol':t('petrol'),'Diesel':t('diesel'),'CNG':t('cng'),'Petrol+CNG':t('petrolCng'),'Electric':t('electric'),'Hybrid':t('hybrid')}[f]||f);
 const tlRC=(r,t)=>({'Original':t('rcOriginal'),'Lost':t('rcLost'),'Photocopy':t('rcPhotocopy')}[r]||r);
 const tlSt=(s,t)=>({'For Sale':t('forSale'),'Upcoming':t('upcoming'),'Bulk Deals':t('bulkDeals'),'Total Loss':t('totalLoss'),'Not in Running Condition':t('notRunning'),'Blacklisted':t('blacklisted'),'Disputed':t('disputed')}[s]||s);
 function CarCard({ car, onContact, onBid, saved, toggleSave, onDetail, tl }) {
