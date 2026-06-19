@@ -35,8 +35,8 @@
     input::placeholder,textarea::placeholder{color:#94a3b8}
     #loader{display:flex;align-items:center;justify-content:center;height:100vh;flex-direction:column;gap:18px;position:fixed;inset:0;background:linear-gradient(160deg,#060B27 0%,#0D1B4B 50%,#0A2463 100%);z-index:9999}
     #loader::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,#D4AF37,#F5C842,#D4AF37,transparent)}
-    #loader .brand{font-family:'Syne',sans-serif;font-weight:900;font-size:1.6rem;color:#fff;letter-spacing:-0.02em;text-align:center}
-    #loader .tag{font-family:'DM Sans',sans-serif;font-weight:800;font-size:0.7rem;color:#D4AF37;letter-spacing:0.22em;text-transform:uppercase;text-shadow:0 0 16px rgba(212,175,55,0.7)}
+    #loader .brand{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-weight:800;font-size:1.6rem;color:#fff;letter-spacing:-0.02em;text-align:center}
+    #loader .tag{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-weight:700;font-size:0.7rem;color:#D4AF37;letter-spacing:0.22em;text-transform:uppercase;text-shadow:0 0 16px rgba(212,175,55,0.7)}
     .sp{width:36px;height:36px;border:3px solid rgba(212,175,55,0.2);border-top-color:#D4AF37;border-radius:50%;animation:spin 0.7s linear infinite}
     @keyframes spin{to{transform:rotate(360deg)}}
     ::-webkit-scrollbar{height:3px;width:4px}
@@ -48,7 +48,7 @@
     <div class="brand">Suraksha24</div>
     <div class="tag">Trusted by Dealers</div>
     <div class="sp"></div>
-    <p style="color:rgba(255,255,255,0.5);font-size:0.75rem;letter-spacing:0.06em;font-family:'DM Sans',sans-serif">Loading inventory...</p>
+    <p style="color:rgba(255,255,255,0.5);font-size:0.75rem;letter-spacing:0.06em;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif">Loading inventory...</p>
   </div>
   <div id="root"></div>
 
@@ -78,74 +78,6 @@
 
   <script type="text/babel" data-presets="react,env">
 const {useState,useEffect,useCallback,useMemo,useRef}=React;
-// Inline SVG icon library — no external Lucide dependency
-const _mki = (...kids) => ({size=16, color, style={}, className=''}) =>
-  React.createElement('svg', {
-    width:size, height:size, viewBox:'0 0 24 24', fill:'none',
-    stroke:color||'currentColor', strokeWidth:2, strokeLinecap:'round',
-    strokeLinejoin:'round', style:{flexShrink:0, ...style}, className
-  }, ...kids);
-const _p = (d,k) => React.createElement('path',{d,key:k||d.slice(0,10)});
-const _c = (cx,cy,r,k) => React.createElement('circle',{cx,cy,r,key:k||`${cx}_${cy}_${r}`});
-const _l = (x1,y1,x2,y2,k) => React.createElement('line',{x1,y1,x2,y2,key:k||`${x1}_${y1}_${x2}_${y2}`});
-const _pl = (points,k) => React.createElement('polyline',{points,key:k||points.slice(0,10)});
-const _pg = (points,k) => React.createElement('polygon',{points,key:k||points.slice(0,10)});
-const _r = (x,y,w,h,rx,k) => React.createElement('rect',{x,y,width:w,height:h,rx,key:k||`${x}_${y}_${w}_${h}`});
-
-const Search = _mki(_c(11,11,8,'s1'), _p('m21 21-4.3-4.3','s2'));
-const X = _mki(_p('M18 6 6 18','x1'), _p('m6 6 12 12','x2'));
-const Check = _mki(_pl('20 6 9 17 4 12','ck1'));
-const Car = _mki(
-  _p('M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2','car1'),
-  _c(7,17,2,'car2'), _p('M9 17h6','car3'), _c(17,17,2,'car4')
-);
-const Mail = _mki(_r(2,4,20,16,2,'m1'), _p('m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7','m2'));
-const MapPin = _mki(_p('M20 10c0 7-8 13-8 13s-8-6-8-13a8 8 0 0 1 16 0Z','mp1'), _c(12,10,3,'mp2'));
-const Calendar = _mki(_r(3,4,18,18,2,'cal1'), _l(16,2,16,6,'cal2'), _l(8,2,8,6,'cal3'), _l(3,10,21,10,'cal4'));
-const Fuel = _mki(
-  _l(3,22,15,22,'f1'), _l(4,9,14,9,'f2'),
-  _p('M14 22V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v18','f3'),
-  _p('M14 13h2a2 2 0 0 1 2 2v2a2 2 0 0 0 2 2a2 2 0 0 0 2-2V9.83a2 2 0 0 0-.59-1.42L18 5','f4')
-);
-const Building2 = _mki(
-  _p('M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z','b1'),
-  _p('M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2','b2'),
-  _p('M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2','b3'),
-  _p('M10 6h4','b4'), _p('M10 10h4','b5'), _p('M10 14h4','b6'), _p('M10 18h4','b7')
-);
-const Shield = _mki(_p('M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z','sh1'));
-const ChevronDown = _mki(_p('m6 9 6 6 6-6','cd1'));
-const ChevronRight = _mki(_p('m9 18 6-6-6-6','cr1'));
-const Home = _mki(_p('m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z','h1'), _pl('9 22 9 12 15 12 15 22','h2'));
-const Heart = _mki(_p('M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z','ht1'));
-const MessageSquare = _mki(_p('M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z','ms1'));
-const Phone = _mki(_p('M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z','ph1'));
-const MessageCircle = _mki(_p('M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z','mc1'));
-const Star = _mki(_pg('12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2','st1'));
-const FileText = _mki(
-  _p('M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z','ft1'),
-  _pl('14 2 14 8 20 8','ft2'),
-  _l(16,13,8,13,'ft3'), _l(16,17,8,17,'ft4'), _l(10,9,8,9,'ft5')
-);
-const User = _mki(_p('M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2','u1'), _c(12,7,4,'u2'));
-const Loader2 = _mki(_p('M21 12a9 9 0 1 1-6.219-8.56','l1'));
-const Share2 = _mki(
-  _c(18,5,3,'sh1'), _c(6,12,3,'sh2'), _c(18,19,3,'sh3'),
-  _l(8.59,13.51,15.42,17.49,'sh4'), _l(15.41,6.51,8.59,10.49,'sh5')
-);
-const Eye = _mki(_p('M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z','e1'), _c(12,12,3,'e2'));
-const Filter = _mki(_pg('22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3','fi1'));
-const BarChart2 = _mki(_l(18,20,18,10,'bc1'), _l(12,20,12,4,'bc2'), _l(6,20,6,14,'bc3'));
-const Bell = _mki(_p('M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9','bl1'), _p('M10.3 21a1.94 1.94 0 0 0 3.4 0','bl2'));
-const Award = _mki(_c(12,8,7,'aw1'), _pl('8.21 13.89 7 23 12 20 17 23 15.79 13.88','aw2'));
-const Zap = _mki(_pg('13 2 3 14 12 14 11 22 21 10 12 10 13 2','z1'));
-const Clock = _mki(_c(12,12,10,'cl1'), _pl('12 6 12 12 16 14','cl2'));
-const Wrench = _mki(_p('M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z','w1'));
-const ArrowLeft = _mki(_p('m12 19-7-7 7-7','al1'), _p('M19 12H5','al2'));
-const Menu = _mki(_l(4,12,20,12,'mn1'), _l(4,6,20,6,'mn2'), _l(4,18,20,18,'mn3'));
-const Gauge = _mki(_p('m12 14 4-4','g1'), _p('M3.34 19a10 10 0 1 1 17.32 0','g2'));
-const AlertCircle = _mki(_c(12,12,10,'ac1'), _l(12,8,12,12,'ac2'), _l(12,16,12.01,16,'ac3'));
-const Download = _mki(_p('M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4','d1'), _pl('7 10 12 15 17 10','d2'), _l(12,15,12,3,'d3'));
 const LOGO_SRC=window.__LOGO_SRC__;
 // ============================================================
 // SURAKSHA24 — Repo Cars Marketplace
