@@ -75,17 +75,6 @@
         s.onerror = cb;
         document.head.appendChild(s);
       }
-      function launchApp() {
-        requestAnimationFrame(function() {
-          requestAnimationFrame(function() {
-            var src = document.getElementById('app-src').textContent;
-            var s = document.createElement('script');
-            s.textContent = src;
-            document.head.appendChild(s);
-          });
-        });
-      }
-
       function bootApp() {
         try {
           var firebaseConfig = {
@@ -98,27 +87,18 @@
           };
           if (!firebase.apps.length) { firebase.initializeApp(firebaseConfig); }
           window.__fbAuth = firebase.auth();
-        } catch(e) { console.error("Firebase init error:", e); launchApp(); return; }
+          // Set LOCAL persistence so the session survives page reloads on iPhone
+          window.__fbAuth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).catch(function(){});
+        } catch(e) { console.error("Firebase init error:", e); }
 
-        // CRITICAL for mobile redirect sign-in:
-        // Call getRedirectResult() BEFORE React mounts.
-        // This completes the Google redirect auth flow so that when
-        // onAuthStateChanged fires inside React, the user is already set.
-        // Without this, onAuthStateChanged fires null → shows sign-in page again.
-        window.__fbAuth.getRedirectResult()
-          .then(function(result) {
-            if (result && result.user) {
-              console.log("Redirect sign-in OK:", result.user.email);
-              // Store the user so React can pick it up instantly
-              window.__redirectUser = result.user;
-            }
-          })
-          .catch(function(e) {
-            console.warn("getRedirectResult error:", e.code);
-          })
-          .finally(function() {
-            launchApp();
+        requestAnimationFrame(function() {
+          requestAnimationFrame(function() {
+            var src = document.getElementById('app-src').textContent;
+            var s = document.createElement('script');
+            s.textContent = src;
+            document.head.appendChild(s);
           });
+        });
       }
 
       // Load Firebase sequentially, React/ReactDOM in parallel
@@ -6538,14 +6518,12 @@ function App() {
     }
     setSignInLoading(true);
     try {
+      // Set persistence to LOCAL so user stays logged in across page loads
+      await auth.setPersistence(window.firebase.auth.Auth.Persistence.LOCAL);
       const provider = new window.firebase.auth.GoogleAuthProvider();
-      // Mobile: use redirect (no popup, no password prompt — auto-picks logged-in Google account)
-      // Desktop: use popup for snappy UX
-      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-      if (isMobile) {
-        await auth.signInWithRedirect(provider);
-        return; // page will reload; onAuthStateChanged handles the result
-      }
+      provider.setCustomParameters({
+        prompt: 'select_account'
+      });
       const result = await auth.signInWithPopup(provider);
       if (result?.user) setUser(result.user);
     } catch (e) {
