@@ -75,6 +75,17 @@
         s.onerror = cb;
         document.head.appendChild(s);
       }
+      function launchApp() {
+        requestAnimationFrame(function() {
+          requestAnimationFrame(function() {
+            var src = document.getElementById('app-src').textContent;
+            var s = document.createElement('script');
+            s.textContent = src;
+            document.head.appendChild(s);
+          });
+        });
+      }
+
       function bootApp() {
         try {
           var firebaseConfig = {
@@ -87,18 +98,27 @@
           };
           if (!firebase.apps.length) { firebase.initializeApp(firebaseConfig); }
           window.__fbAuth = firebase.auth();
-        } catch(e) { console.error("Firebase init error:", e); }
+        } catch(e) { console.error("Firebase init error:", e); launchApp(); return; }
 
-        // Inject pre-compiled app as real script tag (no eval/string parsing)
-        // text/plain tag is never eval'd by browser — we copy its text into a real script
-        requestAnimationFrame(function() {
-          requestAnimationFrame(function() {
-            var src = document.getElementById('app-src').textContent;
-            var s = document.createElement('script');
-            s.textContent = src;
-            document.head.appendChild(s);
+        // CRITICAL for mobile redirect sign-in:
+        // Call getRedirectResult() BEFORE React mounts.
+        // This completes the Google redirect auth flow so that when
+        // onAuthStateChanged fires inside React, the user is already set.
+        // Without this, onAuthStateChanged fires null → shows sign-in page again.
+        window.__fbAuth.getRedirectResult()
+          .then(function(result) {
+            if (result && result.user) {
+              console.log("Redirect sign-in OK:", result.user.email);
+              // Store the user so React can pick it up instantly
+              window.__redirectUser = result.user;
+            }
+          })
+          .catch(function(e) {
+            console.warn("getRedirectResult error:", e.code);
+          })
+          .finally(function() {
+            launchApp();
           });
-        });
       }
 
       // Load Firebase sequentially, React/ReactDOM in parallel
@@ -6460,17 +6480,9 @@ function App() {
       setAuthLoading(false);
       return;
     }
-
-    // Handle redirect result FIRST (mobile Google sign-in)
-    // Must be called before onAuthStateChanged to complete the redirect flow
-    auth.getRedirectResult().then(result => {
-      if (result && result.user) {
-        // Redirect completed successfully — onAuthStateChanged will fire next
-        console.log("Redirect sign-in complete:", result.user.email);
-      }
-    }).catch(e => {
-      console.error("Redirect result error:", e.code, e.message);
-    });
+    // Note: getRedirectResult() is already called in bootApp() (HTML)
+    // BEFORE React mounts, so by the time onAuthStateChanged fires here,
+    // the redirect session is already established.
     const unsub = auth.onAuthStateChanged(async u => {
       setUser(u);
       if (!u) {
