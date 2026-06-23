@@ -6460,6 +6460,17 @@ function App() {
       setAuthLoading(false);
       return;
     }
+
+    // Handle redirect result FIRST (mobile Google sign-in)
+    // Must be called before onAuthStateChanged to complete the redirect flow
+    auth.getRedirectResult().then(result => {
+      if (result && result.user) {
+        // Redirect completed successfully — onAuthStateChanged will fire next
+        console.log("Redirect sign-in complete:", result.user.email);
+      }
+    }).catch(e => {
+      console.error("Redirect result error:", e.code, e.message);
+    });
     const unsub = auth.onAuthStateChanged(async u => {
       setUser(u);
       if (!u) {
