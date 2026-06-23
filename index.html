@@ -4954,7 +4954,12 @@ function ProfileForm({
           panMimeType: panFile.type
         })
       });
-      localStorage.setItem(`s24_profile_${user.uid}`, "complete");
+      try {
+        localStorage.setItem(`s24_profile_${user.uid}`, "complete");
+      } catch (e) {}
+      try {
+        sessionStorage.setItem(`s24_profile_${user.uid}`, "complete");
+      } catch (e) {}
       onComplete();
     } catch (e) {
       console.error("Profile error:", e);
@@ -6460,9 +6465,6 @@ function App() {
       setAuthLoading(false);
       return;
     }
-    // Note: getRedirectResult() is already called in bootApp() (HTML)
-    // BEFORE React mounts, so by the time onAuthStateChanged fires here,
-    // the redirect session is already established.
     const unsub = auth.onAuthStateChanged(async u => {
       setUser(u);
       if (!u) {
@@ -6470,24 +6472,42 @@ function App() {
         return;
       }
 
-      // 1. Check localStorage first (fast)
-      const localDone = localStorage.getItem(`s24_profile_${u.uid}`);
+      // 1. Check localStorage + sessionStorage (fast path - same device/session)
+      const localDone = localStorage.getItem(`s24_profile_${u.uid}`) || sessionStorage.getItem(`s24_profile_${u.uid}`);
       if (localDone) {
+        // Ensure both storages are set
+        try {
+          localStorage.setItem(`s24_profile_${u.uid}`, "complete");
+        } catch (e) {}
+        try {
+          sessionStorage.setItem(`s24_profile_${u.uid}`, "complete");
+        } catch (e) {}
         setProfileDone(true);
         setAuthLoading(false);
       } else {
-        // 2. Check Sheet — works across all devices/browsers
+        // 2. Check Sheet (new device / cleared storage)
         try {
           const res = await fetch(`${CONFIG.APPS_SCRIPT_URL}?action=getProfile&uid=${encodeURIComponent(u.uid)}`);
           const data = await res.json();
           if (data.profileComplete) {
-            localStorage.setItem(`s24_profile_${u.uid}`, "complete");
+            try {
+              localStorage.setItem(`s24_profile_${u.uid}`, "complete");
+            } catch (e) {}
+            try {
+              sessionStorage.setItem(`s24_profile_${u.uid}`, "complete");
+            } catch (e) {}
             setProfileDone(true);
           } else {
+            // profileComplete is explicitly false — genuinely new user
             setProfileDone(false);
           }
         } catch (e) {
-          setProfileDone(false);
+          // Network error / Sheet unreachable — ASSUME registered to avoid
+          // forcing existing users to re-submit KYC on every new device.
+          // Worst case: a truly new user with no internet sees the inventory
+          // and gets the registration form when they next have connectivity.
+          console.warn("Profile check failed, assuming registered:", e);
+          setProfileDone(true);
         }
         setAuthLoading(false);
       }
