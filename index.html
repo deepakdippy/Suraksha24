@@ -1676,6 +1676,16 @@ function FilterChips({
   const [activeGroup, setActiveGroup] = useState(null);
   const openGroup = groups.find(g => g.key === activeGroup);
   const touchRef = useRef(null);
+  const containerRef = useRef(null);
+  // Close when tapping outside the filter area
+  useEffect(() => {
+    if (!activeGroup) return;
+    const fn = e => {
+      if (containerRef.current && !containerRef.current.contains(e.target)) setActiveGroup(null);
+    };
+    document.addEventListener("pointerdown", fn, true);
+    return () => document.removeEventListener("pointerdown", fn, true);
+  }, [activeGroup]);
   const toggle = (key, val) => {
     const v = String(val || "").trim().toLowerCase();
     setFilters(prev => {
@@ -1706,6 +1716,7 @@ function FilterChips({
   };
   const totalActive = Object.values(filters).flat().length;
   return /*#__PURE__*/React.createElement("div", {
+    ref: containerRef,
     style: {
       background: "#fff",
       borderBottom: `1px solid ${BR}`
@@ -6505,6 +6516,13 @@ function App() {
     setSignInLoading(true);
     try {
       const provider = new window.firebase.auth.GoogleAuthProvider();
+      // Mobile: use redirect (no popup, no password prompt — auto-picks logged-in Google account)
+      // Desktop: use popup for snappy UX
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      if (isMobile) {
+        await auth.signInWithRedirect(provider);
+        return; // page will reload; onAuthStateChanged handles the result
+      }
       const result = await auth.signInWithPopup(provider);
       if (result?.user) setUser(result.user);
     } catch (e) {
