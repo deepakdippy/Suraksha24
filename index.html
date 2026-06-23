@@ -6510,29 +6510,29 @@ function App() {
     });
     return () => unsub();
   }, []);
-  const handleGoogleSignIn = async () => {
+  const handleGoogleSignIn = () => {
     const auth = window.__fbAuth;
     if (!auth) {
       alert("Auth not ready — please refresh.");
       return;
     }
     setSignInLoading(true);
-    try {
-      // Set persistence to LOCAL so user stays logged in across page loads
-      await auth.setPersistence(window.firebase.auth.Auth.Persistence.LOCAL);
-      const provider = new window.firebase.auth.GoogleAuthProvider();
-      provider.setCustomParameters({
-        prompt: 'select_account'
-      });
-      const result = await auth.signInWithPopup(provider);
+    // IMPORTANT: No await before signInWithPopup — Safari blocks popups
+    // if the user gesture is consumed by any prior async operation.
+    // setPersistence is already set in bootApp() before React mounts.
+    const provider = new window.firebase.auth.GoogleAuthProvider();
+    provider.setCustomParameters({
+      prompt: 'select_account'
+    });
+    auth.signInWithPopup(provider).then(result => {
       if (result?.user) setUser(result.user);
-    } catch (e) {
+    }).catch(e => {
       console.error("Sign in error:", e.code, e.message);
       if (e.code !== "auth/popup-closed-by-user") {
         alert("Sign-in failed: " + (e.code || e.message));
       }
       setSignInLoading(false);
-    }
+    });
   };
   const handleSignOut = async () => {
     const auth = window.__fbAuth;
